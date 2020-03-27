@@ -6,9 +6,11 @@ Zenhub Board:https://app.zenhub.com/workspaces/shoporswap-5e5ff52ff8dbe2fd7e39c2
 
 Slack Workspace: https://app.slack.com/client/TUL0B01Q9/CUW397F7S
 
-Sprint Goal (Starting 3/24): Develop the functionality to create a User, create clothing, and view clothing inventory.
+## Sprint #1:
 
-Class Diagrams:
+* Goal (Starting 3/24): Develop the functionality to create a User, create clothing, and view clothing inventory.
 
-User Class (and Related Classes) updated 3/26/2020:
+* Class Diagrams:
+
+   * User Class (and Related Classes) updated 3/26/2020:
 ![Image of User Class Diagram](https://github.com/wertzy/shoporswap/blob/user/user-class-diagram.png)
