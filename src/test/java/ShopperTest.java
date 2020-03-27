@@ -7,8 +7,8 @@ class ShopperTest {
     @Test
     void constructorTest(){
         Shopper shopper1 = new Shopper();
-        assertEquals("", shopper1.getAccountName());
-        assertEquals("", shopper1.getPassword());
+        assertEquals("accountname", shopper1.getAccountName());
+        assertEquals("password", shopper1.getPassword());
         assertEquals(0.0, shopper1.getRating());
 
         Shopper shopper2 = new Shopper("desmond", "desmond");
@@ -17,8 +17,8 @@ class ShopperTest {
         assertEquals(0.0, shopper2.getRating());
 
         User shopper3 = new Shopper();
-        assertEquals("", shopper3.getAccountName());
-        assertEquals("", shopper3.getPassword());
+        assertEquals("accountname", shopper3.getAccountName());
+        assertEquals("password", shopper3.getPassword());
         assertEquals(0.0, shopper3.getRating());
 
         User shopper4 = new Shopper("desmond", "desmond");

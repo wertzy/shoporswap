@@ -1,27 +1,36 @@
 public class User {
-    private String accountName;
-    private String password;
-    private double rating;
+    protected String accountName;
+    protected String password;
+    protected double rating;
 
     public User(){
-        this.accountName = "";
-        this.password = "";
+        this.accountName = "accountname";
+        this.password = "password";
         this.rating = 0.0;
     }
 
     public User(String accountNameIn, String passwordIn){
-        this.accountName = accountNameIn;
-        this.password = passwordIn;
+        if(!isAccountNameValid(accountNameIn)){
+            throw new IllegalArgumentException("invalid account name");
+        }else {
+            this.accountName = accountNameIn;
+        }
+
+        if(!isPasswordValid(passwordIn)){
+            throw new IllegalArgumentException("invalid password");
+        }else {
+            this.password = passwordIn;
+        }
         this.rating = 0.0;
     }
 
     public String getAccountName(){
-        return null;
+        return this.accountName;
     }
     public String getPassword(){
-        return null;
+        return this.password;
     }
-    public double getRating(){return 0.0;}
+    public double getRating(){return this.rating;}
 
     public static boolean isAccountNameValid(String accountName) {
         return false;

@@ -7,8 +7,8 @@ class SwapperTest {
     @Test
     void constructorTest(){
         Swapper swapper1 = new Swapper();
-        assertEquals("", swapper1.getAccountName());
-        assertEquals("", swapper1.getPassword());
+        assertEquals("accountname", swapper1.getAccountName());
+        assertEquals("password", swapper1.getPassword());
         assertEquals(0.0, swapper1.getRating());
 
         Swapper swapper2 = new Swapper("desmond", "desmond");
@@ -17,8 +17,8 @@ class SwapperTest {
         assertEquals(0.0, swapper2.getRating());
 
         User swapper3 = new Swapper();
-        assertEquals("", swapper3.getAccountName());
-        assertEquals("", swapper3.getPassword());
+        assertEquals("accountname", swapper3.getAccountName());
+        assertEquals("password", swapper3.getPassword());
         assertEquals(0.0, swapper3.getRating());
 
         User swapper4 = new Swapper("desmond", "desmond");
