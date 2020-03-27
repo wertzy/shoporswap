@@ -3,6 +3,12 @@ public class User {
     private String password;
     double rating;
 
+    public User(){
+        this.accountName = "";
+        this.password = "";
+        this.rating = 0.0;
+    }
+
     public User(String accountNameIn, String passwordIn){
         this.accountName = accountNameIn;
         this.password = passwordIn;
