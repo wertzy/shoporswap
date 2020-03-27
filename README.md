@@ -6,4 +6,4 @@ Zenhub Board:https://app.zenhub.com/workspaces/shoporswap-5e5ff52ff8dbe2fd7e39c2
 
 Slack Workspace: https://app.slack.com/client/TUL0B01Q9/CUW397F7S
 
-Sprint Goal (Starting 3/24): Develop the functionality to create a user, create clothing, and view clothing inventory.
+Sprint Goal (Starting 3/24): Develop the functionality to create a User, create clothing, and view clothing inventory.
