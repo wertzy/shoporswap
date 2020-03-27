@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f00ebfb2-42a7-46db-b7b1-9a8cf6df439f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Clothing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/clothingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shoporswap.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shoporswap.iml" afterDir="false" />
     </list>
@@ -9,6 +14,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,9 +37,25 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="clothingTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shoporswap" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="clothingTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.clothingTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -40,6 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585158692155</updated>
       <workItem from="1585240522011" duration="989000" />
+      <workItem from="1585310540266" duration="3326000" />
     </task>
     <servers />
   </component>
@@ -47,9 +76,30 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="179" key="#Project_Structure" timestamp="1585240732303">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="368" y="0" key="#Project_Structure" timestamp="1585310634027">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="368" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1585310634027" />
     <state x="552" y="179" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1585240732303" />
+    <state width="1237" height="156" key="GridCell.Tab.0.bottom" timestamp="1585314957073">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="156" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585314957073" />
+    <state width="1237" height="156" key="GridCell.Tab.0.center" timestamp="1585314957073">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="156" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1585314957073" />
+    <state width="1237" height="156" key="GridCell.Tab.0.left" timestamp="1585314957073">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="156" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1585314957073" />
+    <state width="1237" height="156" key="GridCell.Tab.0.right" timestamp="1585314957073">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="156" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1585314957073" />
+    <state x="337" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1585310551528">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1585310551528" />
   </component>
 </project>
