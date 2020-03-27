@@ -36,7 +36,7 @@ class userTest {
     }
 
     @Test
-    void ratingTest(){
+    void isValidRatingTest(){
         assertTrue(user.isRatingValid(5.0));
         //EC: Max value of rating is 5 out of 5 stars. This is a border case
         assertTrue(user.isRatingValid(0.0));
