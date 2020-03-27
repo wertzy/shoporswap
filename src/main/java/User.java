@@ -1,7 +1,7 @@
 public class User {
-    String accountName;
+    private String accountName;
     private String password;
-    double rating;
+    private double rating;
 
     public User(){
         this.accountName = "";
@@ -18,10 +18,10 @@ public class User {
     public String getAccountName(){
         return null;
     }
-
     public String getPassword(){
         return null;
     }
+    public double getRating(){return 0.0;}
 
     public static boolean isAccountNameValid(String accountName) {
         return false;

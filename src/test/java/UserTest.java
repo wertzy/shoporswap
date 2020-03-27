@@ -9,6 +9,11 @@ class UserTest {
         User user1 = new User("desmond", "desmond");
         assertEquals("desmond", user1.getAccountName());
         assertEquals("desmond", user1.getPassword());
+
+        assertThrows(IllegalArgumentException.class, ()-> new User("des mond", "desmond"));
+        assertThrows(IllegalArgumentException.class, ()-> new User("", "desmond"));
+        assertThrows(IllegalArgumentException.class, ()-> new User("desmond", ""));
+        assertThrows(IllegalArgumentException.class, ()-> new User("desmond", "des mond"));
     }
 
     @Test
