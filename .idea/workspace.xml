@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="f00ebfb2-42a7-46db-b7b1-9a8cf6df439f" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/Clothing.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/clothingTest.java" afterDir="false" />
@@ -10,6 +11,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shoporswap.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shoporswap.iml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="f00ebfb2-42a7-46db-b7b1-9a8cf6df439f" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,8 +71,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585158692155</updated>
+<<<<<<< Updated upstream
       <workItem from="1585240522011" duration="989000" />
       <workItem from="1585310540266" duration="3326000" />
+=======
+      <workItem from="1585240522011" duration="4202000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
