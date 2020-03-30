@@ -1,3 +1,4 @@
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class User {
@@ -93,5 +94,13 @@ public class User {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Views the collection of clothing available to see (varies by seller, shopper, swapper)
+     * @return the viewable clothing (as a list) of clothing
+     */
+    public Collection<Clothing> viewClothing(){
+        return null;
     }
 }
