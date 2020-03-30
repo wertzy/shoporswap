@@ -184,7 +184,6 @@ public class User {
         return this.password;
     }
     public List <String> getTransactionHistory(){return this.transactionHistory;}
-    public double getRating(){return this.rating;}
 
     /**
      * Accessor for the rating property of a User
