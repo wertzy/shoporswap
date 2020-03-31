@@ -70,6 +70,16 @@ public class ProductTest {
     @Test
     void isValidPriceTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        assertFalse(Product.isValidPrice(-100)); // Equivalence class: price must be nonnegative (invalid case, middle case)
+        assertFalse(Product.isValidPrice(-0.01)); // Equivalence class: price must be nonnegative (invalid case, border case)
+        assertTrue(Product.isValidPrice(0)); // Equivalence class: price must be nonnegative (valid case, border case)
+        assertTrue(Product.isValidPrice(100)); // Equivalence class: price must be nonnegative (valid case, middle case)
+
+        assertFalse(Product.isValidPrice(0.012)); // Equivalence class: price must have no more than 2 decimal places (invalid case, border case)
+        assertFalse(Product.isValidPrice(0.0123456789)); // Equivalence class: price must have no more than 2 decimal places (invalid case, middle case)
+        assertTrue(Product.isValidPrice(10)); // Equivalence class: price must have no more than 2 decimal places (valid case, border case)
+        assertTrue(Product.isValidPrice(10.01)); // Equivalence class: price must have no more than 2 decimal places (valid case, border case)
+        assertTrue(Product.isValidPrice(10.1)); // Equivalence class: price must have no more than 2 decimal places (valid case, middle case)
     }
 
     @Test
