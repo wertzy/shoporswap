@@ -15,7 +15,7 @@ public class Shopper extends User {
      * @return the viewable clothing (as a list) of clothing
      */
     @Override
-    public Collection<Clothing> viewClothing(){
+    public Collection<Product> viewClothing(){
         return null;
     }
 

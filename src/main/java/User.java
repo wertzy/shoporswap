@@ -1,4 +1,3 @@
-import java.util.*;
 import java.util.regex.Pattern;
 
 import java.util.Collection;
@@ -233,7 +232,7 @@ public class User {
      * Views the collection of clothing available to see (varies by seller, shopper, swapper)
      * @return the viewable clothing (as a list) of clothing
      */
-    public Collection<Clothing> viewClothing(){
+    public Collection<Product> viewClothing(){
         return null;
     }
 }
