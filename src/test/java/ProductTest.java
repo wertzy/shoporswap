@@ -35,6 +35,36 @@ public class ProductTest {
     @Test
     void isValidDescriptionTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        assertFalse(Product.isValidDescription("")); // Equivalence class: number of characters must be nonzero and at most 500 (invalid case, border case)
+        assertFalse(Product.isValidDescription(
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "t")); // Equivalence class: number of characters must be nonzero and at most 500 (invalid case, border case)
+        assertFalse(Product.isValidDescription(
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc")); // Equivalence class: number of characters must be nonzero and at most 500 (invalid case, middle case)
+        assertTrue(Product.isValidDescription("t")); // Equivalence class: number of characters must me nonzero and at most 500 (valid case, border case)
+        assertTrue(Product.isValidDescription(
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc")); // Equivalence class: number of characters must me nonzero and at most 500 (valid case, border case)
+        assertTrue(Product.isValidDescription("thisistencthisistencthisistencthisistencthisistenc")); // Equivalence class: number of characters must me nonzero and at most 500 (valid case, middle case)
+
+        assertFalse(Product.isValidDescription(" description")); // Equivalence class: description cannot begin or end with a space (invalid case, border case)
+        assertFalse(Product.isValidDescription("description ")); // Equivalence class: description cannot begin or end with a space (invalid case, border case)
+        assertFalse(Product.isValidDescription(" description ")); // Equivalence class: description cannot begin or end with a space (invalid case, middle case)
+        assertTrue(Product.isValidDescription("a description")); // Equivalence class: description cannot begin or end with a space (valid case, border case)
+        assertTrue(Product.isValidDescription("description d")); // Equivalence class: description cannot begin or end with a space (valid case, border case)
+        assertTrue(Product.isValidDescription("product description")); // Equivalence class: description cannot begin or end with a space (valid case, middle case)
     }
 
     @Test
