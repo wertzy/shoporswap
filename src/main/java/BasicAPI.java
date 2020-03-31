@@ -2,14 +2,18 @@ import java.util.List;
 
 public interface BasicAPI {
 
-    User login(String accountName, String password);
+    User signIn(String accountName, String password);
 
-    Product makeProduct();
+    User signOut(String accountName, String password);
 
-    List<Product> viewMyProducts();
+    Product createSellProduct(String name, String description, String price, User merchant);
 
-    List<Product> viewAllSellableProducts();
+    Product createSwapProduct(String name, String description, String price, User merchant);
 
-    List<Product> viewAllSwappableProducts();
+    List<Product> viewUserProducts(User user);
+
+    List<Product> viewSellProducts();
+
+    List<Product> viewSwapProducts();
 
 }
