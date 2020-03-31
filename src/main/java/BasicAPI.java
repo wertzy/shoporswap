@@ -18,4 +18,8 @@ public interface BasicAPI {
 
     List<Product> viewSwapProducts();
 
+    List<User> getUserList();
+
+    List<Product> getProductList();
+
 }
