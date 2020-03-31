@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductTest {
@@ -226,14 +228,14 @@ public class ProductTest {
     void getMerchantTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
-        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getName accessor
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getMerchant accessor
         assertEquals("accountname", testProduct1.getMerchant().getAccountName());
         assertEquals("password", testProduct1.getMerchant().getPassword());
         assertEquals(0, testProduct1.getMerchant().getRating());
         assertEquals(0, testProduct1.getMerchant().getTransactionHistory().size());
 
         User testUser2 = new User("accountname1", "password1");
-        Product testProduct2 = new Product("product name", "product description",2, testUser2); // test for getName accessor
+        Product testProduct2 = new Product("product name", "product description",2, testUser2); // test for getMerchant accessor
         assertEquals("accountname1", testProduct2.getMerchant().getAccountName());
         assertEquals("password1", testProduct2.getMerchant().getPassword());
         assertEquals(0, testProduct2.getMerchant().getRating());
@@ -244,22 +246,101 @@ public class ProductTest {
     void getConsumerTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
-        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getName accessor
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getConsumer accessor
         assertNull(testProduct1.getConsumer());
 
         User testUser2 = new User("accountname1", "password1");
-        Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getName accessor
+        Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getConsumer accessor
         assertNull(testProduct2.getConsumer());
     }
 
     @Test
     void addTagTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("name", "description", testUser1);
+        Product testProduct2 = new Product("name", "description", 50.05, testUser1);
+
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.addTag("")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.addTag("")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.addTag(" ")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.addTag(" ")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.addTag("a b")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.addTag("a b")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.addTag("#")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.addTag("#")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.addTag("#$%")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.addTag("#$%")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+
+        testProduct1.addTag("tag1"); // Equivalence class: having 1 tag (valid case, border case)
+        assertFalse(testProduct1.getTags().contains("tag2"));
+        assertTrue(testProduct1.getTags().contains("tag1"));
+
+        testProduct2.addTag("tag1"); // Equivalence class: having 1 tag (valid case, border case)
+        assertFalse(testProduct2.getTags().contains("tag2"));
+        assertTrue(testProduct2.getTags().contains("tag1"));
+
+        testProduct1.addTag("tag2"); // Equivalence class: having 2 tags (valid case, middle case)
+        assertTrue(testProduct1.getTags().contains("tag2"));
+        assertTrue(testProduct1.getTags().contains("tag1"));
+
+        testProduct2.addTag("tag2"); // Equivalence class: having 2 tags (valid case, middle case)
+        assertTrue(testProduct2.getTags().contains("tag2"));
+        assertTrue(testProduct2.getTags().contains("tag1"));
     }
 
     @Test
     void removeTagTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("name", "description", testUser1);
+        Product testProduct2 = new Product("name", "description", 50.05, testUser1);
+
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.removeTag("")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.removeTag("")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.removeTag(" ")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.removeTag(" ")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.removeTag("a b")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.removeTag("a b")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.removeTag("#")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.removeTag("#")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct1.removeTag("#$%")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testProduct2.removeTag("#$%")); // Equivalence class: tag must have more than 0 characters, no spaces, and no special characters (invalid case, middle case)
+
+        assertThrows(NoSuchElementException.class, ()-> testProduct1.removeTag("tag1")); // Equivalence class: tag must already be attached to product (invalid case)
+        assertThrows(NoSuchElementException.class, ()-> testProduct2.removeTag("tag1")); // Equivalence class: tag must already be attached to product (invalid case)
+
+        // Equivalence class: removing 1 tag (valid case, border case)
+        testProduct1.addTag("tag1");
+        testProduct1.removeTag("tag1");
+        assertFalse(testProduct1.getTags().contains("tag2"));
+        assertFalse(testProduct1.getTags().contains("tag1"));
+
+        // Equivalence class: removing 1 tag (valid case, border case)
+        testProduct2.addTag("tag1");
+        testProduct2.removeTag("tag1");
+        assertFalse(testProduct2.getTags().contains("tag2"));
+        assertTrue(testProduct2.getTags().contains("tag1"));
+
+        // Equivalence class: removing 2 tags (valid case, middle case)
+        testProduct1.addTag("tag1");
+        testProduct1.addTag("tag2");
+        testProduct1.removeTag("tag1");
+        assertTrue(testProduct1.getTags().contains("tag2"));
+        assertFalse(testProduct1.getTags().contains("tag1"));
+        testProduct1.removeTag("tag2");
+        assertFalse(testProduct1.getTags().contains("tag1"));
+        assertFalse(testProduct1.getTags().contains("tag2"));
+
+        // Equivalence class: removing 2 tags (valid case, middle case)
+        testProduct2.addTag("tag1");
+        testProduct2.addTag("tag2");
+        testProduct2.removeTag("tag1");
+        assertTrue(testProduct2.getTags().contains("tag2"));
+        assertFalse(testProduct2.getTags().contains("tag1"));
+        testProduct2.removeTag("tag2");
+        assertFalse(testProduct2.getTags().contains("tag1"));
+        assertFalse(testProduct2.getTags().contains("tag2"));
     }
 
 }
