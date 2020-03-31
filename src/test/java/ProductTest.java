@@ -177,31 +177,79 @@ public class ProductTest {
     @Test
     void getNameTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getName accessor
+        assertEquals("product name", testProduct1.getName());
+
+        User testUser2 = new User();
+        Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getName accessor
+        assertEquals("product name", testProduct2.getName());
     }
 
     @Test
     void getDescriptionTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getDescription accessor
+        assertEquals("product description", testProduct1.getDescription());
+
+        User testUser2 = new User();
+        Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getDescription accessor
+        assertEquals("product description", testProduct2.getDescription());
     }
 
     @Test
     void getPriceTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getPrice accessor
+        assertEquals(0, testProduct1.getPrice());
+
+        User testUser2 = new User();
+        Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getPrice accessor
+        assertEquals(2, testProduct2.getPrice());
     }
 
     @Test
     void getTagsTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getTags accessor
+        assertEquals(0, testProduct1.getTags().size());
+
+        User testUser2 = new User();
+        Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getTags accessor
+        assertEquals(0, testProduct2.getTags().size());
     }
 
     @Test
     void getMerchantTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getName accessor
+        assertEquals("accountname", testProduct1.getMerchant().getAccountName());
+        assertEquals("password", testProduct1.getMerchant().getPassword());
+        assertEquals(0, testProduct1.getMerchant().getRating());
+        assertEquals(0, testProduct1.getMerchant().getTransactionHistory().size());
+
+        User testUser2 = new User("accountname1", "password1");
+        Product testProduct2 = new Product("product name", "product description",2, testUser2); // test for getName accessor
+        assertEquals("accountname1", testProduct2.getMerchant().getAccountName());
+        assertEquals("password1", testProduct2.getMerchant().getPassword());
+        assertEquals(0, testProduct2.getMerchant().getRating());
+        assertEquals(0, testProduct2.getMerchant().getTransactionHistory().size());
     }
 
     @Test
     void getConsumerTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        User testUser1 = new User();
+        Product testProduct1 = new Product("product name", "product description", testUser1); // test for getName accessor
+        assertNull(testProduct1.getConsumer());
+
+        User testUser2 = new User("accountname1", "password1");
+        Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getName accessor
+        assertNull(testProduct2.getConsumer());
     }
 
     @Test
