@@ -7,6 +7,98 @@ public class ProductTest {
     @Test
     void constructorsTest(){
         //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
+        String text0c = ""; // string with 0 characters, used repeatedly during testing
+        String text20c = "thisistencthisistenc"; // string with 20 characters, used repeatedly during testing
+        String text60c = "thisistencthisistencthisistencthisistencthisistencthisistenc"; // string with 51 characters, used repeatedly during testing
+        String text500c =
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc"; // string with 500 characters, used repeatedly during testing
+        String text600c =
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
+                "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc"; // string with 600 characters, used repeatedly during testing
+        double invalidPrice = -100; // invalid price, used repeatedly during testing
+        double validPrice = 20.2; // valid price, used repeatedly during testing
+
+        assertThrows(IllegalArgumentException.class, ()-> new Product(text0c, text0c, null)); // Equivalence class: name and description must be valid (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> new Product(text20c, text600c, null)); // Equivalence class: name and description must be valid (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> new Product(text60c, text500c, null)); // Equivalence class: name and description must be valid (invalid case, border case)
+
+        assertThrows(IllegalArgumentException.class, ()-> new Product(text0c, text0c, invalidPrice, null)); // Equivalence class: name and description must be valid (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> new Product(text20c, text600c, validPrice,null)); // Equivalence class: name and description must be valid (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> new Product(text60c, text500c, validPrice,null)); // Equivalence class: name and description must be valid (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> new Product(text20c, text500c, invalidPrice,null)); // Equivalence class: name and description must be valid (invalid case, border case)
+
+        Product testProduct1 = new Product("1", text500c, null); // Equivalence class: name and description must be valid (valid case, border case)
+        assertEquals("1", testProduct1.getName());
+        assertEquals(text500c, testProduct1.getDescription());
+        assertEquals(0, testProduct1.getPrice());
+        assertNull(testProduct1.getMerchant());
+        assertNull(testProduct1.getConsumer());
+        assertEquals(0, testProduct1.getTags().size());
+
+        Product testProduct2 = new Product(text20c, text500c, 0.01,null); // Equivalence class: name and description must be valid (valid case, border case)
+        assertEquals(text20c, testProduct2.getName());
+        assertEquals(text500c, testProduct2.getDescription());
+        assertEquals(0.01, testProduct2.getPrice());
+        assertNull(testProduct2.getMerchant());
+        assertNull(testProduct2.getConsumer());
+        assertEquals(0, testProduct2.getTags().size());
+
+        Product testProduct3 = new Product(text20c, "1", validPrice,null); // Equivalence class: name and description must be valid (valid case, border case)
+        assertEquals(text20c, testProduct3.getName());
+        assertEquals("1", testProduct3.getDescription());
+        assertEquals(validPrice, testProduct3.getPrice());
+        assertNull(testProduct3.getMerchant());
+        assertNull(testProduct3.getConsumer());
+        assertEquals(0, testProduct3.getTags().size());
+
+        Product testProduct4 = new Product("1", text500c, validPrice,null); // Equivalence class: name and description must be valid (valid case, border case)
+        assertEquals("1", testProduct4.getName());
+        assertEquals(text500c, testProduct4.getDescription());
+        assertEquals(validPrice, testProduct4.getPrice());
+        assertNull(testProduct4.getMerchant());
+        assertNull(testProduct4.getConsumer());
+        assertEquals(0, testProduct4.getTags().size());
+
+        Product testProduct5 = new Product(text20c, text500c, validPrice,null); // Equivalence class: name and description must be valid (valid case, middle case)
+        assertEquals(text20c, testProduct5.getName());
+        assertEquals(text500c, testProduct5.getDescription());
+        assertEquals(validPrice, testProduct5.getPrice());
+        assertNull(testProduct5.getMerchant());
+        assertNull(testProduct5.getConsumer());
+        assertEquals(0, testProduct5.getTags().size());
+
+
+        User testUser1 = new User(); // Equivalence class: name and description must be valid, merchant must be valid (valid case, middle case)
+        Product testProduct6 = new Product(text20c, text500c, validPrice, testUser1);
+        assertEquals(text20c, testProduct6.getName());
+        assertEquals(text500c, testProduct6.getDescription());
+        assertEquals(validPrice, testProduct6.getPrice());
+        assertEquals("accountname", testProduct6.getMerchant().getAccountName());
+        assertEquals("password", testProduct6.getMerchant().getPassword());
+        assertEquals(0, testProduct6.getMerchant().getRating());
+        assertEquals(0, testProduct6.getMerchant().getTransactionHistory().size());
+        assertNull(testProduct6.getConsumer());
+        assertEquals(0, testProduct6.getTags().size());
+
+        User testUser2 = new User("accountname1", "password1"); // Equivalence class: name and description must be valid, merchant must be valid (valid case, middle case)
+        Product testProduct7 = new Product(text20c, text500c, validPrice, testUser2);
+        assertEquals(text20c, testProduct7.getName());
+        assertEquals(text500c, testProduct7.getDescription());
+        assertEquals(validPrice, testProduct7.getPrice());
+        assertEquals("accountname1", testProduct7.getMerchant().getAccountName());
+        assertEquals("password1", testProduct7.getMerchant().getPassword());
+        assertEquals(0, testProduct7.getMerchant().getRating());
+        assertEquals(0, testProduct7.getMerchant().getTransactionHistory().size());
+        assertNull(testProduct7.getConsumer());
+        assertEquals(0, testProduct7.getTags().size());
     }
 
     @Test
