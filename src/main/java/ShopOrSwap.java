@@ -9,7 +9,7 @@ public class ShopOrSwap implements BasicAPI{
      * Default constructor for a ShopOrSwap object
      */
     public ShopOrSwap(){
-
+        //TODO implement method to pass corresponding tests after the tests have been written
     }
 
     /**
@@ -18,7 +18,7 @@ public class ShopOrSwap implements BasicAPI{
      * @param products the products to import into the ShopOrSwap
      */
     public ShopOrSwap(List<User> users, List<Product> products){
-
+        //TODO implement method to pass corresponding tests after the tests have been written
     }
 
     /**
@@ -28,6 +28,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User signIn(String accountName, String password) {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -38,6 +39,19 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User signOut(String accountName, String password) {
+        //TODO implement method to pass corresponding tests after the tests have been written
+        return null;
+    }
+
+    /**
+     * creates a User in the program
+     * @param accountName the account name of the User to create
+     * @param password the password of the User to create
+     * @return
+     */
+    @Override
+    public User createAccount(String accountName, String password) {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -51,6 +65,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public Product createSellProduct(String name, String description, String price, User merchant) {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -64,6 +79,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public Product createSwapProduct(String name, String description, String price, User merchant) {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -74,6 +90,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public List<Product> viewUserProducts(User user) {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -83,6 +100,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public List<Product> viewSellProducts() {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -92,6 +110,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public List<Product> viewSwapProducts() {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 }

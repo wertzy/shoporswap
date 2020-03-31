@@ -6,6 +6,8 @@ public interface BasicAPI {
 
     User signOut(String accountName, String password);
 
+    User createAccount(String accountName, String password);
+
     Product createSellProduct(String name, String description, String price, User merchant);
 
     Product createSwapProduct(String name, String description, String price, User merchant);
