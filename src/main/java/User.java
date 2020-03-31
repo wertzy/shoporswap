@@ -153,7 +153,7 @@ public class User {
      * @param accountNameIn the desired account name for the User
      * @param passwordIn the desired password for the User
      */
-    public User(String accountNameIn, String passwordIn){
+    public User(String accountNameIn, String passwordIn) throws IllegalArgumentException{
         if(!isAccountNameValid(accountNameIn)){
             throw new IllegalArgumentException("invalid account name");
         }else {
