@@ -16,5 +16,6 @@ Slack Workspace: https://app.slack.com/client/TUL0B01Q9/CUW397F7S
 https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=sharing
    
    * Product Class updated 3/30/2020:
+   
    ![](https://github.com/wertzy/shoporswap/blob/Product/product-class-diagram.png)
    
