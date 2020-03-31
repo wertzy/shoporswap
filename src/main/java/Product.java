@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class Product {
     private String name;
@@ -13,9 +14,22 @@ public class Product {
      * @param name the name of the Product
      * @param description the description of the Product
      * @param merchant the User selling the Product
+     * @throws IllegalArgumentException if the name of the Product is invalid
+     * @throws IllegalArgumentException if the description of the Product is invalid
      */
     public Product(String name, String description, User merchant){
-        //TODO implementation
+        if(!isValidName(name)){ // calls validity check on name
+            throw new IllegalArgumentException("invalid name");
+        }
+        if(!isValidDescription(description)){ // calls validity check on description
+            throw new IllegalArgumentException("invalid description");
+        }
+        this.name = name;
+        this.description = description;
+        this.price = 0;
+        this.tags = new ArrayList<String>();
+        this.merchant = merchant;
+        this.consumer = null;
     }
 
     /**
@@ -24,25 +38,54 @@ public class Product {
      * @param description the description of the Product
      * @param price the price of the Product
      * @param merchant the User selling the Product
+     * @throws IllegalArgumentException if the name of the Product is invalid
+     * @throws IllegalArgumentException if the description of the Product is invalid
+     * @throws IllegalArgumentException if the price of the Product is invalid
      */
     public Product(String name, String description, double price, User merchant){
-        //TODO implementation
+        if(!isValidName(name)){ // calls validity check on name
+            throw new IllegalArgumentException("invalid name");
+        }
+        if(!isValidDescription(description)){ // calls validity check on description
+            throw new IllegalArgumentException("invalid description");
+        }
+        if(!isValidPrice(price)){ // calls validity check on price
+            throw new IllegalArgumentException("invalid price");
+        }
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.tags = new ArrayList<String>();
+        this.merchant = merchant;
+        this.consumer = null;
     }
 
     /**
      * Add a tag to the Product object
      * @param tag the tag to add
+     * @throws IllegalArgumentException if the tag to add is invalid
      */
     public void addTag(String tag){
-        //TODO implementation
+        if(!isValidTag(tag)){
+            throw new IllegalArgumentException("invalid tag");
+        }
+        this.tags.add(tag);
     }
 
     /**
      * Remove a tag from the Product object
      * @param tag the tag to remove
+     * @throws IllegalArgumentException if the tag to remove is invalid
      */
     public void removeTag(String tag){
-        //TODO implementation
+        if(!isValidTag(tag)){
+            throw new IllegalArgumentException("invalid tag");
+        }
+        if(this.tags.contains(tag)){
+            this.tags.remove(tag);
+        }else{
+            throw new NoSuchElementException("no such tag attached to product");
+        }
     }
 
     /**
@@ -50,8 +93,7 @@ public class Product {
      * @return the name of the Product object
      */
     public String getName(){
-        //TODO implementation
-        return "";
+        return this.name;
     }
 
     /**
@@ -59,8 +101,7 @@ public class Product {
      * @return the description of the Product
      */
     public String getDescription(){
-        //TODO implementation
-        return "";
+        return this.description;
     }
 
     /**
@@ -68,8 +109,7 @@ public class Product {
      * @return the price of the Product
      */
     public double getPrice(){
-        //TODO implementation
-        return 0;
+        return this.price;
     }
 
     /**
@@ -77,8 +117,7 @@ public class Product {
      * @return the tags of the Product
      */
     public List<String> getTags(){
-        //TODO implementation
-        return null;
+        return this.tags;
     }
 
     /**
@@ -86,8 +125,7 @@ public class Product {
      * @return the merchant of the Product
      */
     public User getMerchant(){
-        //TODO implementation
-        return null;
+        return this.merchant;
     }
 
     /**
@@ -95,8 +133,7 @@ public class Product {
      * @return the consumer of the Product
      */
     public User getConsumer(){
-        //TODO implementation
-        return null;
+        return this.consumer;
     }
 
     /**
@@ -105,8 +142,14 @@ public class Product {
      * @return true if the name is valid, false otherwise
      */
     public static boolean isValidName(String name){
-        //TODO implementation
-        return false;
+        if(name.indexOf(" ") == 0){ // checks if the name begins with a space
+            return false;
+        }
+        if(name.lastIndexOf(" ") == name.length() - 1){ // checks if the name ends with a space
+            return false;
+        }
+        String nameStringPattern = "[\\w[\\s]]{1,50}+"; // regex representing a 1-50 length string which pass the initial if-else conditions
+        return Pattern.matches(nameStringPattern, name); // checks if the name matches the required expression
     }
 
     /**
@@ -115,8 +158,14 @@ public class Product {
      * @return true if the description is valid, false otherwise
      */
     public static boolean isValidDescription(String description){
-        //TODO implementation
-        return false;
+        if(description.indexOf(" ") == 0){ // checks if the description begins with a space
+            return false;
+        }
+        if(description.lastIndexOf(" ") == description.length() - 1){ // checks if the description ends with a space
+            return false;
+        }
+        String descriptionStringPattern = "[\\w[\\s]]{1,500}+"; // regex representing a 1-500 length string which pass the initial if-else conditions
+        return Pattern.matches(descriptionStringPattern, description); // checks if the description matches the required expression
     }
 
     /**
@@ -125,8 +174,30 @@ public class Product {
      * @return true if the price is valid, false otherwise
      */
     public static boolean isValidPrice(double price){
-        //TODO implementation
-        return false;
+        if(price < 0){ // checks if the price is negative
+            return false;
+        }
+        String priceString = "" + price;
+        if(priceString.contains(".") && priceString.substring(priceString.indexOf(".") + 1).length() > 2){ // checks if the price has more than 2 decimal places
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Static method to check the validity of a tag (tag must be alphanumeric and not containing spaces)
+     * @param tag the tag to validate
+     * @return true if the tag is valid, false otherwise
+     */
+    public static boolean isValidTag(String tag){
+        if(tag.indexOf(" ") == 0){ // checks if the tag begins with a space
+            return false;
+        }
+        if(tag.lastIndexOf(" ") == tag.length() - 1){ // checks if the tag ends with a space
+            return false;
+        }
+        String descriptionStringPattern = "[\\w]+"; // regex representing a 1+ length string which pass the initial if-else conditions
+        return Pattern.matches(descriptionStringPattern, tag); // checks if the tag matches the required expression
     }
 
 }

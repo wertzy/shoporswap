@@ -8,7 +8,6 @@ public class ProductTest {
 
     @Test
     void constructorsTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         String text0c = ""; // string with 0 characters, used repeatedly during testing
         String text20c = "thisistencthisistenc"; // string with 20 characters, used repeatedly during testing
         String text60c = "thisistencthisistencthisistencthisistencthisistencthisistenc"; // string with 51 characters, used repeatedly during testing
@@ -105,7 +104,6 @@ public class ProductTest {
 
     @Test
     void isValidNameTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         assertFalse(Product.isValidName("")); // Equivalence class: number of characters must be nonzero and at most 50 (invalid case, border case)
         assertFalse(Product.isValidName("123456789 123456789 123456789 123456789 123456789 1")); // Equivalence class: number of characters must be nonzero and at most 50 (invalid case, border case)
         assertFalse(Product.isValidName("123456789 123456789 123456789 123456789 123456789 123456789 ")); // Equivalence class: number of characters must be nonzero and at most 50 (invalid case, middle case)
@@ -128,7 +126,6 @@ public class ProductTest {
 
     @Test
     void isValidDescriptionTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         assertFalse(Product.isValidDescription("")); // Equivalence class: number of characters must be nonzero and at most 500 (invalid case, border case)
         assertFalse(Product.isValidDescription(
                 "thisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistencthisistenc" +
@@ -163,7 +160,6 @@ public class ProductTest {
 
     @Test
     void isValidPriceTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         assertFalse(Product.isValidPrice(-100)); // Equivalence class: price must be nonnegative (invalid case, middle case)
         assertFalse(Product.isValidPrice(-0.01)); // Equivalence class: price must be nonnegative (invalid case, border case)
         assertTrue(Product.isValidPrice(0)); // Equivalence class: price must be nonnegative (valid case, border case)
@@ -177,8 +173,25 @@ public class ProductTest {
     }
 
     @Test
+    void isValidTagTest(){
+        assertFalse(Product.isValidTag("")); // Equivalence class: number of characters must be nonzero (invalid case, border case)
+        assertTrue(Product.isValidTag("a")); // Equivalence class: number of characters must be nonzero (valid case, border case)
+        assertTrue(Product.isValidTag("tag")); // Equivalence class: number of characters must be nonzero (valid case, middle case)
+
+        assertFalse(Product.isValidTag(" 123456789")); // Equivalence class: tag cannot contain any spaces (invalid case, border case)
+        assertFalse(Product.isValidTag("123456789 ")); // Equivalence class: tag cannot contain any spaces(invalid case, border case)
+        assertFalse(Product.isValidTag(" 123456789 ")); // Equivalence class: tag cannot contain any spaces (invalid case, middle case)
+        assertFalse(Product.isValidTag("a name")); // Equivalence class: tag cannot contain any spaces (invalid case, border case)
+        assertTrue(Product.isValidTag("productc")); // Equivalence class: name cannot contain any spaces (valid case, border case)
+
+        assertFalse(Product.isValidTag("a@bcd")); // Equivalence class: name cannot contain any special characters (invalid case, border case)
+        assertFalse(Product.isValidTag("@#$%&!*?/\\")); // Equivalence class: name cannot contain any special characters (invalid case, border case)
+        assertFalse(Product.isValidTag("a@b#c$d%")); // Equivalence class: name cannot contain any special characters (invalid case, middle case)
+        assertTrue(Product.isValidTag("possibility")); // Equivalence class: name cannot contain any special characters (valid case, middle case)
+    }
+
+    @Test
     void getNameTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getName accessor
         assertEquals("product name", testProduct1.getName());
@@ -190,7 +203,6 @@ public class ProductTest {
 
     @Test
     void getDescriptionTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getDescription accessor
         assertEquals("product description", testProduct1.getDescription());
@@ -202,7 +214,6 @@ public class ProductTest {
 
     @Test
     void getPriceTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getPrice accessor
         assertEquals(0, testProduct1.getPrice());
@@ -214,7 +225,6 @@ public class ProductTest {
 
     @Test
     void getTagsTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getTags accessor
         assertEquals(0, testProduct1.getTags().size());
@@ -226,7 +236,6 @@ public class ProductTest {
 
     @Test
     void getMerchantTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getMerchant accessor
         assertEquals("accountname", testProduct1.getMerchant().getAccountName());
@@ -244,7 +253,6 @@ public class ProductTest {
 
     @Test
     void getConsumerTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getConsumer accessor
         assertNull(testProduct1.getConsumer());
@@ -256,7 +264,6 @@ public class ProductTest {
 
     @Test
     void addTagTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("name", "description", testUser1);
         Product testProduct2 = new Product("name", "description", 50.05, testUser1);
@@ -291,7 +298,6 @@ public class ProductTest {
 
     @Test
     void removeTagTest(){
-        //TODO write automated tests before corresponding implementation (include comments regarding equivalence class, case type)
         User testUser1 = new User();
         Product testProduct1 = new Product("name", "description", testUser1);
         Product testProduct2 = new Product("name", "description", 50.05, testUser1);
@@ -320,7 +326,7 @@ public class ProductTest {
         testProduct2.addTag("tag1");
         testProduct2.removeTag("tag1");
         assertFalse(testProduct2.getTags().contains("tag2"));
-        assertTrue(testProduct2.getTags().contains("tag1"));
+        assertFalse(testProduct2.getTags().contains("tag1"));
 
         // Equivalence class: removing 2 tags (valid case, middle case)
         testProduct1.addTag("tag1");
