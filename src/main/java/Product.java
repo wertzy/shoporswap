@@ -13,7 +13,7 @@ public class Product {
      * Constructor for a Product object
      * @param name the name of the Product
      * @param description the description of the Product
-     * @param merchant the User selling the Product
+     * @param merchant the User advertising the Product
      * @throws IllegalArgumentException if the name of the Product is invalid
      * @throws IllegalArgumentException if the description of the Product is invalid
      */
@@ -37,7 +37,7 @@ public class Product {
      * @param name the name of the Product
      * @param description the description of the Product
      * @param price the price of the Product
-     * @param merchant the User selling the Product
+     * @param merchant the User advertising the Product
      * @throws IllegalArgumentException if the name of the Product is invalid
      * @throws IllegalArgumentException if the description of the Product is invalid
      * @throws IllegalArgumentException if the price of the Product is invalid
