@@ -41,7 +41,7 @@ public class ProductTest {
         assertEquals(text500c, testProduct1.getDescription());
         assertEquals(0, testProduct1.getPrice());
         assertNull(testProduct1.getMerchant());
-        assertNull(testProduct1.getConsumer());
+        assertEquals(testProduct1.getConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct1.getTags().size());
 
         Product testProduct2 = new Product(text20c, text500c, 0.01,null); // Equivalence class: name and description must be valid (valid case, border case)
@@ -49,7 +49,7 @@ public class ProductTest {
         assertEquals(text500c, testProduct2.getDescription());
         assertEquals(0.01, testProduct2.getPrice());
         assertNull(testProduct2.getMerchant());
-        assertNull(testProduct2.getConsumer());
+        assertEquals(testProduct2.getConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct2.getTags().size());
 
         Product testProduct3 = new Product(text20c, "1", validPrice,null); // Equivalence class: name and description must be valid (valid case, border case)
@@ -57,7 +57,7 @@ public class ProductTest {
         assertEquals("1", testProduct3.getDescription());
         assertEquals(validPrice, testProduct3.getPrice());
         assertNull(testProduct3.getMerchant());
-        assertNull(testProduct3.getConsumer());
+        assertEquals(testProduct3.getConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct3.getTags().size());
 
         Product testProduct4 = new Product("1", text500c, validPrice,null); // Equivalence class: name and description must be valid (valid case, border case)
@@ -65,7 +65,7 @@ public class ProductTest {
         assertEquals(text500c, testProduct4.getDescription());
         assertEquals(validPrice, testProduct4.getPrice());
         assertNull(testProduct4.getMerchant());
-        assertNull(testProduct4.getConsumer());
+        assertEquals(testProduct4.getConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct4.getTags().size());
 
         Product testProduct5 = new Product(text20c, text500c, validPrice,null); // Equivalence class: name and description must be valid (valid case, middle case)
@@ -73,7 +73,7 @@ public class ProductTest {
         assertEquals(text500c, testProduct5.getDescription());
         assertEquals(validPrice, testProduct5.getPrice());
         assertNull(testProduct5.getMerchant());
-        assertNull(testProduct5.getConsumer());
+        assertEquals(testProduct5.getConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct5.getTags().size());
 
 
@@ -86,7 +86,7 @@ public class ProductTest {
         assertEquals("password", testProduct6.getMerchant().getPassword());
         assertEquals(0, testProduct6.getMerchant().getRating());
         assertEquals(0, testProduct6.getMerchant().getTransactionHistory().size());
-        assertNull(testProduct6.getConsumer());
+        assertEquals(testProduct6.getConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct6.getTags().size());
 
         User testUser2 = new User("accountname1", "password1"); // Equivalence class: name and description must be valid, merchant must be valid (valid case, middle case)
@@ -98,7 +98,7 @@ public class ProductTest {
         assertEquals("password1", testProduct7.getMerchant().getPassword());
         assertEquals(0, testProduct7.getMerchant().getRating());
         assertEquals(0, testProduct7.getMerchant().getTransactionHistory().size());
-        assertNull(testProduct7.getConsumer());
+        assertEquals(testProduct7.getConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct7.getTags().size());
     }
 
@@ -255,11 +255,11 @@ public class ProductTest {
     void getConsumerTest(){
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getConsumer accessor
-        assertNull(testProduct1.getConsumer());
+        assertEquals(testProduct1.getConsumersRaw(), java.util.Collections.emptyList());
 
         User testUser2 = new User("accountname1", "password1");
         Product testProduct2 = new Product("product name", "product description", 2, testUser2); // test for getConsumer accessor
-        assertNull(testProduct2.getConsumer());
+        assertEquals(testProduct2.getConsumersRaw(), java.util.Collections.emptyList());
     }
 
     @Test
@@ -347,6 +347,19 @@ public class ProductTest {
         testProduct2.removeTag("tag2");
         assertFalse(testProduct2.getTags().contains("tag1"));
         assertFalse(testProduct2.getTags().contains("tag2"));
+    }
+
+    @Test
+    void TransferTest(){
+        User sellUser = new Seller();
+        User buyUser = new Shopper();
+        Product product = new Product("Test product", "Something fun", sellUser);
+        product.transferOwnership(buyUser);
+        assertEquals(buyUser.getAccountName(), product.getMerchant().getAccountName());
+        product.transferOwnership(sellUser);
+        assertEquals(sellUser.getAccountName(), product.getMerchant().getAccountName());
+        assertEquals(product.getConsumersNeat(), "History: [Seller@3712b94, Shopper@2833cc44, Seller@3712b94]");
+        //assertEquals(product.getConsumersRaw(), {Seller@3712b94, Shopper@2833cc44, Seller@3712b94});
     }
 
 }

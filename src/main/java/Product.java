@@ -146,7 +146,9 @@ public class Product {
     }
 
     public String getConsumersNeat(){
-        String returnable = ("History: " + consumers.toString() + ", " + merchant);
+        String returnable = ("History: " + consumers.toString());
+        returnable = returnable.replace("]", "");
+        returnable = returnable + ", " + merchant + "]";
         return returnable;
     }
 
