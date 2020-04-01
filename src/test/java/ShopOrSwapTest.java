@@ -165,12 +165,60 @@ public class ShopOrSwapTest {
 
     @Test
     void signInTest(){
-        //TODO write automated tests for method signIn(String accountName, String password), then implement corresponding methods to these tests
+        // write automated tests for method signIn(String accountName, String password), then implement corresponding methods to these tests
+        List<User> testUserList;
+        User testUser1, testUser2;
+        testUser1 = new User("testname1", "testpassword1");
+        testUser2 = new User("testname2", "testpassword2");
+        testUserList = new ArrayList<User>();
+        testUserList.add(testUser1);
+        testUserList.add(testUser2);
+        ShopOrSwap testShopOrSwap = new ShopOrSwap(testUserList);
+
+        // Equivalence class: correct username (invalid case, border case)
+        assertNull(testShopOrSwap.signIn("testuser11", "testpassword1"));
+
+        // Equivalence class: correct username (invalid case, middle case)
+        assertNull(testShopOrSwap.signIn("thisisanincorrectusername", "testpassword2"));
+
+        // Equivalence class: correct password (invalid case, border case)
+        assertNull(testShopOrSwap.signIn("testuser2", "testpassword22"));
+
+        // Equivalence class: correct password (invalid case, middle case)
+        assertNull(testShopOrSwap.signIn("testuser1", "thisisanincorrectpassword"));
+
+        // Equivalence class: correct username (valid case, border case), correct password (valid case, border case)
+        assertEquals(testUser1, testShopOrSwap.signIn("testname1", "testpassword1"));
+        assertEquals(testUser2, testShopOrSwap.signIn("testname2", "testpassword2"));
     }
 
     @Test
     void signOutTest(){
-        //TODO write automated tests for method signOut(String accountName, String password), then implement corresponding methods to these tests
+        // write automated tests for method signOut(String accountName, String password), then implement corresponding methods to these tests
+        List<User> testUserList;
+        User testUser1, testUser2;
+        testUser1 = new User("testname1", "testpassword1");
+        testUser2 = new User("testname2", "testpassword2");
+        testUserList = new ArrayList<User>();
+        testUserList.add(testUser1);
+        testUserList.add(testUser2);
+        ShopOrSwap testShopOrSwap = new ShopOrSwap(testUserList);
+
+        // Equivalence class: correct username (invalid case, border case)
+        assertNull(testShopOrSwap.signOut("testuser11", "testpassword1"));
+
+        // Equivalence class: correct username (invalid case, middle case)
+        assertNull(testShopOrSwap.signOut("thisisanincorrectusername", "testpassword2"));
+
+        // Equivalence class: correct password (invalid case, border case)
+        assertNull(testShopOrSwap.signOut("testuser2", "testpassword22"));
+
+        // Equivalence class: correct password (invalid case, middle case)
+        assertNull(testShopOrSwap.signOut("testuser1", "thisisanincorrectpassword"));
+
+        // Equivalence class: correct username (valid case, border case), correct password (valid case, border case)
+        assertEquals(testUser1, testShopOrSwap.signOut("testname1", "testpassword1"));
+        assertEquals(testUser2, testShopOrSwap.signOut("testname2", "testpassword2"));
     }
 
     @Test
