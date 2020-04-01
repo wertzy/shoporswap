@@ -60,4 +60,10 @@ class UserTest {
         assertFalse(User.isRatingValid(4.12355));
         //EC: Rating cannot be more than 3 decimal places or more
     }
+
+    @Test
+    void TransferTest(){
+        User firstUser = new User();
+        User secondUser = new User();
+    }
 }

@@ -7,7 +7,7 @@ public class Product {
     private double price;
     private List<String> tags;
     private User merchant;
-    private User consumer;
+    private List<User> consumers;
 
     /**
      * Constructor for a Product object
@@ -29,7 +29,7 @@ public class Product {
         this.price = 0;
         this.tags = new ArrayList<String>();
         this.merchant = merchant;
-        this.consumer = null;
+        this.consumers = new ArrayList<User>();
     }
 
     /**
@@ -57,7 +57,7 @@ public class Product {
         this.price = price;
         this.tags = new ArrayList<String>();
         this.merchant = merchant;
-        this.consumer = null;
+        this.consumers = new ArrayList<User>();
     }
 
     /**
@@ -77,15 +77,22 @@ public class Product {
      * @param tag the tag to remove
      * @throws IllegalArgumentException if the tag to remove is invalid
      */
-    public void removeTag(String tag){
-        if(!isValidTag(tag)){
+    public void removeTag(String tag) {
+        if (!isValidTag(tag)) {
             throw new IllegalArgumentException("invalid tag");
         }
-        if(this.tags.contains(tag)){
+        if (this.tags.contains(tag)) {
             this.tags.remove(tag);
-        }else{
+        } else {
             throw new NoSuchElementException("no such tag attached to product");
         }
+    }
+    /*
+    * Moves the clothing from one user to another, and adds the previous owner to the history.
+    */
+    public void transferOwnership(User newOwner) {
+        this.consumers.add(merchant);
+        merchant = newOwner;
     }
 
     /**
@@ -129,11 +136,18 @@ public class Product {
     }
 
     /**
-     * Accessor method for accessing the consumer property of the Product
-     * @return the consumer of the Product
+     * Accessor method for accessing the consumer history of the Product, both as raw data and as a neat string.
+     * @return the consumer of the Product, as an array or as a string.
      */
-    public User getConsumer(){
-        return this.consumer;
+    public List<User> getConsumersRaw(){
+        List<User> returnable = new ArrayList<User>();
+        returnable.add(merchant);
+        return this.consumers;
+    }
+
+    public String getConsumersNeat(){
+        String returnable = ("History: " + consumers.toString() + ", " + merchant);
+        return returnable;
     }
 
     /**
