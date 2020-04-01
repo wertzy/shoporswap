@@ -421,62 +421,161 @@ public class ShopOrSwapTest {
 
     @Test
     void findProductTest(){
-        //TODO write automated tests for method findProduct(String name, User user), then implement corresponding methods to these tests
+        // write automated tests for method findProduct(String name, User user), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2, testShopOrSwap3, testShopOrSwap4;
+        User testUser1 = new User("testname1", "testpassword1");
+        User testUser2 = new User("testname2", "testpassword2");
+        Product testProduct1, testProduct2;
 
         // Equivalence class: product to find does exist (invalid case, border case)
+        testShopOrSwap1 = new ShopOrSwap();
+        testShopOrSwap1.addAccount(testUser1);
+        testShopOrSwap1.createSellProduct("testname1", "testdescription1", "55.55", testUser1);
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct("testname2", testUser1));
+
         // Equivalence class: product to find does exist (invalid case, middle case)
+        testShopOrSwap2 = new ShopOrSwap();
+        testShopOrSwap2.addAccount(testUser1);
+        testShopOrSwap2.addAccount(testUser2);
+        testShopOrSwap2.createSellProduct("testname1","testdescription1","55.55", testUser1);
+        testShopOrSwap2.createSellProduct("testname2","testdescription2","55.55", testUser2);
+        testShopOrSwap2.createSwapProduct("testname3","testdescription3","55.55", testUser1);
+        testShopOrSwap2.createSwapProduct("testname4","testdescription4","55.55", testUser2);
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct("testname2", testUser1));
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct("testname3", testUser2));
+
         // Equivalence class: product to find does exist (valid case, border case)
+        testShopOrSwap3 = new ShopOrSwap();
+        testShopOrSwap3.addAccount(testUser1);
+        testShopOrSwap3.createSellProduct("testname1", "testdescription1", "55.55", testUser1);
+        assertEquals("testname1", testShopOrSwap1.findProduct("testname1", testUser1).getName());
+
         // Equivalence class: product to find does exist (valid case, middle case)
+        testShopOrSwap4 = new ShopOrSwap();
+        testShopOrSwap4.addAccount(testUser1);
+        testShopOrSwap4.addAccount(testUser2);
+        testShopOrSwap4.createSellProduct("testname1","testdescription1","55.55", testUser1);
+        testShopOrSwap4.createSellProduct("testname2","testdescription2","55.55", testUser2);
+        testShopOrSwap4.createSwapProduct("testname3","testdescription3","55.55", testUser1);
+        testShopOrSwap4.createSwapProduct("testname4","testdescription4","55.55", testUser2);
+        assertEquals("testname3", testShopOrSwap4.findProduct("testname3", testUser1));
+        assertEquals("testname4", testShopOrSwap4.findProduct("testname4", testUser2));
     }
 
     @Test
     void viewUserProductsTest(){
-        //TODO write automated tests for method viewUserProducts(User user), then implement corresponding methods to these tests
+        // write automated tests for method viewUserProducts(User user), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2;
+        User testUser1 = new User("testuser1", "testpassword1");
+        User testUser2 = new User("testuser2", "testpassword2");
+        List<User> testUsers = new ArrayList<User>();
+        testUsers.add(testUser1);
+        testUsers.add(testUser2);
 
-        // Equivalence class: valid user (invalid case, border case)
-        // Equivalence class: valid user (invalid case, middle case)
         // Equivalence class: valid user (valid case, border case)
+        testShopOrSwap1 = new ShopOrSwap(testUsers);
+        testShopOrSwap1.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        assertNull(testShopOrSwap1.viewUserProducts(testUser2));
+        assertEquals(1, testShopOrSwap1.viewUserProducts(testUser1).size());
+
         // Equivalence class: valid user (valid case, middle case)
+        testShopOrSwap2 = new ShopOrSwap(testUsers);
+        testShopOrSwap2.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        testShopOrSwap2.createSwapProduct("testproduct2", "testdescription2", "20", testUser1);
+        testShopOrSwap2.createSellProduct("testproduct3", "testdescription3", "20", testUser1);
+        testShopOrSwap2.createSwapProduct("testproduct4", "testdescription4", "20", testUser1);
+        assertNull(testShopOrSwap2.viewUserProducts(testUser2));
+        assertEquals(4, testShopOrSwap1.viewUserProducts(testUser1).size());
     }
 
     @Test
     void viewSellProductsTest(){
-        //TODO write automated tests for method viewSellProducts(), then implement corresponding methods to these tests
+        // write automated tests for method viewSellProducts(), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2;
+        User testUser1 = new User("testuser1", "testpassword1");
+        User testUser2 = new User("testuser2", "testpassword2");
+        List<User> testUsers = new ArrayList<User>();
+        testUsers.add(testUser1);
+        testUsers.add(testUser2);
 
-        // Equivalence class: valid products (invalid case, border case)
-        // Equivalence class: valid products (invalid case, middle case)
-        // Equivalence class: valid products (valid case, border case)
-        // Equivalence class: valid products (valid case, middle case)
+        // Equivalence class: valid user (valid case, border case)
+        testShopOrSwap1 = new ShopOrSwap(testUsers);
+        testShopOrSwap1.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        assertEquals(1, testShopOrSwap1.viewSellProducts().size());
+
+        // Equivalence class: valid user (valid case, middle case)
+        testShopOrSwap2 = new ShopOrSwap(testUsers);
+        testShopOrSwap2.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        testShopOrSwap2.createSwapProduct("testproduct2", "testdescription2", "20", testUser1);
+        testShopOrSwap2.createSellProduct("testproduct3", "testdescription3", "20", testUser1);
+        testShopOrSwap2.createSwapProduct("testproduct4", "testdescription4", "20", testUser1);
+        assertEquals(2, testShopOrSwap1.viewSellProducts().size());
     }
 
     @Test
     void viewSwapProductsTest(){
-        //TODO write automated tests for method viewSwapProducts(), then implement corresponding methods to these tests
+        // write automated tests for method viewSwapProducts(), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2;
+        User testUser1 = new User("testuser1", "testpassword1");
+        User testUser2 = new User("testuser2", "testpassword2");
+        List<User> testUsers = new ArrayList<User>();
+        testUsers.add(testUser1);
+        testUsers.add(testUser2);
 
-        // Equivalence class: valid products (invalid case, border case)
-        // Equivalence class: valid products (invalid case, middle case)
-        // Equivalence class: valid products (valid case, border case)
-        // Equivalence class: valid products (valid case, middle case)
+        // Equivalence class: valid user (valid case, border case)
+        testShopOrSwap1 = new ShopOrSwap(testUsers);
+        testShopOrSwap1.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        assertEquals(1, testShopOrSwap1.viewSwapProducts().size());
+
+        // Equivalence class: valid user (valid case, middle case)
+        testShopOrSwap2 = new ShopOrSwap(testUsers);
+        testShopOrSwap2.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        testShopOrSwap2.createSwapProduct("testproduct2", "testdescription2", "20", testUser1);
+        testShopOrSwap2.createSellProduct("testproduct3", "testdescription3", "20", testUser1);
+        testShopOrSwap2.createSwapProduct("testproduct4", "testdescription4", "20", testUser1);
+        assertEquals(2, testShopOrSwap1.viewSwapProducts().size());
     }
 
     @Test
     void getUserList(){
-        //TODO write automated tests for method getUserList(), then implement corresponding methods to these tests
+        // write automated tests for method getUserList(), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2;
+        User testUser1 = new User("testuser1", "testpassword1");
+        User testUser2 = new User("testuser2", "testpassword2");
+        List<User> testUsers = new ArrayList<User>();
+        testUsers.add(testUser1);
+        testUsers.add(testUser2);
 
-        // Equivalence class: valid users list (invalid case, border case)
-        // Equivalence class: valid users list (invalid case, middle case)
-        // Equivalence class: valid users list (valid case, border case)
-        // Equivalence class: valid users list (valid case, middle case)
+        // Equivalence class: valid number of users (valid case, border case)
+        testShopOrSwap1 = new ShopOrSwap();
+        assertEquals(0, testShopOrSwap1.getUserList().size());
+
+        // Equivalence class: valid number of users (valid case, middle case)
+        testShopOrSwap2 = new ShopOrSwap(testUsers);
+        assertEquals(2, testShopOrSwap2.getUserList().size());
     }
 
     @Test
     void getProductList(){
-        //TODO write automated tests for method getProductList(), then implement corresponding methods to these tests
+        // write automated tests for method getProductList(), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2;
+        User testUser1 = new User("testuser1", "testpassword1");
+        User testUser2 = new User("testuser2", "testpassword2");
+        List<User> testUsers = new ArrayList<User>();
+        testUsers.add(testUser1);
+        testUsers.add(testUser2);
 
-        // Equivalence class: valid products list (invalid case, border case)
-        // Equivalence class: valid products list (invalid case, middle case)
-        // Equivalence class: valid products list (valid case, border case)
-        // Equivalence class: valid products list (valid case, middle case)
+        // Equivalence class: valid number of users (valid case, border case)
+        testShopOrSwap1 = new ShopOrSwap();
+        assertEquals(0, testShopOrSwap1.getProductList().size());
+
+        // Equivalence class: valid number of users (valid case, middle case)
+        testShopOrSwap2 = new ShopOrSwap(testUsers);
+        testShopOrSwap2.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        testShopOrSwap2.createSwapProduct("testproduct2", "testdescription2", "20", testUser1);
+        testShopOrSwap2.createSellProduct("testproduct3", "testdescription3", "20", testUser2);
+        testShopOrSwap2.createSwapProduct("testproduct4", "testdescription4", "20", testUser2);
+        assertEquals(4, testShopOrSwap2.getProductList().size());
     }
 
     @Test
