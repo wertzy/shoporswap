@@ -223,7 +223,116 @@ public class ShopOrSwapTest {
 
     @Test
     void createAccountTest(){
-        //TODO write automated tests for method createAccount(String accountName, String password), then implement corresponding methods to these tests
+        // write automated tests for method createAccount(String accountName, String password), then implement corresponding methods to these tests
+        User testUser1;
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+
+        // Equivalence class: valid username (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.createAccount(" ", "testpassword"));
+
+        // Equivalence class: valid username (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.createAccount(" invalid account name$ ", "testpassword"));
+
+        // Equivalence class: valid password (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.createAccount("testname", " "));
+
+        // Equivalence class: valid password (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.createAccount("testname", " invalid pa$$word "));
+
+        // Equivalence class: valid username (valid case), valid password (valid case)
+        testUser1 = testShopOrSwap.createAccount("testname", "testpassword");
+        assertTrue(testShopOrSwap.getUserList().contains(testUser1));
+    }
+
+    @Test
+    void addAccountTest(){
+        // write automated tests for method addAccount(User user), then implement corresponding methods to these tests
+        User testUser1;
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+
+        // Equivalence class: valid username (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.addAccount(new User(" ", "testpassword")));
+
+        // Equivalence class: valid username (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.addAccount(new User(" invalid account name$ ", "testpassword")));
+
+        // Equivalence class: valid password (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.addAccount(new User("testname", " ")));
+
+        // Equivalence class: valid password (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.addAccount(new User("testname", " invalid pa$$word ")));
+
+        // Equivalence class: valid username (valid case), valid password (valid case)
+        testUser1 = testShopOrSwap.addAccount(new User("testname", "testpassword"));
+        assertTrue(testShopOrSwap.getUserList().contains(testUser1));
+    }
+
+    @Test
+    void removeAccountTest(){
+        // write automated tests for method addAccount(User user), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2, testShopOrSwap3;
+        User testUser1, testUser2, testUser3;
+
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser2 = new User("testuser2", "testpassword2");
+        testUser3 = new User("testuser3", "testpassword3");
+
+        // Equivalence class: user to remove does exist (invalid case, border case)
+        testShopOrSwap1 = new ShopOrSwap();
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.removeAccount(testUser1));
+
+        // Equivalence class: user to remove does exist (invalid case, border case)
+        testShopOrSwap2 = new ShopOrSwap();
+        testShopOrSwap1.addAccount(testUser2);
+        testShopOrSwap1.addAccount(testUser3);
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.removeAccount(testUser1));
+
+        // Equivalence class: user to remove does exist (valid case, border case)
+        testShopOrSwap3 = new ShopOrSwap();
+        testShopOrSwap3.addAccount(testUser1);
+        assertEquals(testUser1, testShopOrSwap3.removeAccount(testUser1));
+
+        // Equivalence class: user to remove does exist (valid case, middle case)
+        testShopOrSwap3 = new ShopOrSwap();
+        testShopOrSwap3.addAccount(testUser1);
+        testShopOrSwap3.addAccount(testUser2);
+        testShopOrSwap3.addAccount(testUser3);
+        assertEquals(testUser2, testShopOrSwap3.removeAccount(testUser2));
+
+    }
+
+    @Test
+    void findAccountTest(){
+        // write automated tests for method addAccount(User user), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2, testShopOrSwap3, testShopOrSwap4;
+        User testUser1, testUser2, testUser3;
+
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser2 = new User("testuser2", "testpassword2");
+        testUser3 = new User("testuser3", "testpassword3");
+
+        // Equivalence class: user to find does exist (invalid case, border case)
+        testShopOrSwap1 = new ShopOrSwap();
+        assertNull(testShopOrSwap1.findAccount(testUser1));
+
+        // Equivalence class: user to find does exist (invalid case, middle case)
+        testShopOrSwap2 = new ShopOrSwap();
+        testShopOrSwap2.addAccount(testUser1);
+        testShopOrSwap2.addAccount(testUser2);
+        assertNull(testShopOrSwap2.findAccount(testUser3));
+
+        // Equivalence class: user to find does exist (valid case, border case)
+        testShopOrSwap3 = new ShopOrSwap();
+        testShopOrSwap3.addAccount(testUser1);
+        assertEquals(testUser1, testShopOrSwap3.findAccount(testUser1));
+
+        // Equivalence class: user to find does exist (valid case, middle case)
+        testShopOrSwap4 = new ShopOrSwap();
+        testShopOrSwap4.addAccount(testUser1);
+        testShopOrSwap4.addAccount(testUser2);
+        testShopOrSwap4.addAccount(testUser3);
+        assertEquals(testUser3, testShopOrSwap4.findAccount(testUser3));
+
     }
 
     @Test

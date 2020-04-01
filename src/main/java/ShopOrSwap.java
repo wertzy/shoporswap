@@ -58,11 +58,42 @@ public class ShopOrSwap implements BasicAPI{
      * creates a User in the program
      * @param accountName the account name of the User to create
      * @param password the password of the User to create
-     * @return
+     * @return the new User
      */
     @Override
     public User createAccount(String accountName, String password) {
         //TODO implement method to pass corresponding tests after the tests have been written
+        return null;
+    }
+
+    /**
+     * adds a User to the program
+     * @param user the User to create
+     * @return the User added
+     */
+    @Override
+    public User addAccount(User user){
+        return null;
+    }
+
+    /**
+     * removes a User from the program
+     * @param user the User to remove
+     * @return the User removed
+     * @throws NoSuchElementException if the User to remove does not exist in the program
+     */
+    @Override
+    public User removeAccount(User user){
+        return null;
+    }
+
+    /**
+     * finds a User in the program
+     * @param user the User to find
+     * @return the User found
+     */
+    @Override
+    public User findAccount(User user){
         return null;
     }
 
