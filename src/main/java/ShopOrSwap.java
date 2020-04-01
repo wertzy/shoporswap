@@ -15,6 +15,15 @@ public class ShopOrSwap implements BasicAPI{
     /**
      * Constructor for a ShopOrSwap object
      * @param users the users to import into the ShopOrSwap
+     * @throws IllegalArgumentException if there are multiple Users with the same account name
+     */
+    public ShopOrSwap(List<User> users){
+        //TODO implement method to pass corresponding tests after the tests have been written
+    }
+
+    /**
+     * Constructor for a ShopOrSwap object
+     * @param users the users to import into the ShopOrSwap
      * @param products the products to import into the ShopOrSwap
      * @throws IllegalArgumentException if there are multiple Users with the same account name
      * @throws IllegalArgumentException if there are Products whose merchant is not a User in users

@@ -7,8 +7,160 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ShopOrSwapTest {
 
     @Test
-    void constructorsTest(){
-        //TODO write automated tests for method ShopOrSwap() and ShopOrSwap(List<User> users, List<Product> products), then implement corresponding methods to these tests
+    void constructorsTest() {
+        // write automated tests for method ShopOrSwap() and ShopOrSwap(List<User> users, List<Product> products), then implement corresponding methods to these tests
+        List<User> testUserList1, testUserList2, testUserList3, testUserList4,
+                   testUserList5, testUserList6, testUserList7, testUserList8;
+        User testUser1, testUser2, testUser3;
+        List<Product> testProductList1, testProductList2, testProductList3, testProductList4,
+                      testProductList5, testProductList6, testProductList7, testProductList8;
+        Product testProduct1, testProduct2, testProduct3;
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2, testShopOrSwap3, testShopOrSwap4, testShopOrSwap5,
+                   testShopOrSwap6, testShopOrSwap7, testShopOrSwap8;
+
+        // Equivalency class: default constructor (valid case, border case)
+        testShopOrSwap1 = new ShopOrSwap();
+        assertTrue(testShopOrSwap1.getUserList().isEmpty());
+        assertTrue(testShopOrSwap1.getProductList().isEmpty());
+
+        // Equivalence class: the Users list is valid (invalid case, border case)
+        testUserList1 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser2 = new User("testuser1", "testpassword2");
+        testUserList1.add(testUser1);
+        testUserList1.add(testUser2);
+        testProductList1 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProduct2 = new Product("testname2", "testdescription2", testUser2);
+        testProductList1.add(testProduct1);
+        testProductList1.add(testProduct2);
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList1));
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList1, testProductList1));
+
+        // Equivalence class: the Users list is valid (invalid case, middle case)
+        testUserList2 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser2 = new User("testuser1", "testpassword2");
+        testUser3 = new User("testuser1", "testpassword2");
+        testUserList2.add(testUser1);
+        testUserList2.add(testUser2);
+        testUserList2.add(testUser3);
+        testProductList2 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProduct2 = new Product("testname2", "testdescription2", testUser2);
+        testProduct3 = new Product("testname3", "testdescription2", testUser2);
+        testProductList2.add(testProduct1);
+        testProductList2.add(testProduct2);
+        testProductList2.add(testProduct3);
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList2));
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList2, testProductList2));
+
+        // Equivalence class: the Products list is valid (invalid case, border case)
+        testUserList3 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser2 = new User("testuser2", "testpassword2");
+        testUserList3.add(testUser1);
+        testUserList3.add(testUser2);
+        testProductList3 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProduct2 = new Product("testname1", "testdescription2", testUser2);
+        testProductList3.add(testProduct1);
+        testProductList3.add(testProduct2);
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList3));
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList3, testProductList3));
+
+        // Equivalence class: the Products list is valid (invalid case, middle case)
+        testUserList4 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser2 = new User("testuser2", "testpassword2");
+        testUser3 = new User("testuser3", "testpassword2");
+        testUserList4.add(testUser1);
+        testUserList4.add(testUser2);
+        testProductList4 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProduct2 = new Product("testname2", "testdescription2", testUser2);
+        testProduct3 = new Product("testname3", "testdescription2", testUser3);
+        testProductList4.add(testProduct1);
+        testProductList4.add(testProduct2);
+        testProductList4.add(testProduct3);
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList4));
+        assertThrows(IllegalArgumentException.class, () -> new ShopOrSwap(testUserList4, testProductList4));
+
+        // Equivalence class: the Users list is valid (valid case, border case),
+        // the Products list is valid (valid case, border case)
+        testUserList5 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUserList5.add(testUser1);
+        testProductList5 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProductList5.add(testProduct1);
+        testShopOrSwap2 = new ShopOrSwap(testUserList5);
+        assertTrue(testShopOrSwap2.getUserList().containsAll(testUserList5));
+        assertTrue(testShopOrSwap2.getProductList().isEmpty());
+        testShopOrSwap3 = new ShopOrSwap(testUserList5, testProductList5);
+        assertTrue(testShopOrSwap3.getUserList().containsAll(testUserList5));
+        assertTrue(testShopOrSwap3.getProductList().containsAll(testProductList5));
+
+        // Equivalence class: the Users list is valid (valid case, middle case),
+        // the Products list is valid (valid case, border case)
+        testUserList6 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser2 = new User("testuser2", "testpassword2");
+        testUser3 = new User("testuser3", "testpassword3");
+        testUserList6.add(testUser1);
+        testUserList6.add(testUser2);
+        testUserList6.add(testUser3);
+        testProductList6 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProductList6.add(testProduct1);
+        testShopOrSwap4 = new ShopOrSwap(testUserList6);
+        assertTrue(testShopOrSwap4.getUserList().containsAll(testUserList6));
+        assertTrue(testShopOrSwap4.getProductList().isEmpty());
+        testShopOrSwap5 = new ShopOrSwap(testUserList6, testProductList6);
+        assertTrue(testShopOrSwap5.getUserList().containsAll(testUserList6));
+        assertTrue(testShopOrSwap5.getProductList().containsAll(testProductList6));
+
+        // Equivalence class: the Users list is valid (valid case, border case),
+        // the Products list is valid (valid case, middle case)
+        testUserList7 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUserList7.add(testUser1);
+        testProductList7 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProduct2 = new Product("testname2", "testdescription2", testUser1);
+        testProduct3 = new Product("testname3", "testdescription3", testUser1);
+        testProductList7.add(testProduct1);
+        testProductList7.add(testProduct2);
+        testProductList7.add(testProduct3);
+        testShopOrSwap6 = new ShopOrSwap(testUserList7);
+        assertTrue(testShopOrSwap6.getUserList().containsAll(testUserList7));
+        assertTrue(testShopOrSwap6.getProductList().isEmpty());
+        testShopOrSwap7 = new ShopOrSwap(testUserList7, testProductList7);
+        assertTrue(testShopOrSwap7.getUserList().containsAll(testUserList7));
+        assertTrue(testShopOrSwap7.getProductList().containsAll(testProductList7));
+
+        // Equivalence class: the Users list is valid (valid case, middle case),
+        // the Products list is valid (valid case, middle case)
+        testUserList8 = new ArrayList<User>();
+        testUser1 = new User("testuser1", "testpassword1");
+        testUser1 = new User("testuser2", "testpassword2");
+        testUser1 = new User("testuser3", "testpassword3");
+        testUserList8.add(testUser1);
+        testUserList8.add(testUser2);
+        testUserList8.add(testUser3);
+        testProductList8 = new ArrayList<Product>();
+        testProduct1 = new Product("testname1", "testdescription1", testUser1);
+        testProduct2 = new Product("testname2", "testdescription1", testUser1);
+        testProduct3 = new Product("testname3", "testdescription1", testUser1);
+        testProductList8.add(testProduct1);
+        testProductList8.add(testProduct2);
+        testProductList8.add(testProduct3);
+        testShopOrSwap7 = new ShopOrSwap(testUserList8);
+        assertTrue(testShopOrSwap7.getUserList().containsAll(testUserList8));
+        assertTrue(testShopOrSwap7.getProductList().isEmpty());
+        testShopOrSwap8 = new ShopOrSwap(testUserList8, testProductList8);
+        assertTrue(testShopOrSwap8.getUserList().containsAll(testUserList8));
+        assertTrue(testShopOrSwap8.getProductList().containsAll(testProductList8));
     }
 
     @Test
