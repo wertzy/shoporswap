@@ -18,4 +18,6 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
    * Product Class updated 3/30/2020:
    
    ![](https://github.com/wertzy/shoporswap/blob/Product/product-class-diagram.png)
+
+* Sprint Review Agenda: https://docs.google.com/document/d/1jMdvdg4sC_CksATfiJ7RBDkRK3YMo_yIbOSQ9Q69J2U/edit?usp=sharing
    
