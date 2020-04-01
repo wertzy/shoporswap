@@ -20,9 +20,9 @@ public interface BasicAPI {
 
     Product findProduct(String name, User merchant);
 
-    List<Product> viewUserProducts(User user);
+    List<Product> getUserProducts(User user);
 
-    List<Product> viewSellProducts();
+    List<Product> getSellProducts();
 
     List<Product> viewSwapProducts();
 

@@ -9,7 +9,9 @@ public class ShopOrSwap implements BasicAPI{
      * Default constructor for a ShopOrSwap object
      */
     public ShopOrSwap(){
-        //TODO implement method to pass corresponding tests after the tests have been written
+        // implement method to pass corresponding tests after the tests have been written
+        this.userList = new ArrayList<User>();
+        this.productList = new ArrayList<Product>();
     }
 
     /**
@@ -18,7 +20,12 @@ public class ShopOrSwap implements BasicAPI{
      * @throws IllegalArgumentException if there are multiple Users with the same account name
      */
     public ShopOrSwap(List<User> users){
-        //TODO implement method to pass corresponding tests after the tests have been written
+        // implement method to pass corresponding tests after the tests have been written
+        if(!isValidUserList(users)){
+            throw new IllegalArgumentException("List of Users to import is invalid");
+        }
+        this.userList = users;
+        this.productList = new ArrayList<Product>();
     }
 
     /**
@@ -29,7 +36,15 @@ public class ShopOrSwap implements BasicAPI{
      * @throws IllegalArgumentException if there are Products whose merchant is not a User in users
      */
     public ShopOrSwap(List<User> users, List<Product> products){
-        //TODO implement method to pass corresponding tests after the tests have been written
+        // implement method to pass corresponding tests after the tests have been written
+        if(!isValidUserList(users)){
+            throw new IllegalArgumentException("List of Users to import is invalid");
+        }
+        if(!isValidProductList(products, users)){
+            throw new IllegalArgumentException("List of Products to import is invalid");
+        }
+        this.userList = users;
+        this.productList = products;
     }
 
     /**
@@ -39,7 +54,12 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User signIn(String accountName, String password) {
-        //TODO implement method to pass corresponding tests after the tests have been written
+        // implement method to pass corresponding tests after the tests have been written
+        for(User user : this.userList){
+            if(user.getAccountName().compareTo(accountName) == 0 && user.getPassword().compareTo(password) == 0){
+                return user;
+            }
+        }
         return null;
     }
 
@@ -50,7 +70,12 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User signOut(String accountName, String password) {
-        //TODO implement method to pass corresponding tests after the tests have been written
+        // implement method to pass corresponding tests after the tests have been written
+        for(User user : this.userList){
+            if(user.getAccountName().compareTo(accountName) == 0 && user.getPassword().compareTo(password) == 0){
+                return user;
+            }
+        }
         return null;
     }
 
@@ -62,8 +87,9 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User createAccount(String accountName, String password) {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        User nextUser = new User(accountName, password);
+        return this.addAccount(nextUser);
     }
 
     /**
@@ -73,8 +99,14 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User addAccount(User user){
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        for(User aUser : this.userList){
+            if(aUser.getAccountName().compareTo(user.getAccountName()) == 0){
+                return null;
+            }
+        }
+        this.userList.add(user);
+        return user;
     }
 
     /**
@@ -85,8 +117,14 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User removeAccount(User user){
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        for(User aUser : this.userList){
+            if(aUser.getAccountName().compareTo(user.getAccountName()) == 0){
+                int nextUserIndex = this.userList.indexOf(aUser);
+                return this.userList.remove(nextUserIndex);
+            }
+        }
+        throw new NoSuchElementException("User to remove does not exist in the system");
     }
 
     /**
@@ -96,7 +134,12 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User findAccount(User user){
-        //TODO implement method to pass corresponding tests after the tests have been written
+        // implement method to pass corresponding tests after the tests have been written
+        for(User aUser : this.userList){
+            if(aUser.getAccountName().compareTo(user.getAccountName()) == 0){
+                return aUser;
+            }
+        }
         return null;
     }
 
@@ -107,11 +150,32 @@ public class ShopOrSwap implements BasicAPI{
      * @param price the price of the Product to sell
      * @param merchant the User merchant of the Product to sell
      * @return the Product object
+     * @throws IllegalArgumentException if the User merchant does not exist in the system
      */
     @Override
     public Product createSellProduct(String name, String description, String price, User merchant) {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        User merchantSystem;
+        if(this.findAccount(merchant) == null){
+            throw new IllegalArgumentException("Merchant User does not exist in the system");
+        }else{
+            merchantSystem = this.findAccount(merchant);
+        }
+        try{
+            Double.parseDouble(price);
+        }catch(Exception e){
+            throw new IllegalArgumentException("Price is cannot be nonnumeric");
+        }
+        Product nextProduct = new Product(name, description, Double.parseDouble(price), merchantSystem);
+        nextProduct.addTag("sell");
+        List<Product> tempNextProductList = new ArrayList<Product>();
+        tempNextProductList.add(nextProduct);
+        if(!isValidProductList(tempNextProductList, this.userList)){
+            return null;
+        }else{
+            this.productList.add(nextProduct);
+            return this.productList.get(this.productList.size() - 1);
+        }
     }
 
     /**
@@ -121,11 +185,32 @@ public class ShopOrSwap implements BasicAPI{
      * @param price the price of the Product to swap
      * @param merchant the User merchant of the Product to swap
      * @return the Product object
+     * @throws IllegalArgumentException if the User merchant does not exist in the system
      */
     @Override
     public Product createSwapProduct(String name, String description, String price, User merchant) {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        User merchantSystem;
+        if(this.findAccount(merchant) == null){
+            throw new IllegalArgumentException("Merchant User does not exist in the system");
+        }else{
+            merchantSystem = this.findAccount(merchant);
+        }
+        try{
+            Double.parseDouble(price);
+        }catch(Exception e){
+            throw new IllegalArgumentException("Price is cannot be nonnumeric");
+        }
+        Product nextProduct = new Product(name, description, Double.parseDouble(price), merchantSystem);
+        nextProduct.addTag("swap");
+        List<Product> tempNextProductList = new ArrayList<Product>();
+        tempNextProductList.add(nextProduct);
+        if(!isValidProductList(tempNextProductList, this.userList)){
+            return null;
+        }else{
+            this.productList.add(nextProduct);
+            return this.productList.get(this.productList.size() - 1);
+        }
     }
 
     /**
@@ -137,8 +222,13 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public Product findProduct(String name, User user){
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        for(Product product : this.productList){
+            if(product.getName().compareToIgnoreCase(name) == 0 && product.getMerchant().getAccountName().compareTo(user.getAccountName()) == 0){
+                return product;
+            }
+        }
+        throw new NoSuchElementException("Product does not exist for the User in the system");
     }
 
     /**
@@ -147,9 +237,15 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the User's Products
      */
     @Override
-    public List<Product> viewUserProducts(User user) {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+    public List<Product> getUserProducts(User user) {
+        // implement method to pass corresponding tests after the tests have been written
+        List<Product> products = new ArrayList<Product>();
+        for(Product product : this.productList){
+            if(product.getMerchant().getAccountName().compareTo(user.getAccountName()) == 0){
+                products.add(product);
+            }
+        }
+        return products;
     }
 
     /**
@@ -157,9 +253,15 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as sell
      */
     @Override
-    public List<Product> viewSellProducts() {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+    public List<Product> getSellProducts() {
+        // implement method to pass corresponding tests after the tests have been written
+        List<Product> products = new ArrayList<Product>();
+        for(Product product : this.productList){
+            if(product.getTags().contains("sell")){
+                products.add(product);
+            }
+        }
+        return products;
     }
 
     /**
@@ -169,7 +271,13 @@ public class ShopOrSwap implements BasicAPI{
     @Override
     public List<Product> viewSwapProducts() {
         //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        List<Product> products = new ArrayList<Product>();
+        for(Product product : this.productList){
+            if(product.getTags().contains("swap")){
+                products.add(product);
+            }
+        }
+        return products;
     }
 
     /**
@@ -178,8 +286,8 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public List<User> getUserList() {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        return this.userList;
     }
 
     /**
@@ -188,8 +296,8 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public List<Product> getProductList() {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return null;
+        // implement method to pass corresponding tests after the tests have been written
+        return this.productList;
     }
 
     /**
@@ -199,7 +307,18 @@ public class ShopOrSwap implements BasicAPI{
      */
     public static boolean isValidUserList(List<User> users) {
         //TODO implement method to pass corresponding tests after the tests have been written
-        return false;
+        if(users.size() == 0){
+            return false;
+        }
+        List<String> userNames = new ArrayList<String>();
+        for(User user : users) {
+            if(userNames.contains(user.getAccountName())) {
+                return false;
+            }else{
+                userNames.add(user.getAccountName());
+            }
+        }
+        return true;
     }
 
     /**
@@ -209,7 +328,30 @@ public class ShopOrSwap implements BasicAPI{
      * @return true if the list of Products is valid, false otherwise
      */
     public static boolean isValidProductList(List<Product> products, List<User> users) {
-        //TODO implement method to pass corresponding tests after the tests have been written
-        return false;
+        // implement method to pass corresponding tests after the tests have been written
+        if(products.isEmpty()){
+            return false;
+        }
+
+        List<String> userNames = new ArrayList<String>();
+        if(isValidUserList(users)){
+            for (User user : users) {
+                userNames.add(user.getAccountName());
+            }
+        }
+
+        List<String> productNames = new ArrayList<String>();
+        for(Product product : products){
+            if(product.getMerchant() == null){
+                return false;
+            }
+            if(!productNames.contains(product.getName().toUpperCase()) && userNames.contains(product.getMerchant().getAccountName())){
+                productNames.add(product.getName().toUpperCase());
+            }else{
+                return false;
+            }
+        }
+
+        return true;
     }
 }
