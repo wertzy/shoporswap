@@ -269,7 +269,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as swap
      */
     @Override
-    public List<Product> viewSwapProducts() {
+    public List<Product> getSwapProducts() {
         //TODO implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){

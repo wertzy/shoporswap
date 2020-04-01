@@ -24,7 +24,7 @@ public interface BasicAPI {
 
     List<Product> getSellProducts();
 
-    List<Product> viewSwapProducts();
+    List<Product> getSwapProducts();
 
     List<User> getUserList();
 

@@ -462,7 +462,7 @@ public class ShopOrSwapTest {
 
     @Test
     void getUserProductsTest(){
-        // write automated tests for method viewUserProducts(User user), then implement corresponding methods to these tests
+        // write automated tests for method getUserProducts(User user), then implement corresponding methods to these tests
         ShopOrSwap testShopOrSwap1, testShopOrSwap2;
         User testUser1 = new User("testuser1", "testpassword1");
         User testUser2 = new User("testuser2", "testpassword2");
@@ -488,7 +488,7 @@ public class ShopOrSwapTest {
 
     @Test
     void getSellProductsTest(){
-        // write automated tests for method viewSellProducts(), then implement corresponding methods to these tests
+        // write automated tests for method getSellProducts(), then implement corresponding methods to these tests
         ShopOrSwap testShopOrSwap1, testShopOrSwap2;
         User testUser1 = new User("testuser1", "testpassword1");
         User testUser2 = new User("testuser2", "testpassword2");
@@ -512,7 +512,7 @@ public class ShopOrSwapTest {
 
     @Test
     void getSwapProductsTest(){
-        // write automated tests for method viewSwapProducts(), then implement corresponding methods to these tests
+        // write automated tests for method getSwapProducts(), then implement corresponding methods to these tests
         ShopOrSwap testShopOrSwap1, testShopOrSwap2;
         User testUser1 = new User("testuser1", "testpassword1");
         User testUser2 = new User("testuser2", "testpassword2");
@@ -523,7 +523,7 @@ public class ShopOrSwapTest {
         // Equivalence class: valid user (valid case, border case)
         testShopOrSwap1 = new ShopOrSwap(testUsers);
         testShopOrSwap1.createSwapProduct("testproduct1", "testdescription1", "20", testUser1);
-        assertEquals(1, testShopOrSwap1.viewSwapProducts().size());
+        assertEquals(1, testShopOrSwap1.getSwapProducts().size());
 
         // Equivalence class: valid user (valid case, middle case)
         testShopOrSwap2 = new ShopOrSwap(testUsers);
@@ -531,7 +531,7 @@ public class ShopOrSwapTest {
         testShopOrSwap2.createSwapProduct("testproduct2", "testdescription2", "20", testUser1);
         testShopOrSwap2.createSellProduct("testproduct3", "testdescription3", "20", testUser1);
         testShopOrSwap2.createSwapProduct("testproduct4", "testdescription4", "20", testUser1);
-        assertEquals(2, testShopOrSwap2.viewSwapProducts().size());
+        assertEquals(2, testShopOrSwap2.getSwapProducts().size());
     }
 
     @Test
