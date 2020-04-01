@@ -18,6 +18,8 @@ public interface BasicAPI {
 
     Product createSwapProduct(String name, String description, String price, User merchant);
 
+    Product findProduct(String name, User merchant);
+
     List<Product> viewUserProducts(User user);
 
     List<Product> viewSellProducts();

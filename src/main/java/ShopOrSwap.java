@@ -73,6 +73,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User addAccount(User user){
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -84,6 +85,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User removeAccount(User user){
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -94,6 +96,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public User findAccount(User user){
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -121,6 +124,19 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public Product createSwapProduct(String name, String description, String price, User merchant) {
+        //TODO implement method to pass corresponding tests after the tests have been written
+        return null;
+    }
+
+    /**
+     * Finds a Product from the User
+     * @param name the name of the Product
+     * @param user the User
+     * @return the Product to find
+     * @throws NoSuchElementException if the Product does not exist for the User
+     */
+    @Override
+    public Product findProduct(String name, User user){
         //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
@@ -162,6 +178,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public List<User> getUserList() {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -171,6 +188,7 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public List<Product> getProductList() {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return null;
     }
 
@@ -180,6 +198,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return true if the list of Users is valid, false otherwise
      */
     public static boolean isValidUserList(List<User> users) {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return false;
     }
 
@@ -190,6 +209,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return true if the list of Products is valid, false otherwise
      */
     public static boolean isValidProductList(List<Product> products, List<User> users) {
+        //TODO implement method to pass corresponding tests after the tests have been written
         return false;
     }
 }
