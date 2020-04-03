@@ -21,3 +21,4 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
 
 * Sprint Review Agenda: https://docs.google.com/document/d/1jMdvdg4sC_CksATfiJ7RBDkRK3YMo_yIbOSQ9Q69J2U/edit?usp=sharing
    
+* Sprint Retrospective Agenda: https://drive.google.com/file/d/1fu-BxCkIx2O4yabbi3_jwfRTC8AAbrxp/view?usp=sharing
