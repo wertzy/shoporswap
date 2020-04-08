@@ -25,7 +25,9 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
 
 ## Sprint #2:
 
-* Goal:
+* Goal: Complete implementation of both communication system within the users such that any user can attempt to communicate with another user and purchasing of products.
+
+* Stretch Goal: Complete implementation of swapping products.
 
 * Sprint UML Diagram: https://drive.google.com/file/d/1i9eceXTy_J8L272J7HXqsgCOiAmlCkMQ/view?usp=sharing
 
