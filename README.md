@@ -26,3 +26,5 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
 ## Sprint #2:
 
 * Sprint UML Diagram: https://drive.google.com/file/d/1i9eceXTy_J8L272J7HXqsgCOiAmlCkMQ/view?usp=sharing
+
+* UI State Diagram: https://drive.google.com/file/d/1GYzFPTkXkN3cvdKQAU4gwzHV7UN6xc4V/view?usp=sharing
