@@ -8,7 +8,7 @@ Slack Workspace: https://app.slack.com/client/TUL0B01Q9/CUW397F7S
 
 ## Sprint #1:
 
-* Goal (Starting 3/24): Develop the functionality to create a User, create clothing, and view clothing inventory.
+* Goal: Develop the functionality to create a User, create clothing, and view clothing inventory.
 
 * Class Diagrams:
 
@@ -24,6 +24,8 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
 * Sprint Retrospective Agenda: https://drive.google.com/file/d/1fu-BxCkIx2O4yabbi3_jwfRTC8AAbrxp/view?usp=sharing
 
 ## Sprint #2:
+
+* Goal:
 
 * Sprint UML Diagram: https://drive.google.com/file/d/1i9eceXTy_J8L272J7HXqsgCOiAmlCkMQ/view?usp=sharing
 
