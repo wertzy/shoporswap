@@ -216,4 +216,8 @@ public class Product {
         return Pattern.matches(descriptionStringPattern, tag); // checks if the tag matches the required expression
     }
 
+    public static String sendMessage(String message){
+        return "";
+    }
+
 }

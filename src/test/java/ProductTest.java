@@ -362,4 +362,12 @@ public class ProductTest {
         //assertEquals(product.getConsumersRaw(), {Seller@3712b94, Shopper@2833cc44, Seller@3712b94});
     }
 
+    @Test
+    void messageTest(){
+        User testUser1 = new User();
+        User testUser2 = new User();
+        Product testProduct1 = new Product("name", "description", testUser2);
+
+    }
+
 }

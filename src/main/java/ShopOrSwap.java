@@ -354,4 +354,5 @@ public class ShopOrSwap implements BasicAPI{
 
         return true;
     }
+
 }
