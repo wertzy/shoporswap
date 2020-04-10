@@ -5,6 +5,7 @@ public class User {
     protected String accountName;
     protected String password;
     protected ArrayList<String> transactionHistory;
+    protected ArrayList<Message> messages;
     protected double rating;
 
     /**
@@ -97,6 +98,15 @@ public class User {
             return true;
         }
         return false;
+    }
+
+    public void sendMessage(String name, String body, User recipient){
+        Message message = new Message(name, body, recipient.accountName, this.accountName);
+        recipient.receiveMessage(message);
+    }
+
+    public void receiveMessage(Message message){
+        messages.add(message);
     }
 
     /**
