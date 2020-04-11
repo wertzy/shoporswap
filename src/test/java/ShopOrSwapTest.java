@@ -810,4 +810,20 @@ public class ShopOrSwapTest {
         assertTrue(ShopOrSwap.isValidProductList(testProductList15, testUserList1));
 
     }
+
+    @Test
+    public void importUserDataTest(){
+
+    }
+
+    @Test
+    public void importProductDataTest(){
+
+    }
+
+    @Test
+    public void exitTest(){
+
+    }
+
 }

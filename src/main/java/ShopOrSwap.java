@@ -232,6 +232,46 @@ public class ShopOrSwap implements BasicAPI{
     }
 
     /**
+     * Imports User data from prior session
+     */
+    private void importUserData(){
+
+    }
+
+    /**
+     * Imports Product data from prior session
+     */
+    private void importProductData(){
+
+    }
+
+    /**
+     * Exit procedure when closing the system in order to preserve data between sessions
+     */
+    public void exit(){
+
+    }
+
+    public Product buyProduct(User consumer, Product product){
+        return null;
+    }
+
+    /**
+     * Procedure for swapping two Product objects between two User objects
+     * @param user1 the User owning product 1 to swap (the current User)
+     * @param product1 the 1st Product to swap
+     * @param user2 the User owning product 2 to swap (the other User)
+     * @param product2 the 2nd Product to swap
+     * @throws IllegalArgumentException if user1 and user2 refer to the same User object
+     * @throws IllegalArgumentException if product1 and product2 refer to the same Product object
+     * @throws IllegalArgumentException if at least 1 of the parameters (user1, product1, user2, product2) are null
+     * @return the newly acquired Product for user1 from the swap
+     */
+    public Product swapProducts(User user1, Product product1, User user2, Product product2){
+        return null;
+    }
+
+    /**
      * Views the Products listed by a User
      * @param user the User whose products are being viewed
      * @return a list of the User's Products

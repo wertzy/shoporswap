@@ -30,4 +30,8 @@ public interface BasicAPI {
 
     List<Product> getProductList();
 
+    Product buyProduct(User consumer, Product product);
+
+    Product swapProducts(User user1, Product product1, User user2, Product product2);
+
 }
