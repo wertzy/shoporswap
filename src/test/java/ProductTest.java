@@ -156,13 +156,6 @@ public class ProductTest {
         assertTrue(Product.isValidDescription("a description")); // Equivalence class: description cannot begin or end with a space (valid case, border case)
         assertTrue(Product.isValidDescription("description d")); // Equivalence class: description cannot begin or end with a space (valid case, border case)
         assertTrue(Product.isValidDescription("product description")); // Equivalence class: description cannot begin or end with a space (valid case, middle case)
-
-        assertFalse(Product.isValidDescription("- product description")); // Equivalence class: description cannot begin or end with a hyphen "-" (invalid case, border case)
-        assertFalse(Product.isValidDescription("product description-")); // Equivalence class: description cannot begin or end with a hyphen "-" (invalid case, border case)
-        assertTrue(Product.isValidDescription("p-1 description")); // Equivalence class: description cannot begin or end with a hyphen "-" (valid case, middle case)
-        assertTrue(Product.isValidDescription("product description-1")); // Equivalence class: description cannot begin or end with a hyphen "-" (valid case, middle case)
-        assertTrue(Product.isValidDescription("product-description")); // Equivalence class: description cannot begin or end with a hyphen "-" (valid case, middle case)
-
     }
 
     @Test
