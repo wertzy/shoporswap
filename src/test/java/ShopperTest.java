@@ -33,4 +33,9 @@ class ShopperTest {
 
     }
 
+    @Test
+    void buyTest(){
+
+    }
+
 }
