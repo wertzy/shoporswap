@@ -169,7 +169,7 @@ public class Product {
     }
 
     /**
-     * Static method to check the validity of a description (only alphanumeric and space characters, 500 character maximum)
+     * Static method to check the validity of a description (only alphanumeric, space, and dash characters, 500 character maximum)
      * @param description the description to validate
      * @return true if the description is valid, false otherwise
      */
@@ -180,7 +180,10 @@ public class Product {
         if(description.lastIndexOf(" ") == description.length() - 1){ // checks if the description ends with a space
             return false;
         }
-        String descriptionStringPattern = "[\\w[\\s]]{1,500}+"; // regex representing a 1-500 length string which pass the initial if-else conditions
+        if(description.indexOf("-") == 0 || description.lastIndexOf("-") == description.length() - 1){ // checks if the description begins or ends with a dash "-"
+            return false;
+        }
+        String descriptionStringPattern = "[\\w[\\s][-]]{1,500}+"; // regex representing a 1-500 length string which pass the initial if-else conditions
         return Pattern.matches(descriptionStringPattern, description); // checks if the description matches the required expression
     }
 
