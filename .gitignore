@@ -16,6 +16,9 @@ target/
 .idea/modules.xml
 .idea/vcs.xml
 
+SoftwareEngineeringPractice.iml
+.idea/.name
+
 # Generated files
 .idea/**/contentModel.xml
 
