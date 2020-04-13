@@ -829,9 +829,39 @@ public class ShopOrSwapTest {
     @Test
     public void findUserByNameTest(){
         ShopOrSwap testShopOrSwap1 = new ShopOrSwap();
-        // Equivalence class: find 1 of 0 users in system (invalid case, border case)
-        // Equivalence class: find 1 of 10 users in system (invalid case, middle case)
-        // Equivalence class: find 1 of 1 users in system (valid case, border case)
+        assertNull(testShopOrSwap1.findAccountByName("account11")); // Equivalence class: find 1 of 0 users in system (invalid case, border case)
+
+        testShopOrSwap1.createAccount("account1", "pass1");
+        testShopOrSwap1.createAccount("account2", "pass2");
+        testShopOrSwap1.createAccount("account3", "pass3");
+        testShopOrSwap1.createAccount("account4", "pass4");
+        testShopOrSwap1.createAccount("account5", "pass5");
+        testShopOrSwap1.createAccount("account6", "pass6");
+        testShopOrSwap1.createAccount("account7", "pass7");
+        testShopOrSwap1.createAccount("account8", "pass8");
+        testShopOrSwap1.createAccount("account9", "pass9");
+        testShopOrSwap1.createAccount("account10", "pass10");
+
+        assertNull(testShopOrSwap1.findAccountByName("account11")); // Equivalence class: find 1 of 10 users in system (invalid case, middle case)
+
+        ShopOrSwap testShopOrSwap2 = new ShopOrSwap();
+        User user1 = testShopOrSwap2.createAccount("account1", "pass1");
+
+        assertEquals(user1.getAccountName(), testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 1 users in system (valid case, border case)
+
+        testShopOrSwap2.createAccount("account2", "pass2");
+        testShopOrSwap2.createAccount("account3", "pass3");
+        testShopOrSwap2.createAccount("account4", "pass4");
+        testShopOrSwap2.createAccount("account5", "pass5");
+        testShopOrSwap2.createAccount("account6", "pass6");
+        testShopOrSwap2.createAccount("account7", "pass7");
+        testShopOrSwap2.createAccount("account8", "pass8");
+        testShopOrSwap2.createAccount("account9", "pass9");
+        testShopOrSwap2.createAccount("account10", "pass10");
+
+        assertEquals(user1.getAccountName(), testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 10 users in system (invalid case, middle case)
+
+
         // Equivalence class: find 1 of 10 users in system (valid case, middle case)
     }
 
