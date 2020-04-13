@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -193,8 +194,34 @@ public class ProductTest {
     @Test
     void textToTagTest(){
         Product testProduct1 = new Product("t", "tshirt", null);
-        String str="Hello, this is a text without any #"; //String to to test text to tag on
+        String str="Hello, this is a text without any hashtags"; //String to test textToTag on
         testProduct1.textToTag(str);
+        List<String> tagsList= testProduct1.getTags();
+        assertEquals(0, tagsList.size()); //Tests border case where there are no valid tags.
+
+        String str2="#Supreme #Red "; //String to test  with valid tags separated by spaces
+        testProduct1.textToTag(str2);
+        tagsList= testProduct1.getTags();
+        assertEquals(2, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1)); //The 3 tests together test the case of tags separated by spaces
+        Product testProduct2 = new Product("pants", "Long pants", null);
+        String str3="#Supreme, #Red, "; //String to test with valid tags separated by commas
+        testProduct1.textToTag(str3);
+        tagsList= testProduct1.getTags();
+        assertEquals(2, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1)); //The 3 tests together test the case of comma separated tags
+
+        Product testProduct3 = new Product("pants", "Long pants", null);
+        String str4="#Sup,reme#Red, ##H@te ###Funny"; //String to test a combination of valid and invalid tags
+        testProduct1.textToTag(str4);
+        tagsList= testProduct1.getTags();
+        assertEquals(3, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1));
+        assertEquals("Funny",tagsList.get(2));//The 4 tests together test the case of comma separated tags
+
 
 
     }
