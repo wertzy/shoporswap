@@ -1,7 +1,7 @@
+import javax.naming.CompoundName;
 import java.util.*;
 
 public class Seller extends User {
-
     public Seller(){
         super();
     }
@@ -17,6 +17,14 @@ public class Seller extends User {
     @Override
     public Collection<Product> viewClothing(){
         return null;
+    }
+
+    public static void addListing(Product product){
+        productList.add(product);
+    }
+
+    public static void sell(Product product) {
+        //Product sellerProduct
     }
 
 }
