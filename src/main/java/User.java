@@ -109,6 +109,8 @@ public class User {
         messages.add(message);
     }
 
+    public ArrayList<Message> getMessages(){return messages;}
+
     /**
      * Views the collection of clothing available to see (varies by seller, shopper, swapper)
      * @return the viewable clothing (as a list) of clothing
