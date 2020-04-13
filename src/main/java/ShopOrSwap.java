@@ -149,7 +149,12 @@ public class ShopOrSwap implements BasicAPI{
      * @return the User found
      */
     public User findAccountByName(String accountName){
-        // TODO implement method to pass corresponding tests after the tests have been written
+        // implement method to pass corresponding tests after the tests have been written
+        for(User aUser : this.userList){
+            if(aUser.getAccountName().compareTo(accountName) == 0){
+                return aUser;
+            }
+        }
         return null;
     }
 

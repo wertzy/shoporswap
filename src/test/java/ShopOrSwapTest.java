@@ -847,7 +847,7 @@ public class ShopOrSwapTest {
         ShopOrSwap testShopOrSwap2 = new ShopOrSwap();
         User user1 = testShopOrSwap2.createAccount("account1", "pass1");
 
-        assertEquals(user1.getAccountName(), testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 1 users in system (valid case, border case)
+        assertEquals(user1, testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 1 users in system (valid case, border case)
 
         testShopOrSwap2.createAccount("account2", "pass2");
         testShopOrSwap2.createAccount("account3", "pass3");
@@ -859,7 +859,7 @@ public class ShopOrSwapTest {
         testShopOrSwap2.createAccount("account9", "pass9");
         testShopOrSwap2.createAccount("account10", "pass10");
 
-        assertEquals(user1.getAccountName(), testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 10 users in system (invalid case, middle case)
+        assertEquals(user1, testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 10 users in system (invalid case, middle case)
 
 
         // Equivalence class: find 1 of 10 users in system (valid case, middle case)
