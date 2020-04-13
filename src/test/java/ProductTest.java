@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -156,6 +157,12 @@ public class ProductTest {
         assertTrue(Product.isValidDescription("a description")); // Equivalence class: description cannot begin or end with a space (valid case, border case)
         assertTrue(Product.isValidDescription("description d")); // Equivalence class: description cannot begin or end with a space (valid case, border case)
         assertTrue(Product.isValidDescription("product description")); // Equivalence class: description cannot begin or end with a space (valid case, middle case)
+        
+        assertFalse(Product.isValidDescription("- product description")); // Equivalence class: description cannot begin or end with a hyphen "-" (invalid case, border case)
+        assertFalse(Product.isValidDescription("product description-")); // Equivalence class: description cannot begin or end with a hyphen "-" (invalid case, border case)
+        assertTrue(Product.isValidDescription("p-1 description")); // Equivalence class: description cannot begin or end with a hyphen "-" (valid case, middle case)
+        assertTrue(Product.isValidDescription("product description-1")); // Equivalence class: description cannot begin or end with a hyphen "-" (valid case, middle case)
+        assertTrue(Product.isValidDescription("product-description")); // Equivalence class: description cannot begin or end with a hyphen "-" (valid case, middle case)
     }
 
     @Test
@@ -188,6 +195,52 @@ public class ProductTest {
         assertFalse(Product.isValidTag("@#$%&!*?/\\")); // Equivalence class: name cannot contain any special characters (invalid case, border case)
         assertFalse(Product.isValidTag("a@b#c$d%")); // Equivalence class: name cannot contain any special characters (invalid case, middle case)
         assertTrue(Product.isValidTag("possibility")); // Equivalence class: name cannot contain any special characters (valid case, middle case)
+    }
+
+    @Test
+    void textToTagTest(){
+        Product testProduct1 = new Product("t", "tshirt", null);
+        String str="Hello, this is a text without any hashtags"; //String to test textToTag on
+        testProduct1.textToTag(str);
+        List<String> tagsList= testProduct1.getTags();
+        assertEquals(0, tagsList.size()); //Tests border case where there are no valid tags.
+
+        Product testProduct2 = new Product("t", "tshirt", null);
+        String str2="#Supreme #Red "; //String to test  with valid tags separated by spaces
+        testProduct2.textToTag(str2);
+        tagsList= testProduct2.getTags();
+        assertEquals(2, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1)); //The 3 tests together test the case of tags separated by spaces
+
+        String str2_1="#Tshirt #White "; //Testing whether more tags can be added after already adding tags.
+        testProduct2.textToTag(str2_1);
+        tagsList= testProduct2.getTags();
+        assertEquals(4, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1));
+        assertEquals("Tshirt",tagsList.get(2));
+        assertEquals("White",tagsList.get(3)); //Tests to see if the old tags and new tags are in correct order and all of them still exist
+
+        Product testProduct3 = new Product("pants", "Long pants", null);
+        String str3="#Supreme, #Red, "; //String to test with valid tags separated by commas
+        testProduct3.textToTag(str3);
+        tagsList= testProduct3.getTags();
+        assertEquals(2, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1)); //The 3 tests together test the case of comma separated tags
+
+        Product testProduct4 = new Product("pants", "Long pants", null);
+        String str4="#Sup,reme#Red, ##H@te ###Funny"; //String to test a combination of valid and invalid tags
+        testProduct4.textToTag(str4);
+        tagsList= testProduct4.getTags();
+        assertEquals(3, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1));
+        assertEquals("Funny",tagsList.get(2));//The 4 tests together test the remaining cases, including incorrect symbols, multiple #s, commas inside the #.
+
+
+
     }
 
     @Test

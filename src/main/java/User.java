@@ -6,6 +6,7 @@ public class User {
     protected String password;
     protected ArrayList<String> transactionHistory;
     protected ArrayList<Message> messages;
+    protected static Collection<Product> productList;
     protected double rating;
 
     /**

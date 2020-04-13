@@ -171,7 +171,7 @@ public class Product {
     /**
      * Static method to check the validity of a description (only alphanumeric and space characters, 500 character maximum)
      * @param description the description to validate
-     * @return true if the description is valid, false otherwise
+     * @return true if the description is valid, otherwise false
      */
     public static boolean isValidDescription(String description){
         if(description.indexOf(" ") == 0){ // checks if the description begins with a space
@@ -180,7 +180,7 @@ public class Product {
         if(description.lastIndexOf(" ") == description.length() - 1){ // checks if the description ends with a space
             return false;
         }
-        String descriptionStringPattern = "[\\w[\\s]]{1,500}+"; // regex representing a 1-500 length string which pass the initial if-else conditions
+        String descriptionStringPattern = "[\\w[\\s][-]]{1,500}+"; // regex representing a 1-500 length string which pass the initial if-else conditions
         return Pattern.matches(descriptionStringPattern, description); // checks if the description matches the required expression
     }
 
@@ -215,9 +215,30 @@ public class Product {
         String descriptionStringPattern = "[\\w]+"; // regex representing a 1+ length string which pass the initial if-else conditions
         return Pattern.matches(descriptionStringPattern, tag); // checks if the tag matches the required expression
     }
+    /**
+     * Method to transform a block of text into a tag or multiple tags.(tag must be alphanumeric and not containing spaces)
+     * @param text a block of text containing #s and spaces that can be made into a list
+     * Adds tags to the product
+     */
+    public void textToTag(String text) {
+        text=text.replaceAll(",",""); //Removes all commas from the text file leaving only characters and spaces
+        text=text.replaceAll("\\s",""); //Removes all spaces from the text file leaving only characters
+
+        String[] arrOfTags=text.split("#"); //
+        for(int i=1; i<arrOfTags.length; i++){ //Starts at i=1 because splits creates a first element regardless of whether or not a # exists. so we skip the first entry.
+            if(isValidTag(arrOfTags[i])){
+                this.tags.add(arrOfTags[i]);
+            }
+        }
+
+    }
+
 
     public static String sendMessage(String message){
         return "";
     }
 
+
 }
+
+
