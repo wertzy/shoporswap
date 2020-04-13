@@ -171,7 +171,7 @@ public class Product {
     /**
      * Static method to check the validity of a description (only alphanumeric and space characters, 500 character maximum)
      * @param description the description to validate
-     * @return true if the description is valid, false otherwise
+     * @return true if the description is valid, otherwise false
      */
     public static boolean isValidDescription(String description){
         if(description.indexOf(" ") == 0){ // checks if the description begins with a space
