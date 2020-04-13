@@ -859,14 +859,59 @@ public class ShopOrSwapTest {
         testShopOrSwap2.createAccount("account9", "pass9");
         testShopOrSwap2.createAccount("account10", "pass10");
 
-        assertEquals(user1, testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 10 users in system (invalid case, middle case)
-
-
-        // Equivalence class: find 1 of 10 users in system (valid case, middle case)
+        assertEquals(user1, testShopOrSwap2.findAccountByName("account1")); // Equivalence class: find 1 of 10 users in system (valid case, middle case)
     }
 
     @Test
     public void swapProductTest(){
+
+        ShopOrSwap testShopOrSwap1 = new ShopOrSwap();
+
+        // Equivalence class: 4 of 4 parameters non-existent (invalid case, border case)
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.swapProducts(
+                testShopOrSwap1.findAccountByName("account1"),
+                testShopOrSwap1.findProduct("product1", testShopOrSwap1.findAccountByName("account1")),
+                testShopOrSwap1.findAccountByName("account2"),
+                testShopOrSwap1.findProduct("product2", testShopOrSwap1.findAccountByName("account2"))
+        ));
+
+        // Equivalence class: 2 of 4 parameters non-existent (invalid case, middle case)
+        User user1 = testShopOrSwap1.createAccount("account1", "pass1");
+        Product product1 = testShopOrSwap1.createSwapProduct("product1", "description-1", "100", testShopOrSwap1.findAccountByName("account1"));
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.swapProducts(
+                user1,
+                product1,
+                testShopOrSwap1.findAccountByName("account2"),
+                testShopOrSwap1.findProduct("product2", testShopOrSwap1.findAccountByName("account2"))
+        ));
+
+        // Equivalence class: 1 of 4 parameters non-existent (invalid case, border case)
+        User user2 = testShopOrSwap1.createAccount("account2", "pass2");
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.swapProducts(
+                user1,
+                product1,
+                user2,
+                testShopOrSwap1.findProduct("product2", testShopOrSwap1.findAccountByName("account2"))
+        ));
+
+        // Equivalence class: 4 of 4 parameters null (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(null, null, null, null));
+        // Equivalence class: 2 of 4 parameters null (invalid case, middle case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(user1, product1, null, null));
+        // Equivalence class: 1 of 4 parameters null (invalid case, border case)
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(user1, product1, user2, null));
+
+        testShopOrSwap1.createAccount("account3", "pass3");
+        testShopOrSwap1.createAccount("account4", "pass4");
+        testShopOrSwap1.createAccount("account5", "pass5");
+        testShopOrSwap1.createAccount("account6", "pass6");
+        testShopOrSwap1.createAccount("account7", "pass7");
+        testShopOrSwap1.createAccount("account8", "pass8");
+        testShopOrSwap1.createAccount("account9", "pass9");
+        testShopOrSwap1.createAccount("account10", "pass10");
+
+        // Equivalence class: 0 of 4 parameters null or invalid, 2 choices of products to swap (valid case, border case)
+        // Equivalence class: 0 of 4 parameters null or invalid, 10 choices of products to swap (valid case, middle case)
 
     }
 
