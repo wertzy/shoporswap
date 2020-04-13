@@ -826,4 +826,18 @@ public class ShopOrSwapTest {
 
     }
 
+    @Test
+    public void findUserByNameTest(){
+        ShopOrSwap testShopOrSwap1 = new ShopOrSwap();
+        // Equivalence class: find 1 of 0 users in system (invalid case, border case)
+        // Equivalence class: find 1 of 10 users in system (invalid case, middle case)
+        // Equivalence class: find 1 of 1 users in system (valid case, border case)
+        // Equivalence class: find 1 of 10 users in system (valid case, middle case)
+    }
+
+    @Test
+    public void swapProductTest(){
+
+    }
+
 }

@@ -144,6 +144,15 @@ public class ShopOrSwap implements BasicAPI{
     }
 
     /**
+     * finds a User in the program based on an account name
+     * @param accountName the account name of the User to find
+     * @return the User found
+     */
+    public User findAccountByName(String accountName){
+        return null;
+    }
+
+    /**
      * Creates a Product to sell by a User
      * @param name the name of the Product to sell
      * @param description the description of the Product to sell
