@@ -191,6 +191,15 @@ public class ProductTest {
     }
 
     @Test
+    void textToTagTest(){
+        Product testProduct1 = new Product("t", "tshirt", null);
+        String str="Hello, this is a text without any #"; //String to to test text to tag on
+        testProduct1.textToTag(str);
+
+
+    }
+
+    @Test
     void getNameTest(){
         User testUser1 = new User();
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getName accessor

@@ -215,9 +215,24 @@ public class Product {
         String descriptionStringPattern = "[\\w]+"; // regex representing a 1+ length string which pass the initial if-else conditions
         return Pattern.matches(descriptionStringPattern, tag); // checks if the tag matches the required expression
     }
+    /**
+     * Static method to transform a block of text into a tag or multiple tags.(tag must be alphanumeric and not containing spaces)
+     * @param text a block of text containing #s and spaces that can be made into a list
+     * Adds tags to the product
+     */
+    public static void textToTag(String text) {
+        text=text.replaceAll("\\s",""); //Removes all spaces from the text file leaving only characters
+        text=text.replaceAll(",",""); //Removes all commas from the text file leaving only
+        String[] arrOfTags=text.split("#");
+
+    }
+
 
     public static String sendMessage(String message){
         return "";
     }
 
+
 }
+
+
