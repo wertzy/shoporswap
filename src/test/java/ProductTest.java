@@ -199,28 +199,39 @@ public class ProductTest {
         List<String> tagsList= testProduct1.getTags();
         assertEquals(0, tagsList.size()); //Tests border case where there are no valid tags.
 
+        Product testProduct2 = new Product("t", "tshirt", null);
         String str2="#Supreme #Red "; //String to test  with valid tags separated by spaces
-        testProduct1.textToTag(str2);
-        tagsList= testProduct1.getTags();
+        testProduct2.textToTag(str2);
+        tagsList= testProduct2.getTags();
         assertEquals(2, tagsList.size());
         assertEquals("Supreme",tagsList.get(0));
         assertEquals("Red",tagsList.get(1)); //The 3 tests together test the case of tags separated by spaces
-        Product testProduct2 = new Product("pants", "Long pants", null);
+
+        String str2_1="#Tshirt #White "; //Testing whether more tags can be added after already adding tags.
+        testProduct2.textToTag(str2_1);
+        tagsList= testProduct2.getTags();
+        assertEquals(4, tagsList.size());
+        assertEquals("Supreme",tagsList.get(0));
+        assertEquals("Red",tagsList.get(1));
+        assertEquals("Tshirt",tagsList.get(2));
+        assertEquals("White",tagsList.get(3)); //Tests to see if the old tags and new tags are in correct order and all of them still exist
+
+        Product testProduct3 = new Product("pants", "Long pants", null);
         String str3="#Supreme, #Red, "; //String to test with valid tags separated by commas
-        testProduct1.textToTag(str3);
-        tagsList= testProduct1.getTags();
+        testProduct3.textToTag(str3);
+        tagsList= testProduct3.getTags();
         assertEquals(2, tagsList.size());
         assertEquals("Supreme",tagsList.get(0));
         assertEquals("Red",tagsList.get(1)); //The 3 tests together test the case of comma separated tags
 
-        Product testProduct3 = new Product("pants", "Long pants", null);
+        Product testProduct4 = new Product("pants", "Long pants", null);
         String str4="#Sup,reme#Red, ##H@te ###Funny"; //String to test a combination of valid and invalid tags
-        testProduct1.textToTag(str4);
-        tagsList= testProduct1.getTags();
+        testProduct4.textToTag(str4);
+        tagsList= testProduct4.getTags();
         assertEquals(3, tagsList.size());
         assertEquals("Supreme",tagsList.get(0));
         assertEquals("Red",tagsList.get(1));
-        assertEquals("Funny",tagsList.get(2));//The 4 tests together test the case of comma separated tags
+        assertEquals("Funny",tagsList.get(2));//The 4 tests together test the remaining cases, including incorrect symbols, multiple #s, commas inside the #.
 
 
 
