@@ -10,6 +10,15 @@ target/
 .idea/**/dictionaries
 .idea/**/shelf
 
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+
+SoftwareEngineeringPractice.iml
+.idea/.name
+
 # Generated files
 .idea/**/contentModel.xml
 
