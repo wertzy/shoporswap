@@ -110,6 +110,9 @@ public class User {
         messages.add(message);
     }
 
+    public void checkMessage(Message message){
+        
+    }
     public ArrayList<Message> getMessages(){return messages;}
 
     /**
