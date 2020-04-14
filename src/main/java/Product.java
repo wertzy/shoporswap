@@ -174,10 +174,10 @@ public class Product {
      * @return true if the description is valid, otherwise false
      */
     public static boolean isValidDescription(String description){
-        if(description.indexOf(" ") == 0){ // checks if the description begins with a space
+        if(description.indexOf(" ") == 0 || description.indexOf("-") == 0){ // checks if the description begins with a space or dash
             return false;
         }
-        if(description.lastIndexOf(" ") == description.length() - 1){ // checks if the description ends with a space
+        if(description.lastIndexOf(" ") == description.length() - 1 || description.lastIndexOf("-") == description.length() - 1){ // checks if the description ends with a space or dash
             return false;
         }
         String descriptionStringPattern = "[\\w[\\s][-]]{1,500}+"; // regex representing a 1-500 length string which pass the initial if-else conditions
