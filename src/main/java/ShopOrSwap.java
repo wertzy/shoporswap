@@ -144,6 +144,21 @@ public class ShopOrSwap implements BasicAPI{
     }
 
     /**
+     * finds a User in the program
+     * @param accountName the account name of the User to find
+     * @return the User found
+     */
+    public User findAccount(String accountName){
+        // implement method to pass corresponding tests after the tests have been written
+        for(User aUser : this.userList){
+            if(aUser.getAccountName().compareTo(accountName) == 0){
+                return aUser;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Creates a Product to sell by a User
      * @param name the name of the Product to sell
      * @param description the description of the Product to sell
@@ -229,6 +244,15 @@ public class ShopOrSwap implements BasicAPI{
             }
         }
         throw new NoSuchElementException("Product does not exist for the User in the system");
+    }
+
+    /**
+     * Swaps a Product from one User with another Product from another User
+     * @param product1 the Product offered by the User offering the swap
+     * @param product2 the Product requested by the User accepting the swap
+     */
+    @Override
+    public void swapProducts(Product product1, Product product2){
     }
 
     /**
