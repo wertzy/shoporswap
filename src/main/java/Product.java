@@ -10,6 +10,34 @@ public class Product {
     private List<User> consumers;
 
     /**
+     * Default constructor
+     */
+    public Product(){
+
+    }
+
+    public void setName(String nameIn){
+        if(!isValidName(nameIn)){
+            throw new IllegalArgumentException("Invalid value for name");
+        }
+        this.name = nameIn;
+    }
+
+    public void setDescription(String descriptionIn){
+        if(!isValidDescription(descriptionIn)){
+            throw new IllegalArgumentException("Invalid value for description");
+        }
+        this.description = descriptionIn;
+    }
+
+    public void setPrice(double priceIn){
+        if(!isValidPrice(priceIn)){
+            throw new IllegalArgumentException("Invalid value for price");
+        }
+        this.price = priceIn;
+    }
+
+    /**
      * Constructor for a Product object
      * @param name the name of the Product
      * @param description the description of the Product
