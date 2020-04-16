@@ -232,6 +232,29 @@ public class ShopOrSwap implements BasicAPI{
     }
 
     /**
+     * Finds a Product from the User
+     * @param  searchPhrase the input to use for the search
+     * @return the Product to find
+     * @throws NoSuchElementException if the Product does not exist for the User
+     */
+    @Override
+    public List<Product> searchForProduct(String searchPhrase){
+        List<Product> searchResults= new ArrayList<Product>();
+        // implement method to pass corresponding tests after the tests have been written
+        for(Product product : this.productList){
+            if(product.getName().contains(searchPhrase)){
+                searchResults.add(product);
+            }
+        }
+        if(searchResults.size()>0){
+            return searchResults;
+        }
+        else {
+            throw new NoSuchElementException("Product does not exist for the User in the system");
+        }
+    }
+
+    /**
      * Views the Products listed by a User
      * @param user the User whose products are being viewed
      * @return a list of the User's Products
