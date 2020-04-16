@@ -192,6 +192,17 @@ public class ShopOrSwap implements BasicAPI{
             return this.productList.get(this.productList.size() - 1);
         }
     }
+    /**
+     * Creates a Product to swap by a User
+     * @param product the name of the Product to remove
+     * @throws IllegalArgumentException if the User merchant does not exist in the system
+     */
+
+    public Product removeSellProduct(Product product){
+        Product returnProduct=findProduct(product.getName(),product.getMerchant());
+        productList.remove(findProduct(product.getName(),product.getMerchant()));
+        return returnProduct;
+    }
 
     /**
      * Creates a Product to swap by a User
@@ -244,6 +255,27 @@ public class ShopOrSwap implements BasicAPI{
             }
         }
         throw new NoSuchElementException("Product does not exist for the User in the system");
+    }
+    /**
+     * Finds a Product from the User
+     * @param  searchPhrase the input to use for the search
+     * @return the Product to find
+     //* @throws NoSuchElementException if the Product does not exist for the User
+     */
+    public List<Product> searchForProduct(String searchPhrase){
+        List<Product> searchResults= new ArrayList<Product>(0);
+        // implement method to pass corresponding tests after the tests have been written
+        for(Product product : this.productList){
+            if(product.getName().contains(searchPhrase)){
+                searchResults.add(product);
+            }
+        }
+        if(searchResults.size()>0){
+            return searchResults;
+        }
+        else {
+            throw new NoSuchElementException("No product fits what you searched for");
+        }
     }
 
     /**
