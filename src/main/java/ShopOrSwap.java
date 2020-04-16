@@ -144,6 +144,21 @@ public class ShopOrSwap implements BasicAPI{
     }
 
     /**
+     * finds a User in the program
+     * @param accountName the account name of the User to find
+     * @return the User found
+     */
+    public User findAccount(String accountName){
+        // implement method to pass corresponding tests after the tests have been written
+        for(User aUser : this.userList){
+            if(aUser.getAccountName().compareTo(accountName) == 0){
+                return aUser;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Creates a Product to sell by a User
      * @param name the name of the Product to sell
      * @param description the description of the Product to sell
@@ -176,6 +191,17 @@ public class ShopOrSwap implements BasicAPI{
             this.productList.add(nextProduct);
             return this.productList.get(this.productList.size() - 1);
         }
+    }
+    /**
+     * Creates a Product to swap by a User
+     * @param product the name of the Product to remove
+     * @throws IllegalArgumentException if the User merchant does not exist in the system
+     */
+
+    public Product removeSellProduct(Product product){
+        Product returnProduct=findProduct(product.getName(),product.getMerchant());
+        productList.remove(findProduct(product.getName(),product.getMerchant()));
+        return returnProduct;
     }
 
     /**
@@ -232,26 +258,37 @@ public class ShopOrSwap implements BasicAPI{
     }
 
     /**
-     * Finds a Product from the User
-     * @param  searchPhrase the input to use for the search
-     * @return the Product to find
-     * @throws NoSuchElementException if the Product does not exist for the User
+     * Swaps a Product from one User with another Product from another User
+     * @param product1 the Product offered by the User offering the swap
+     * @param product2 the Product requested by the User accepting the swap
      */
     @Override
-    public List<Product> searchForProduct(String searchPhrase){
-        List<Product> searchResults= new ArrayList<Product>();
-        // implement method to pass corresponding tests after the tests have been written
-        for(Product product : this.productList){
-            if(product.getName().contains(searchPhrase)){
-                searchResults.add(product);
-            }
+    public void swapProducts(Product product1, Product product2){
+        // checks for the same Product
+        if(product1.getName().compareToIgnoreCase(product2.getName()) == 0){
+            throw new IllegalArgumentException("Products are the same");
         }
-        if(searchResults.size()>0){
-            return searchResults;
+
+        // checks for the same User
+        if(product1.getMerchant().getAccountName().compareToIgnoreCase(product2.getMerchant().getAccountName()) == 0){
+            throw new IllegalArgumentException("Users are the same");
         }
-        else {
-            throw new NoSuchElementException("Product does not exist for the User in the system");
+
+        // checks for a non-existent User
+        if(this.findAccount(product1.getMerchant().getAccountName()) == null || this.findAccount(product2.getMerchant().getAccountName()) == null){
+            throw new IllegalArgumentException("Invalid merchant");
         }
+
+        // checks for a non-existent Product
+        if(this.findProduct(product1.getName(), this.findAccount(product1.getMerchant().getAccountName())) == null || this.findProduct(product2.getName(), this.findAccount(product2.getMerchant().getAccountName())) == null){
+            throw new IllegalArgumentException("Invalid product");
+        }
+
+        // completing swap
+        User merchant1 = product1.getMerchant();
+        User merchant2 = product2.getMerchant();
+        product1.setMerchant(merchant2);
+        product2.setMerchant(merchant1);
     }
 
     /**

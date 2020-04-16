@@ -30,4 +30,6 @@ public interface BasicAPI {
 
     List<Product> getProductList();
 
+    void swapProducts(Product product1, Product product2);
+
 }

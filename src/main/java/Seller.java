@@ -23,8 +23,5 @@ public class Seller extends User {
         productList.add(product);
     }
 
-    public static void sell(Product product) {
-        //Product sellerProduct
-    }
 
 }

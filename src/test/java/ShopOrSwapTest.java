@@ -312,17 +312,20 @@ public class ShopOrSwapTest {
         // Equivalence class: user to find does exist (invalid case, border case)
         testShopOrSwap1 = new ShopOrSwap();
         assertNull(testShopOrSwap1.findAccount(testUser1));
+        assertNull(testShopOrSwap1.findAccount("testuser1"));
 
         // Equivalence class: user to find does exist (invalid case, middle case)
         testShopOrSwap2 = new ShopOrSwap();
         testShopOrSwap2.addAccount(testUser1);
         testShopOrSwap2.addAccount(testUser2);
         assertNull(testShopOrSwap2.findAccount(testUser3));
+        assertNull(testShopOrSwap1.findAccount("testuser3"));
 
         // Equivalence class: user to find does exist (valid case, border case)
         testShopOrSwap3 = new ShopOrSwap();
         testShopOrSwap3.addAccount(testUser1);
         assertEquals(testUser1, testShopOrSwap3.findAccount(testUser1));
+        assertEquals(testUser1, testShopOrSwap3.findAccount("testuser1"));
 
         // Equivalence class: user to find does exist (valid case, middle case)
         testShopOrSwap4 = new ShopOrSwap();
@@ -330,6 +333,7 @@ public class ShopOrSwapTest {
         testShopOrSwap4.addAccount(testUser2);
         testShopOrSwap4.addAccount(testUser3);
         assertEquals(testUser3, testShopOrSwap4.findAccount(testUser3));
+        assertEquals(testUser3, testShopOrSwap4.findAccount("testuser3"));
 
     }
 
@@ -533,6 +537,36 @@ public class ShopOrSwapTest {
         testShopOrSwap2.createSwapProduct("testproduct4", "testdescription4", "20", testUser1);
         assertEquals(2, testShopOrSwap2.getSwapProducts().size());
     }
+
+    @Test
+    void removeProductsTest(){
+        // write automated tests for method removeProducts(), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2, testShopOrSwap3;
+        User testUser1 = new User("testuser1", "testpassword1");
+        List<User> testUsers = new ArrayList<User>();
+        testUsers.add(testUser1);
+
+        // Equivalence class: removes a sellproduct with only one product in shoporswap
+        testShopOrSwap1 = new ShopOrSwap(testUsers);
+        testShopOrSwap1.createSwapProduct("testproduct1", "testdescription1", "20", testUser1);
+        assertEquals(1, testShopOrSwap1.getSwapProducts().size());
+        testShopOrSwap1.removeSellProduct(testShopOrSwap1.findProduct("testproduct1",testUser1));
+        assertEquals(0,testShopOrSwap1.getSellProducts().size());
+
+        // Equivalence class: removes a sellproduct with multiple products in shoporswap
+        testShopOrSwap2 = new ShopOrSwap(testUsers);
+        testShopOrSwap2.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        testShopOrSwap2.createSellProduct("testproduct3", "testdescription3", "20", testUser1);
+        assertEquals(2, testShopOrSwap2.getSellProducts().size());
+        testShopOrSwap2.removeSellProduct(testShopOrSwap2.findProduct("testproduct1",testUser1));
+        assertEquals(1,testShopOrSwap2.getSellProducts().size());
+
+        // Equivalence class: removes a sellproduct with no products in shoporswap
+        testShopOrSwap3 = new ShopOrSwap(testUsers);
+        assertThrows(NoSuchElementException.class ,()->testShopOrSwap3.removeSellProduct(testShopOrSwap2.findProduct("testProduct1",testUser1)));
+
+    }
+
 
     @Test
     void getUserList(){
@@ -810,4 +844,47 @@ public class ShopOrSwapTest {
         assertTrue(ShopOrSwap.isValidProductList(testProductList15, testUserList1));
 
     }
+
+    @Test
+    void swapProductsTest(){
+        ShopOrSwap testShopOrSwap1 = new ShopOrSwap();
+        testShopOrSwap1.createAccount("user1", "pass1");
+        testShopOrSwap1.createAccount("user2", "pass2");
+        testShopOrSwap1.createSwapProduct("product1", "product 1 to swap", "50", testShopOrSwap1.findAccount("user1"));
+        testShopOrSwap1.createSwapProduct("product2", "product 2 to swap", "50", testShopOrSwap1.findAccount("user1"));
+        testShopOrSwap1.createSwapProduct("product3", "product 3 to swap", "50", testShopOrSwap1.findAccount("user2"));
+        testShopOrSwap1.createSwapProduct("product4", "product 4 to swap", "50", testShopOrSwap1.findAccount("user2"));
+        testShopOrSwap1.createSellProduct("product5", "product 5 to sell", "50", testShopOrSwap1.findAccount("user1"));
+        testShopOrSwap1.createSellProduct("product6", "product 6 to sell", "50", testShopOrSwap1.findAccount("user1"));
+        testShopOrSwap1.createSellProduct("product7", "product 7 to sell", "50", testShopOrSwap1.findAccount("user2"));
+        testShopOrSwap1.createSellProduct("product8", "product 8 to sell", "50", testShopOrSwap1.findAccount("user2"));
+        List<User> testUsers1 = testShopOrSwap1.getUserList();
+        List<Product> testSwapProducts1 = testShopOrSwap1.getSwapProducts();
+        List<Product> testSellProducts1 = testShopOrSwap1.getSellProducts();
+        // equivalence class: cannot swap between the same product, invalid, exact
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(testSwapProducts1.get(0), testSwapProducts1.get(0)));
+        // equivalence class: cannot swap between the same user, invalid, exact
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(testSwapProducts1.get(0), testSwapProducts1.get(1)));
+        // equivalence class: cannot swap a product for sale
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(testSellProducts1.get(0), testSwapProducts1.get(0)));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(testSwapProducts1.get(0), testSellProducts1.get(0)));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(testSellProducts1.get(0), testSellProducts1.get(1)));
+        // equivalence class: cannot swap non-existing products and non-existing users in the ShopOrSwap program
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(
+                new Product("invalid product 1", "description", new User("user3", "pass3")),
+                testSwapProducts1.get(0)));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(
+                testSwapProducts1.get(0),
+                new Product("invalid product 1", "description", new User("user3", "pass3"))));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap1.swapProducts(
+                new Product("invalid product 1", "description", new User("user3", "pass3")),
+                new Product("invalid product 2", "description", new User("user4", "pass4"))));
+        // valid case
+        testShopOrSwap1.swapProducts(testSwapProducts1.get(0), testSwapProducts1.get(2));
+        assertNotNull(testShopOrSwap1.findProduct(testSwapProducts1.get(0).getName(), testShopOrSwap1.findAccount("user2")));
+        assertNotNull(testShopOrSwap1.findProduct(testSwapProducts1.get(2).getName(), testShopOrSwap1.findAccount("user1")));
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct(testSwapProducts1.get(0).getName(), testShopOrSwap1.findAccount("user1")));
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct(testSwapProducts1.get(2).getName(), testShopOrSwap1.findAccount("user2")));
+    }
+
 }
