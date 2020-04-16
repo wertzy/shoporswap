@@ -152,6 +152,10 @@ public class Product {
         return returnable;
     }
 
+    public void setMerchant(User userIn){
+        this.merchant = userIn;
+    }
+
     /**
      * Static method to check the validity of a name (only alphanumeric and space characters, 50 character maximum)
      * @param name the name to validate
