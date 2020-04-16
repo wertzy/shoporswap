@@ -853,8 +853,8 @@ public class ShopOrSwapTest {
         testShopOrSwap1.swapProducts(testSwapProducts1.get(0), testSwapProducts1.get(2));
         assertNotNull(testShopOrSwap1.findProduct(testSwapProducts1.get(0).getName(), testShopOrSwap1.findAccount("user2")));
         assertNotNull(testShopOrSwap1.findProduct(testSwapProducts1.get(2).getName(), testShopOrSwap1.findAccount("user1")));
-        assertNull(testShopOrSwap1.findProduct(testSwapProducts1.get(0).getName(), testShopOrSwap1.findAccount("user1")));
-        assertNull(testShopOrSwap1.findProduct(testSwapProducts1.get(2).getName(), testShopOrSwap1.findAccount("user2")));
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct(testSwapProducts1.get(0).getName(), testShopOrSwap1.findAccount("user1")));
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct(testSwapProducts1.get(2).getName(), testShopOrSwap1.findAccount("user2")));
     }
 
 }

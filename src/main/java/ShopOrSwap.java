@@ -253,6 +253,31 @@ public class ShopOrSwap implements BasicAPI{
      */
     @Override
     public void swapProducts(Product product1, Product product2){
+        // checks for the same Product
+        if(product1.getName().compareToIgnoreCase(product2.getName()) == 0){
+            throw new IllegalArgumentException("Products are the same");
+        }
+
+        // checks for the same User
+        if(product1.getMerchant().getAccountName().compareToIgnoreCase(product2.getMerchant().getAccountName()) == 0){
+            throw new IllegalArgumentException("Users are the same");
+        }
+
+        // checks for a non-existent User
+        if(this.findAccount(product1.getMerchant().getAccountName()) == null || this.findAccount(product2.getMerchant().getAccountName()) == null){
+            throw new IllegalArgumentException("Invalid merchant");
+        }
+
+        // checks for a non-existent Product
+        if(this.findProduct(product1.getName(), this.findAccount(product1.getMerchant().getAccountName())) == null || this.findProduct(product2.getName(), this.findAccount(product2.getMerchant().getAccountName())) == null){
+            throw new IllegalArgumentException("Invalid product");
+        }
+
+        // completing swap
+        User merchant1 = product1.getMerchant();
+        User merchant2 = product2.getMerchant();
+        product1.setMerchant(merchant2);
+        product2.setMerchant(merchant1);
     }
 
     /**
