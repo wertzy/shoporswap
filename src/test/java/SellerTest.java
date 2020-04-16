@@ -47,10 +47,10 @@ class SellerTest {
         Product product1= new Product("Supreme Box Logo Hoodie","box logo hoodie in gildan", seller1);
         Product product2= new Product("ASS Club","t-shirt", seller1);
         Product product3= new Product("ithaca college tee","ithaca college t shirt in blue", seller1);
-        //seller1.addListing(product1);
-        //seller1.addListing(product2);
-        //seller1.addListing(product3);
-        System.out.println(seller1.productList);
+        seller1.addListing(product1);
+        seller1.addListing(product2);
+        seller1.addListing(product3);
+        assertEquals("ithaca college tee",seller1);
     }
 
 }

@@ -177,6 +177,17 @@ public class ShopOrSwap implements BasicAPI{
             return this.productList.get(this.productList.size() - 1);
         }
     }
+    /**
+     * Creates a Product to swap by a User
+     * @param product the name of the Product to remove
+     * @throws IllegalArgumentException if the User merchant does not exist in the system
+     */
+
+    public Product removeSellProduct(Product product){
+        Product returnProduct=findProduct(product.getName(),product.getMerchant());
+        productList.remove(findProduct(product.getName(),product.getMerchant()));
+        return returnProduct;
+    }
 
     /**
      * Creates a Product to swap by a User

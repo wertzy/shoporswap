@@ -535,6 +535,36 @@ public class ShopOrSwapTest {
     }
 
     @Test
+    void removeProductsTest(){
+        // write automated tests for method removeProducts(), then implement corresponding methods to these tests
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2, testShopOrSwap3;
+        User testUser1 = new User("testuser1", "testpassword1");
+        List<User> testUsers = new ArrayList<User>();
+        testUsers.add(testUser1);
+
+        // Equivalence class: removes a sellproduct with only one product in shoporswap
+        testShopOrSwap1 = new ShopOrSwap(testUsers);
+        testShopOrSwap1.createSwapProduct("testproduct1", "testdescription1", "20", testUser1);
+        assertEquals(1, testShopOrSwap1.getSwapProducts().size());
+        testShopOrSwap1.removeSellProduct(testShopOrSwap1.findProduct("testproduct1",testUser1));
+        assertEquals(0,testShopOrSwap1.getSellProducts().size());
+
+        // Equivalence class: removes a sellproduct with multiple products in shoporswap
+        testShopOrSwap2 = new ShopOrSwap(testUsers);
+        testShopOrSwap2.createSellProduct("testproduct1", "testdescription1", "20", testUser1);
+        testShopOrSwap2.createSellProduct("testproduct3", "testdescription3", "20", testUser1);
+        assertEquals(2, testShopOrSwap2.getSellProducts().size());
+        testShopOrSwap2.removeSellProduct(testShopOrSwap2.findProduct("testproduct1",testUser1));
+        assertEquals(1,testShopOrSwap2.getSellProducts().size());
+
+        // Equivalence class: removes a sellproduct with no products in shoporswap
+        testShopOrSwap3 = new ShopOrSwap(testUsers);
+        assertThrows(NoSuchElementException.class ,()->testShopOrSwap3.removeSellProduct(testShopOrSwap2.findProduct("testProduct1",testUser1)));
+
+    }
+
+
+    @Test
     void getUserList(){
         // write automated tests for method getUserList(), then implement corresponding methods to these tests
         ShopOrSwap testShopOrSwap1, testShopOrSwap2;
