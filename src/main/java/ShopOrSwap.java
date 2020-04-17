@@ -320,6 +320,11 @@ public class ShopOrSwap implements BasicAPI{
             throw new IllegalArgumentException("Invalid product");
         }
 
+        // checks for a product not tagged for swapping
+        if(!product1.getTags().contains("swap") || !product2.getTags().contains("swap")){
+            throw new IllegalArgumentException("Invalid product");
+        }
+
         // completing swap
         User merchant1 = product1.getMerchant();
         User merchant2 = product2.getMerchant();
