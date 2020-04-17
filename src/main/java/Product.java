@@ -10,6 +10,39 @@ public class Product {
     private List<User> consumers;
 
     /**
+     * Default constructor
+     */
+    public Product(){
+        this.name = "DEFAULT NAME";
+        this.description = "DEFAULT DESCRIPTION";
+        this.price = 0.0;
+        this.tags = new ArrayList<String>();
+        this.merchant = null;
+        this.consumers = new ArrayList<User>();
+    }
+
+    public void setName(String nameIn){
+        if(!isValidName(nameIn)){
+            throw new IllegalArgumentException("Invalid value for name");
+        }
+        this.name = nameIn;
+    }
+
+    public void setDescription(String descriptionIn){
+        if(!isValidDescription(descriptionIn)){
+            throw new IllegalArgumentException("Invalid value for description");
+        }
+        this.description = descriptionIn;
+    }
+
+    public void setPrice(double priceIn){
+        if(!isValidPrice(priceIn)){
+            throw new IllegalArgumentException("Invalid value for price");
+        }
+        this.price = priceIn;
+    }
+
+    /**
      * Constructor for a Product object
      * @param name the name of the Product
      * @param description the description of the Product
@@ -135,17 +168,21 @@ public class Product {
         return this.merchant;
     }
 
+    public List<User> getConsumers(){
+        return this.consumers;
+    }
+
     /**
      * Accessor method for accessing the consumer history of the Product, both as raw data and as a neat string.
      * @return the consumer of the Product, as an array or as a string.
      */
-    public List<User> getConsumersRaw(){
+    public List<User> retrieveConsumersRaw(){
         List<User> returnable = new ArrayList<User>();
         returnable.add(merchant);
         return this.consumers;
     }
 
-    public String getConsumersNeat(){
+    public String retrieveConsumersNeat(){
         String returnable = ("History: " + consumers.toString());
         returnable = returnable.replace("]", "");
         returnable = returnable + ", " + merchant + "]";

@@ -1,0 +1,11 @@
+[ {
+  "accountName" : "accountname",
+  "password" : "password",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+}, {
+  "accountName" : "test1",
+  "password" : "test1",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+} ]

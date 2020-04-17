@@ -77,7 +77,7 @@ public class ShopOrSwapManualTest {
 
     private static void userMenu(ShopOrSwap shopOrSwap, User user, Scanner reader){
         System.out.println("--User Menu: " + user.getAccountName() + "--");
-        System.out.println("Options:\n1. View My Products\n2. Post Sell Product\n3. View Selling Products\n4. Post Swap Product\n5. View Swapping Products\n6. Sign Out");
+        System.out.println("Options:\n1. View My Products\n2. Post Sell Product\n3. View Selling Products\n4. Post Swap Product\n5. View Swapping Products\n6. Swap Products\n7. Sign Out");
         System.out.print("Choose the number of your selection: ");
         int userChoice;
         try {
@@ -96,9 +96,11 @@ public class ShopOrSwapManualTest {
             viewSellProcedure(shopOrSwap);
         }else if(userChoice == 4){
             postSwapProcedure(shopOrSwap, user);
-        }else if(userChoice == 5){
+        }else if(userChoice == 5) {
             viewSwapProcedure(shopOrSwap);
         }else if(userChoice == 6){
+            swapProcedure(shopOrSwap, user);
+        }else if(userChoice == 7){
             signOutProcedure(shopOrSwap, user);
         }else if(userChoice != -1){
             System.out.println("No corresponding option");
@@ -108,7 +110,7 @@ public class ShopOrSwapManualTest {
 
     private static void viewMyProductsProcedure(ShopOrSwap shopOrSwap, User user){
         System.out.println("--View My Products Procedure--");
-        List<Product> myProducts = shopOrSwap.getUserProducts(user);
+        List<Product> myProducts = shopOrSwap.findUserProducts(user);
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getPrice() + "\n\t" + product.getDescription() + "\n\t" + product.getTags());
         }
@@ -145,7 +147,7 @@ public class ShopOrSwapManualTest {
 
     private static void viewSellProcedure(ShopOrSwap shopOrSwap){
         System.out.println("--View Sell Products Procedure--");
-        List<Product> myProducts = shopOrSwap.getSellProducts();
+        List<Product> myProducts = shopOrSwap.findSellProducts();
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getPrice() + "\n\t" + product.getDescription() + "\n\t" + product.getTags() + "\n\t" + product.getMerchant().getAccountName());
         }
@@ -182,9 +184,21 @@ public class ShopOrSwapManualTest {
 
     private static void viewSwapProcedure(ShopOrSwap shopOrSwap){
         System.out.println("--View Swap Products Procedure--");
-        List<Product> myProducts = shopOrSwap.getSwapProducts();
+        List<Product> myProducts = shopOrSwap.findSwapProducts();
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getDescription() + "\n\t" + product.getTags() + "\n\t" + product.getMerchant().getAccountName());
+        }
+    }
+
+    private static void swapProcedure(ShopOrSwap shopOrSwap, User user){
+        System.out.println("--Swap Products Procedure--");
+        if(shopOrSwap.findSwapProducts().size() < 2){
+            System.out.println("Cannot complete swap procedure (insufficient swap inventory)");
+            return;
+        }
+        if(shopOrSwap.findUserProducts(user).size() == 0){
+            System.out.println("Cannot complete swap procedure (you have no swap inventory)");
+            return;
         }
     }
 
