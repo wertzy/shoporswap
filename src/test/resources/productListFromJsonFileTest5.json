@@ -1,0 +1,73 @@
+[ {
+  "name" : "name 1",
+  "description" : "description 1",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test1",
+    "password" : "pass1",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+}, {
+  "name" : "name 2",
+  "description" : "description 2",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test2",
+    "password" : "pass2",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+}, {
+  "name" : "name 3",
+  "description" : "description 3",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test3",
+    "password" : "pass3",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+}, {
+  "name" : "name 4",
+  "description" : "description 4",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test4",
+    "password" : "pass4",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+}, {
+  "name" : "name 5",
+  "description" : "description 5",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test5",
+    "password" : "pass5",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+}, {
+  "name" : "name 6",
+  "description" : "description 6",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test6",
+    "password" : "pass6",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+} ]

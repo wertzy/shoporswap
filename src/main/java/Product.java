@@ -13,7 +13,12 @@ public class Product {
      * Default constructor
      */
     public Product(){
-
+        this.name = "";
+        this.description = "";
+        this.price = 0.0;
+        this.tags = new ArrayList<String>();
+        this.merchant = null;
+        this.consumers = new ArrayList<User>();
     }
 
     public void setName(String nameIn){
@@ -163,17 +168,21 @@ public class Product {
         return this.merchant;
     }
 
+    public List<User> getConsumers(){
+        return this.consumers;
+    }
+
     /**
      * Accessor method for accessing the consumer history of the Product, both as raw data and as a neat string.
      * @return the consumer of the Product, as an array or as a string.
      */
-    public List<User> getConsumersRaw(){
+    public List<User> retrieveConsumersRaw(){
         List<User> returnable = new ArrayList<User>();
         returnable.add(merchant);
         return this.consumers;
     }
 
-    public String getConsumersNeat(){
+    public String retrieveConsumersNeat(){
         String returnable = ("History: " + consumers.toString());
         returnable = returnable.replace("]", "");
         returnable = returnable + ", " + merchant + "]";
@@ -190,6 +199,9 @@ public class Product {
      * @return true if the name is valid, false otherwise
      */
     public static boolean isValidName(String name){
+        if(name.isEmpty()){
+            return true;
+        }
         if(name.indexOf(" ") == 0){ // checks if the name begins with a space
             return false;
         }
@@ -206,6 +218,9 @@ public class Product {
      * @return true if the description is valid, otherwise false
      */
     public static boolean isValidDescription(String description){
+        if(description.isEmpty()){
+            return true;
+        }
         if(description.indexOf(" ") == 0 || description.indexOf("-") == 0){ // checks if the description begins with a space or dash
             return false;
         }

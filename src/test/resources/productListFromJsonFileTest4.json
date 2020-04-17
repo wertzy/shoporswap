@@ -1,0 +1,25 @@
+[ {
+  "name" : "name 1",
+  "description" : "description 1",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test1",
+    "password" : "pass1",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+}, {
+  "name" : "name 2",
+  "description" : "description 2",
+  "price" : 0.0,
+  "tags" : [ ],
+  "merchant" : {
+    "accountName" : "test2",
+    "password" : "pass2",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  },
+  "consumers" : [ ]
+} ]
