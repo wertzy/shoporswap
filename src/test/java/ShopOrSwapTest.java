@@ -887,4 +887,193 @@ public class ShopOrSwapTest {
         assertThrows(NoSuchElementException.class, ()-> testShopOrSwap1.findProduct(testSwapProducts1.get(2).getName(), testShopOrSwap1.findAccount("user2")));
     }
 
+    @Test
+    void exitTest(){
+        ShopOrSwap testExportOrSwap1, testExportOrSwap2, testExportOrSwap3, testExportOrSwap4, testExportOrSwap5, testExportOrSwap6, testExportOrSwap7;
+        String testFile1, testFile2, testFile3, testFile4, testFile5, testFile6, testFile7;
+        ShopOrSwap testImportOrSwap1, testImportOrSwap2, testImportOrSwap3, testImportOrSwap4, testImportOrSwap5, testImportOrSwap6, testImportOrSwap7;
+        
+        // equivalence class: ShopOrSwap with Product count 0 and User count 0
+        testExportOrSwap1 = new ShopOrSwap();
+        testFile1 = "src/test/resources/exitTest1_1.json";
+        testExportOrSwap1.exit(testFile1);
+        testImportOrSwap1 = new ShopOrSwap(testFile1);
+        assertEquals(0, testImportOrSwap1.getUserList().size());
+        assertEquals(0, testImportOrSwap1.getProductList().size());
+
+        // equivalence class: ShopOrSwap with Product count 0 and User count 1
+        testExportOrSwap2 = new ShopOrSwap();
+        testExportOrSwap2.createAccount("test1", "pass1");
+        testFile2 = "src/test/resources/exitTest2_1.json";
+        testExportOrSwap2.exit(testFile2);
+        testImportOrSwap2 = new ShopOrSwap(testFile2);
+        assertEquals(0, testImportOrSwap2.getUserList().size());
+        assertEquals(1, testImportOrSwap2.getProductList().size());
+
+        // equivalence class: ShopOrSwap with Product count 0 and User count 5
+        testExportOrSwap3 = new ShopOrSwap();
+        testExportOrSwap3.createAccount("test1", "pass1");
+        testExportOrSwap3.createAccount("test2", "pass2");
+        testExportOrSwap3.createAccount("test3", "pass3");
+        testExportOrSwap3.createAccount("test4", "pass4");
+        testExportOrSwap3.createAccount("test5", "pass5");
+        testFile3 = "src/test/resources/exitTest3_1.json";
+        testExportOrSwap3.exit(testFile3);
+        testImportOrSwap3 = new ShopOrSwap(testFile3);
+        assertEquals(0, testImportOrSwap3.getUserList().size());
+        assertEquals(5, testImportOrSwap3.getProductList().size());
+        
+        // equivalence class: ShopOrSwap with Product count 1 and User count 1
+        testExportOrSwap4 = new ShopOrSwap();
+        testExportOrSwap4.createAccount("test1", "pass1");
+        testExportOrSwap4.createSellProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testFile4 = "src/test/resources/exitTest4_1.json";
+        testExportOrSwap4.exit(testFile4);
+        testImportOrSwap4 = new ShopOrSwap(testFile4);
+        assertEquals(0, testImportOrSwap4.getUserList().size());
+        assertEquals(1, testImportOrSwap4.getProductList().size());
+
+        testExportOrSwap4 = new ShopOrSwap();
+        testExportOrSwap4.createAccount("test1", "pass1");
+        testExportOrSwap4.createSwapProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testFile4 = "src/test/resources/exitTest4_2.json";
+        testExportOrSwap4.exit(testFile4);
+        testImportOrSwap4 = new ShopOrSwap(testFile4);
+        assertEquals(0, testImportOrSwap4.getUserList().size());
+        assertEquals(1, testImportOrSwap4.getProductList().size());
+        
+        // equivalence class: ShopOrSwap with Product count 1 and User count 5
+        testExportOrSwap5 = new ShopOrSwap();
+        testExportOrSwap5.createAccount("test1", "pass1");
+        testExportOrSwap5.createAccount("test2", "pass2");
+        testExportOrSwap5.createAccount("test3", "pass3");
+        testExportOrSwap5.createAccount("test4", "pass4");
+        testExportOrSwap5.createAccount("test5", "pass5");
+        testExportOrSwap4.createSellProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testFile5 = "src/test/resources/exitTest5_1.json";
+        testExportOrSwap5.exit(testFile5);
+        testImportOrSwap5 = new ShopOrSwap(testFile5);
+        assertEquals(0, testImportOrSwap5.getUserList().size());
+        assertEquals(5, testImportOrSwap5.getProductList().size());
+
+        testExportOrSwap5 = new ShopOrSwap();
+        testExportOrSwap5.createAccount("test1", "pass1");
+        testExportOrSwap5.createAccount("test2", "pass2");
+        testExportOrSwap5.createAccount("test3", "pass3");
+        testExportOrSwap5.createAccount("test4", "pass4");
+        testExportOrSwap5.createAccount("test5", "pass5");
+        testExportOrSwap4.createSwapProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testFile5 = "src/test/resources/exitTest5_2.json";
+        testExportOrSwap5.exit(testFile5);
+        testImportOrSwap5 = new ShopOrSwap(testFile5);
+        assertEquals(0, testImportOrSwap5.getUserList().size());
+        assertEquals(5, testImportOrSwap5.getProductList().size());
+        
+        // equivalence class: ShopOrSwap with Product count 5 and User count 1
+        testExportOrSwap6 = new ShopOrSwap();
+        testExportOrSwap6.createAccount("test1", "pass1");
+        testExportOrSwap4.createSellProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 2", "description 2", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 3", "description 3", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 4", "description 4", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 5", "description 5", "50", testExportOrSwap4.findAccount("test1"));
+        testFile6 = "src/test/resources/exitTest6_1.json";
+        testExportOrSwap6.exit(testFile6);
+        testImportOrSwap6 = new ShopOrSwap(testFile6);
+        assertEquals(0, testImportOrSwap6.getUserList().size());
+        assertEquals(1, testImportOrSwap6.getProductList().size());
+
+        testExportOrSwap6 = new ShopOrSwap();
+        testExportOrSwap6.createAccount("test1", "pass1");
+        testExportOrSwap4.createSwapProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSwapProduct("name 2", "description 2", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSwapProduct("name 3", "description 3", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSwapProduct("name 4", "description 4", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSwapProduct("name 5", "description 5", "50", testExportOrSwap4.findAccount("test1"));
+        testFile6 = "src/test/resources/exitTest6_2.json";
+        testExportOrSwap6.exit(testFile6);
+        testImportOrSwap6 = new ShopOrSwap(testFile6);
+        assertEquals(0, testImportOrSwap6.getUserList().size());
+        assertEquals(1, testImportOrSwap6.getProductList().size());
+
+        testExportOrSwap6 = new ShopOrSwap();
+        testExportOrSwap6.createAccount("test1", "pass1");
+        testExportOrSwap4.createSellProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSwapProduct("name 2", "description 2", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 3", "description 3", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSwapProduct("name 4", "description 4", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 5", "description 5", "50", testExportOrSwap4.findAccount("test1"));
+        testFile6 = "src/test/resources/exitTest6_3.json";
+        testExportOrSwap6.exit(testFile6);
+        testImportOrSwap6 = new ShopOrSwap(testFile6);
+        assertEquals(0, testImportOrSwap6.getUserList().size());
+        assertEquals(1, testImportOrSwap6.getProductList().size());
+        
+        // equivalence class: ShopOrSwap with Product count 5 and User count 5
+        testExportOrSwap7 = new ShopOrSwap();
+        testExportOrSwap7.createAccount("test1", "pass1");
+        testExportOrSwap7.createAccount("test2", "pass2");
+        testExportOrSwap7.createAccount("test3", "pass3");
+        testExportOrSwap7.createAccount("test4", "pass4");
+        testExportOrSwap7.createAccount("test5", "pass5");
+        testExportOrSwap4.createSellProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 2", "description 2", "50", testExportOrSwap4.findAccount("test2"));
+        testExportOrSwap4.createSellProduct("name 3", "description 3", "50", testExportOrSwap4.findAccount("test3"));
+        testExportOrSwap4.createSellProduct("name 4", "description 4", "50", testExportOrSwap4.findAccount("test4"));
+        testExportOrSwap4.createSellProduct("name 5", "description 5", "50", testExportOrSwap4.findAccount("test5"));
+        testFile7 = "src/test/resources/exitTest7_1.json";
+        testExportOrSwap7.exit(testFile7);
+        testImportOrSwap7 = new ShopOrSwap(testFile7);
+        assertEquals(0, testImportOrSwap7.getUserList().size());
+        assertEquals(7, testImportOrSwap7.getProductList().size());
+
+        testExportOrSwap7 = new ShopOrSwap();
+        testExportOrSwap7.createAccount("test1", "pass1");
+        testExportOrSwap7.createAccount("test2", "pass2");
+        testExportOrSwap7.createAccount("test3", "pass3");
+        testExportOrSwap7.createAccount("test4", "pass4");
+        testExportOrSwap7.createAccount("test5", "pass5");
+        testExportOrSwap4.createSwapProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSwapProduct("name 2", "description 2", "50", testExportOrSwap4.findAccount("test2"));
+        testExportOrSwap4.createSwapProduct("name 3", "description 3", "50", testExportOrSwap4.findAccount("test3"));
+        testExportOrSwap4.createSwapProduct("name 4", "description 4", "50", testExportOrSwap4.findAccount("test4"));
+        testExportOrSwap4.createSwapProduct("name 5", "description 5", "50", testExportOrSwap4.findAccount("test5"));
+        testFile7 = "src/test/resources/exitTest7_2.json";
+        testExportOrSwap7.exit(testFile7);
+        testImportOrSwap7 = new ShopOrSwap(testFile7);
+        assertEquals(0, testImportOrSwap7.getUserList().size());
+        assertEquals(7, testImportOrSwap7.getProductList().size());
+
+        testExportOrSwap7 = new ShopOrSwap();
+        testExportOrSwap7.createAccount("test1", "pass1");
+        testExportOrSwap7.createAccount("test2", "pass2");
+        testExportOrSwap7.createAccount("test3", "pass3");
+        testExportOrSwap7.createAccount("test4", "pass4");
+        testExportOrSwap7.createAccount("test5", "pass5");
+        testExportOrSwap4.createSwapProduct("name 1", "description 1", "50", testExportOrSwap4.findAccount("test1"));
+        testExportOrSwap4.createSellProduct("name 2", "description 2", "50", testExportOrSwap4.findAccount("test2"));
+        testExportOrSwap4.createSwapProduct("name 3", "description 3", "50", testExportOrSwap4.findAccount("test3"));
+        testExportOrSwap4.createSellProduct("name 4", "description 4", "50", testExportOrSwap4.findAccount("test4"));
+        testExportOrSwap4.createSwapProduct("name 5", "description 5", "50", testExportOrSwap4.findAccount("test5"));
+        testFile7 = "src/test/resources/exitTest7_3.json";
+        testExportOrSwap7.exit(testFile7);
+        testImportOrSwap7 = new ShopOrSwap(testFile7);
+        assertEquals(0, testImportOrSwap7.getUserList().size());
+        assertEquals(7, testImportOrSwap7.getProductList().size());
+    }
+
+    @Test
+    void constructorJsonTest(){
+        ShopOrSwap testShopOrSwap1, testShopOrSwap2, testShopOrSwap3, testShopOrSwap4, testShopOrSwap5, testShopOrSwap6, testShopOrSwap7;
+        String testFile1, testFile2, testFile3, testFile4, testFile5, testFile6, testFile7;
+
+        // equivalence class: ShopOrSwap with Product count 0 and User count 0
+        // equivalence class: ShopOrSwap with Product count 0 and User count 1
+        // equivalence class: ShopOrSwap with Product count 0 and User count 5
+        // equivalence class: ShopOrSwap with Product count 1 and User count 1
+        // equivalence class: ShopOrSwap with Product count 1 and User count 5
+        // equivalence class: ShopOrSwap with Product count 5 and User count 1
+        // equivalence class: ShopOrSwap with Product count 5 and User count 5
+    }
+
 }

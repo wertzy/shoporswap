@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class ShopOrSwap implements BasicAPI{
@@ -46,6 +47,13 @@ public class ShopOrSwap implements BasicAPI{
         this.userList = users;
         this.productList = products;
     }
+
+    /**
+     * Constructor for a ShopOrSwap object
+     * @param dataFile the file to read ShopOrSwap data from
+     * @throws FileNotFoundException if the file to read ShopOrSwap data from is not found
+     */
+    public ShopOrSwap(String dataFile){}
 
     /**
      * signs a User into the program
@@ -379,6 +387,14 @@ public class ShopOrSwap implements BasicAPI{
     public List<Product> getProductList() {
         // implement method to pass corresponding tests after the tests have been written
         return this.productList;
+    }
+
+    /**
+     * Exit procedure for ShopOrSwap, includes:
+     * - saving data from userList for future use and debugging
+     * - saving data from productList for future use and debugging
+     */
+    public void exit(String dataFile){
     }
 
     /**
