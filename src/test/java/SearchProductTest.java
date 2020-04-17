@@ -18,13 +18,12 @@ import static org.junit.jupiter.api.Assertions.*;
             testShopOrSwap.createSellProduct("pants", "long pants", "23.21", testUser2);
             List<Product> searchResults = testShopOrSwap.searchForProduct("shirt"); //Search returns one search result
 
-            System.out.println(searchResults.size());
             assertEquals(1, searchResults.size());
             assertEquals("tshirt", searchResults.get(0).getName());
 
             testShopOrSwap.createSellProduct("Pink shirt", "shirt that is pink", "19.00", testUser2);
             List<Product> searchResults2 = testShopOrSwap.searchForProduct("shirt"); //Search returns two search results from two different users
-            System.out.println(searchResults2.size());
+
             assertEquals(2, searchResults2.size());
             assertEquals("tshirt", searchResults2.get(0).getName());
             assertEquals("Pink shirt", searchResults2.get(1).getName());
