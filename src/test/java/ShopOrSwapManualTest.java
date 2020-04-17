@@ -108,7 +108,7 @@ public class ShopOrSwapManualTest {
 
     private static void viewMyProductsProcedure(ShopOrSwap shopOrSwap, User user){
         System.out.println("--View My Products Procedure--");
-        List<Product> myProducts = shopOrSwap.getUserProducts(user);
+        List<Product> myProducts = shopOrSwap.findUserProducts(user);
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getPrice() + "\n\t" + product.getDescription() + "\n\t" + product.getTags());
         }
@@ -145,7 +145,7 @@ public class ShopOrSwapManualTest {
 
     private static void viewSellProcedure(ShopOrSwap shopOrSwap){
         System.out.println("--View Sell Products Procedure--");
-        List<Product> myProducts = shopOrSwap.getSellProducts();
+        List<Product> myProducts = shopOrSwap.findSellProducts();
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getPrice() + "\n\t" + product.getDescription() + "\n\t" + product.getTags() + "\n\t" + product.getMerchant().getAccountName());
         }
@@ -182,7 +182,7 @@ public class ShopOrSwapManualTest {
 
     private static void viewSwapProcedure(ShopOrSwap shopOrSwap){
         System.out.println("--View Swap Products Procedure--");
-        List<Product> myProducts = shopOrSwap.getSwapProducts();
+        List<Product> myProducts = shopOrSwap.findSwapProducts();
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getDescription() + "\n\t" + product.getTags() + "\n\t" + product.getMerchant().getAccountName());
         }

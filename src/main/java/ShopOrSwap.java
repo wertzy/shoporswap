@@ -1,4 +1,7 @@
+import util.JsonUtil;
+
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public class ShopOrSwap implements BasicAPI{
@@ -53,7 +56,11 @@ public class ShopOrSwap implements BasicAPI{
      * @param dataFile the file to read ShopOrSwap data from
      * @throws FileNotFoundException if the file to read ShopOrSwap data from is not found
      */
-    public ShopOrSwap(String dataFile){}
+    public ShopOrSwap(String dataFile) throws IOException {
+        ShopOrSwap dataShopOrSwap = JsonUtil.fromJsonFile(dataFile, ShopOrSwap.class);
+        this.userList = dataShopOrSwap.getUserList();
+        this.productList = dataShopOrSwap.getProductList();
+    }
 
     /**
      * signs a User into the program
@@ -326,7 +333,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the User's Products
      */
     @Override
-    public List<Product> getUserProducts(User user) {
+    public List<Product> findUserProducts(User user) {
         // implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -342,7 +349,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as sell
      */
     @Override
-    public List<Product> getSellProducts() {
+    public List<Product> findSellProducts() {
         // implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -358,7 +365,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as swap
      */
     @Override
-    public List<Product> getSwapProducts() {
+    public List<Product> findSwapProducts() {
         //TODO implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -393,8 +400,10 @@ public class ShopOrSwap implements BasicAPI{
      * Exit procedure for ShopOrSwap, includes:
      * - saving data from userList for future use and debugging
      * - saving data from productList for future use and debugging
+     * @throws IOException if data file cannot be written
      */
-    public void exit(String dataFile){
+    public void exit(String dataFile) throws IOException {
+        JsonUtil.toJsonFile(dataFile, this);
     }
 
     /**

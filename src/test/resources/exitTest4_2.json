@@ -1,0 +1,21 @@
+{
+  "userList" : [ {
+    "accountName" : "test1",
+    "password" : "pass1",
+    "transactionHistory" : [ ],
+    "rating" : 0.0
+  } ],
+  "productList" : [ {
+    "name" : "name 1",
+    "description" : "description 1",
+    "price" : 50.0,
+    "tags" : [ "swap" ],
+    "merchant" : {
+      "accountName" : "test1",
+      "password" : "pass1",
+      "transactionHistory" : [ ],
+      "rating" : 0.0
+    },
+    "consumers" : [ ]
+  } ]
+}

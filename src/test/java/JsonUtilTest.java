@@ -50,7 +50,7 @@ public class JsonUtilTest {
         testFile1 = "src/test/resources/userJsonFileTest1.json";
         JsonUtil.toJsonFile(testFile1, testExportUser1);
         testImportUser1 = JsonUtil.fromJsonFile(testFile1, User.class);
-        assertEquals(expectedString1, JsonUtil.toJsonString(testExportUser1));
+        assertEquals(expectedString1, JsonUtil.toJsonString(testImportUser1));
 
         testExportUser2 = new User();
         expectedString2 = "{\r\n" +
@@ -62,7 +62,7 @@ public class JsonUtilTest {
         testFile2 = "src/test/resources/userJsonFileTest2.json";
         JsonUtil.toJsonFile(testFile2, testExportUser2);
         testImportUser2 = JsonUtil.fromJsonFile(testFile2, User.class);
-        assertEquals(expectedString2, JsonUtil.toJsonString(testExportUser2));
+        assertEquals(expectedString2, JsonUtil.toJsonString(testImportUser2));
     }
 
     @Test
@@ -107,8 +107,8 @@ public class JsonUtilTest {
 
         testProduct1 = new Product();
         testExpectedString1 = "{\r\n" +
-                "  \"name\" : \"\",\r\n" +
-                "  \"description\" : \"\",\r\n" +
+                "  \"name\" : \"DEFAULT NAME\",\r\n" +
+                "  \"description\" : \"DEFAULT DESCRIPTION\",\r\n" +
                 "  \"price\" : 0.0,\r\n" +
                 "  \"tags\" : [ ],\r\n" +
                 "  \"merchant\" : null,\r\n" +
@@ -156,8 +156,8 @@ public class JsonUtilTest {
 
         testProduct1 = new Product();
         testExpectedString1 = "{\r\n" +
-                "  \"name\" : \"\",\r\n" +
-                "  \"description\" : \"\",\r\n" +
+                "  \"name\" : \"DEFAULT NAME\",\r\n" +
+                "  \"description\" : \"DEFAULT DESCRIPTION\",\r\n" +
                 "  \"price\" : 0.0,\r\n" +
                 "  \"tags\" : [ ],\r\n" +
                 "  \"merchant\" : null,\r\n" +
@@ -224,8 +224,8 @@ public class JsonUtilTest {
         JsonUtil.toJsonFile(testFile2, testExportProductList2);
         testImportProductList2 = JsonUtil.listFromJsonFile(testFile2, Product.class);
         assertEquals(2, testImportProductList2.size());
-        assertEquals("", testImportProductList2.get(0).getName());
-        assertEquals("", testImportProductList2.get(1).getDescription());
+        assertEquals("DEFAULT NAME", testImportProductList2.get(0).getName());
+        assertEquals("DEFAULT DESCRIPTION", testImportProductList2.get(1).getDescription());
         assertEquals(0.0, testImportProductList2.get(0).getPrice());
         assertNull(testImportProductList2.get(1).getMerchant());
         assertEquals(0, testImportProductList2.get(0).getTags().size());
@@ -243,8 +243,8 @@ public class JsonUtilTest {
         JsonUtil.toJsonFile(testFile3, testExportProductList3);
         testImportProductList3 = JsonUtil.listFromJsonFile(testFile3, Product.class);
         assertEquals(6, testImportProductList3.size());
-        assertEquals("", testExportProductList3.get(0).getName());
-        assertEquals("", testExportProductList3.get(1).getDescription());
+        assertEquals("DEFAULT NAME", testExportProductList3.get(0).getName());
+        assertEquals("DEFAULT DESCRIPTION", testExportProductList3.get(1).getDescription());
         assertEquals(0.0, testExportProductList3.get(2).getPrice());
         assertNull(testExportProductList3.get(3).getMerchant());
         assertEquals(0, testExportProductList3.get(4).getTags().size());

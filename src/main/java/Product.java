@@ -13,8 +13,8 @@ public class Product {
      * Default constructor
      */
     public Product(){
-        this.name = "";
-        this.description = "";
+        this.name = "DEFAULT NAME";
+        this.description = "DEFAULT DESCRIPTION";
         this.price = 0.0;
         this.tags = new ArrayList<String>();
         this.merchant = null;
@@ -199,9 +199,6 @@ public class Product {
      * @return true if the name is valid, false otherwise
      */
     public static boolean isValidName(String name){
-        if(name.isEmpty()){
-            return true;
-        }
         if(name.indexOf(" ") == 0){ // checks if the name begins with a space
             return false;
         }
@@ -218,9 +215,6 @@ public class Product {
      * @return true if the description is valid, otherwise false
      */
     public static boolean isValidDescription(String description){
-        if(description.isEmpty()){
-            return true;
-        }
         if(description.indexOf(" ") == 0 || description.indexOf("-") == 0){ // checks if the description begins with a space or dash
             return false;
         }
