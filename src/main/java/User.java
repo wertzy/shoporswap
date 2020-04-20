@@ -5,7 +5,8 @@ public class User {
     protected String accountName;
     protected String password;
     protected ArrayList<String> transactionHistory;
-    protected static Collection<Product> productList;
+    protected static List<Product> productList;
+    protected static List<ArrayList<String>> pastTransactions;
     protected double rating;
 
     /**
@@ -107,10 +108,27 @@ public class User {
     }
 
     /**
-     * Views the collection of clothing available to see (varies by seller, shopper, swapper)
+     * Views the Collection of clothing available to see (varies by seller, shopper, swapper)
      * @return the viewable clothing (as a list) of clothing
      */
     public Collection<Product> viewClothing(){
         return null;
     }
+
+    /**
+     * adds product to clothing list
+     * @return the viewable clothing (as a list) of clothing
+     */
+    public void addClothing(Product product){
+        productList.add(product);
+    }
+
+    public void removeClothing(Product product){
+        productList.remove(product);
+    }
+
+
+
+
+
 }
