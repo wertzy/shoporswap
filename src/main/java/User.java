@@ -5,6 +5,7 @@ public class User {
     protected String accountName;
     protected String password;
     protected ArrayList<String> transactionHistory;
+    protected ArrayList<Message> messages;
     protected static List<Product> productList;
     protected static List<ArrayList<String>> pastTransactions;
     protected double rating;
@@ -12,11 +13,13 @@ public class User {
     /**
      * Default constructor of a User
      */
-    public User(){
+    public User() {
         this.accountName = "accountname";
         this.password = "password";
         this.rating = 0.0;
-        this.transactionHistory = new ArrayList<String>();}
+        this.transactionHistory = new ArrayList<String>();
+        this.messages = new ArrayList<Message>();
+    }
 
     /**
      * Constructor of a User
@@ -38,6 +41,7 @@ public class User {
         }
         this.rating = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
+        this.messages = new ArrayList<Message>();
     }
 
     /**
@@ -106,6 +110,25 @@ public class User {
         }
         return false;
     }
+
+    public void sendMessage(String name, String body, User recipient){
+        Message message = new Message(name, body, recipient, this);
+        recipient.receiveMessage(message);
+    }
+
+    public void sendMessage(String name, String body, User recipient, Product incomingSwap, Product outgoingSwap){
+        Message message = new Message(name, body, recipient, this, incomingSwap, outgoingSwap);
+        recipient.receiveMessage(message);
+    }
+
+    public void receiveMessage(Message message){
+        messages.add(message);
+    }
+
+    public String checkMessage(Message message){
+        return message.checked();
+    }
+    public ArrayList<Message> getMessages(){return messages;}
 
     /**
      * Views the Collection of clothing available to see (varies by seller, shopper, swapper)
