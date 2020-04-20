@@ -71,6 +71,9 @@ public class User {
      * @return true if a valid account name, false if an invalid account name
      */
     public static boolean isAccountNameValid(String accountName) {
+        if(accountName.isEmpty()){
+            return false;
+        }
         String exp = "\\A[^\\s]+\\z";
         return Pattern.matches(exp, accountName);
     }
@@ -81,6 +84,9 @@ public class User {
      * @return true if a valid password, false if an invalid password
      */
     public static boolean isPasswordValid(String password) {
+        if(password.isEmpty()){
+            return false;
+        }
         String exp = "\\A[^\\s]+\\z";
         return Pattern.matches(exp, password);
     }

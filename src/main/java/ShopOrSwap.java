@@ -1,3 +1,7 @@
+import util.JsonUtil;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public class ShopOrSwap implements BasicAPI{
@@ -45,6 +49,17 @@ public class ShopOrSwap implements BasicAPI{
         }
         this.userList = users;
         this.productList = products;
+    }
+
+    /**
+     * Constructor for a ShopOrSwap object
+     * @param dataFile the file to read ShopOrSwap data from
+     * @throws FileNotFoundException if the file to read ShopOrSwap data from is not found
+     */
+    public ShopOrSwap(String dataFile) throws IOException {
+        ShopOrSwap dataShopOrSwap = JsonUtil.fromJsonFile(dataFile, ShopOrSwap.class);
+        this.userList = dataShopOrSwap.getUserList();
+        this.productList = dataShopOrSwap.getProductList();
     }
 
     /**
@@ -144,6 +159,21 @@ public class ShopOrSwap implements BasicAPI{
     }
 
     /**
+     * finds a User in the program
+     * @param accountName the account name of the User to find
+     * @return the User found
+     */
+    public User findAccount(String accountName){
+        // implement method to pass corresponding tests after the tests have been written
+        for(User aUser : this.userList){
+            if(aUser.getAccountName().compareTo(accountName) == 0){
+                return aUser;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Creates a Product to sell by a User
      * @param name the name of the Product to sell
      * @param description the description of the Product to sell
@@ -176,6 +206,17 @@ public class ShopOrSwap implements BasicAPI{
             this.productList.add(nextProduct);
             return this.productList.get(this.productList.size() - 1);
         }
+    }
+    /**
+     * Creates a Product to swap by a User
+     * @param product the name of the Product to remove
+     * @throws IllegalArgumentException if the User merchant does not exist in the system
+     */
+
+    public Product removeSellProduct(Product product){
+        Product returnProduct=findProduct(product.getName(),product.getMerchant());
+        productList.remove(findProduct(product.getName(),product.getMerchant()));
+        return returnProduct;
     }
 
     /**
@@ -230,6 +271,66 @@ public class ShopOrSwap implements BasicAPI{
         }
         throw new NoSuchElementException("Product does not exist for the User in the system");
     }
+    /**
+     * Finds a Product from the User
+     * @param  searchPhrase the input to use for the search
+     * @return the Product to find
+     //* @throws NoSuchElementException if the Product does not exist for the User
+     */
+    public List<Product> searchForProduct(String searchPhrase){
+        List<Product> searchResults= new ArrayList<Product>(0);
+        // implement method to pass corresponding tests after the tests have been written
+        for(Product product : this.productList){
+            if(product.getName().contains(searchPhrase)){
+                searchResults.add(product);
+            }
+        }
+        if(searchResults.size()>0){
+            return searchResults;
+        }
+        else {
+            throw new NoSuchElementException("No product fits what you searched for");
+        }
+    }
+
+    /**
+     * Swaps a Product from one User with another Product from another User
+     * @param product1 the Product offered by the User offering the swap
+     * @param product2 the Product requested by the User accepting the swap
+     */
+    @Override
+    public void swapProducts(Product product1, Product product2){
+        // checks for the same Product
+        if(product1.getName().compareToIgnoreCase(product2.getName()) == 0){
+            throw new IllegalArgumentException("Products are the same");
+        }
+
+        // checks for the same User
+        if(product1.getMerchant().getAccountName().compareToIgnoreCase(product2.getMerchant().getAccountName()) == 0){
+            throw new IllegalArgumentException("Users are the same");
+        }
+
+        // checks for a non-existent User
+        if(this.findAccount(product1.getMerchant().getAccountName()) == null || this.findAccount(product2.getMerchant().getAccountName()) == null){
+            throw new IllegalArgumentException("Invalid merchant");
+        }
+
+        // checks for a non-existent Product
+        if(this.findProduct(product1.getName(), this.findAccount(product1.getMerchant().getAccountName())) == null || this.findProduct(product2.getName(), this.findAccount(product2.getMerchant().getAccountName())) == null){
+            throw new IllegalArgumentException("Invalid product");
+        }
+
+        // checks for a product not tagged for swapping
+        if(!product1.getTags().contains("swap") || !product2.getTags().contains("swap")){
+            throw new IllegalArgumentException("Invalid product");
+        }
+
+        // completing swap
+        User merchant1 = product1.getMerchant();
+        User merchant2 = product2.getMerchant();
+        product1.setMerchant(merchant2);
+        product2.setMerchant(merchant1);
+    }
 
     /**
      * Views the Products listed by a User
@@ -237,7 +338,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the User's Products
      */
     @Override
-    public List<Product> getUserProducts(User user) {
+    public List<Product> findUserProducts(User user) {
         // implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -253,7 +354,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as sell
      */
     @Override
-    public List<Product> getSellProducts() {
+    public List<Product> findSellProducts() {
         // implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -269,7 +370,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as swap
      */
     @Override
-    public List<Product> getSwapProducts() {
+    public List<Product> findSwapProducts() {
         //TODO implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -298,6 +399,16 @@ public class ShopOrSwap implements BasicAPI{
     public List<Product> getProductList() {
         // implement method to pass corresponding tests after the tests have been written
         return this.productList;
+    }
+
+    /**
+     * Exit procedure for ShopOrSwap, includes:
+     * - saving data from userList for future use and debugging
+     * - saving data from productList for future use and debugging
+     * @throws IOException if data file cannot be written
+     */
+    public void exit(String dataFile) throws IOException {
+        JsonUtil.toJsonFile(dataFile, this);
     }
 
     /**

@@ -20,14 +20,16 @@ public interface BasicAPI {
 
     Product findProduct(String name, User merchant);
 
-    List<Product> getUserProducts(User user);
+    List<Product> findUserProducts(User user);
 
-    List<Product> getSellProducts();
+    List<Product> findSellProducts();
 
-    List<Product> getSwapProducts();
+    List<Product> findSwapProducts();
 
     List<User> getUserList();
 
     List<Product> getProductList();
+
+    void swapProducts(Product product1, Product product2);
 
 }
