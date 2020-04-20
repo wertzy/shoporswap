@@ -3,6 +3,7 @@
     "accountName" : "test1",
     "password" : "pass1",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   } ],
   "productList" : [ {
@@ -14,6 +15,7 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
+      "messages" : [ ],
       "rating" : 0.0
     },
     "consumers" : [ ]
@@ -26,6 +28,7 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
+      "messages" : [ ],
       "rating" : 0.0
     },
     "consumers" : [ ]
@@ -38,6 +41,7 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
+      "messages" : [ ],
       "rating" : 0.0
     },
     "consumers" : [ ]
@@ -50,6 +54,7 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
+      "messages" : [ ],
       "rating" : 0.0
     },
     "consumers" : [ ]
@@ -62,6 +67,7 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
+      "messages" : [ ],
       "rating" : 0.0
     },
     "consumers" : [ ]
