@@ -19,9 +19,14 @@ public class Seller extends User {
         return null;
     }
 
-    public static void addListing(Product product){
+    public static void createListing(Product product){
         productList.add(product);
     }
+
+    public static void removeListing(Product product){}
+
+    //public Product getProduct(Product product){
+    //}
 
 
 }

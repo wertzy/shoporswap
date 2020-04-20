@@ -60,4 +60,9 @@ class UserTest {
         assertFalse(User.isRatingValid(4.12355));
         //EC: Rating cannot be more than 3 decimal places or more
     }
+
+    void sellTest(){
+        User user=new User("desmond","desmond");
+
+    }
 }
