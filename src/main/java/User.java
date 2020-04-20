@@ -108,7 +108,7 @@ public class User {
     }
 
     public void sendMessage(String name, String body, User recipient){
-        Message message = new Message(name, body, recipient.accountName, this.accountName);
+        Message message = new Message(name, body, recipient, this);
         recipient.receiveMessage(message);
     }
 
@@ -116,8 +116,8 @@ public class User {
         messages.add(message);
     }
 
-    public void checkMessage(Message message){
-        
+    public String checkMessage(Message message){
+        return message.checked();
     }
     public ArrayList<Message> getMessages(){return messages;}
 
