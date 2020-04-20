@@ -19,8 +19,10 @@ public class Shopper extends User {
         return null;
     }
 
-    public static void buy() {
+    public static void buyListing(Product product,Seller merchant){
+        productList.add(product);
+        //merchant.removeProduct(product);
+    }
 
     }
 
-}
