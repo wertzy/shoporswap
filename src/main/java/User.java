@@ -13,11 +13,13 @@ public class User {
     /**
      * Default constructor of a User
      */
-    public User(){
+    public User() {
         this.accountName = "accountname";
         this.password = "password";
         this.rating = 0.0;
-        this.transactionHistory = new ArrayList<String>();}
+        this.transactionHistory = new ArrayList<String>();
+        this.messages = new ArrayList<Message>();
+    }
 
     /**
      * Constructor of a User
@@ -39,6 +41,7 @@ public class User {
         }
         this.rating = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
+        this.messages = new ArrayList<Message>();
     }
 
     /**
@@ -110,6 +113,11 @@ public class User {
 
     public void sendMessage(String name, String body, User recipient){
         Message message = new Message(name, body, recipient, this);
+        recipient.receiveMessage(message);
+    }
+
+    public void sendMessage(String name, String body, User recipient, Product incomingSwap, Product outgoingSwap){
+        Message message = new Message(name, body, recipient, this, incomingSwap, outgoingSwap);
         recipient.receiveMessage(message);
     }
 

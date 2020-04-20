@@ -19,6 +19,7 @@ public class Message {
         outgoingSwap = null;
     }
 
+    //Alternate constructor, for use in swap code.
     public Message(String name, String body, User recipient, User sender, Product incomingSwap, Product outgoingSwap){
         this.name = name;
         this.body = body;
@@ -28,14 +29,12 @@ public class Message {
         this.outgoingSwap = outgoingSwap;
     }
 
-    public void messageOpened(){
-        readCount++;
-        this.read = true;
-    }
-
+    //Returns a line of text containing the message's contents and sender.
     public String checked(){
+        this.read = true;
+        readCount++;
         String returnable = "";
-        returnable+=name + ": " + body + "; Sent by" + sender.getAccountName();
+        returnable+=name + ": " + body + "; sent by " + sender.getAccountName();
         return returnable;
     }
 
