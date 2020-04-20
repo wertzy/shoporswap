@@ -404,8 +404,8 @@ public class ProductTest {
 
     @Test
     void TransferTest(){
-        User sellUser = new Seller();
-        User buyUser = new Shopper();
+        User sellUser = new User();
+        User buyUser = new User();
         Product product = new Product("Test product", "Something fun", sellUser);
         product.transferOwnership(buyUser);
         assertEquals(buyUser.getAccountName(), product.getMerchant().getAccountName());

@@ -30,21 +30,21 @@ public class UserManualTest {
         System.out.println("\tUser password: " + user1.getPassword());
 
         System.out.println("Attempting to create Seller with given information");
-        User user2 = new Seller(accountName, password);
+        User user2 = new User(accountName, password);
         System.out.println("\tInput account name: " + accountName);
         System.out.println("\tUser account name: " + user2.getAccountName());
         System.out.println("\tInput password: " + password);
         System.out.println("\tUser password: " + user2.getPassword());
 
         System.out.println("Attempting to create Shopper with given information");
-        User user3 = new Shopper(accountName, password);
+        User user3 = new User(accountName, password);
         System.out.println("\tInput account name: " + accountName);
         System.out.println("\tUser account name: " + user3.getAccountName());
         System.out.println("\tInput password: " + password);
         System.out.println("\tUser password: " + user3.getPassword());
 
         System.out.println("Attempting to create Swapper with given information");
-        User user4 = new Swapper(accountName, password);
+        User user4 = new User(accountName, password);
         System.out.println("\tInput account name: " + accountName);
         System.out.println("\tUser account name: " + user4.getAccountName());
         System.out.println("\tInput password: " + password);
