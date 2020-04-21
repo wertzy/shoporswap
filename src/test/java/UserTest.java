@@ -61,8 +61,36 @@ class UserTest {
         //EC: Rating cannot be more than 3 decimal places or more
     }
 
-    void sellTest(){
+    @Test
+    void findTest(){
         User user=new User("desmond","desmond");
+        User user1=new User("testuser","testuser2");
+        Product testProduct=new Product("red tee","description",user1);
+        user1.productList.add(testProduct);
+        assertEquals(testProduct,user1.find("red tee",user1));
 
     }
+
+
+    @Test
+    void sellTest(){
+        User user=new User("desmond","desmond");
+        User user1=new User("testuser","testuser2");
+        user1.sell("red tee","red tee from hm",user1);
+        user1.sell("blue tee","blue tee from hm",user1);
+        user1.sell("green tee","green tee from hm",user1);
+        assertEquals(3,user1.productList.size());
+    }
+
+    @Test
+    void buyTest(){
+        User user=new User("desmond","desmond");
+        User user1=new User("testuser","testuser2");
+        user1.sell("red-tee","red tee from hm",user1);
+        user1.sell("blue-tee","blue tee from hm",user1);
+        user1.sell("green-tee","green tee from hm",user1);
+        user.buy("green-tee",user1);
+
+    }
+
 }
