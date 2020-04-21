@@ -4,10 +4,10 @@ import java.util.regex.Pattern;
 public class User {
     protected String accountName;
     protected String password;
-    protected ArrayList<String> transactionHistory;
+    protected List<String> transactionHistory;
     protected ArrayList<Message> messages;
-    protected static List<Product> productList;
-    protected static List<ArrayList<String>> pastTransactions;
+    protected static List<Product> productList = new ArrayList<Product>();
+    protected static ArrayList<String> pastTransactions;
     protected double rating;
 
     /**
@@ -17,7 +17,7 @@ public class User {
         this.accountName = "accountname";
         this.password = "password";
         this.rating = 0.0;
-        this.transactionHistory = new ArrayList<String>();
+        this.transactionHistory = new ArrayList<>();
         this.messages = new ArrayList<Message>();
     }
 
@@ -59,7 +59,7 @@ public class User {
     public String getPassword(){
         return this.password;
     }
-    public List <String> getTransactionHistory(){return this.transactionHistory;}
+    public List<String> getTransactionHistory(){return this.transactionHistory;}
 
     /**
      * Accessor for the rating property of a User
@@ -134,21 +134,48 @@ public class User {
      * Views the Collection of clothing available to see (varies by seller, shopper, swapper)
      * @return the viewable clothing (as a list) of clothing
      */
-    public Collection<Product> viewClothing(){
-        return null;
+    public void viewClothing(){
+        for(int i=0;i<transactionHistory.size();i++){
+            System.out.println(transactionHistory.get(i)+"\n");
+        }
+
     }
 
-    /**
-     * adds product to clothing list
-     * @return the viewable clothing (as a list) of clothing
-     */
-    public void addClothing(Product product){
+
+    public static void addClothing(String name, String description, User self){
+        Product newProduct=new Product(name,description,self);
+        List<Product> tempNextProductList = new ArrayList<Product>();
+        tempNextProductList.add(newProduct);
+        productList.add(tempNextProductList.get(0));
+    }
+
+    public Product find(String name){
+        for(Product product : productList){
+            if(product.getName().compareToIgnoreCase(name) == 0){
+                return product;
+            }
+        }
+        throw new NoSuchElementException("Product does not exist for the User in the system");
+    }
+
+
+    public void buy(String name, User merchant){
+        if (merchant.productList.size()==0){
+            throw new NoSuchElementException("merchant has no products in their product list");
+        }
+        Product merchantProduct=merchant.find(name);
+        merchant.productList.remove(merchantProduct);
+        String transaction = merchant.accountName+":"+ merchantProduct.getName();
+        transactionHistory.add(transaction);
+
+    }
+
+    public void sell(String name, String description,User self){
+        Product product=new Product(name,description, self);
         productList.add(product);
     }
 
-    public void removeClothing(Product product){
-        productList.remove(product);
-    }
+
 
 
 
