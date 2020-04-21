@@ -4,6 +4,7 @@ public class ShopOrSwap implements BasicAPI{
 
     private List<User> userList;
     private List<Product> productList;
+    private List<Tag> tagList;
 
     /**
      * Default constructor for a ShopOrSwap object
@@ -12,6 +13,7 @@ public class ShopOrSwap implements BasicAPI{
         // implement method to pass corresponding tests after the tests have been written
         this.userList = new ArrayList<User>();
         this.productList = new ArrayList<Product>();
+        this.tagList = new ArrayList<Tag>();
     }
 
     /**
@@ -260,9 +262,13 @@ public class ShopOrSwap implements BasicAPI{
      * Finds a Product from the User
      * @param  searchPhrase the input to use for the search
      * @return the Product to find
-     //* @throws NoSuchElementException if the Product does not exist for the User
+     * @throws NoSuchElementException if the Product does not exist for the User
+     * @throws IllegalArgumentException if the search phrase is an empty string
      */
     public List<Product> searchForProduct(String searchPhrase){
+        if(searchPhrase.length()<1){
+            throw new IllegalArgumentException("Please input something to search");
+        }
         List<Product> searchResults= new ArrayList<Product>(0);
         // implement method to pass corresponding tests after the tests have been written
         for(Product product : this.productList){

@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
             assertEquals("Pink shirt", searchResults2.get(1).getName());
 
             assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.searchForProduct("Pink Pants"));//No search results
+            assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.searchForProduct(""));//No search results
 
 
         }
