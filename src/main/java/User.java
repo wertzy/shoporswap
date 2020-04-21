@@ -159,10 +159,13 @@ public class User {
     }
 
 
-    public void buy(String name, User user){
-        Product boughtProduct=user.find(name);
-        user.productList.remove(boughtProduct);
-        String transaction = user.accountName+":"+ boughtProduct.getName();
+    public void buy(String name, User merchant){
+        if (merchant.productList.size()==0){
+            throw new NoSuchElementException("merchant has no products in their product list");
+        }
+        Product merchantProduct=merchant.find(name);
+        merchant.productList.remove(merchantProduct);
+        String transaction = merchant.accountName+":"+ merchantProduct.getName();
         transactionHistory.add(transaction);
 
     }
