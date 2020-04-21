@@ -66,8 +66,8 @@ class UserTest {
         User user=new User("desmond","desmond");
         User user1=new User("testuser","testuser2");
         Product testProduct=new Product("red tee","description",user1);
-        user1.productList.add(testProduct);
-        assertEquals(testProduct,user1.find("red tee",user1));
+        User.addClothing("red tee","description",user1);
+        assertEquals("red tee",user1.find("red tee").getName());
 
     }
 
@@ -86,10 +86,10 @@ class UserTest {
     void buyTest(){
         User user=new User("desmond","desmond");
         User user1=new User("testuser","testuser2");
-        user1.sell("red-tee","red tee from hm",user1);
-        user1.sell("blue-tee","blue tee from hm",user1);
-        user1.sell("green-tee","green tee from hm",user1);
-        user.buy("green-tee",user1);
+        user1.sell("red tee","red tee from hm",user1);
+        user1.sell("blue tee","blue tee from hm",user1);
+        user1.sell("green tee","green tee from hm",user1);
+        user.buy("green tee",user1);
 
     }
 

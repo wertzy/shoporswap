@@ -6,7 +6,7 @@ public class User {
     protected String password;
     protected List<String> transactionHistory;
     protected ArrayList<Message> messages;
-    protected static List<Product> productList;
+    protected static List<Product> productList = new ArrayList<Product>();
     protected static ArrayList<String> pastTransactions;
     protected double rating;
 
@@ -19,7 +19,6 @@ public class User {
         this.rating = 0.0;
         this.transactionHistory = new ArrayList<>();
         this.messages = new ArrayList<Message>();
-        this.productList = new ArrayList<Product>();
     }
 
     /**
@@ -142,8 +141,16 @@ public class User {
 
     }
 
-    public Product find(String name,User user){
-        for(Product product : this.productList){
+
+    public static void addClothing(String name, String description, User self){
+        Product newProduct=new Product(name,description,self);
+        List<Product> tempNextProductList = new ArrayList<Product>();
+        tempNextProductList.add(newProduct);
+        productList.add(tempNextProductList.get(0));
+    }
+
+    public Product find(String name){
+        for(Product product : productList){
             if(product.getName().compareToIgnoreCase(name) == 0){
                 return product;
             }
@@ -153,7 +160,7 @@ public class User {
 
 
     public void buy(String name, User user){
-        Product boughtProduct=user.find(name,user);
+        Product boughtProduct=user.find(name);
         user.productList.remove(boughtProduct);
         String transaction = user.accountName+":"+ boughtProduct.getName();
         transactionHistory.add(transaction);
