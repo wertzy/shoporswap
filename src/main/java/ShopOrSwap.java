@@ -1,3 +1,7 @@
+import util.JsonUtil;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public class ShopOrSwap implements BasicAPI{
@@ -47,6 +51,17 @@ public class ShopOrSwap implements BasicAPI{
         }
         this.userList = users;
         this.productList = products;
+    }
+
+    /**
+     * Constructor for a ShopOrSwap object
+     * @param dataFile the file to read ShopOrSwap data from
+     * @throws FileNotFoundException if the file to read ShopOrSwap data from is not found
+     */
+    public ShopOrSwap(String dataFile) throws IOException {
+        ShopOrSwap dataShopOrSwap = JsonUtil.fromJsonFile(dataFile, ShopOrSwap.class);
+        this.userList = dataShopOrSwap.getUserList();
+        this.productList = dataShopOrSwap.getProductList();
     }
 
     /**
@@ -311,6 +326,11 @@ public class ShopOrSwap implements BasicAPI{
             throw new IllegalArgumentException("Invalid product");
         }
 
+        // checks for a product not tagged for swapping
+        if(!product1.getTags().contains("swap") || !product2.getTags().contains("swap")){
+            throw new IllegalArgumentException("Invalid product");
+        }
+
         // completing swap
         User merchant1 = product1.getMerchant();
         User merchant2 = product2.getMerchant();
@@ -324,7 +344,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the User's Products
      */
     @Override
-    public List<Product> getUserProducts(User user) {
+    public List<Product> findUserProducts(User user) {
         // implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -340,7 +360,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as sell
      */
     @Override
-    public List<Product> getSellProducts() {
+    public List<Product> findSellProducts() {
         // implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -356,7 +376,7 @@ public class ShopOrSwap implements BasicAPI{
      * @return a list of the Products listed as swap
      */
     @Override
-    public List<Product> getSwapProducts() {
+    public List<Product> findSwapProducts() {
         //TODO implement method to pass corresponding tests after the tests have been written
         List<Product> products = new ArrayList<Product>();
         for(Product product : this.productList){
@@ -385,6 +405,16 @@ public class ShopOrSwap implements BasicAPI{
     public List<Product> getProductList() {
         // implement method to pass corresponding tests after the tests have been written
         return this.productList;
+    }
+
+    /**
+     * Exit procedure for ShopOrSwap, includes:
+     * - saving data from userList for future use and debugging
+     * - saving data from productList for future use and debugging
+     * @throws IOException if data file cannot be written
+     */
+    public void exit(String dataFile) throws IOException {
+        JsonUtil.toJsonFile(dataFile, this);
     }
 
     /**

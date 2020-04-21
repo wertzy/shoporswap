@@ -5,17 +5,21 @@ public class User {
     protected String accountName;
     protected String password;
     protected ArrayList<String> transactionHistory;
-    protected static Collection<Product> productList;
+    protected ArrayList<Message> messages;
+    protected static List<Product> productList;
+    protected static List<ArrayList<String>> pastTransactions;
     protected double rating;
 
     /**
      * Default constructor of a User
      */
-    public User(){
+    public User() {
         this.accountName = "accountname";
         this.password = "password";
         this.rating = 0.0;
-        this.transactionHistory = new ArrayList<String>();}
+        this.transactionHistory = new ArrayList<String>();
+        this.messages = new ArrayList<Message>();
+    }
 
     /**
      * Constructor of a User
@@ -37,6 +41,7 @@ public class User {
         }
         this.rating = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
+        this.messages = new ArrayList<Message>();
     }
 
     /**
@@ -70,6 +75,9 @@ public class User {
      * @return true if a valid account name, false if an invalid account name
      */
     public static boolean isAccountNameValid(String accountName) {
+        if(accountName.isEmpty()){
+            return false;
+        }
         String exp = "\\A[^\\s]+\\z";
         return Pattern.matches(exp, accountName);
     }
@@ -80,6 +88,9 @@ public class User {
      * @return true if a valid password, false if an invalid password
      */
     public static boolean isPasswordValid(String password) {
+        if(password.isEmpty()){
+            return false;
+        }
         String exp = "\\A[^\\s]+\\z";
         return Pattern.matches(exp, password);
     }
@@ -100,11 +111,47 @@ public class User {
         return false;
     }
 
+    public void sendMessage(String name, String body, User recipient){
+        Message message = new Message(name, body, recipient, this);
+        recipient.receiveMessage(message);
+    }
+
+    public void sendMessage(String name, String body, User recipient, Product incomingSwap, Product outgoingSwap){
+        Message message = new Message(name, body, recipient, this, incomingSwap, outgoingSwap);
+        recipient.receiveMessage(message);
+    }
+
+    public void receiveMessage(Message message){
+        messages.add(message);
+    }
+
+    public String checkMessage(Message message){
+        return message.checked();
+    }
+    public ArrayList<Message> getMessages(){return messages;}
+
     /**
-     * Views the collection of clothing available to see (varies by seller, shopper, swapper)
+     * Views the Collection of clothing available to see (varies by seller, shopper, swapper)
      * @return the viewable clothing (as a list) of clothing
      */
     public Collection<Product> viewClothing(){
         return null;
     }
+
+    /**
+     * adds product to clothing list
+     * @return the viewable clothing (as a list) of clothing
+     */
+    public void addClothing(Product product){
+        productList.add(product);
+    }
+
+    public void removeClothing(Product product){
+        productList.remove(product);
+    }
+
+
+
+
+
 }

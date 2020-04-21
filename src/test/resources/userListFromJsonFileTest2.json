@@ -1,0 +1,31 @@
+[ {
+  "accountName" : "accountname",
+  "password" : "password",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+}, {
+  "accountName" : "test1",
+  "password" : "test1",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+}, {
+  "accountName" : "test2",
+  "password" : "test2",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+}, {
+  "accountName" : "test3",
+  "password" : "test3",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+}, {
+  "accountName" : "test4",
+  "password" : "test4",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+}, {
+  "accountName" : "test5",
+  "password" : "test5",
+  "transactionHistory" : [ ],
+  "rating" : 0.0
+} ]

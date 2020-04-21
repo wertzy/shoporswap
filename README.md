@@ -32,3 +32,9 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
 * Sprint UML Diagram: https://drive.google.com/file/d/1i9eceXTy_J8L272J7HXqsgCOiAmlCkMQ/view?usp=sharing
 
 * UI State Diagram: https://drive.google.com/file/d/1GYzFPTkXkN3cvdKQAU4gwzHV7UN6xc4V/view?usp=sharing
+
+* JSON Integration (Tests Use JSON): 
+
+https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/ShopOrSwapTest.java
+
+https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/JsonUtilTest.java
