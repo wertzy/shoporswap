@@ -276,7 +276,7 @@ public class ShopOrSwap implements BasicAPI{
         throw new NoSuchElementException("Product does not exist for the User in the system");
     }
     /**
-     * Finds a Product from the User
+     * Finds a Product from the productlist
      * @param  searchPhrase the input to use for the search
      * @return the Product to find
      * @throws NoSuchElementException if the Product does not exist for the User
@@ -300,6 +300,49 @@ public class ShopOrSwap implements BasicAPI{
             throw new NoSuchElementException("No product fits what you searched for");
         }
     }
+    /**
+     * Finds a Tag from the taglist
+     * @param  searchPhrase the input to use for the search
+     * @return the Tag to find
+     * @throws NoSuchElementException if the Tag does not exist for the User
+     * @throws IllegalArgumentException if the search phrase is an empty string
+     */
+    public List<Product> searchForTag(String searchPhrase){
+        if(searchPhrase.length()<1){
+            throw new IllegalArgumentException("Please input something to search");
+        }
+        if(searchPhrase.charAt(0)=='#'){
+            searchPhrase=searchPhrase.substring(1);
+        }
+        List<Product> searchResults= new ArrayList<Product>(0);
+        // implement method to pass corresponding tests after the tests have been written
+        for(Tag tag : this.tagList){
+            if(tag.getName().equalsIgnoreCase(searchPhrase)){
+                searchResults=tag.getProductList();
+                break;
+            }
+        }
+        if(searchResults.size()>0){
+            return searchResults;
+        }
+        else {
+            throw new NoSuchElementException("No product fits what you searched for");
+        }
+    }
+    public List<Product> search(String searchPhrase){
+        if(searchPhrase.length()<1){
+            throw new IllegalArgumentException("Please input something to search");
+        }
+        if(searchPhrase.charAt(0)=='#'){
+            searchPhrase=searchPhrase.substring(1);
+            return searchForTag(searchPhrase);
+        }
+        else{
+            return searchForProduct(searchPhrase);
+        }
+
+    }
+
 
     public void productTagsToTag(Product product){
 

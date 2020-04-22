@@ -8,6 +8,49 @@ import static org.junit.jupiter.api.Assertions.*;
 
     public class SearchTest {
         @Test
+        void searchTest(){
+            ShopOrSwap testShopOrSwap = new ShopOrSwap();
+            User testUser1 = new User("testname1", "testpassword1");
+            User testUser2 = new User("testname2", "testpassword2");
+            testShopOrSwap.addAccount(testUser1);
+            testShopOrSwap.addAccount(testUser2);
+            testShopOrSwap.createSellProduct("tshirt", "tshirt", "12.00", testUser1);
+            testShopOrSwap.createSellProduct("Pink shirt", "shirt that is pink", "23.21", testUser2);
+
+            Product testProduct=testShopOrSwap.findProduct("tshirt",testUser1);
+            testProduct.textToTag("#Funny #Supreme #shirt");
+            testShopOrSwap.productTagsToTag(testProduct);
+            Product testProduct2=testShopOrSwap.findProduct("Pink shirt",testUser2);
+            testProduct2.textToTag("#Hilarious #supreme #shirt");
+            testShopOrSwap.productTagsToTag(testProduct2);
+
+            List<Product> searchResults = testShopOrSwap.search("#shirt"); //Search returns one search result
+
+            assertEquals(2, searchResults.size());
+            assertEquals("tshirt", searchResults.get(0).getName());
+            assertEquals("Pink shirt", searchResults.get(1).getName());
+
+            List<Product> searchResults2 = testShopOrSwap.search("#hilarious"); //Search returns two search results from two different users
+
+            assertEquals(1, searchResults2.size());
+            assertEquals("Pink shirt", searchResults2.get(0).getName());
+
+            assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.search("#AWESOMENESS"));//No search results
+            assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.search(""));//No search results
+
+            List<Product> searchResults4 = testShopOrSwap.search("shirt"); //Search returns two search results from two different users
+
+            assertEquals(2, searchResults4.size());
+            assertEquals("tshirt", searchResults4.get(0).getName());
+            assertEquals("Pink shirt", searchResults4.get(1).getName());
+
+            assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.search("Pink Pants"));//No search results
+            assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.search(""));//No search results
+
+
+
+        }
+        @Test
         void searchProductTest() {
             ShopOrSwap testShopOrSwap = new ShopOrSwap();
             User testUser1 = new User("testname1", "testpassword1");
@@ -99,6 +142,33 @@ import static org.junit.jupiter.api.Assertions.*;
         }
         @Test
         void searchTagTest(){
+            ShopOrSwap testShopOrSwap = new ShopOrSwap();
+            User testUser1 = new User("testname1", "testpassword1");
+            User testUser2 = new User("testname2", "testpassword2");
+            testShopOrSwap.addAccount(testUser1);
+            testShopOrSwap.addAccount(testUser2);
+            testShopOrSwap.createSellProduct("tshirt", "tshirt", "12.00", testUser1);
+            testShopOrSwap.createSellProduct("Pink shirt", "shirt that is pink", "23.21", testUser2);
+
+            Product testProduct=testShopOrSwap.findProduct("tshirt",testUser1);
+            testProduct.textToTag("#Funny #Supreme #shirt");
+            testShopOrSwap.productTagsToTag(testProduct);
+            Product testProduct2=testShopOrSwap.findProduct("Pink shirt",testUser2);
+            testProduct2.textToTag("#Hilarious #supreme #shirt");
+            testShopOrSwap.productTagsToTag(testProduct2);
+
+            List<Product> searchResults = testShopOrSwap.searchForTag("#shirt"); //Search returns one search result
+            assertEquals(2, searchResults.size());
+            assertEquals("tshirt", searchResults.get(0).getName());
+            assertEquals("Pink shirt", searchResults.get(1).getName());
+
+            List<Product> searchResults2 = testShopOrSwap.searchForTag("#hilarious"); //Search returns two search results from two different users
+
+            assertEquals(1, searchResults2.size());
+            assertEquals("Pink shirt", searchResults2.get(0).getName());
+
+            assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.searchForTag("#AWESOMENESS"));//No search results
+            assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.searchForTag(""));//No search results
 
         }
 }
