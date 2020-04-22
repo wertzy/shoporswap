@@ -166,6 +166,7 @@ public class ShopOrSwap implements BasicAPI{
      * finds a User in the program
      * @param accountName the account name of the User to find
      * @return the User found
+     * @throws IllegalArgumentException if the User does not exist in the system
      */
     public User findAccount(String accountName){
         // implement method to pass corresponding tests after the tests have been written
@@ -174,7 +175,7 @@ public class ShopOrSwap implements BasicAPI{
                 return aUser;
             }
         }
-        return null;
+        throw new IllegalArgumentException("User does not exist in the system");
     }
 
     /**
@@ -212,9 +213,8 @@ public class ShopOrSwap implements BasicAPI{
         }
     }
     /**
-     * Creates a Product to swap by a User
+     * Removes and returns a product
      * @param product the name of the Product to remove
-     * @throws IllegalArgumentException if the User merchant does not exist in the system
      */
 
     public Product removeSellProduct(Product product){
