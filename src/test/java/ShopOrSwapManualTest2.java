@@ -203,7 +203,7 @@ public class ShopOrSwapManualTest2 {
 
     private static void userMenu(ShopOrSwap shopOrSwap, User user, Scanner reader) throws IOException {
         System.out.println("--User Menu: " + user.getAccountName() + "--");
-        System.out.println("Options:\n1. View My Products\n2. Post Sell Product\n3. View Selling Products\n4. Post Swap Product\n5. View Swapping Products\n6. Swap Products\n7. Sign Out");
+        System.out.println("Options:\n1. View My Products\n2. Post Sell Product\n3. View Selling Products\n4. Post Swap Product\n5. View Swapping Products\n6. Swap Products\n7. Buy Another User's Product\n8. Sign Out");
         System.out.print("Choose the number of your selection: ");
         int userChoice;
         try {
@@ -226,7 +226,9 @@ public class ShopOrSwapManualTest2 {
             viewSwapProcedure(shopOrSwap);
         }else if(userChoice == 6){
             swapProcedure(shopOrSwap, user);
-        }else if(userChoice == 7){
+        }else if(userChoice == 7) {
+            buyProcedure(shopOrSwap, user);
+        }else if(userChoice == 8){
             signOutProcedure(shopOrSwap, user);
         }else if(userChoice != -1){
             System.out.println("No corresponding option");
@@ -411,6 +413,47 @@ public class ShopOrSwapManualTest2 {
         }
 
     }
+
+    private static void buyProcedure(ShopOrSwap shopOrSwap, User user){
+        System.out.println("--Buy Products Procedure--");
+        Scanner reader = new Scanner(System.in);
+        String nameInput1,nameInput2,  searchFeedback;
+        Product results1;
+        User merchant;
+
+
+
+        System.out.print("What is the name of the user you would like to buy from ");
+        nameInput1 = reader.nextLine();
+        System.out.println("Input: " + nameInput1);
+        try {
+            merchant = shopOrSwap.findAccount(nameInput1);
+        }
+        catch(Exception e){
+            System.out.println("User not found");
+            return;
+        }
+
+        System.out.print("What is the name of the item you would like to buy ");
+        nameInput2 = reader.nextLine();
+        System.out.println("Input: " + nameInput2);
+        try {
+            results1 = shopOrSwap.findProduct(nameInput2, merchant);
+        }
+        catch (Exception e){
+            System.out.println("Product not found");
+            return;
+        }
+        System.out.println(results1.getName() + "\n\t" + results1.getDescription() + "\n\t" + results1.getMerchant().getAccountName() + "\n\t" + results1.getTags());
+        System.out.print("Is this the product you want to buy? (Enter \"Y\" for \"Yes\") ");
+        searchFeedback = reader.next();
+        if(searchFeedback.compareToIgnoreCase("Y") == 0){
+            user.buy(results1.getName(), merchant);
+            System.out.println("Your transaction for " + results1.getName() + "has successfully been processed");
+        }
+
+    }
+
 
     private static void signOutProcedure(ShopOrSwap shopOrSwap, User user) throws IOException {
         System.out.println("--Sign Out Procedure--");
