@@ -19,5 +19,9 @@
       "rating" : 0.0
     },
     "consumers" : [ ]
+  } ],
+  "tagList" : [ {
+    "name" : "Physics",
+    "products" : [ ]
   } ]
 }

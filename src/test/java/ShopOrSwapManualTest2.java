@@ -126,6 +126,7 @@ public class ShopOrSwapManualTest2 {
             return importedShopOrSwap;
         }catch(Exception e){
             System.out.println("Cannot import data");
+            System.out.println(e.getMessage());
             System.exit(1);
             return null;
         }
