@@ -479,6 +479,11 @@ public class ShopOrSwap implements BasicAPI{
         // implement method to pass corresponding tests after the tests have been written
         return this.tagList;
     }
+    public void genReport(User user, String comment, User admin){
+        Report rep=Report(user.getName(), comment, user);
+        rep.persist(admin);
+        reportList.append(comment);
+    }
 
     /**
      * Exit procedure for ShopOrSwap, includes:
