@@ -18,6 +18,8 @@ public class ShopOrSwap implements BasicAPI{
         this.userList = new ArrayList<User>();
         this.productList = new ArrayList<Product>();
         this.tagList = new ArrayList<Tag>();
+        Tag baseTag = new Tag("Physics");
+        tagList.add(baseTag);
     }
 
     /**
@@ -299,6 +301,27 @@ public class ShopOrSwap implements BasicAPI{
         }
     }
 
+    public void productTagsToTag(Product product){
+
+        for(int i=0; i<product.getTags().size(); i++){
+            boolean existsInTagList=false;
+            for(int j=0; j<tagList.size(); j++){
+                if(tagList.get(j).getName().equalsIgnoreCase(product.getTags().get(i))){ // might be able to break code if two tags exist one with #Supreme and the other with #supreme?
+                    existsInTagList=true;
+                    if(!tagList.get(j).getProductList().contains(product)){
+                        tagList.get(j).addProduct(product);
+                    }
+                }
+                else if(j==tagList.size()-1 && !existsInTagList){
+                    //System.out.println("You made it");
+                    Tag newTag= new Tag(product.getTags().get(i));
+                    tagList.add(newTag);
+                }
+            }
+
+        }
+    }
+
     /**
      * Swaps a Product from one User with another Product from another User
      * @param product1 the Product offered by the User offering the swap
@@ -405,6 +428,11 @@ public class ShopOrSwap implements BasicAPI{
     public List<Product> getProductList() {
         // implement method to pass corresponding tests after the tests have been written
         return this.productList;
+    }
+
+    public List<Tag> getTagList() {
+        // implement method to pass corresponding tests after the tests have been written
+        return this.tagList;
     }
 
     /**

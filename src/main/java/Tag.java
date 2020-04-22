@@ -39,5 +39,11 @@ public class Tag {
         // implement method to pass corresponding tests after the tests have been written
         return this.products;
     }
+    public String getName(){
+        return this.name;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
 
 }
