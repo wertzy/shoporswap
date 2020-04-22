@@ -480,7 +480,7 @@ public class ShopOrSwap implements BasicAPI{
         return this.tagList;
     }
     public void genReport(User user, String comment, User admin){
-        Report rep=Report(user.getName(), comment, user);
+        Report rep=Report(user.getaccountName(), comment, user);
         rep.persist(admin);
         reportList.append(comment);
     }
