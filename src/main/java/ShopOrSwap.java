@@ -9,7 +9,7 @@ public class ShopOrSwap implements BasicAPI{
     private List<User> userList;
     private List<Product> productList;
     private List<Tag> tagList;
-    private List<Message> reportList;
+    private List<Report> reportList;
 
     /**
      * Default constructor for a ShopOrSwap object
@@ -19,7 +19,7 @@ public class ShopOrSwap implements BasicAPI{
         this.userList = new ArrayList<User>();
         this.productList = new ArrayList<Product>();
         this.tagList = new ArrayList<Tag>();
-        this.reportList = new ArrayList<Message>();
+        this.reportList = new ArrayList<Report>();
         Tag baseTag = new Tag("Physics");
         tagList.add(baseTag);
     }
@@ -479,10 +479,10 @@ public class ShopOrSwap implements BasicAPI{
         // implement method to pass corresponding tests after the tests have been written
         return this.tagList;
     }
-    public void genReport(User user,String comment,User admin){
+    public void genReport(User user,String comment){
         Report rep=new Report(user.getAccountName(),comment,user);
-        rep.persist(admin);
-        reportList.append(comment);
+        user.sendMessage("Report", rep.comment, user);
+        reportList.add(rep);
     }
 
     /**

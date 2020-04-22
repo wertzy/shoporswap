@@ -245,7 +245,7 @@ public class ShopOrSwapDriver {
             swapProcedure(shopOrSwap, user);
         }else if(userChoice == 7) {
             buyProcedure(shopOrSwap, user);
-        }else if(userChoice == 8){
+        }else if(userChoice == 8) {
             viewAccountProcedure(shopOrSwap, user);
         }else if(userChoice == 9){
             signOutProcedure(shopOrSwap, user);
@@ -504,6 +504,26 @@ public class ShopOrSwapDriver {
         System.out.println("--Sign Out Procedure--");
         System.out.println("" + user.getAccountName() + " is signing out");
         loginMenu(shopOrSwap);
+    }
+
+    private static void reportProcedure(ShopOrSwap shopOrSwap, User user){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Who do you wish to report? ");
+        String username = input.nextLine();
+
+        if(shopOrSwap.findAccount(username).getAccountName().compareToIgnoreCase(user.getAccountName()) == 0){
+            System.out.println("Cannot report yourself");
+            return;
+        }
+
+        System.out.println("Type the complaint: ");
+        String comment = input.nextLine();
+        try {
+            shopOrSwap.genReport(shopOrSwap.findAccount(username), comment);
+        }catch(Exception e){
+            System.out.println("Could not report the specified user");
+        }
+        return;
     }
 
     private static void exitProcedure(ShopOrSwap shopOrSwap, String dataFile) throws IOException {
