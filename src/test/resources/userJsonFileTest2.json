@@ -2,5 +2,6 @@
   "accountName" : "accountname",
   "password" : "password",
   "transactionHistory" : [ ],
+  "messages" : [ ],
   "rating" : 0.0
 }

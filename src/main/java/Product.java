@@ -183,9 +183,14 @@ public class Product {
     }
 
     public String retrieveConsumersNeat(){
-        String returnable = ("History: " + consumers.toString());
-        returnable = returnable.replace("]", "");
-        returnable = returnable + ", " + merchant + "]";
+        String returnable = ("History: [");
+        for (int i = 0; i < consumers.size(); i++) {
+            returnable+=consumers.get(i).getAccountName();
+            returnable += ", ";
+            //returnable = returnable.replace("]", "");
+            //returnable = returnable + ", " + merchant + "]";
+        }
+        returnable+=this.merchant.getAccountName() + "]";
         return returnable;
     }
 
