@@ -33,4 +33,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
         }
+        @Test
+        void tagTest(){
+            ShopOrSwap testShopOrSwap = new ShopOrSwap();
+            User testUser1 = new User("testname1", "testpassword1");
+            User testUser2 = new User("testname2", "testpassword2");
+            testShopOrSwap.addAccount(testUser1);
+            testShopOrSwap.addAccount(testUser2);
+            testShopOrSwap.createSellProduct("tshirt", "tshirt", "12.00", testUser1);
+
+            Tag testTag = new Tag("shirt");
+            testTag.addProduct(testShopOrSwap.findProduct("tshirt",testUser1));
+            List<Product> productListTest = testTag.getProductList();
+            assertEquals(1, productListTest);
+            assertEquals("tshirt", productListTest.get(0).getName());
+
+
+
+        }
 }

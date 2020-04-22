@@ -31,4 +31,13 @@ public class Tag {
         return Pattern.matches(descriptionStringPattern, tag); // checks if the tag matches the required expression
     }
 
+    public void addProduct(Product product){
+        this.products.add(product);
+    }
+
+    public List<Product> getProductList() {
+        // implement method to pass corresponding tests after the tests have been written
+        return this.products;
+    }
+
 }
