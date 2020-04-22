@@ -8,6 +8,10 @@ public class Message {
     private Product incomingSwap;
     private Product outgoingSwap;
 
+    public Message(){
+
+    }
+
     public Message(String name, String body, User recipient, User sender){
         this.name = name;
         this.body = body;
@@ -50,4 +54,36 @@ public class Message {
     public Product getOutgoingSwap(){return outgoingSwap;}
     public boolean getRead(){return read;}
     public int getReadCount(){return readCount;}
+
+    public void setName(String nameIn){
+        this.name = nameIn;
+    }
+
+    public void setBody(String bodyIn){
+        this.body = bodyIn;
+    }
+
+    public void setRecipient(User recipientIn){
+        this.recipient = recipientIn;
+    }
+
+    public void setSender(User senderIn){
+        this.sender = senderIn;
+    }
+
+    public void setIncomingSwap(Product incomingSwapIn){
+        this.incomingSwap = incomingSwapIn;
+    }
+
+    public void setOutgoingSwap(Product outgoingSwapIn){
+        this.outgoingSwap = outgoingSwapIn;
+    }
+
+    public void setRead(boolean readIn){
+        this.read = readIn;
+    }
+
+    public void setReadCount(int countIn){
+        this.readCount = countIn;
+    }
 }
