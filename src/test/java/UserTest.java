@@ -98,4 +98,20 @@ class UserTest {
 
     }
 
+    @Test
+    void ratingTest(){
+        User user=new User("desmond","desmond");
+        User user1=new User("testuser","testuser2");
+        User user2=new User("testuser","testuser");
+        user1.rate(user,5);
+        user2.rate(user,1);
+        assertEquals(3,user.getRating());
+
+        assertThrows(IllegalArgumentException.class,()->user.rate(user1,6));
+        assertThrows(IllegalArgumentException.class,()->user.rate(user1,0));
+
+
+    }
+
+
 }
