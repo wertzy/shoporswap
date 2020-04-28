@@ -65,7 +65,7 @@ class UserTest {
 
     @Test
     void findTest(){
-        User user=new User("desmond","desmond");
+        User user=new User("desmond","desmond");theme song
         assertThrows(NoSuchElementException.class,()->user.find("tee shirt"));
 
         User user1=new User("testuser","testuser2");
@@ -97,5 +97,22 @@ class UserTest {
         assertThrows(NoSuchElementException.class,()->user.buy("yellow tee",user1));
 
     }
+
+    @Test
+    void ratingTest(){
+        User user=new User("desmond","desmond");
+        User user1=new User("testuser","testuser2");
+        User user2=new User("testuser","testuser")
+        user1.rate(user1,5);
+        user2.rate(user1,1);
+        assertEquals(3,user.rating);
+
+        assertThrows(NoSuchElementException.class,()->user.rate(user1,6));
+        assertThrows(NoSuchElementException.class,()->user.rate(user1,0));
+        assertThrows(NoSuchElementException.class,()->user.rate(user1,3.5));
+
+
+    }
+
 
 }
