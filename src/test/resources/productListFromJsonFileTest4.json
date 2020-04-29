@@ -7,6 +7,7 @@
     "accountName" : "test1",
     "password" : "pass1",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]
@@ -19,6 +20,7 @@
     "accountName" : "test2",
     "password" : "pass2",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]

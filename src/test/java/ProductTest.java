@@ -404,14 +404,14 @@ public class ProductTest {
 
     @Test
     void TransferTest(){
-        User sellUser = new User();
-        User buyUser = new User();
+        User sellUser = new User("name1", "a");
+        User buyUser = new User("name2", "b");
         Product product = new Product("Test product", "Something fun", sellUser);
         product.transferOwnership(buyUser);
         assertEquals(buyUser.getAccountName(), product.getMerchant().getAccountName());
         product.transferOwnership(sellUser);
         assertEquals(sellUser.getAccountName(), product.getMerchant().getAccountName());
-        assertEquals(product.retrieveConsumersNeat(), "History: [Seller@3712b94, Shopper@2833cc44, Seller@3712b94]");
+        assertEquals(product.retrieveConsumersNeat(), "History: [name1, name2, name1]");
         //assertEquals(product.getConsumersRaw(), {Seller@3712b94, Shopper@2833cc44, Seller@3712b94});
     }
 
