@@ -38,3 +38,7 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
 https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/ShopOrSwapTest.java
 
 https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/JsonUtilTest.java
+
+* Sprint Review Agenda:https://docs.google.com/document/d/1x-EiUmeBRk_VhRUL92F_80NNeNyNTcY0z40DVuRUcew/edit?usp=sharing
+
+* Sprint Retrospective Agenda: https://docs.google.com/document/d/15k4A9d9r4mZDCME3JX-pvDaimXOAA5A6AUnVgfgaJLs/edit?usp=sharing
