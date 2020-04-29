@@ -1,6 +1,4 @@
 import org.junit.jupiter.api.Test;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,23 +33,23 @@ class MessageTest {
         Product prod2 = new Product("name2", "description", 0.01, user2);
         Message message = new Message("a", "b", user1, user2);
         user1.receiveMessage(message);
-        assertEquals(message, user1.getMessages().get(0));
-        assertEquals(1 ,user1.getMessages().size());
-        assertFalse(user1.getMessages().get(0).getRead());
-        assertEquals(0, user1.getMessages().get(0).getReadCount());
-        assertEquals("a: b; sent by name2", user1.checkMessage(user1.getMessages().get(0)));
-        assertTrue(user1.getMessages().get(0).getRead());
-        assertEquals(1, user1.getMessages().get(0).getReadCount());
+        assertEquals(message, user1.retrieveMessages().get(0));
+        assertEquals(1 ,user1.retrieveMessages().size());
+        assertFalse(user1.retrieveMessages().get(0).getRead());
+        assertEquals(0, user1.retrieveMessages().get(0).getReadCount());
+        assertEquals("a: b; sent by name2", user1.checkMessage(user1.retrieveMessages().get(0)));
+        assertTrue(user1.retrieveMessages().get(0).getRead());
+        assertEquals(1, user1.retrieveMessages().get(0).getReadCount());
 
         Message message2 = new Message("a", "b", user1, user2, prod1, prod2);
         user1.receiveMessage(message2);
-        assertEquals(message2, user1.getMessages().get(1));
-        assertEquals(2 ,user1.getMessages().size());
-        assertFalse(user1.getMessages().get(1).getRead());
-        assertEquals(0, user1.getMessages().get(1).getReadCount());
-        assertEquals("a: b; sent by name2", user1.checkMessage(user1.getMessages().get(1)));
-        assertTrue(user1.getMessages().get(0).getRead());
-        assertEquals(1, user1.getMessages().get(1).getReadCount());
+        assertEquals(message2, user1.retrieveMessages().get(1));
+        assertEquals(2 ,user1.retrieveMessages().size());
+        assertFalse(user1.retrieveMessages().get(1).getRead());
+        assertEquals(0, user1.retrieveMessages().get(1).getReadCount());
+        assertEquals("a: b; sent by name2", user1.checkMessage(user1.retrieveMessages().get(1)));
+        assertTrue(user1.retrieveMessages().get(0).getRead());
+        assertEquals(1, user1.retrieveMessages().get(1).getReadCount());
     }
 
     @Test
@@ -61,14 +59,14 @@ class MessageTest {
         Product prod1 = new Product("name1", "description", 0.01, user1);
         Product prod2 = new Product("name2", "description", 0.01, user2);
         user1.sendMessage("a", "b", user2);
-        assertEquals(1 ,user2.getMessages().size());
-        assertEquals("a: b; sent by name1", user2.checkMessage(user2.getMessages().get(0)));
+        assertEquals(1 ,user2.retrieveMessages().size());
+        assertEquals("a: b; sent by name1", user2.checkMessage(user2.retrieveMessages().get(0)));
         user1.sendMessage("a", "b", user2);
-        assertEquals(2 ,user2.getMessages().size());
-        assertEquals("a: b; sent by name1", user2.checkMessage(user2.getMessages().get(1)));
+        assertEquals(2 ,user2.retrieveMessages().size());
+        assertEquals("a: b; sent by name1", user2.checkMessage(user2.retrieveMessages().get(1)));
         user1.sendMessage("a", "b", user2, prod1, prod2);
-        assertEquals(3 ,user2.getMessages().size());
-        assertEquals("a: b; sent by name1", user2.checkMessage(user2.getMessages().get(2)));
+        assertEquals(3 ,user2.retrieveMessages().size());
+        assertEquals("a: b; sent by name1", user2.checkMessage(user2.retrieveMessages().get(2)));
     }
 
 }

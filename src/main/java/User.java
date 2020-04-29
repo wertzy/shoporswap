@@ -19,7 +19,7 @@ public class User {
         this.password = "password";
         this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>();
-        this.messages = new ArrayList<Message>();
+        this.messages = new ArrayList<>();
     }
 
     /**
@@ -129,7 +129,7 @@ public class User {
     public String checkMessage(Message message){
         return message.checked();
     }
-    public ArrayList<Message> getMessages(){return messages;}
+    public ArrayList<Message> retrieveMessages(){return messages;}
 
     /**
      * Views the Collection of clothing available to see (varies by seller, shopper, swapper)

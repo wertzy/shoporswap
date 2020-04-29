@@ -9,7 +9,7 @@ public class ShopOrSwap implements BasicAPI{
     private List<User> userList;
     private List<Product> productList;
     private List<Tag> tagList;
-    private List<Message> reportList;
+    private List<Report> reportList;
 
     /**
      * Default constructor for a ShopOrSwap object
@@ -19,7 +19,7 @@ public class ShopOrSwap implements BasicAPI{
         this.userList = new ArrayList<User>();
         this.productList = new ArrayList<Product>();
         this.tagList = new ArrayList<Tag>();
-        this.reportList = new ArrayList<Message>();
+        this.reportList = new ArrayList<Report>();
         Tag baseTag = new Tag("Physics");
         tagList.add(baseTag);
     }
@@ -320,7 +320,7 @@ public class ShopOrSwap implements BasicAPI{
         // implement method to pass corresponding tests after the tests have been written
         for(Tag tag : this.tagList){
             if(tag.getName().equalsIgnoreCase(searchPhrase)){
-                searchResults=tag.getProductList();
+                searchResults=tag.getProducts();
                 break;
             }
         }
@@ -353,7 +353,7 @@ public class ShopOrSwap implements BasicAPI{
             for(int j=0; j<tagList.size(); j++){
                 if(tagList.get(j).getName().equalsIgnoreCase(product.getTags().get(i))){ // might be able to break code if two tags exist one with #Supreme and the other with #supreme?
                     existsInTagList=true;
-                    if(!tagList.get(j).getProductList().contains(product)){
+                    if(!tagList.get(j).getProducts().contains(product)){
                         tagList.get(j).addProduct(product);
                     }
                 }
@@ -479,13 +479,12 @@ public class ShopOrSwap implements BasicAPI{
         // implement method to pass corresponding tests after the tests have been written
         return this.tagList;
     }
-    /*
-    public void genReport(User user,String comment,User admin){
+    public void genReport(User user,String comment){
         Report rep=new Report(user.getAccountName(),comment,user);
-        rep.persist(admin);
-        reportList.append(comment);
+        user.sendMessage("Report", rep.comment, user);
+        reportList.add(rep);
     }
-    */
+
     /**
      * Exit procedure for ShopOrSwap, includes:
      * - saving data from userList for future use and debugging
