@@ -8,7 +8,8 @@ public class User {
     protected ArrayList<Message> messages;
     protected static List<Product> productList = new ArrayList<Product>();
     protected static ArrayList<String> pastTransactions;
-    protected double rating;
+    protected ArrayList<Integer> ratingList = new ArrayList<>();
+    protected double ratingAverage;
 
     /**
      * Default constructor of a User
@@ -16,7 +17,7 @@ public class User {
     public User() {
         this.accountName = "accountname";
         this.password = "password";
-        this.rating = 0.0;
+        this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>();
         this.messages = new ArrayList<>();
     }
@@ -39,7 +40,7 @@ public class User {
         }else {
             this.password = passwordIn;
         }
-        this.rating = 0.0;
+        this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
         this.messages = new ArrayList<Message>();
     }
@@ -66,7 +67,7 @@ public class User {
      * @return the rating of the User
      */
     public double getRating(){
-        return this.rating;
+        return this.ratingAverage;
     }
 
     /**
@@ -169,6 +170,27 @@ public class User {
     public void sell(String name, String description,User self){
         Product product=new Product(name,description, self);
         productList.add(product);
+    }
+
+
+    public void rate(User merchant,int rating){
+        if(rating>5 || rating<1){
+            throw new IllegalArgumentException("invalid rating");
+        }
+        merchant.ratingList.add(rating);
+        merchant.calcRatingAverage();
+
+    }
+
+
+
+    public void calcRatingAverage(){
+        double tempRatingAverage=0;
+        for (int i=0; i<ratingList.size();i++){
+            tempRatingAverage+=ratingList.get(i);
+        }
+        tempRatingAverage=tempRatingAverage/ratingList.size();
+        ratingAverage=tempRatingAverage;
     }
 
 

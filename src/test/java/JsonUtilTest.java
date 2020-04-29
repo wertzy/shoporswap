@@ -16,22 +16,22 @@ public class JsonUtilTest {
         String expectedString1, expectedString2;
 
         testUser1 = new User("test1", "pass1");
-        expectedString1 = "{" + System.lineSeparator() +
-                "  \"accountName\" : \"test1\"," + System.lineSeparator() +
-                "  \"password\" : \"pass1\"," + System.lineSeparator() +
-                "  \"transactionHistory\" : [ ]," + System.lineSeparator() +
-                "  \"messages\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : 0.0" + System.lineSeparator() +
+        expectedString1 = "{\r\n" +
+                "  \"accountName\" : \"test1\",\r\n" +
+                "  \"password\" : \"pass1\",\r\n" +
+                "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
+                "  \"rating\" : 0.0\r\n" +
                 "}";
         assertEquals(expectedString1, JsonUtil.toJsonString(testUser1));
 
         testUser2 = new User();
-        expectedString2 = "{" + System.lineSeparator() +
-                "  \"accountName\" : \"accountname\"," + System.lineSeparator() +
-                "  \"password\" : \"password\"," + System.lineSeparator() +
-                "  \"transactionHistory\" : [ ]," + System.lineSeparator() +
-                "  \"messages\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : 0.0" + System.lineSeparator() +
+        expectedString2 = "{\r\n" +
+                "  \"accountName\" : \"accountname\",\r\n" +
+                "  \"password\" : \"password\",\r\n" +
+                "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
+                "  \"rating\" : 0.0\r\n" +
                 "}";
         assertEquals(expectedString2, JsonUtil.toJsonString(testUser2));
 
@@ -43,12 +43,12 @@ public class JsonUtilTest {
         String expectedString1, expectedString2, testFile1, testFile2;
 
         testExportUser1 = new User("test1", "pass1");
-        expectedString1 = "{" + System.lineSeparator() +
-                "  \"accountName\" : \"test1\"," + System.lineSeparator() +
-                "  \"password\" : \"pass1\"," + System.lineSeparator() +
-                "  \"transactionHistory\" : [ ]," + System.lineSeparator() +
-                "  \"messages\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : 0.0" + System.lineSeparator() +
+        expectedString1 = "{\r\n" +
+                "  \"accountName\" : \"test1\",\r\n" +
+                "  \"password\" : \"pass1\",\r\n" +
+                "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
+                "  \"rating\" : 0.0\r\n" +
                 "}";
         testFile1 = "src/test/resources/userJsonFileTest1.json";
         JsonUtil.toJsonFile(testFile1, testExportUser1);
@@ -56,12 +56,12 @@ public class JsonUtilTest {
         assertEquals(expectedString1, JsonUtil.toJsonString(testImportUser1));
 
         testExportUser2 = new User();
-        expectedString2 = "{" + System.lineSeparator() +
-                "  \"accountName\" : \"accountname\"," + System.lineSeparator() +
-                "  \"password\" : \"password\"," + System.lineSeparator() +
-                "  \"transactionHistory\" : [ ]," + System.lineSeparator() +
-                "  \"messages\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : 0.0" + System.lineSeparator() +
+        expectedString2 = "{\r\n" +
+                "  \"accountName\" : \"accountname\",\r\n" +
+                "  \"password\" : \"password\",\r\n" +
+                "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
+                "  \"rating\" : 0.0\r\n" +
                 "}";
         testFile2 = "src/test/resources/userJsonFileTest2.json";
         JsonUtil.toJsonFile(testFile2, testExportUser2);
@@ -110,47 +110,47 @@ public class JsonUtilTest {
         String testExpectedString1, testExpectedString2, testExpectedString3;
 
         testProduct1 = new Product();
-        testExpectedString1 = "{" + System.lineSeparator() +
-                "  \"name\" : \"DEFAULT NAME\"," + System.lineSeparator() +
-                "  \"description\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
-                "  \"price\" : 0.0," + System.lineSeparator() +
-                "  \"tags\" : [ ]," + System.lineSeparator() +
-                "  \"merchant\" : null," + System.lineSeparator() +
-                "  \"consumers\" : [ ]" + System.lineSeparator() +
+        testExpectedString1 = "{\r\n" +
+                "  \"name\" : \"DEFAULT NAME\",\r\n" +
+                "  \"description\" : \"DEFAULT DESCRIPTION\",\r\n" +
+                "  \"price\" : 0.0,\r\n" +
+                "  \"tags\" : [ ],\r\n" +
+                "  \"merchant\" : null,\r\n" +
+                "  \"consumers\" : [ ]\r\n" +
                 "}";
         assertEquals(testExpectedString1, JsonUtil.toJsonString(testProduct1));
 
         testProduct2 = new Product("name1", "description1", new User("test1", "pass1"));
-        testExpectedString2 = "{" + System.lineSeparator() +
-                "  \"name\" : \"name1\"," + System.lineSeparator() +
-                "  \"description\" : \"description1\"," + System.lineSeparator() +
-                "  \"price\" : 0.0," + System.lineSeparator() +
-                "  \"tags\" : [ ]," + System.lineSeparator() +
-                "  \"merchant\" : {" + System.lineSeparator() +
-                "    \"accountName\" : \"test1\"," + System.lineSeparator() +
-                "    \"password\" : \"pass1\"," + System.lineSeparator() +
-                "    \"transactionHistory\" : [ ]," + System.lineSeparator() +
-                "    \"messages\" : [ ]," + System.lineSeparator() +
-                "    \"rating\" : 0.0" + System.lineSeparator() +
-                "  }," + System.lineSeparator() +
-                "  \"consumers\" : [ ]" + System.lineSeparator() +
+        testExpectedString2 = "{\r\n" +
+                "  \"name\" : \"name1\",\r\n" +
+                "  \"description\" : \"description1\",\r\n" +
+                "  \"price\" : 0.0,\r\n" +
+                "  \"tags\" : [ ],\r\n" +
+                "  \"merchant\" : {\r\n" +
+                "    \"accountName\" : \"test1\",\r\n" +
+                "    \"password\" : \"pass1\",\r\n" +
+                "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
+                "    \"rating\" : 0.0\r\n" +
+                "  },\r\n" +
+                "  \"consumers\" : [ ]\r\n" +
                 "}";
         assertEquals(testExpectedString2, JsonUtil.toJsonString(testProduct2));
 
         testProduct3 = new Product("name1", "description1", 50, new User("test1", "pass1"));
-        testExpectedString3 = "{" +  System.lineSeparator() +
-                "  \"name\" : \"name1\"," +  System.lineSeparator() +
-                "  \"description\" : \"description1\"," +  System.lineSeparator() +
-                "  \"price\" : 50.0," +  System.lineSeparator() +
-                "  \"tags\" : [ ]," +  System.lineSeparator() +
-                "  \"merchant\" : {" +  System.lineSeparator() +
-                "    \"accountName\" : \"test1\"," +  System.lineSeparator() +
-                "    \"password\" : \"pass1\"," +  System.lineSeparator() +
-                "    \"transactionHistory\" : [ ]," +  System.lineSeparator() +
-                "    \"messages\" : [ ]," +  System.lineSeparator() +
-                "    \"rating\" : 0.0" +  System.lineSeparator() +
-                "  }," +  System.lineSeparator() +
-                "  \"consumers\" : [ ]" +  System.lineSeparator() +
+        testExpectedString3 = "{\r\n" +
+                "  \"name\" : \"name1\",\r\n" +
+                "  \"description\" : \"description1\",\r\n" +
+                "  \"price\" : 50.0,\r\n" +
+                "  \"tags\" : [ ],\r\n" +
+                "  \"merchant\" : {\r\n" +
+                "    \"accountName\" : \"test1\",\r\n" +
+                "    \"password\" : \"pass1\",\r\n" +
+                "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
+                "    \"rating\" : 0.0\r\n" +
+                "  },\r\n" +
+                "  \"consumers\" : [ ]\r\n" +
                 "}";
         assertEquals(testExpectedString3, JsonUtil.toJsonString(testProduct3));
     }
@@ -161,51 +161,51 @@ public class JsonUtilTest {
         String testExpectedString1, testExpectedString2, testExpectedString3, testFile1, testFile2, testFile3;
 
         testProduct1 = new Product();
-        testExpectedString1 = "{" + System.lineSeparator() +
-                "  \"name\" : \"DEFAULT NAME\"," + System.lineSeparator() +
-                "  \"description\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
-                "  \"price\" : 0.0," + System.lineSeparator() +
-                "  \"tags\" : [ ]," + System.lineSeparator() +
-                "  \"merchant\" : null," + System.lineSeparator() +
-                "  \"consumers\" : [ ]" + System.lineSeparator() +
+        testExpectedString1 = "{\r\n" +
+                "  \"name\" : \"DEFAULT NAME\",\r\n" +
+                "  \"description\" : \"DEFAULT DESCRIPTION\",\r\n" +
+                "  \"price\" : 0.0,\r\n" +
+                "  \"tags\" : [ ],\r\n" +
+                "  \"merchant\" : null,\r\n" +
+                "  \"consumers\" : [ ]\r\n" +
                 "}";
         testFile1 = "src/test/resources/productJsonFileTest1.json";
         JsonUtil.toJsonFile(testFile1, testProduct1);
         assertEquals(testExpectedString1, JsonUtil.toJsonString(JsonUtil.fromJsonFile(testFile1, Product.class)));
 
         testProduct2 = new Product("name1", "description1", new User("test1", "pass1"));
-        testExpectedString2 = "{" + System.lineSeparator() +
-                "  \"name\" : \"name1\"," + System.lineSeparator() +
-                "  \"description\" : \"description1\"," + System.lineSeparator() +
-                "  \"price\" : 0.0," + System.lineSeparator() +
-                "  \"tags\" : [ ]," + System.lineSeparator() +
-                "  \"merchant\" : {" + System.lineSeparator() +
-                "    \"accountName\" : \"test1\"," + System.lineSeparator() +
-                "    \"password\" : \"pass1\"," + System.lineSeparator() +
-                "    \"transactionHistory\" : [ ]," + System.lineSeparator() +
-                "    \"messages\" : [ ]," +  System.lineSeparator() +
-                "    \"rating\" : 0.0" + System.lineSeparator() +
-                "  }," + System.lineSeparator() +
-                "  \"consumers\" : [ ]" + System.lineSeparator() +
+        testExpectedString2 = "{\r\n" +
+                "  \"name\" : \"name1\",\r\n" +
+                "  \"description\" : \"description1\",\r\n" +
+                "  \"price\" : 0.0,\r\n" +
+                "  \"tags\" : [ ],\r\n" +
+                "  \"merchant\" : {\r\n" +
+                "    \"accountName\" : \"test1\",\r\n" +
+                "    \"password\" : \"pass1\",\r\n" +
+                "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
+                "    \"rating\" : 0.0\r\n" +
+                "  },\r\n" +
+                "  \"consumers\" : [ ]\r\n" +
                 "}";
         testFile2 = "src/test/resources/productJsonFileTest2.json";
         JsonUtil.toJsonFile(testFile2, testProduct2);
         assertEquals(testExpectedString2, JsonUtil.toJsonString(JsonUtil.fromJsonFile(testFile2, Product.class)));
 
         testProduct3 = new Product("name1", "description1", 50, new User("test1", "pass1"));
-        testExpectedString3 = "{" + System.lineSeparator() +
-                "  \"name\" : \"name1\"," + System.lineSeparator() +
-                "  \"description\" : \"description1\"," + System.lineSeparator() +
-                "  \"price\" : 50.0," + System.lineSeparator() +
-                "  \"tags\" : [ ]," + System.lineSeparator() +
-                "  \"merchant\" : {" + System.lineSeparator() +
-                "    \"accountName\" : \"test1\"," + System.lineSeparator() +
-                "    \"password\" : \"pass1\"," + System.lineSeparator() +
-                "    \"transactionHistory\" : [ ]," + System.lineSeparator() +
-                "    \"messages\" : [ ]," +  System.lineSeparator() +
-                "    \"rating\" : 0.0" + System.lineSeparator() +
-                "  }," + System.lineSeparator() +
-                "  \"consumers\" : [ ]" + System.lineSeparator() +
+        testExpectedString3 = "{\r\n" +
+                "  \"name\" : \"name1\",\r\n" +
+                "  \"description\" : \"description1\",\r\n" +
+                "  \"price\" : 50.0,\r\n" +
+                "  \"tags\" : [ ],\r\n" +
+                "  \"merchant\" : {\r\n" +
+                "    \"accountName\" : \"test1\",\r\n" +
+                "    \"password\" : \"pass1\",\r\n" +
+                "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
+                "    \"rating\" : 0.0\r\n" +
+                "  },\r\n" +
+                "  \"consumers\" : [ ]\r\n" +
                 "}";
         testFile3 = "src/test/resources/productJsonFileTest3.json";
         JsonUtil.toJsonFile(testFile3, testProduct3);
