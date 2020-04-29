@@ -7,6 +7,7 @@
     "accountName" : "test1",
     "password" : "pass1",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]
@@ -19,6 +20,7 @@
     "accountName" : "test2",
     "password" : "pass2",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]
@@ -31,6 +33,7 @@
     "accountName" : "test3",
     "password" : "pass3",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]
@@ -43,6 +46,7 @@
     "accountName" : "test4",
     "password" : "pass4",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]
@@ -55,6 +59,7 @@
     "accountName" : "test5",
     "password" : "pass5",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]
@@ -67,6 +72,7 @@
     "accountName" : "test6",
     "password" : "pass6",
     "transactionHistory" : [ ],
+    "messages" : [ ],
     "rating" : 0.0
   },
   "consumers" : [ ]

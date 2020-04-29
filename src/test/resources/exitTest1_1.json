@@ -1,4 +1,8 @@
 {
   "userList" : [ ],
-  "productList" : [ ]
+  "productList" : [ ],
+  "tagList" : [ {
+    "name" : "Physics",
+    "productList" : [ ]
+  } ]
 }

@@ -20,6 +20,7 @@ public class JsonUtilTest {
                 "  \"accountName\" : \"test1\",\r\n" +
                 "  \"password\" : \"pass1\",\r\n" +
                 "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
                 "  \"rating\" : 0.0\r\n" +
                 "}";
         assertEquals(expectedString1, JsonUtil.toJsonString(testUser1));
@@ -29,6 +30,7 @@ public class JsonUtilTest {
                 "  \"accountName\" : \"accountname\",\r\n" +
                 "  \"password\" : \"password\",\r\n" +
                 "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
                 "  \"rating\" : 0.0\r\n" +
                 "}";
         assertEquals(expectedString2, JsonUtil.toJsonString(testUser2));
@@ -45,6 +47,7 @@ public class JsonUtilTest {
                 "  \"accountName\" : \"test1\",\r\n" +
                 "  \"password\" : \"pass1\",\r\n" +
                 "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
                 "  \"rating\" : 0.0\r\n" +
                 "}";
         testFile1 = "src/test/resources/userJsonFileTest1.json";
@@ -57,6 +60,7 @@ public class JsonUtilTest {
                 "  \"accountName\" : \"accountname\",\r\n" +
                 "  \"password\" : \"password\",\r\n" +
                 "  \"transactionHistory\" : [ ],\r\n" +
+                "  \"messages\" : [ ],\r\n" +
                 "  \"rating\" : 0.0\r\n" +
                 "}";
         testFile2 = "src/test/resources/userJsonFileTest2.json";
@@ -126,6 +130,7 @@ public class JsonUtilTest {
                 "    \"accountName\" : \"test1\",\r\n" +
                 "    \"password\" : \"pass1\",\r\n" +
                 "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
                 "    \"rating\" : 0.0\r\n" +
                 "  },\r\n" +
                 "  \"consumers\" : [ ]\r\n" +
@@ -142,6 +147,7 @@ public class JsonUtilTest {
                 "    \"accountName\" : \"test1\",\r\n" +
                 "    \"password\" : \"pass1\",\r\n" +
                 "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
                 "    \"rating\" : 0.0\r\n" +
                 "  },\r\n" +
                 "  \"consumers\" : [ ]\r\n" +
@@ -177,6 +183,7 @@ public class JsonUtilTest {
                 "    \"accountName\" : \"test1\",\r\n" +
                 "    \"password\" : \"pass1\",\r\n" +
                 "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
                 "    \"rating\" : 0.0\r\n" +
                 "  },\r\n" +
                 "  \"consumers\" : [ ]\r\n" +
@@ -195,6 +202,7 @@ public class JsonUtilTest {
                 "    \"accountName\" : \"test1\",\r\n" +
                 "    \"password\" : \"pass1\",\r\n" +
                 "    \"transactionHistory\" : [ ],\r\n" +
+                "    \"messages\" : [ ],\r\n" +
                 "    \"rating\" : 0.0\r\n" +
                 "  },\r\n" +
                 "  \"consumers\" : [ ]\r\n" +
