@@ -2,7 +2,7 @@ import java.util.*;
 
 public class SwapStorefront extends Storefront {
 
-    private List<SwapProduct> swapProducts;
+    private List<AbstractProduct> swapProducts;
 
     /**
      * Default constructor for SwapStorefront object
@@ -16,6 +16,7 @@ public class SwapStorefront extends Storefront {
      * @param nameIn the name of the SwapStorefront
      * @param ownerIn the owner of the SwapStorefront
      * @throws IllegalArgumentException if nameIn is invalid
+     * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
     public SwapStorefront(String nameIn, User ownerIn){
 
@@ -27,6 +28,7 @@ public class SwapStorefront extends Storefront {
      * @param ownerIn the owner of the SwapStorefront
      * @param swapProductsIn the list of SwapProduct items in the SwapStorefront
      * @throws IllegalArgumentException if nameIn is invalid
+     * @throws IllegalArgumentException if the owner of the Storefront is invalid
      * @throws IllegalArgumentException if at least one of the SwapProduct items in SwapProductsIn is invalid
      */
     public SwapStorefront(String nameIn, User ownerIn, List<SwapProduct> swapProductsIn){
@@ -37,6 +39,7 @@ public class SwapStorefront extends Storefront {
      * Adds a SwapProduct to the SwapStorefront
      * @param swapProductIn the SwapProduct to swap at the SwapStorefront
      * @return the SwapProduct to waps at the SwapStorefront
+     * @throws IllegalArgumentException if the SwapProduct to swap is not owned by the SwapProduct owner
      */
     public SwapProduct addProduct(SwapProduct swapProductIn){
         return null;
@@ -79,6 +82,11 @@ public class SwapStorefront extends Storefront {
      * @return the list of products listed for swapping by the SwapStorefront
      */
     public List<SwapProduct> getSwapProducts(){
+        return null;
+    }
+
+    @Override
+    public List<AbstractProduct> getStorefrontProducts() {
         return null;
     }
 

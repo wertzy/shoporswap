@@ -1,5 +1,11 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class SellStorefrontTest {
 
     /**
@@ -9,25 +15,187 @@ public class SellStorefrontTest {
      * - SellStorefront.SellStorefront constructor with 3 parameters
      */
     @Test
-    void constructorsSellStorefrontTests(){}
+    void constructorsSellStorefrontTests(){
+
+        String invalidName = " invalid#name ";
+        String validName = "Valid Name";
+
+        User testUser1 = new User("accountname1", "password1");
+        User testUser2 = new User("accountname2", "password2");
+
+        assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, testUser1));
+        assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, testUser2));
+        assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, null));
+        assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(validName, null));
+
+        SellStorefront testSellStorefront1, testSellStorefront2, testSellStorefront3, testSellStorefront4;
+
+        testSellStorefront1 = new SellStorefront(validName, testUser1);
+        assertEquals(validName, testSellStorefront1.getStorefrontName());
+        assertEquals(testUser1, testSellStorefront1.getStorefrontOwner());
+        assertEquals(0, testSellStorefront1.getSellProducts().size());
+        testSellStorefront2 = new SellStorefront(
+                validName,
+                testUser2,
+                Arrays.asList(
+                        new SellProduct("product1", "description1", 50, testUser1),
+                        new SellProduct("product2", "description2", 50, testUser1)
+                )
+        );
+        assertEquals(validName, testSellStorefront2.getStorefrontName());
+        assertEquals(testUser2, testSellStorefront2.getStorefrontOwner());
+        assertEquals(2, testSellStorefront2.getSellProducts().size());
+
+        testSellStorefront3 = new SellStorefront(
+                "Valid Name 2",
+                testUser2,
+                Arrays.asList(
+                        new SellProduct("product1", "description1", 50, testUser1),
+                        new SellProduct("product2", "description2", 50, testUser2)
+                )
+        );
+        assertEquals(validName, testSellStorefront3.getStorefrontName());
+        assertEquals(testUser2, testSellStorefront3.getStorefrontOwner());
+        assertEquals(2, testSellStorefront3.getSellProducts().size());
+
+        testSellStorefront4 = new SellStorefront();
+        assertEquals("DEFAULT NAME", testSellStorefront4.getStorefrontName());
+        assertEquals(null, testSellStorefront4.getStorefrontOwner());
+        assertEquals(0, testSellStorefront4.getSellProducts().size());
+
+        Storefront testSellStorefront5, testSellStorefront6, testSellStorefront7, testSellStorefront8;
+
+        testSellStorefront5 = new SellStorefront(validName, testUser1);
+        assertEquals(validName, testSellStorefront5.getStorefrontName());
+        assertEquals(testUser1, testSellStorefront5.getStorefrontOwner());
+        assertEquals(0, testSellStorefront5.getStorefrontProducts().size());
+        testSellStorefront6 = new SellStorefront(
+                validName,
+                testUser2,
+                Arrays.asList(
+                        new SellProduct("product1", "description1", 50, testUser1),
+                        new SellProduct("product2", "description2", 50, testUser1)
+                )
+        );
+        assertEquals(validName, testSellStorefront6.getStorefrontName());
+        assertEquals(testUser2, testSellStorefront6.getStorefrontOwner());
+        assertEquals(2, testSellStorefront6.getStorefrontProducts().size());
+
+        testSellStorefront7 = new SellStorefront(
+                "Valid Name 2",
+                testUser2,
+                Arrays.asList(
+                        new SellProduct("product1", "description1", 50, testUser1),
+                        new SellProduct("product2", "description2", 50, testUser2)
+                )
+        );
+        assertEquals(validName, testSellStorefront7.getStorefrontName());
+        assertEquals(testUser2, testSellStorefront7.getStorefrontOwner());
+        assertEquals(2, testSellStorefront7.getStorefrontProducts().size());
+
+        testSellStorefront8 = new SellStorefront();
+        assertEquals("DEFAULT NAME", testSellStorefront8.getStorefrontName());
+        assertEquals(null, testSellStorefront8.getStorefrontOwner());
+        assertEquals(0, testSellStorefront8.getStorefrontProducts().size());
+
+    }
 
     /**
      * Automated tests for SellStorefront.addProduct method
      */
     @Test
-    void addProductSellStorefrontTest(){}
+    void addProductSellStorefrontTest(){
+
+        SellStorefront testSellStorefront1;
+
+        User testUser1 = new User("accountname1", "password1");
+        User testUser2 = new User("accountname2", "password2");
+
+        List<SellProduct> testProductsList1 = Arrays.asList(
+                new SellProduct("test1", "test product 1", 50, testUser1),
+                new SellProduct("test2", "test product 2", 50, testUser1),
+                new SellProduct("test3", "test product 3", 50, testUser2)
+        );
+
+        testSellStorefront1 = new SellStorefront("Valid name", testUser1);
+        testSellStorefront1.addProduct(testProductsList1.get(0));
+        assertEquals(1, testSellStorefront1.getSellProducts().size());
+        assertEquals(1, testSellStorefront1.getStorefrontProducts().size());
+        testSellStorefront1.addProduct(testProductsList1.get(1));
+        assertEquals(2, testSellStorefront1.getSellProducts().size());
+        assertEquals(2, testSellStorefront1.getStorefrontProducts().size());
+        assertThrows(IllegalArgumentException.class, ()-> testSellStorefront1.addProduct(testProductsList1.get(2)));
+        assertEquals(2, testSellStorefront1.getSellProducts().size());
+        assertEquals(2, testSellStorefront1.getStorefrontProducts().size());
+        testSellStorefront1.addProduct(testProductsList1.get(0));
+        assertEquals(3, testSellStorefront1.getSellProducts().size());
+        assertEquals(3, testSellStorefront1.getStorefrontProducts().size());
+    }
 
     /**
      * Automated tests for SellStorefront.findProduct method
      */
     @Test
-    void findProductSellStorefrontTest(){}
+    void findProductSellStorefrontTest(){
+        SellStorefront testSellStorefront1;
+
+        User testUser1 = new User("accountname1", "password1");
+        User testUser2 = new User("accountname2", "password2");
+
+        List<SellProduct> testProductsList1 = Arrays.asList(
+                new SellProduct("test1", "test product 1", 50, testUser1),
+                new SellProduct("test2", "test product 2", 50, testUser1),
+                new SellProduct("test3", "test product 3", 50, testUser2)
+        );
+        SellProduct testAddedProduct1, testAddedProduct2;
+
+        testSellStorefront1 = new SellStorefront("Valid name", testUser1);
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.findProduct(testProductsList1.get(0)));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.findProduct(testProductsList1.get(1)));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.findProduct(testProductsList1.get(2)));
+
+        testAddedProduct1 = testSellStorefront1.addProduct(testProductsList1.get(0));
+        assertEquals(testAddedProduct1, testSellStorefront1.findProduct(testAddedProduct1));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.findProduct(testProductsList1.get(1)));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.findProduct(testProductsList1.get(2)));
+
+        testAddedProduct2 = testSellStorefront1.addProduct(testProductsList1.get(1));
+        assertEquals(testAddedProduct1, testSellStorefront1.findProduct(testAddedProduct1));
+        assertEquals(testAddedProduct2, testSellStorefront1.findProduct(testAddedProduct2));
+    }
 
     /**
      * Automated tests for SellStorefront.removeProduct method
      */
     @Test
-    void removeProductSellStorefrontTest(){}
+    void removeProductSellStorefrontTest(){
+        SellStorefront testSellStorefront1;
+
+        User testUser1 = new User("accountname1", "password1");
+        User testUser2 = new User("accountname2", "password2");
+
+        List<SellProduct> testProductsList1 = Arrays.asList(
+                new SellProduct("test1", "test product 1", 50, testUser1),
+                new SellProduct("test2", "test product 2", 50, testUser1),
+                new SellProduct("test3", "test product 3", 50, testUser2)
+        );
+        SellProduct testAddedProduct1, testAddedProduct2;
+
+        testSellStorefront1 = new SellStorefront("Valid name", testUser1);
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.removeProduct(testProductsList1.get(0)));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.removeProduct(testProductsList1.get(1)));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.removeProduct(testProductsList1.get(2)));
+
+        testAddedProduct1 = testSellStorefront1.addProduct(testProductsList1.get(0));
+        assertEquals(testAddedProduct1, testSellStorefront1.removeProduct(testAddedProduct1));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.removeProduct(testProductsList1.get(1)));
+        assertThrows(NoSuchElementException.class, ()-> testSellStorefront1.removeProduct(testProductsList1.get(2)));
+
+        testAddedProduct1 = testSellStorefront1.addProduct(testProductsList1.get(0));
+        testAddedProduct2 = testSellStorefront1.addProduct(testProductsList1.get(1));
+        assertEquals(testAddedProduct1, testSellStorefront1.removeProduct(testAddedProduct1));
+        assertEquals(testAddedProduct2, testSellStorefront1.removeProduct(testAddedProduct2));
+    }
 
     /**
      * Automated tests for SellStorefront.completeTransaction method

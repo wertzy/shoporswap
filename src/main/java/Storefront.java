@@ -18,6 +18,7 @@ public abstract class Storefront {
      * @param nameIn the name of the Storefront object
      * @param ownerIn the owner of the Storefront object
      * @throws IllegalArgumentException if the name of the Storefront is invalid
+     * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
     public Storefront(String nameIn, User ownerIn){
 
@@ -38,6 +39,8 @@ public abstract class Storefront {
     public final User getStorefrontOwner(){
         return null;
     }
+
+    public abstract List<AbstractProduct> getStorefrontProducts();
 
     /**
      * Mutator method for the name of the Storefront

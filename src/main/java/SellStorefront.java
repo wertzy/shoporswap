@@ -2,7 +2,7 @@ import java.util.*;
 
 public class SellStorefront extends Storefront {
 
-    private List<SellProduct> sellProducts;
+    private List<AbstractProduct> sellProducts;
 
     /**
      * Default constructor for a SellStorefront object
@@ -16,6 +16,7 @@ public class SellStorefront extends Storefront {
      * @param nameIn the name of the SellStorefront
      * @param ownerIn the owner of the SellStorefront
      * @throws IllegalArgumentException if nameIn is invalid
+     * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
     public SellStorefront(String nameIn, User ownerIn){
 
@@ -27,6 +28,7 @@ public class SellStorefront extends Storefront {
      * @param ownerIn the owner of the SellStorefront
      * @param sellProductsIn the list of SellProduct items in the SellStorefront
      * @throws IllegalArgumentException if nameIn is invalid
+     * @throws IllegalArgumentException if the owner of the Storefront is invalid
      * @throws IllegalArgumentException if at least one of the SellProduct items in sellProductsIn is invalid
      */
     public SellStorefront(String nameIn, User ownerIn, List<SellProduct> sellProductsIn){
@@ -37,6 +39,7 @@ public class SellStorefront extends Storefront {
      * Adds a SellProduct to the SellStorefront
      * @param sellProductIn the SellProduct to sell at the SellStorefront
      * @return the SellProduct to sell at the SellStorefront
+     * @throws IllegalArgumentException if the SellProduct to sell is not owned by the SellStorefront owner
      */
     public SellProduct addProduct(SellProduct sellProductIn){
         return null;
@@ -77,6 +80,11 @@ public class SellStorefront extends Storefront {
      * @return the list of products listed for sale by the SellStorefront
      */
     public List<SellProduct> getSellProducts(){
+        return null;
+    }
+
+    @Override
+    public List<AbstractProduct> getStorefrontProducts() {
         return null;
     }
 
