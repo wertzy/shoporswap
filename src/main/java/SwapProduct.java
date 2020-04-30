@@ -6,7 +6,7 @@ public class SwapProduct extends AbstractProduct {
      * Default constructor for a SwapProduct object
      */
     public SwapProduct(){
-
+        super();
     }
 
     /**
@@ -21,7 +21,7 @@ public class SwapProduct extends AbstractProduct {
      * @throws IllegalArgumentException if merchantIn is an invalid User
      */
     public SwapProduct(String nameIn, String descriptionIn, double valueIn, User merchantIn){
-
+        super(nameIn, descriptionIn, valueIn, merchantIn);
     }
 
     /**
@@ -38,7 +38,10 @@ public class SwapProduct extends AbstractProduct {
      * @throws IllegalArgumentException if at least one of the Tag objects in tagsIn is an invalid Tag
      */
     public SwapProduct(String nameIn, String descriptionIn, double valueIn, User merchantIn, List<Tag> tagsIn){
-
+        super(nameIn, descriptionIn, valueIn, merchantIn);
+        for(Tag tag : tagsIn){
+            super.addTag(tag);
+        }
     }
 
 }

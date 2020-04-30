@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.Pattern;
 
 public abstract class AbstractProduct {
 
@@ -10,22 +11,50 @@ public abstract class AbstractProduct {
     private List<Tag> productTags;
 
     /**
+     * Default constructor for AbstractProduct
+     * @throws IllegalArgumentException if the default name is invalid
+     * @throws IllegalArgumentException if the default description is invalid
+     * @throws IllegalArgumentException if the default value is invalid
+     * @throws IllegalArgumentException if the default merchant is invalid
+     * @throws IllegalArgumentException if the default tag list is invalid
+     */
+    public AbstractProduct(){
+        this.setProductName("DEFAULT NAME");
+        this.setProductDescription("DEFAULT DESCRIPTION");
+        this.setProductValue(0.0);
+        this.setProductMerchant(null);
+        this.setProductTags(new ArrayList<Tag>());
+    }
+
+    /**
+     * Constructor for AbstractProduct
+     * @param nameIn the name of the AbstractProduct
+     * @param descriptionIn the description of the AbstractProduct
+     * @param valueIn the value of the AbstractProduct
+     * @param merchantIn the merchant of the AbstractProduct
+     * @throws IllegalArgumentException if nameIn is invalid
+     * @throws IllegalArgumentException if descriptionIn is invalid
+     * @throws IllegalArgumentException if valueIn is invalid
+     * @throws IllegalArgumentException if merchantIn is invalid
+     */
+    public AbstractProduct(String nameIn, String descriptionIn, double valueIn, User merchantIn){
+        this.setProductName(nameIn);
+        this.setProductDescription(descriptionIn);
+        this.setProductValue(valueIn);
+        this.setProductMerchant(merchantIn);
+        this.setProductTags(new ArrayList<Tag>());
+    }
+
+    /**
      * Adds a tag to the AbstractProduct
      * @param tagIn the tag to add to the AbstractProduct
      * @return the tag added to the AbstractProduct
      */
     public final Tag addTag(Tag tagIn){
-        return null;
-    }
-
-    /**
-     * Adds a tag to the AbstractProduct
-     * @param tagNameIn the tag to add to the AbstractProduct
-     * @return the tag added to the AbstractProduct
-     * @throws IllegalArgumentException if tagNameIn is invalid name for Tag object
-     */
-    public final Tag addTag(String tagNameIn){
-        return null;
+        if(!this.productTags.contains(tagIn)){
+            this.productTags.add(tagIn);
+        }
+        return tagIn;
     }
 
     /**
@@ -35,17 +64,12 @@ public abstract class AbstractProduct {
      * @throws NoSuchElementException if a Tag tagIn does not exist for the AbstractProduct
      */
     public final Tag findTag(Tag tagIn){
-        return null;
-    }
-
-    /**
-     * Finds a tag in the AbsteactProduct
-     * @param tagNameIn the tag to find in the AbsractProduct
-     * @return the tag found in the AbstractProduct
-     * @throws NoSuchElementException if a Tag with name tagNameIn does not exist for the AbstractProduct
-     */
-    public final Tag findTag(String tagNameIn){
-        return null;
+        for(Tag tag : this.productTags){
+            if(tag.getName().compareTo(tagIn.getName()) == 0){
+                return tag;
+            }
+        }
+        throw new NoSuchElementException("Tag does not exist for the product");
     }
 
     /**
@@ -55,17 +79,9 @@ public abstract class AbstractProduct {
      * @throws NoSuchElementException if a Tag tagIn does not exist for the AbstractProduct
      */
     public final Tag removeTag(Tag tagIn){
-        return null;
-    }
-
-    /**
-     * Removes a tag in the AbsteactProduct
-     * @param tagNameIn the tag to find in the AbsractProduct
-     * @return the tag removed from the AbstractProduct
-     * @throws NoSuchElementException if a Tag with name tagNameIn does not exist for the AbstractProduct
-     */
-    public final Tag removeTag(String tagNameIn){
-        return null;
+        Tag foundTag = this.findTag(tagIn);
+        this.productTags.remove(foundTag);
+        return foundTag;
     }
 
     /**
@@ -73,7 +89,7 @@ public abstract class AbstractProduct {
      * @return the name of the AbstractProduct
      */
     public final String getProductName(){
-        return "";
+        return this.productName;
     }
 
     /**
@@ -81,7 +97,7 @@ public abstract class AbstractProduct {
      * @return the description of the AbstractProduct
      */
     public final String getProductDescription(){
-        return "";
+        return this.productDescription;
     }
 
     /**
@@ -89,7 +105,7 @@ public abstract class AbstractProduct {
      * @return the name of the AbstractProduct
      */
     public final double getProductValue(){
-        return -1.0;
+        return this.productValue;
     }
 
     /**
@@ -97,7 +113,7 @@ public abstract class AbstractProduct {
      * @return the name of the AbstractProduct
      */
     public final List<Tag> getProductTags(){
-        return null;
+        return this.productTags;
     }
 
     /**
@@ -105,7 +121,7 @@ public abstract class AbstractProduct {
      * @return the merchant of the AbstractProduct
      */
     public final User getProductMerchant(){
-        return null;
+        return this.productMerchant;
     }
 
     /**
@@ -114,7 +130,10 @@ public abstract class AbstractProduct {
      * @throws IllegalArgumentException if the value of nameIn is invalid
      */
     public final void setProductName(String nameIn){
-
+        if(!AbstractProduct.isValidProductName(nameIn)){
+            throw new IllegalArgumentException("Invalid Product name");
+        }
+        this.productName = nameIn;
     }
 
     /**
@@ -123,7 +142,10 @@ public abstract class AbstractProduct {
      * @throws IllegalArgumentException if the value of descriptionIn is invalid
      */
     public final void setProductDescription(String descriptionIn){
-
+        if(!AbstractProduct.isValidProductDescription(descriptionIn)){
+            throw new IllegalArgumentException("Invalid Product description");
+        }
+        this.productDescription = descriptionIn;
     }
 
     /**
@@ -132,7 +154,10 @@ public abstract class AbstractProduct {
      * @throws IllegalArgumentException if the value of valueIn is invalid
      */
     public final void setProductValue(double valueIn){
-
+        if(!AbstractProduct.isValidProductValue(valueIn)){
+            throw new IllegalArgumentException("Invalid Product value");
+        }
+        this.productValue = valueIn;
     }
 
     /**
@@ -140,7 +165,7 @@ public abstract class AbstractProduct {
      * @param userIn the merchant to set for the AbstractProduct
      */
     public final void setProductMerchant(User userIn){
-
+        this.productMerchant = userIn;
     }
 
     /**
@@ -148,34 +173,55 @@ public abstract class AbstractProduct {
      * @param tagsIn the list of tags to set for the AbstractProduct
      */
     public final void setProductTags(List<Tag> tagsIn){
-
+        this.productTags = tagsIn;
     }
 
     /**
      * Validation method for determining whether a product's name is valid
-     * @param nameIn
+     * @param nameIn the desired name
      * @return true if the desired name is valid, false otherwise
      */
     public static final boolean isValidProductName(String nameIn){
-        return false;
+        if(nameIn.indexOf(" ") == 0){ // checks if the name begins with a space
+            return false;
+        }
+        if(nameIn.lastIndexOf(" ") == nameIn.length() - 1){ // checks if the name ends with a space
+            return false;
+        }
+        String nameStringPattern = "[\\w[\\s]]{1,50}+"; // regex representing a 1-50 length string which pass the initial if-else conditions
+        return Pattern.matches(nameStringPattern, nameIn); // checks if the name matches the required expression
     }
 
     /**
      * Validation method for determining whether a product's description is valid
-     * @param descriptionIn
+     * @param descriptionIn the desired description
      * @return true if the desired description is valid, false otherwise
      */
     public static final boolean isValidProductDescription(String descriptionIn){
-        return false;
+        if(descriptionIn.indexOf(" ") == 0 || descriptionIn.indexOf("-") == 0){ // checks if the description begins with a space or dash
+            return false;
+        }
+        if(descriptionIn.lastIndexOf(" ") == descriptionIn.length() - 1 || descriptionIn.lastIndexOf("-") == descriptionIn.length() - 1){ // checks if the description ends with a space or dash
+            return false;
+        }
+        String descriptionStringPattern = "[\\w[\\s][-]]{1,500}+"; // regex representing a 1-500 length string which pass the initial if-else conditions
+        return Pattern.matches(descriptionStringPattern, descriptionIn); // checks if the description matches the required expression
     }
 
     /**
      * Validation method for determining whether a product's price is valid
-     * @param priceIn
+     * @param valueIn the desired value
      * @return true if the desired price is valid, false otherwise
      */
-    public static final boolean isValidProductPrice(double priceIn){
-        return false;
+    public static final boolean isValidProductValue(double valueIn){
+        if(valueIn < 0){ // checks if the price is negative
+            return false;
+        }
+        String valueString = "" + valueIn;
+        if(valueString.contains(".") && valueString.substring(valueString.indexOf(".") + 1).length() > 2){ // checks if the price has more than 2 decimal places
+            return false;
+        }
+        return true;
     }
 
 }
