@@ -120,6 +120,13 @@ class UserTest {
         user.setBlocked(true);
         assertTrue(user.getBlocked());
         assertFalse(user2.getBlocked());
+        user.rate(user2, 5);
+        assertEquals(0, user2.getRating());
+
+        user2.addClothing("a", "b", user2);
+        user.buy("a", user2);
+        assertEquals(0, user.getProducts().size());
+        assertFalse(user2.getProducts().isEmpty());
     }
 
 

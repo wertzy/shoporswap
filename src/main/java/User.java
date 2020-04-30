@@ -21,6 +21,7 @@ public class User {
         this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>();
         this.messages = new ArrayList<>();
+        this.productList = new ArrayList<>();
         this.blocked = false;
     }
 
@@ -44,6 +45,7 @@ public class User {
         }
         this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
+        this.productList = new ArrayList<>();
         this.messages = new ArrayList<Message>();
         this.blocked = false;
     }
@@ -64,6 +66,7 @@ public class User {
         return this.password;
     }
     public List<String> getTransactionHistory(){return this.transactionHistory;}
+    public List<Product> getProducts(){return this.productList;}
     public boolean getBlocked(){ return this.blocked;}
 
     /**
@@ -170,7 +173,7 @@ public class User {
 
     public void buy(String productName, User merchant){
         if(!blocked) {
-            //Product merchantProduct=merchant.find(name);
+            Product merchantProduct=merchant.find(productName);
             String transaction = merchant.accountName + ":" + productName;
             transactionHistory.add(transaction);
         }
