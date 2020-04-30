@@ -27,7 +27,7 @@ public abstract class Storefront {
      * Accessor method for the name of the Storefront
      * @return the name of the Storefront
      */
-    public final String getStorefrontOwnerName(){
+    public final String getStorefrontName(){
         return "";
     }
 
