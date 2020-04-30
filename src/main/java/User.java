@@ -10,6 +10,7 @@ public class User {
     protected static ArrayList<String> pastTransactions;
     protected ArrayList<Integer> ratingList = new ArrayList<>();
     protected double ratingAverage;
+    protected boolean blocked;
 
     /**
      * Default constructor of a User
@@ -20,6 +21,7 @@ public class User {
         this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>();
         this.messages = new ArrayList<>();
+        this.blocked = false;
     }
 
     /**
@@ -43,6 +45,7 @@ public class User {
         this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
         this.messages = new ArrayList<Message>();
+        this.blocked = false;
     }
 
     /**
@@ -61,6 +64,7 @@ public class User {
         return this.password;
     }
     public List<String> getTransactionHistory(){return this.transactionHistory;}
+    public boolean getBlocked(){ return this.blocked;}
 
     /**
      * Accessor for the rating property of a User
@@ -113,13 +117,17 @@ public class User {
     }
 
     public void sendMessage(String name, String body, User recipient){
-        Message message = new Message(name, body, recipient, this);
-        recipient.receiveMessage(message);
+        if(!blocked) {
+            Message message = new Message(name, body, recipient, this);
+            recipient.receiveMessage(message);
+        }
     }
 
     public void sendMessage(String name, String body, User recipient, Product incomingSwap, Product outgoingSwap){
-        Message message = new Message(name, body, recipient, this, incomingSwap, outgoingSwap);
-        recipient.receiveMessage(message);
+        if(!blocked) {
+            Message message = new Message(name, body, recipient, this, incomingSwap, outgoingSwap);
+            recipient.receiveMessage(message);
+        }
     }
 
     public void receiveMessage(Message message){
@@ -161,25 +169,34 @@ public class User {
 
 
     public void buy(String productName, User merchant){
-        //Product merchantProduct=merchant.find(name);
-        String transaction = merchant.accountName+":"+ productName;
-        transactionHistory.add(transaction);
+        if(!blocked) {
+            //Product merchantProduct=merchant.find(name);
+            String transaction = merchant.accountName + ":" + productName;
+            transactionHistory.add(transaction);
+        }
 
     }
 
     public void sell(String name, String description,User self){
-        Product product=new Product(name,description, self);
-        productList.add(product);
+        if(!blocked) {
+            Product product = new Product(name, description, self);
+            productList.add(product);
+        }
     }
 
 
     public void rate(User merchant,int rating){
-        if(rating>5 || rating<1){
-            throw new IllegalArgumentException("invalid rating");
+        if(!blocked) {
+            if (rating > 5 || rating < 1) {
+                throw new IllegalArgumentException("invalid rating");
+            }
+            merchant.ratingList.add(rating);
+            merchant.calcRatingAverage();
         }
-        merchant.ratingList.add(rating);
-        merchant.calcRatingAverage();
+    }
 
+    public void setBlocked(boolean blockValue){
+        this.blocked=blockValue;
     }
 
 

@@ -113,5 +113,14 @@ class UserTest {
 
     }
 
+    @Test
+    void blockedTest(){
+        User user=new User("testN","testP");
+        User user2=new User("testN2","testP2");
+        user.setBlocked(true);
+        assertTrue(user.getBlocked());
+        assertFalse(user2.getBlocked());
+    }
+
 
 }
