@@ -506,6 +506,7 @@ public class ShopOrSwapDriver {
         loginMenu(shopOrSwap);
     }
 
+    /*
     private static void reportProcedure(ShopOrSwap shopOrSwap, User user){
         Scanner input = new Scanner(System.in);
         System.out.print("Who do you wish to report? ");
@@ -525,6 +526,7 @@ public class ShopOrSwapDriver {
         }
         return;
     }
+    */
 
     private static void exitProcedure(ShopOrSwap shopOrSwap, String dataFile) throws IOException {
         System.out.println("Exporting data");
