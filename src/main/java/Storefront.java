@@ -1,8 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Storefront {
 
     private String storefrontName;
     private User storefrontOwner;
+
+    /**
+     * Default constructor for Storefront object
+     */
+    public Storefront(){
+
+    }
+
+    /**
+     * Constructor for Storefront object
+     * @param nameIn the name of the Storefront object
+     * @param ownerIn the owner of the Storefront object
+     * @throws IllegalArgumentException if the name of the Storefront is invalid
+     */
+    public Storefront(String nameIn, User ownerIn){
+
+    }
 
     /**
      * Accessor method for the name of the Storefront
@@ -23,6 +42,7 @@ public abstract class Storefront {
     /**
      * Mutator method for the name of the Storefront
      * @param nameIn the name to set
+     * @throws IllegalArgumentException if the name is invalid
      */
     public final void setStorefrontName(String nameIn){
     }
@@ -32,6 +52,15 @@ public abstract class Storefront {
      * @param ownerIn the owner to set
      */
     public final void setStorefrontOwner(User ownerIn){
+    }
+
+    /**
+     * Determines whether a name is valid or not (names of Storefronts by owner must be unique)
+     * @param nameIn the name to validate
+     * @return true if valid, false otherwise
+     */
+    public static final boolean isValidStorefrontName(String nameIn){
+        return false;
     }
 
 }

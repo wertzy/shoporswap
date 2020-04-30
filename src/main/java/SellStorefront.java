@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class SellStorefront extends Storefront {
 
@@ -14,6 +15,7 @@ public class SellStorefront extends Storefront {
      * Constructor for a SellStorefront object
      * @param nameIn the name of the SellStorefront
      * @param ownerIn the owner of the SellStorefront
+     * @throws IllegalArgumentException if nameIn is invalid
      */
     public SellStorefront(String nameIn, User ownerIn){
 
@@ -24,6 +26,8 @@ public class SellStorefront extends Storefront {
      * @param nameIn the name of the SellStorefront
      * @param ownerIn the owner of the SellStorefront
      * @param sellProductsIn the list of SellProduct items in the SellStorefront
+     * @throws IllegalArgumentException if nameIn is invalid
+     * @throws IllegalArgumentException if at least one of the SellProduct items in sellProductsIn is invalid
      */
     public SellStorefront(String nameIn, User ownerIn, List<SellProduct> sellProductsIn){
 
@@ -39,9 +43,20 @@ public class SellStorefront extends Storefront {
     }
 
     /**
+     * Finds a SellProduct in the SellStorefront
+     * @param sellProductIn the SellProduct to find in the Storefront
+     * @return the SellProduct to find in the Storefront
+     * @throws NoSuchElementException if sellProductIn does not exist in the SellStorefront
+     */
+    public SellProduct findProduct(SellProduct sellProductIn){
+        return null;
+    }
+
+    /**
      * Removes a SellProduct from the SellStorefront
      * @param sellProductIn the SellProduct to remove from selling at the SellStorefront
      * @return the SellProduct removed from selling at the SellStorefront
+     * @throws NoSuchElementException if sellProductIn does not exist in the SellStorefront
      */
     public SellProduct removeProduct(SellProduct sellProductIn){
         return null;
