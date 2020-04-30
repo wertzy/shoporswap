@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class SwapProduct {
+public class SwapProduct extends AbstractProduct {
 
     /**
      * Default constructor for a SwapProduct object
