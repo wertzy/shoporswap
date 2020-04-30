@@ -4,7 +4,6 @@ public abstract class Account {
 
     private String accountName;
     private String accountPassword;
-    private List<AbstractProduct> myProductList;
     private boolean isFrozen;
 
     /**
@@ -16,51 +15,13 @@ public abstract class Account {
 
     /**
      * Constructor for Account class
-     * @param nameIn
-     * @param passwordIn
+     * @param nameIn the name of the Account
+     * @param passwordIn the password of the Account
      * @throws IllegalArgumentException if nameIn is invalid
      * @throws IllegalArgumentException if passwordIn is invalid
      */
     public Account(String nameIn, String passwordIn){
 
-    }
-
-    /**
-     * Constructor for Account class
-     * @param nameIn
-     * @param passwordIn
-     * @param productListIn
-     * @throws IllegalArgumentException if nameIn is invalid
-     * @throws IllegalArgumentException if passwordIn is invalid
-     */
-    public Account(String nameIn, String passwordIn, List<AbstractProduct> productListIn){
-
-    }
-
-    /**
-     * Adds a product to the Account's product list
-     * @return the product added to the Account
-     */
-    public AbstractProduct addProduct(){
-        return null;
-    }
-
-    /**
-     * Finds a product in the Account's product list
-     * @return the product found in the Account
-     * @throws NoSuchElementException if the product does not exist in the Account
-     */
-    public AbstractProduct findProduct(){
-        return null;
-    }
-
-    /**
-     * Removes a product from the Account's product list
-     * @return the product removed from the Account
-     * @throws NoSuchElementException if the product does not exist in the Account
-     */
-    public AbstractProduct removeProduct(){
-        return null;
     }
 
     /**
@@ -77,14 +38,6 @@ public abstract class Account {
      */
     public final String getAccountPassword(){
         return "";
-    }
-
-    /**
-     * Accessor method for the account product list of the Account
-     * @return the list of products of the Account
-     */
-    public final List<AbstractProduct> getMyProductList(){
-        return null;
     }
 
     /**
@@ -110,15 +63,6 @@ public abstract class Account {
      * @throws IllegalArgumentException if passwordIn is invalid
      */
     public final void setAccountPassword(String passwordIn){
-
-    }
-
-    /**
-     * Mutator method for the account product property
-     * @param productListIn the desired list of products
-     * @throws IllegalArgumentException if at least one product in ProductListIn is invalid
-     */
-    public final void setMyProductList(List<AbstractProduct> productListIn){
 
     }
 
