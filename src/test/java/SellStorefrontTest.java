@@ -201,7 +201,31 @@ public class SellStorefrontTest {
      * Automated tests for SellStorefront.completeTransaction method
      */
     @Test
-    void completeTransactionSellStorefrontTest(){}
+    void completeTransactionSellStorefrontTest(){
+
+        SellStorefront testSellStorefront1, testSellStorefront2;
+
+        User testUser1 = new User("accountname1", "password1");
+        User testUser2 = new User("accountname2", "password2");
+
+        List<SellProduct> testProductsList1 = Arrays.asList(
+                new SellProduct("test1", "test product 1", 50, testUser1),
+                new SellProduct("test2", "test product 2", 50, testUser1),
+                new SellProduct("test3", "test product 3", 50, testUser2),
+                new SellProduct("test4", "test product 4", 50, testUser2)
+        );
+
+        testSellStorefront1 = new SellStorefront("test storefront 1", testUser1);
+        testSellStorefront2 = new SellStorefront("test storefront 2", testUser2);
+
+        testSellStorefront1.addProduct(testProductsList1.get(0));
+        testSellStorefront1.addProduct(testProductsList1.get(1));
+        testSellStorefront2.addProduct(testProductsList1.get(2));
+        testSellStorefront2.addProduct(testProductsList1.get(3));
+
+        testSellStorefront1.completeTransaction(testProductsList1.get(0), testUser2);
+
+    }
 
     /**
      * Automated tests for mutator methods:
