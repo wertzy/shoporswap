@@ -8,6 +8,8 @@ public class ShopOrSwap implements BasicAPI{
 
     private List<User> userList;
     private List<Product> productList;
+    private List<Tag> tagList;
+    private List<Report> reportList;
 
     /**
      * Default constructor for a ShopOrSwap object
@@ -16,6 +18,10 @@ public class ShopOrSwap implements BasicAPI{
         // implement method to pass corresponding tests after the tests have been written
         this.userList = new ArrayList<User>();
         this.productList = new ArrayList<Product>();
+        this.tagList = new ArrayList<Tag>();
+        this.reportList = new ArrayList<Report>();
+        Tag baseTag = new Tag("Physics");
+        tagList.add(baseTag);
     }
 
     /**
@@ -162,6 +168,7 @@ public class ShopOrSwap implements BasicAPI{
      * finds a User in the program
      * @param accountName the account name of the User to find
      * @return the User found
+     * @throws IllegalArgumentException if the User does not exist in the system
      */
     public User findAccount(String accountName){
         // implement method to pass corresponding tests after the tests have been written
@@ -170,7 +177,7 @@ public class ShopOrSwap implements BasicAPI{
                 return aUser;
             }
         }
-        return null;
+        throw new IllegalArgumentException("User does not exist in the system");
     }
 
     /**
@@ -208,9 +215,8 @@ public class ShopOrSwap implements BasicAPI{
         }
     }
     /**
-     * Creates a Product to swap by a User
+     * Removes and returns a product
      * @param product the name of the Product to remove
-     * @throws IllegalArgumentException if the User merchant does not exist in the system
      */
 
     public Product removeSellProduct(Product product){
@@ -272,12 +278,16 @@ public class ShopOrSwap implements BasicAPI{
         throw new NoSuchElementException("Product does not exist for the User in the system");
     }
     /**
-     * Finds a Product from the User
+     * Finds a Product from the productlist
      * @param  searchPhrase the input to use for the search
      * @return the Product to find
-     //* @throws NoSuchElementException if the Product does not exist for the User
+     * @throws NoSuchElementException if the Product does not exist for the User
+     * @throws IllegalArgumentException if the search phrase is an empty string
      */
     public List<Product> searchForProduct(String searchPhrase){
+        if(searchPhrase.length()<1){
+            throw new IllegalArgumentException("Please input something to search");
+        }
         List<Product> searchResults= new ArrayList<Product>(0);
         // implement method to pass corresponding tests after the tests have been written
         for(Product product : this.productList){
@@ -290,6 +300,70 @@ public class ShopOrSwap implements BasicAPI{
         }
         else {
             throw new NoSuchElementException("No product fits what you searched for");
+        }
+    }
+    /**
+     * Finds a Tag from the taglist
+     * @param  searchPhrase the input to use for the search
+     * @return the Tag to find
+     * @throws NoSuchElementException if the Tag does not exist for the User
+     * @throws IllegalArgumentException if the search phrase is an empty string
+     */
+    public List<Product> searchForTag(String searchPhrase){
+        if(searchPhrase.length()<1){
+            throw new IllegalArgumentException("Please input something to search");
+        }
+        if(searchPhrase.charAt(0)=='#'){
+            searchPhrase=searchPhrase.substring(1);
+        }
+        List<Product> searchResults= new ArrayList<Product>(0);
+        // implement method to pass corresponding tests after the tests have been written
+        for(Tag tag : this.tagList){
+            if(tag.getName().equalsIgnoreCase(searchPhrase)){
+                searchResults=tag.getProducts();
+                break;
+            }
+        }
+        if(searchResults.size()>0){
+            return searchResults;
+        }
+        else {
+            throw new NoSuchElementException("No product fits what you searched for");
+        }
+    }
+    public List<Product> search(String searchPhrase){
+        if(searchPhrase.length()<1){
+            throw new IllegalArgumentException("Please input something to search");
+        }
+        if(searchPhrase.charAt(0)=='#'){
+            searchPhrase=searchPhrase.substring(1);
+            return searchForTag(searchPhrase);
+        }
+        else{
+            return searchForProduct(searchPhrase);
+        }
+
+    }
+
+
+    public void productTagsToTag(Product product){
+
+        for(int i=0; i<product.getTags().size(); i++){
+            boolean existsInTagList=false;
+            for(int j=0; j<tagList.size(); j++){
+                if(tagList.get(j).getName().equalsIgnoreCase(product.getTags().get(i))){ // might be able to break code if two tags exist one with #Supreme and the other with #supreme?
+                    existsInTagList=true;
+                    if(!tagList.get(j).getProducts().contains(product)){
+                        tagList.get(j).addProduct(product);
+                    }
+                }
+                else if(j==tagList.size()-1 && !existsInTagList){
+                    //System.out.println("You made it");
+                    Tag newTag= new Tag(product.getTags().get(i));
+                    tagList.add(newTag);
+                }
+            }
+
         }
     }
 
@@ -399,6 +473,16 @@ public class ShopOrSwap implements BasicAPI{
     public List<Product> getProductList() {
         // implement method to pass corresponding tests after the tests have been written
         return this.productList;
+    }
+
+    public List<Tag> getTagList() {
+        // implement method to pass corresponding tests after the tests have been written
+        return this.tagList;
+    }
+    public void genReport(User user,String comment){
+        Report rep=new Report(user.getAccountName(),comment,user);
+        user.sendMessage("Report", rep.comment, user);
+        reportList.add(rep);
     }
 
     /**

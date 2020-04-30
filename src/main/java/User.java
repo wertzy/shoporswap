@@ -4,11 +4,12 @@ import java.util.regex.Pattern;
 public class User {
     protected String accountName;
     protected String password;
-    protected ArrayList<String> transactionHistory;
+    protected List<String> transactionHistory;
     protected ArrayList<Message> messages;
-    protected static List<Product> productList;
-    protected static List<ArrayList<String>> pastTransactions;
-    protected double rating;
+    protected static List<Product> productList = new ArrayList<Product>();
+    protected static ArrayList<String> pastTransactions;
+    protected ArrayList<Integer> ratingList = new ArrayList<>();
+    protected double ratingAverage;
 
     /**
      * Default constructor of a User
@@ -16,9 +17,9 @@ public class User {
     public User() {
         this.accountName = "accountname";
         this.password = "password";
-        this.rating = 0.0;
-        this.transactionHistory = new ArrayList<String>();
-        this.messages = new ArrayList<Message>();
+        this.ratingAverage = 0.0;
+        this.transactionHistory = new ArrayList<>();
+        this.messages = new ArrayList<>();
     }
 
     /**
@@ -39,7 +40,7 @@ public class User {
         }else {
             this.password = passwordIn;
         }
-        this.rating = 0.0;
+        this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
         this.messages = new ArrayList<Message>();
     }
@@ -59,14 +60,14 @@ public class User {
     public String getPassword(){
         return this.password;
     }
-    public List <String> getTransactionHistory(){return this.transactionHistory;}
+    public List<String> getTransactionHistory(){return this.transactionHistory;}
 
     /**
      * Accessor for the rating property of a User
      * @return the rating of the User
      */
     public double getRating(){
-        return this.rating;
+        return this.ratingAverage;
     }
 
     /**
@@ -128,27 +129,71 @@ public class User {
     public String checkMessage(Message message){
         return message.checked();
     }
-    public ArrayList<Message> getMessages(){return messages;}
+    public ArrayList<Message> retrieveMessages(){return messages;}
 
     /**
      * Views the Collection of clothing available to see (varies by seller, shopper, swapper)
      * @return the viewable clothing (as a list) of clothing
      */
-    public Collection<Product> viewClothing(){
-        return null;
+    public void viewClothing(){
+        for(int i=0;i<transactionHistory.size();i++){
+            System.out.println(transactionHistory.get(i)+"\n");
+        }
+
     }
 
-    /**
-     * adds product to clothing list
-     * @return the viewable clothing (as a list) of clothing
-     */
-    public void addClothing(Product product){
+
+    public static void addClothing(String name, String description, User self){
+        Product newProduct=new Product(name,description,self);
+        List<Product> tempNextProductList = new ArrayList<Product>();
+        tempNextProductList.add(newProduct);
+        productList.add(tempNextProductList.get(0));
+    }
+
+    public Product find(String name){
+        for(Product product : productList){
+            if(product.getName().compareToIgnoreCase(name) == 0){
+                return product;
+            }
+        }
+        throw new NoSuchElementException("Product does not exist for the User in the system");
+    }
+
+
+    public void buy(String productName, User merchant){
+        //Product merchantProduct=merchant.find(name);
+        String transaction = merchant.accountName+":"+ productName;
+        transactionHistory.add(transaction);
+
+    }
+
+    public void sell(String name, String description,User self){
+        Product product=new Product(name,description, self);
         productList.add(product);
     }
 
-    public void removeClothing(Product product){
-        productList.remove(product);
+
+    public void rate(User merchant,int rating){
+        if(rating>5 || rating<1){
+            throw new IllegalArgumentException("invalid rating");
+        }
+        merchant.ratingList.add(rating);
+        merchant.calcRatingAverage();
+
     }
+
+
+
+    public void calcRatingAverage(){
+        double tempRatingAverage=0;
+        for (int i=0; i<ratingList.size();i++){
+            tempRatingAverage+=ratingList.get(i);
+        }
+        tempRatingAverage=tempRatingAverage/ratingList.size();
+        ratingAverage=tempRatingAverage;
+    }
+
+
 
 
 

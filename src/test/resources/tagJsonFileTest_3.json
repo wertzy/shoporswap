@@ -1,0 +1,20 @@
+[ {
+  "name" : "tag1",
+  "products" : [ ]
+}, {
+  "name" : "tag2",
+  "products" : [ {
+    "name" : "test1",
+    "description" : "description1",
+    "price" : 50.0,
+    "tags" : [ ],
+    "merchant" : {
+      "accountName" : "test1",
+      "password" : "pass1",
+      "transactionHistory" : [ ],
+      "messages" : [ ],
+      "rating" : 0.0
+    },
+    "consumers" : [ ]
+  } ]
+} ]
