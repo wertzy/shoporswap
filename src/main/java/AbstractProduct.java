@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 
 public abstract class AbstractProduct {
 
@@ -19,11 +19,32 @@ public abstract class AbstractProduct {
     }
 
     /**
+     * Adds a tag to the AbstractProduct
+     * @param tagNameIn the tag to add to the AbstractProduct
+     * @return the tag added to the AbstractProduct
+     * @throws IllegalArgumentException if tagNameIn is invalid name for Tag object
+     */
+    public final Tag addTag(String tagNameIn){
+        return null;
+    }
+
+    /**
      * Finds a tag in the AbsteactProduct
      * @param tagIn the tag to find in the AbsractProduct
      * @return the tag found in the AbstractProduct
+     * @throws NoSuchElementException if a Tag tagIn does not exist for the AbstractProduct
      */
     public final Tag findTag(Tag tagIn){
+        return null;
+    }
+
+    /**
+     * Finds a tag in the AbsteactProduct
+     * @param tagNameIn the tag to find in the AbsractProduct
+     * @return the tag found in the AbstractProduct
+     * @throws NoSuchElementException if a Tag with name tagNameIn does not exist for the AbstractProduct
+     */
+    public final Tag findTag(String tagNameIn){
         return null;
     }
 
@@ -31,8 +52,19 @@ public abstract class AbstractProduct {
      * Removes a tag from the AbstractProduct
      * @param tagIn the tag to remove from the AbstractProduct
      * @return the tag removed from the Absract Product
+     * @throws NoSuchElementException if a Tag tagIn does not exist for the AbstractProduct
      */
     public final Tag removeTag(Tag tagIn){
+        return null;
+    }
+
+    /**
+     * Removes a tag in the AbsteactProduct
+     * @param tagNameIn the tag to find in the AbsractProduct
+     * @return the tag removed from the AbstractProduct
+     * @throws NoSuchElementException if a Tag with name tagNameIn does not exist for the AbstractProduct
+     */
+    public final Tag removeTag(String tagNameIn){
         return null;
     }
 
