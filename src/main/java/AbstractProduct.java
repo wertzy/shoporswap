@@ -79,6 +79,7 @@ public abstract class AbstractProduct {
     /**
      * Mutator method for the productName property of the AbstractProduct
      * @param nameIn the name to set for the AbstractProduct
+     * @throws IllegalArgumentException if the value of nameIn is invalid
      */
     public final void setProductName(String nameIn){
 
@@ -87,6 +88,7 @@ public abstract class AbstractProduct {
     /**
      * Mutator method for the productDescription property of the AbstractProduct
      * @param descriptionIn the description to set for the AbstractProduct
+     * @throws IllegalArgumentException if the value of descriptionIn is invalid
      */
     public final void setProductDescription(String descriptionIn){
 
@@ -95,6 +97,7 @@ public abstract class AbstractProduct {
     /**
      * Mutator method for the productValue property of the AbstractProduct
      * @param valueIn the value to set for the AbstractProduct
+     * @throws IllegalArgumentException if the value of valueIn is invalid
      */
     public final void setProductValue(double valueIn){
 
@@ -114,6 +117,33 @@ public abstract class AbstractProduct {
      */
     public final void setProductTags(List<Tag> tagsIn){
 
+    }
+
+    /**
+     * Validation method for determining whether a product's name is valid
+     * @param nameIn
+     * @return true if the desired name is valid, false otherwise
+     */
+    public static final boolean isValidProductName(String nameIn){
+        return false;
+    }
+
+    /**
+     * Validation method for determining whether a product's description is valid
+     * @param descriptionIn
+     * @return true if the desired description is valid, false otherwise
+     */
+    public static final boolean isValidProductDescription(String descriptionIn){
+        return false;
+    }
+
+    /**
+     * Validation method for determining whether a product's price is valid
+     * @param priceIn
+     * @return true if the desired price is valid, false otherwise
+     */
+    public static final boolean isValidProductPrice(double priceIn){
+        return false;
     }
 
 }
