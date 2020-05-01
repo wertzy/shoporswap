@@ -6,7 +6,7 @@ public class StorefrontFactory {
      * @return a new Storefront object
      * @throws IllegalArgumentException if the Storefront type is invalid (valid types are "sell" or "swap")
      */
-    public Storefront getSellStorefront(String storefrontType){
+    public Storefront getStorefront(String storefrontType){
         return null;
     }
 }
