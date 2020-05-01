@@ -6,6 +6,11 @@ public class Tag {
     private String name;
     private List<Product> products;
 
+    public Tag(){
+        this.name = "name";
+        this.products = new ArrayList<Product>();
+    }
+
     public Tag(String name){
         if(!isValidTagName(name)){ // calls validity check on name
             throw new IllegalArgumentException("invalid tag");
@@ -35,7 +40,7 @@ public class Tag {
         this.products.add(product);
     }
 
-    public List<Product> getProductList() {
+    public List<Product> getProducts() {
         // implement method to pass corresponding tests after the tests have been written
         return this.products;
     }

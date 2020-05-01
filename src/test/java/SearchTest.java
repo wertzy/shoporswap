@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -88,12 +87,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
             Tag testTag = new Tag("shirt");
             testTag.addProduct(testShopOrSwap.findProduct("tshirt",testUser1));
-            List<Product> productListTest = testTag.getProductList();
+            List<Product> productListTest = testTag.getProducts();
             assertEquals(1, productListTest.size());
             assertEquals("tshirt", productListTest.get(0).getName());
 
             testTag.addProduct(testShopOrSwap.findProduct("Pink shirt",testUser2));
-            List<Product> productListTest2 = testTag.getProductList();
+            List<Product> productListTest2 = testTag.getProducts();
             assertEquals(2, productListTest2.size());
             assertEquals("Pink shirt", productListTest.get(1).getName());
 
@@ -119,7 +118,7 @@ import static org.junit.jupiter.api.Assertions.*;
             assertEquals("Funny", testShopOrSwap.getTagList().get(2).getName());
             assertEquals("Supreme", testShopOrSwap.getTagList().get(3).getName());
             assertEquals("shirt", testShopOrSwap.getTagList().get(4).getName());
-            assertEquals(testShopOrSwap.findProduct("tshirt",testUser1), testShopOrSwap.getTagList().get(2).getProductList().get(0));
+            assertEquals(testShopOrSwap.findProduct("tshirt",testUser1), testShopOrSwap.getTagList().get(2).getProducts().get(0));
 
 
             Product testProduct3=testShopOrSwap.findProduct("Pink shirt",testUser2);
@@ -131,10 +130,10 @@ import static org.junit.jupiter.api.Assertions.*;
             assertEquals("Supreme", testShopOrSwap.getTagList().get(3).getName());
             assertEquals("shirt", testShopOrSwap.getTagList().get(4).getName());
             assertEquals("Hilarious", testShopOrSwap.getTagList().get(5).getName());
-            assertEquals(2,testShopOrSwap.getTagList().get(3).getProductList().size());
-            assertEquals(2,testShopOrSwap.getTagList().get(4).getProductList().size());
-            assertEquals(testShopOrSwap.findProduct("tshirt",testUser1), testShopOrSwap.getTagList().get(4).getProductList().get(0));
-            assertEquals(testShopOrSwap.findProduct("Pink shirt",testUser2), testShopOrSwap.getTagList().get(4).getProductList().get(1));
+            assertEquals(2,testShopOrSwap.getTagList().get(3).getProducts().size());
+            assertEquals(2,testShopOrSwap.getTagList().get(4).getProducts().size());
+            assertEquals(testShopOrSwap.findProduct("tshirt",testUser1), testShopOrSwap.getTagList().get(4).getProducts().get(0));
+            assertEquals(testShopOrSwap.findProduct("Pink shirt",testUser2), testShopOrSwap.getTagList().get(4).getProducts().get(1));
 
 
 

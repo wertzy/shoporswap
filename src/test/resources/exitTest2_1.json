@@ -6,5 +6,9 @@
     "messages" : [ ],
     "rating" : 0.0
   } ],
-  "productList" : [ ]
+  "productList" : [ ],
+  "tagList" : [ {
+    "name" : "Physics",
+    "products" : [ ]
+  } ]
 }

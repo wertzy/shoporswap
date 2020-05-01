@@ -1,8 +1,10 @@
 import java.util.*;
 /*
- public class Report (String ID, String comment, User user){
-		public String comment,iD;
-		public User user;
+
+public class Report (String ID, String comment, User user){
+public String comment iD;
+public User user;
+
 public void Report(String iD, String comment, User user){
 		this.iD=ID;
 		this.Comment=comment;
