@@ -66,7 +66,7 @@ public class User {
      * Accessor for the rating property of a User
      * @return the rating of the User
      */
-    public double getRating(){
+    public double getRatingAverage(){
         return this.ratingAverage;
     }
 
@@ -190,7 +190,7 @@ public class User {
             tempRatingAverage+=ratingList.get(i);
         }
         tempRatingAverage=tempRatingAverage/ratingList.size();
-        ratingAverage=tempRatingAverage;
+        ratingAverage =tempRatingAverage;
     }
 
 
