@@ -27,4 +27,13 @@ public class Admin extends Account {
         return null;
     }
 
+    /**
+     * Method to freeze accounts
+     * @param clientIn the Client to unfreeze
+     * @return the Client frozen
+     */
+    public Client unfreezeAccount(Client clientIn){
+        return null;
+    }
+
 }
