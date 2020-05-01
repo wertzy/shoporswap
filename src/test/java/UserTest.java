@@ -89,12 +89,13 @@ class UserTest {
     void buyTest(){
         User user=new User("desmond","desmond");
         User user1=new User("testuser","testuser2");
-        user1.sell("red tee","red tee from hm",user1);
-        user1.sell("blue tee","blue tee from hm",user1);
+        user1.walletAdd(500);
+        user.walletAdd(500);
         user1.sell("green tee","green tee from hm",user1);
-        user.buy("green tee",user1);
+        user.buy("green tee",user1,50);
+        assertEquals(450,user.getWallet());
 
-        assertThrows(NoSuchElementException.class,()->user.buy("yellow tee",user1));
+        assertThrows(NoSuchElementException.class,()->user.buy("yellow tee",user1,50));
 
     }
 

@@ -172,11 +172,12 @@ public class User {
     }
 
 
-    public void buy(String productName, User merchant){
+    public void buy(String productName, User merchant,int amount){
         //Product merchantProduct=merchant.find(name);
         String transaction = merchant.accountName+":"+ productName;
         transactionHistory.add(transaction);
-
+        walletSubtract(amount);
+        merchant.walletAdd(amount);
     }
 
     public void sell(String name, String description,User self){
