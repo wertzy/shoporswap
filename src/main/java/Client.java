@@ -8,7 +8,8 @@ public class Client extends Account{
      * Default constructor for Client object
      */
     public Client(){
-
+        super("DefaultClient", "DefaultPassword");
+        this.setMyProductList(new ArrayList<AbstractProduct>());
     }
 
     /**
@@ -19,7 +20,8 @@ public class Client extends Account{
      * @throws IllegalArgumentException if passwordIn is invalid
      */
     public Client(String nameIn, String passwordIn){
-
+        super(nameIn, passwordIn);
+        this.setMyProductList(new ArrayList<AbstractProduct>());
     }
 
     /**
@@ -28,7 +30,8 @@ public class Client extends Account{
      * @return the SellProduct added
      */
     public SellProduct addSellProduct(SellProduct productIn){
-        return null;
+        this.myProductList.add(productIn);
+        return productIn;
     }
 
     /**
@@ -37,7 +40,8 @@ public class Client extends Account{
      * @return the SwapProduct added
      */
     public SwapProduct addSwapProduct(SwapProduct productIn){
-        return null;
+        this.myProductList.add(productIn);
+        return productIn;
     }
 
     /**
@@ -47,7 +51,12 @@ public class Client extends Account{
      * @throws NoSuchElementException if the SellProduct does not exist in the AbstractProduct list
      */
     public SellProduct findSellProduct(SellProduct productIn){
-        return null;
+        for(AbstractProduct product : this.myProductList){
+            if(product == productIn){
+                return (SellProduct) product;
+            }
+        }
+        throw new NoSuchElementException("SellProduct does not exist");
     }
 
     /**
@@ -57,7 +66,12 @@ public class Client extends Account{
      * @throws NoSuchElementException if the SwapProduct does not exist in the AbstractProduct list
      */
     public SwapProduct findSwapProduct(SwapProduct productIn){
-        return null;
+        for(AbstractProduct product : this.myProductList){
+            if(product == productIn){
+                return (SwapProduct) product;
+            }
+        }
+        throw new NoSuchElementException("SwapProduct does not exist");
     }
 
     /**
@@ -67,7 +81,13 @@ public class Client extends Account{
      * @throws NoSuchElementException if the SellProduct does not exist in the AbstractProduct list
      */
     public SellProduct removeSellProduct(SellProduct productIn){
-        return null;
+        for(AbstractProduct product : this.myProductList){
+            if(product == productIn){
+                this.myProductList.remove(product);
+                return (SellProduct) product;
+            }
+        }
+        throw new NoSuchElementException("SwapProduct does not exist");
     }
 
     /**
@@ -77,7 +97,13 @@ public class Client extends Account{
      * @throws NoSuchElementException if the SwapProduct does not exist in the AbstractProduct list
      */
     public SwapProduct removeSwapProduct(SwapProduct productIn){
-        return null;
+        for(AbstractProduct product : this.myProductList){
+            if(product == productIn){
+                this.myProductList.remove(product);
+                return (SwapProduct) product;
+            }
+        }
+        throw new NoSuchElementException("SwapProduct does not exist");
     }
 
     /**
@@ -85,7 +111,7 @@ public class Client extends Account{
      * @return the list of products of the Client Account
      */
     public List<AbstractProduct> getMyProductList(){
-        return null;
+        return this.myProductList;
     }
 
     /**
@@ -94,7 +120,7 @@ public class Client extends Account{
      * @throws IllegalArgumentException if at least one of the AbstractProducts is invalid
      */
     public void setMyProductList(List<AbstractProduct> productListIn){
-
+        this.myProductList = productListIn;
     }
 
 

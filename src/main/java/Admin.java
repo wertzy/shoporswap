@@ -4,7 +4,7 @@ public class Admin extends Account {
      * Default constructor for Admin Account
      */
     public Admin(){
-
+        super("DefaultAdmin", "DefaultPassword");
     }
 
     /**
@@ -15,7 +15,7 @@ public class Admin extends Account {
      * @throws IllegalArgumentException if passwordIn is invalid
      */
     public Admin(String nameIn, String passwordIn){
-
+        super(nameIn, passwordIn);
     }
 
     /**
@@ -24,7 +24,8 @@ public class Admin extends Account {
      * @return the Client frozen
      */
     public Client freezeAccount(Client clientIn){
-        return null;
+        clientIn.setIsFrozen(true);
+        return clientIn;
     }
 
     /**
@@ -33,7 +34,8 @@ public class Admin extends Account {
      * @return the Client frozen
      */
     public Client unfreezeAccount(Client clientIn){
-        return null;
+        clientIn.setIsFrozen(false);
+        return clientIn;
     }
 
 }

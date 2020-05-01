@@ -26,7 +26,7 @@ public class ClientTest {
 
         testClient2 = new Client("test1", "pass1");
         assertEquals("test1", testClient2.getAccountName());
-        assertEquals("pass1", testClient2.getAccountName());
+        assertEquals("pass1", testClient2.getAccountPassword());
         assertFalse(testClient2.getIsFrozen());
         assertEquals(0, testClient2.getMyProductList().size());
 
@@ -40,7 +40,7 @@ public class ClientTest {
 
         testClient4 = new Client("test1", "pass1");
         assertEquals("test1", testClient4.getAccountName());
-        assertEquals("pass1", testClient4.getAccountName());
+        assertEquals("pass1", testClient4.getAccountPassword());
         assertFalse(testClient4.getIsFrozen());
         assertEquals(0, ((Client) testClient4).getMyProductList().size());
 

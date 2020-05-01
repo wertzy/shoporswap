@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.regex.Pattern;
 
 public abstract class Account {
 
@@ -10,7 +11,8 @@ public abstract class Account {
      * Default constructor for Account class
      */
     public Account(){
-
+        this.accountName = "DefaultName";
+        this.accountPassword = "DefaultPassword";
     }
 
     /**
@@ -21,7 +23,8 @@ public abstract class Account {
      * @throws IllegalArgumentException if passwordIn is invalid
      */
     public Account(String nameIn, String passwordIn){
-
+        this.setAccountName(nameIn);
+        this.setAccountPassword(passwordIn);
     }
 
     /**
@@ -29,7 +32,7 @@ public abstract class Account {
      * @return the name of the Account
      */
     public final String getAccountName(){
-        return "";
+        return this.accountName;
     }
 
     /**
@@ -37,7 +40,7 @@ public abstract class Account {
      * @return the password of the Account
      */
     public final String getAccountPassword(){
-        return "";
+        return this.accountPassword;
     }
 
     /**
@@ -45,7 +48,7 @@ public abstract class Account {
      * @return the frozen status of the Account
      */
     public final boolean getIsFrozen(){
-        return false;
+        return this.isFrozen;
     }
 
     /**
@@ -54,7 +57,11 @@ public abstract class Account {
      * @throws IllegalArgumentException if nameIn is invalid
      */
     public final void setAccountName(String nameIn){
-
+        if(isValidAccountName(nameIn)){
+            this.accountName = nameIn;
+        }else {
+            throw new IllegalArgumentException("Name is invalid");
+        }
     }
 
     /**
@@ -63,7 +70,11 @@ public abstract class Account {
      * @throws IllegalArgumentException if passwordIn is invalid
      */
     public final void setAccountPassword(String passwordIn){
-
+        if(isValidAccountName(passwordIn)){
+            this.accountPassword = passwordIn;
+        }else {
+            throw new IllegalArgumentException("Password is invalid");
+        }
     }
 
     /**
@@ -71,7 +82,7 @@ public abstract class Account {
      * @param isFrozenIn the desired frozen status
      */
     public final void setIsFrozen(boolean isFrozenIn){
-
+        this.isFrozen = isFrozenIn;
     }
 
     /**
@@ -80,7 +91,14 @@ public abstract class Account {
      * @return true if the desired account name is valid, false otherwise
      */
     public static final boolean isValidAccountName(String nameIn){
-        return false;
+        if(nameIn.isEmpty()){
+            return false;
+        }
+        if(nameIn.indexOf(" ") != -1){
+            return false;
+        }
+        String exp = "[\\w]+\\z";
+        return Pattern.matches(exp, nameIn);
     }
 
     /**
@@ -89,7 +107,11 @@ public abstract class Account {
      * @return true if the desired account password is valid, false otherwise
      */
     public static final boolean isValidAccountPassword(String passwordIn){
-        return false;
+        if(passwordIn.isEmpty()){
+            return false;
+        }
+        String exp = "\\A[^\\s]+\\z";
+        return Pattern.matches(exp, passwordIn);
     }
 
 }

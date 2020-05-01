@@ -49,8 +49,7 @@ public class AccountTest {
     void isValidAccountNameTest(){
         //True Tests
         assertTrue(Account.isValidAccountName("desmond"));
-        //EC: Standard valid emails. This is not a border case.
-        assertTrue(Account.isValidAccountName("desmond@email.com"));
+        assertFalse(Account.isValidAccountName("desmond@email.com"));
         //False Tests
         assertFalse(Account.isValidAccountName(""));
         assertFalse(Account.isValidAccountName("des mond"));
