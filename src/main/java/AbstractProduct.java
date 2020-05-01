@@ -7,7 +7,7 @@ public abstract class AbstractProduct {
     private String productName;
     private String productDescription;
     private double productValue;
-    private User productMerchant;
+    private Client productMerchant;
     private List<Tag> productTags;
 
     /**
@@ -37,7 +37,7 @@ public abstract class AbstractProduct {
      * @throws IllegalArgumentException if valueIn is invalid
      * @throws IllegalArgumentException if merchantIn is invalid
      */
-    public AbstractProduct(String nameIn, String descriptionIn, double valueIn, User merchantIn){
+    public AbstractProduct(String nameIn, String descriptionIn, double valueIn, Client merchantIn){
         this.setProductName(nameIn);
         this.setProductDescription(descriptionIn);
         this.setProductValue(valueIn);
@@ -120,7 +120,7 @@ public abstract class AbstractProduct {
      * Accessor method for the productMerchant property of the AbstractProduct
      * @return the merchant of the AbstractProduct
      */
-    public final User getProductMerchant(){
+    public final Client getProductMerchant(){
         return this.productMerchant;
     }
 
@@ -164,7 +164,7 @@ public abstract class AbstractProduct {
      * Mutator method for the productMerchant property of the AbstractProduct
      * @param userIn the merchant to set for the AbstractProduct
      */
-    public final void setProductMerchant(User userIn){
+    public final void setProductMerchant(Client userIn){
         this.productMerchant = userIn;
     }
 

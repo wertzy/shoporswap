@@ -98,7 +98,7 @@ public class AbstractProductTest {
     @Test
     void addTagTestTagTests(){
         
-        User testUser1 = new User();
+        Client testUser1 = new Client();
         final Tag testTag1, testTag2;
 
         SellProduct testSellProduct1;
@@ -184,7 +184,7 @@ public class AbstractProductTest {
      */
     @Test
     void findTagTestTagTests(){
-        User testUser1 = new User();
+        Client testUser1 = new Client();
         final Tag testTag1, testTag2;
 
         testTag1 = new Tag("tag1");
@@ -277,7 +277,7 @@ public class AbstractProductTest {
     @Test
     void removeTagTestsTagTest(){
 
-        User testUser1 = new User();
+        Client testUser1 = new Client();
         final Tag testTag1, testTag2;
 
         testTag1 = new Tag("tag1");
