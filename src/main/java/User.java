@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -9,6 +10,7 @@ public class User {
     protected static List<Product> productList = new ArrayList<Product>();
     protected static ArrayList<String> pastTransactions;
     protected ArrayList<Integer> ratingList = new ArrayList<>();
+    protected double wallet;
     protected double ratingAverage;
 
     /**
@@ -43,6 +45,7 @@ public class User {
         this.ratingAverage = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
         this.messages = new ArrayList<Message>();
+        this.wallet=0;
     }
 
     /**
@@ -69,6 +72,15 @@ public class User {
     public double getRating(){
         return this.ratingAverage;
     }
+
+    /**
+     * Accessor for the wallet property of a User
+     * @return the wallet of the User
+     */
+    public double getWallet(){
+        return this.wallet;
+    }
+
 
     /**
      * Checks to see if a desired account name has any illegal characters (spaces)
@@ -182,8 +194,6 @@ public class User {
 
     }
 
-
-
     public void calcRatingAverage(){
         double tempRatingAverage=0;
         for (int i=0; i<ratingList.size();i++){
@@ -193,8 +203,28 @@ public class User {
         ratingAverage=tempRatingAverage;
     }
 
+    public void walletAdd(double amount){
+        if(BigDecimal.valueOf(amount).scale()>2){
+            throw new IllegalArgumentException("amount must be less than three decimals");
+        }
+        if(amount<0){
+            throw new IllegalArgumentException("amount cannot be negative");
+        }
+        wallet+=amount;
+    }
 
-
+    public void walletSubtract(double amount){
+        if(BigDecimal.valueOf(amount).scale()>2){
+            throw new IllegalArgumentException("amount must be less than three decimals");
+        }
+        if(amount<0){
+            throw new IllegalArgumentException("amount cannot be negative");
+        }
+        if(wallet-amount<0){
+            throw new IllegalArgumentException("will have negative wallet with amount given");
+        }
+        wallet-=amount;
+    }
 
 
 

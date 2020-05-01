@@ -113,5 +113,21 @@ class UserTest {
 
     }
 
+    @Test
+    void walletTest(){
+        User user=new User("testuser","testuser");
+        user.walletAdd(100);
+        assertEquals(100,user.getWallet());
+        user.walletSubtract(50);
+        assertEquals(50,user.getWallet());
+
+        assertThrows(IllegalArgumentException.class,()->user.walletAdd(7.891));
+        assertThrows(IllegalArgumentException.class,()->user.walletAdd(-1));
+
+        assertThrows(IllegalArgumentException.class,()->user.walletSubtract(7.891));
+        assertThrows(IllegalArgumentException.class,()->user.walletSubtract(51));
+        assertThrows(IllegalArgumentException.class,()->user.walletSubtract(-1));
+
+    }
 
 }
