@@ -105,7 +105,7 @@ class UserTest {
         User user2=new User("testuser","testuser");
         user1.rate(user,5);
         user2.rate(user,1);
-        assertEquals(3,user.getRating());
+        assertEquals(3,user.getRatingAverage());
 
         assertThrows(IllegalArgumentException.class,()->user.rate(user1,6));
         assertThrows(IllegalArgumentException.class,()->user.rate(user1,0));
