@@ -30,9 +30,6 @@ public class StorefrontFactoryTest {
         assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("Swapp"));
         assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("SWAPP"));
         assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("SwApP"));
-        assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("Swap"));
-        assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("SWAP"));
-        assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("SwAp"));
         assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("wapp"));
         assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("WAPP"));
         assertThrows(IllegalArgumentException.class, ()-> testStorefrontFactory.getStorefront("wApP"));

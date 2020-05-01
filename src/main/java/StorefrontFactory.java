@@ -7,6 +7,13 @@ public class StorefrontFactory {
      * @throws IllegalArgumentException if the Storefront type is invalid (valid types are "sell" or "swap")
      */
     public Storefront getStorefront(String storefrontType){
-        return null;
+        if(storefrontType.compareToIgnoreCase("sell") == 0){
+            return new SellStorefront();
+        }else if(storefrontType.compareToIgnoreCase("swap") == 0){
+            return new SwapStorefront();
+        }else{
+            throw new IllegalArgumentException("Invalid Storefront type");
+        }
+
     }
 }
