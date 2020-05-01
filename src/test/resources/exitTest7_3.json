@@ -3,32 +3,27 @@
     "accountName" : "test1",
     "password" : "pass1",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "test2",
     "password" : "pass2",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "test3",
     "password" : "pass3",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "test4",
     "password" : "pass4",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "test5",
     "password" : "pass5",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   } ],
   "productList" : [ {
     "name" : "name 1",
@@ -39,8 +34,7 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -52,8 +46,7 @@
       "accountName" : "test2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -65,8 +58,7 @@
       "accountName" : "test3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -78,8 +70,7 @@
       "accountName" : "test4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -91,8 +82,7 @@
       "accountName" : "test5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   } ],
