@@ -27,7 +27,6 @@ public class SwapStorefrontTest {
         assertThrows(IllegalArgumentException.class, ()-> new SwapStorefront(invalidName, testUser1));
         assertThrows(IllegalArgumentException.class, ()-> new SwapStorefront(invalidName, testUser2));
         assertThrows(IllegalArgumentException.class, ()-> new SwapStorefront(invalidName, null));
-        assertThrows(IllegalArgumentException.class, ()-> new SwapStorefront(validName, null));
 
         SwapStorefront testSwapStorefront1, testSwapStorefront2, testSwapStorefront3, testSwapStorefront4;
 
@@ -55,7 +54,7 @@ public class SwapStorefrontTest {
                         new SwapProduct("product2", "description2", 50, testUser2)
                 )
         );
-        assertEquals(validName, testSwapStorefront3.getStorefrontName());
+        assertEquals("Valid Name 2", testSwapStorefront3.getStorefrontName());
         assertEquals(testUser2, testSwapStorefront3.getStorefrontOwner());
         assertEquals(2, testSwapStorefront3.getSwapProducts().size());
 

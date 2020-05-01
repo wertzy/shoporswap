@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public abstract class Storefront {
 
@@ -10,7 +11,8 @@ public abstract class Storefront {
      * Default constructor for Storefront object
      */
     public Storefront(){
-
+        this.setStorefrontName("DEFAULT NAME");
+        this.setStorefrontOwner(null);
     }
 
     /**
@@ -21,7 +23,8 @@ public abstract class Storefront {
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
     public Storefront(String nameIn, Client ownerIn){
-
+        this.setStorefrontName(nameIn);
+        this.setStorefrontOwner(ownerIn);
     }
 
     /**
@@ -29,7 +32,7 @@ public abstract class Storefront {
      * @return the name of the Storefront
      */
     public final String getStorefrontName(){
-        return "";
+        return this.storefrontName;
     }
 
     /**
@@ -37,7 +40,7 @@ public abstract class Storefront {
      * @return the owner of the Storefront
      */
     public final Client getStorefrontOwner(){
-        return null;
+        return this.storefrontOwner;
     }
 
     public abstract List<AbstractProduct> getStorefrontProducts();
@@ -48,6 +51,11 @@ public abstract class Storefront {
      * @throws IllegalArgumentException if the name is invalid
      */
     public final void setStorefrontName(String nameIn){
+        if(isValidStorefrontName(nameIn)){
+            this.storefrontName = nameIn;
+        }else{
+            throw new IllegalArgumentException("Storefront name is invalid");
+        }
     }
 
     /**
@@ -55,6 +63,7 @@ public abstract class Storefront {
      * @param ownerIn the owner to set
      */
     public final void setStorefrontOwner(Client ownerIn){
+        this.storefrontOwner = ownerIn;
     }
 
     /**
@@ -63,7 +72,17 @@ public abstract class Storefront {
      * @return true if valid, false otherwise
      */
     public static final boolean isValidStorefrontName(String nameIn){
-        return false;
+        if(nameIn.isEmpty()){
+            return false;
+        }
+        if(nameIn.indexOf(" ") == 0 || nameIn.lastIndexOf(" ") == nameIn.length() - 1){
+            return false;
+        }
+        if(nameIn.indexOf("-") == 0 || nameIn.lastIndexOf("-") == nameIn.length() - 1){
+            return false;
+        }
+        String exp = "[\\w[-\\s]]+\\z";
+        return Pattern.matches(exp, nameIn);
     }
 
 }

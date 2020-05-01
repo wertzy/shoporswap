@@ -64,8 +64,8 @@ public class StorefrontTest {
         assertTrue(Storefront.isValidStorefrontName(testName8));
         assertTrue(Storefront.isValidStorefrontName(testName9));
         assertTrue(Storefront.isValidStorefrontName(testName10));
-        assertTrue(Storefront.isValidStorefrontName(testName11));
-        assertTrue(Storefront.isValidStorefrontName(testName12));
+        assertFalse(Storefront.isValidStorefrontName(testName11));
+        assertFalse(Storefront.isValidStorefrontName(testName12));
 
     }
 

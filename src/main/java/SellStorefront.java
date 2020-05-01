@@ -8,7 +8,8 @@ public class SellStorefront extends Storefront {
      * Default constructor for a SellStorefront object
      */
     public SellStorefront(){
-
+        super();
+        this.setSellProducts(new ArrayList<SellProduct>());
     }
 
     /**
@@ -19,7 +20,8 @@ public class SellStorefront extends Storefront {
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
     public SellStorefront(String nameIn, Client ownerIn){
-
+        super(nameIn, ownerIn);
+        this.setSellProducts(new ArrayList<SellProduct>());
     }
 
     /**
@@ -32,7 +34,8 @@ public class SellStorefront extends Storefront {
      * @throws IllegalArgumentException if at least one of the SellProduct items in sellProductsIn is invalid
      */
     public SellStorefront(String nameIn, Client ownerIn, List<SellProduct> sellProductsIn){
-
+        super(nameIn, ownerIn);
+        this.setSellProducts(sellProductsIn);
     }
 
     /**
@@ -42,7 +45,11 @@ public class SellStorefront extends Storefront {
      * @throws IllegalArgumentException if the SellProduct to sell is not owned by the SellStorefront owner
      */
     public SellProduct addProduct(SellProduct sellProductIn){
-        return null;
+        if(this.getStorefrontOwner() != sellProductIn.getProductMerchant()){
+            throw new IllegalArgumentException("Merchant must be the same as the store owner");
+        }
+        this.sellProducts.add(sellProductIn);
+        return sellProductIn;
     }
 
     /**
@@ -52,7 +59,12 @@ public class SellStorefront extends Storefront {
      * @throws NoSuchElementException if sellProductIn does not exist in the SellStorefront
      */
     public SellProduct findProduct(SellProduct sellProductIn){
-        return null;
+        for(AbstractProduct product : this.sellProducts){
+            if(product == sellProductIn){
+                return (SellProduct) product;
+            }
+        }
+        throw new NoSuchElementException("Product does not exist in this storefront");
     }
 
     /**
@@ -62,7 +74,13 @@ public class SellStorefront extends Storefront {
      * @throws NoSuchElementException if sellProductIn does not exist in the SellStorefront
      */
     public SellProduct removeProduct(SellProduct sellProductIn){
-        return null;
+        for(AbstractProduct product : this.sellProducts){
+            if(product == sellProductIn){
+                this.sellProducts.remove(product);
+                return (SellProduct) product;
+            }
+        }
+        throw new NoSuchElementException("Product does not exist in this storefront");
     }
 
     /**
@@ -80,12 +98,16 @@ public class SellStorefront extends Storefront {
      * @return the list of products listed for sale by the SellStorefront
      */
     public List<SellProduct> getSellProducts(){
-        return null;
+        List<SellProduct> sellProductsOut = new ArrayList<SellProduct>();
+        for(AbstractProduct product : this.sellProducts){
+            sellProductsOut.add((SellProduct) product);
+        }
+        return sellProductsOut;
     }
 
     @Override
     public List<AbstractProduct> getStorefrontProducts() {
-        return null;
+        return this.sellProducts;
     }
 
     /**
@@ -93,7 +115,10 @@ public class SellStorefront extends Storefront {
      * @param sellProductsIn the list of products for the SellStorefront to sell
      */
     public void setSellProducts(List<SellProduct> sellProductsIn){
-
+        this.sellProducts = new ArrayList<AbstractProduct>();
+        for(SellProduct product : sellProductsIn){
+            this.sellProducts.add(product);
+        }
     }
 
 }

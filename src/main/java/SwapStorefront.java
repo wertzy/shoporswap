@@ -8,7 +8,8 @@ public class SwapStorefront extends Storefront {
      * Default constructor for SwapStorefront object
      */
     public SwapStorefront(){
-
+        super();
+        this.setSwapProducts(new ArrayList<SwapProduct>());
     }
 
     /**
@@ -19,7 +20,8 @@ public class SwapStorefront extends Storefront {
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
     public SwapStorefront(String nameIn, Client ownerIn){
-
+        super(nameIn, ownerIn);
+        this.setSwapProducts(new ArrayList<SwapProduct>());
     }
 
     /**
@@ -32,7 +34,8 @@ public class SwapStorefront extends Storefront {
      * @throws IllegalArgumentException if at least one of the SwapProduct items in SwapProductsIn is invalid
      */
     public SwapStorefront(String nameIn, Client ownerIn, List<SwapProduct> swapProductsIn){
-
+        super(nameIn, ownerIn);
+        this.setSwapProducts(swapProductsIn);
     }
 
     /**
@@ -42,7 +45,11 @@ public class SwapStorefront extends Storefront {
      * @throws IllegalArgumentException if the SwapProduct to swap is not owned by the SwapProduct owner
      */
     public SwapProduct addProduct(SwapProduct swapProductIn){
-        return null;
+        if(this.getStorefrontOwner() != swapProductIn.getProductMerchant()){
+            throw new IllegalArgumentException("Merchant must be the same as the store owner");
+        }
+        this.swapProducts.add(swapProductIn);
+        return swapProductIn;
     }
 
     /**
@@ -52,7 +59,12 @@ public class SwapStorefront extends Storefront {
      * @throws NoSuchElementException if swapProduct in does not exist in the SwapStorefront
      */
     public SwapProduct findProduct(SwapProduct swapProductIn){
-        return null;
+        for(AbstractProduct product : this.swapProducts){
+            if(product == swapProductIn){
+                return (SwapProduct) product;
+            }
+        }
+        throw new NoSuchElementException("Product does not exist in this storefront");
     }
 
     /**
@@ -62,7 +74,13 @@ public class SwapStorefront extends Storefront {
      * @throws NoSuchElementException if swapProductIn does not exist in the SwapStorefront
      */
     public SwapProduct removeProduct(SwapProduct swapProductIn){
-        return null;
+        for(AbstractProduct product : this.swapProducts){
+            if(product == swapProductIn){
+                this.swapProducts.remove(product);
+                return (SwapProduct) product;
+            }
+        }
+        throw new NoSuchElementException("Product does not exist in this storefront");
     }
 
     /**
@@ -82,12 +100,16 @@ public class SwapStorefront extends Storefront {
      * @return the list of products listed for swapping by the SwapStorefront
      */
     public List<SwapProduct> getSwapProducts(){
-        return null;
+        List<SwapProduct> sellProductsOut = new ArrayList<SwapProduct>();
+        for(AbstractProduct product : this.swapProducts){
+            sellProductsOut.add((SwapProduct) product);
+        }
+        return sellProductsOut;
     }
 
     @Override
     public List<AbstractProduct> getStorefrontProducts() {
-        return null;
+        return this.swapProducts;
     }
 
     /**
@@ -95,7 +117,10 @@ public class SwapStorefront extends Storefront {
      * @param swapProductsIn the list of products for the SwapStorefront to swap
      */
     public void setSwapProducts(List<SwapProduct> swapProductsIn){
-
+        this.swapProducts = new ArrayList<AbstractProduct>();
+        for(SwapProduct product : swapProductsIn){
+            this.swapProducts.add(product);
+        }
     }
 
 }

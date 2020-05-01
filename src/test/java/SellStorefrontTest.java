@@ -26,7 +26,6 @@ public class SellStorefrontTest {
         assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, testUser1));
         assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, testUser2));
         assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, null));
-        assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(validName, null));
 
         SellStorefront testSellStorefront1, testSellStorefront2, testSellStorefront3, testSellStorefront4;
 
@@ -54,7 +53,7 @@ public class SellStorefrontTest {
                         new SellProduct("product2", "description2", 50, testUser2)
                 )
         );
-        assertEquals(validName, testSellStorefront3.getStorefrontName());
+        assertEquals("Valid Name 2", testSellStorefront3.getStorefrontName());
         assertEquals(testUser2, testSellStorefront3.getStorefrontOwner());
         assertEquals(2, testSellStorefront3.getSellProducts().size());
 
@@ -89,7 +88,7 @@ public class SellStorefrontTest {
                         new SellProduct("product2", "description2", 50, testUser2)
                 )
         );
-        assertEquals(validName, testSellStorefront7.getStorefrontName());
+        assertEquals("Valid Name 2", testSellStorefront7.getStorefrontName());
         assertEquals(testUser2, testSellStorefront7.getStorefrontOwner());
         assertEquals(2, testSellStorefront7.getStorefrontProducts().size());
 
