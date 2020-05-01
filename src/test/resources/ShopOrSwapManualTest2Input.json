@@ -3,32 +3,27 @@
     "accountName" : "user1",
     "password" : "pass1",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "user2",
     "password" : "pass2",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "user3",
     "password" : "pass3",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "user4",
     "password" : "pass4",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   }, {
     "accountName" : "user5",
     "password" : "pass5",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   } ],
   "productList" : [ {
     "name" : "product 1",
@@ -39,8 +34,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -52,8 +46,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -65,8 +58,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -78,8 +70,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -91,8 +82,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -104,8 +94,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -117,8 +106,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -130,8 +118,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -143,8 +130,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -156,8 +142,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -169,8 +154,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -182,8 +166,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -195,8 +178,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -208,8 +190,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -221,8 +202,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -234,8 +214,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -247,8 +226,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -260,8 +238,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -273,8 +250,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -286,8 +262,7 @@
       "accountName" : "user1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -299,8 +274,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -312,8 +286,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -325,8 +298,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -338,8 +310,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -351,8 +322,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -364,8 +334,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -377,8 +346,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -390,8 +358,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -403,8 +370,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -416,8 +382,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -429,8 +394,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -442,8 +406,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -455,8 +418,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -468,8 +430,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -481,8 +442,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -494,8 +454,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -507,8 +466,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -520,8 +478,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -533,8 +490,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -546,8 +502,7 @@
       "accountName" : "user2",
       "password" : "pass2",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -559,8 +514,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -572,8 +526,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -585,8 +538,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -598,8 +550,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -611,8 +562,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -624,8 +574,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -637,8 +586,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -650,8 +598,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -663,8 +610,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -676,8 +622,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -689,8 +634,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -702,8 +646,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -715,8 +658,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -728,8 +670,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -741,8 +682,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -754,8 +694,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -767,8 +706,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -780,8 +718,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -793,8 +730,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -806,8 +742,7 @@
       "accountName" : "user3",
       "password" : "pass3",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -819,8 +754,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -832,8 +766,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -845,8 +778,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -858,8 +790,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -871,8 +802,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -884,8 +814,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -897,8 +826,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -910,8 +838,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -923,8 +850,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -936,8 +862,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -949,8 +874,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -962,8 +886,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -975,8 +898,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -988,8 +910,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1001,8 +922,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1014,8 +934,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1027,8 +946,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1040,8 +958,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1053,8 +970,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1066,8 +982,7 @@
       "accountName" : "user4",
       "password" : "pass4",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1079,8 +994,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1092,8 +1006,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1105,8 +1018,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1118,8 +1030,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1131,8 +1042,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1144,8 +1054,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1157,8 +1066,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1170,8 +1078,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1183,8 +1090,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1196,8 +1102,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1209,8 +1114,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1222,8 +1126,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1235,8 +1138,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1248,8 +1150,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1261,8 +1162,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1274,8 +1174,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1287,8 +1186,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1300,8 +1198,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1313,8 +1210,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   }, {
@@ -1326,8 +1222,7 @@
       "accountName" : "user5",
       "password" : "pass5",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   } ],

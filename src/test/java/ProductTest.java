@@ -85,7 +85,7 @@ public class ProductTest {
         assertEquals(validPrice, testProduct6.getPrice());
         assertEquals("accountname", testProduct6.getMerchant().getAccountName());
         assertEquals("password", testProduct6.getMerchant().getPassword());
-        assertEquals(0, testProduct6.getMerchant().getRating());
+        assertEquals(0, testProduct6.getMerchant().getRatingAverage());
         assertEquals(0, testProduct6.getMerchant().getTransactionHistory().size());
         assertEquals(testProduct6.retrieveConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct6.getTags().size());
@@ -97,7 +97,7 @@ public class ProductTest {
         assertEquals(validPrice, testProduct7.getPrice());
         assertEquals("accountname1", testProduct7.getMerchant().getAccountName());
         assertEquals("password1", testProduct7.getMerchant().getPassword());
-        assertEquals(0, testProduct7.getMerchant().getRating());
+        assertEquals(0, testProduct7.getMerchant().getRatingAverage());
         assertEquals(0, testProduct7.getMerchant().getTransactionHistory().size());
         assertEquals(testProduct7.retrieveConsumersRaw(), java.util.Collections.emptyList());
         assertEquals(0, testProduct7.getTags().size());
@@ -293,14 +293,14 @@ public class ProductTest {
         Product testProduct1 = new Product("product name", "product description", testUser1); // test for getMerchant accessor
         assertEquals("accountname", testProduct1.getMerchant().getAccountName());
         assertEquals("password", testProduct1.getMerchant().getPassword());
-        assertEquals(0, testProduct1.getMerchant().getRating());
+        assertEquals(0, testProduct1.getMerchant().getRatingAverage());
         assertEquals(0, testProduct1.getMerchant().getTransactionHistory().size());
 
         User testUser2 = new User("accountname1", "password1");
         Product testProduct2 = new Product("product name", "product description",2, testUser2); // test for getMerchant accessor
         assertEquals("accountname1", testProduct2.getMerchant().getAccountName());
         assertEquals("password1", testProduct2.getMerchant().getPassword());
-        assertEquals(0, testProduct2.getMerchant().getRating());
+        assertEquals(0, testProduct2.getMerchant().getRatingAverage());
         assertEquals(0, testProduct2.getMerchant().getTransactionHistory().size());
     }
 
