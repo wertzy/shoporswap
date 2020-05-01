@@ -23,7 +23,7 @@ public class Client extends Account{
     }
 
     /**
-     * Adds a SellProduct to owned AbstractProduct list
+     * Adds a SellProduct to owned AbstractProduct list (from transaction)
      * @param productIn the SellProduct to add
      * @return the SellProduct added
      */
@@ -32,7 +32,7 @@ public class Client extends Account{
     }
 
     /**
-     * Adds a SwapProduct to owned AbstractProduct list
+     * Adds a SwapProduct to owned AbstractProduct list (from transaction)
      * @param productIn the SwapProduct to add
      * @return the SwapProduct added
      */
@@ -56,7 +56,7 @@ public class Client extends Account{
      * @return the SwapProduct found
      * @throws NoSuchElementException if the SwapProduct does not exist in the AbstractProduct list
      */
-    public SwapProduct findSwapProduct(SellProduct productIn){
+    public SwapProduct findSwapProduct(SwapProduct productIn){
         return null;
     }
 

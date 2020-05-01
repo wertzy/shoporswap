@@ -14,8 +14,8 @@ public class StorefrontTest {
     @Test
     void mutatorsStorefrontTests(){
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         Storefront testStorefront1 = new SellStorefront("Name 1", testUser1);
         assertEquals("Name 1", testStorefront1.getStorefrontName());

@@ -1,14 +1,8 @@
 import org.junit.jupiter.api.Test;
 
-public class AccountTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    /**
-     * Automated tests for Account constructor methods:
-     * - constructor with 0 parameters (default)
-     * - constructor with 2 parameters
-     */
-    @Test
-    void constructorsTests(){}
+public class AccountTest {
 
     /**
      * Automated tests for Account mutator methods:
@@ -20,18 +14,65 @@ public class AccountTest {
      * - Account.setIsFrozen
      */
     @Test
-    void mutatorsTests(){}
+    void mutatorsTests(){
+
+        Account testAccount1, testAccount2;
+        
+        testAccount1 = new Client();
+        assertEquals("DefaultClient", testAccount1.getAccountName());
+        assertEquals("DefaultPassword", testAccount1.getAccountPassword());
+        assertFalse(testAccount1.getIsFrozen());
+        testAccount1.setAccountName("test1");
+        testAccount1.setAccountPassword("pass1");
+        testAccount1.setIsFrozen(true);
+        assertEquals("test1", testAccount1.getAccountName());
+        assertEquals("pass1", testAccount1.getAccountPassword());
+        assertTrue(testAccount1.getIsFrozen());
+        
+        testAccount2 = new Admin();
+        assertEquals("DefaultAdmin", testAccount2.getAccountName());
+        assertEquals("DefaultPassword", testAccount2.getAccountPassword());
+        assertFalse(testAccount2.getIsFrozen());
+        testAccount2.setAccountName("test2");
+        testAccount2.setAccountPassword("pass2");
+        testAccount2.setIsFrozen(true);
+        assertEquals("test2", testAccount2.getAccountName());
+        assertEquals("pass2", testAccount2.getAccountPassword());
+        assertTrue(testAccount2.getIsFrozen());
+        
+    }
 
     /**
      * Automated tests for Account.isValidAccountName method
      */
     @Test
-    void isValidAccountNameTest(){}
+    void isValidAccountNameTest(){
+        //True Tests
+        assertTrue(Account.isValidAccountName("desmond"));
+        //EC: Standard valid emails. This is not a border case.
+        assertTrue(Account.isValidAccountName("desmond@email.com"));
+        //False Tests
+        assertFalse(Account.isValidAccountName(""));
+        assertFalse(Account.isValidAccountName("des mond"));
+        assertFalse(Account.isValidAccountName("a#b"));
+        assertFalse(Account.isValidAccountName("%&l-()d"));
+    }
 
     /**
      * Automated tests for Account.isValidAccountPassword method
      */
     @Test
-    void isValidAccountPasswordTest(){}
+    void isValidAccountPasswordTest(){
+        //True Tests
+        assertTrue(User.isPasswordValid("desmond"));
+        assertTrue(User.isPasswordValid("deslee123"));
+        assertTrue(User.isPasswordValid("$$@richb0i$$"));
+        //EC: Standard name should allow numbers and any character
+
+        //False Tests
+        assertFalse(User.isPasswordValid(""));
+        assertFalse(User.isPasswordValid("des mond"));
+        //accounts cannot have spaces in them
+    }
 
 }

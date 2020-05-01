@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class Storefront {
 
     private String storefrontName;
-    private User storefrontOwner;
+    private Client storefrontOwner;
 
     /**
      * Default constructor for Storefront object
@@ -20,7 +20,7 @@ public abstract class Storefront {
      * @throws IllegalArgumentException if the name of the Storefront is invalid
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
-    public Storefront(String nameIn, User ownerIn){
+    public Storefront(String nameIn, Client ownerIn){
 
     }
 
@@ -36,7 +36,7 @@ public abstract class Storefront {
      * Accessor method for the owner of the Storefront
      * @return the owner of the Storefront
      */
-    public final User getStorefrontOwner(){
+    public final Client getStorefrontOwner(){
         return null;
     }
 
@@ -54,7 +54,7 @@ public abstract class Storefront {
      * Mutator method for the name of the Storefront
      * @param ownerIn the owner to set
      */
-    public final void setStorefrontOwner(User ownerIn){
+    public final void setStorefrontOwner(Client ownerIn){
     }
 
     /**

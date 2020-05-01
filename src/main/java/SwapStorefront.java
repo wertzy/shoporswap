@@ -18,7 +18,7 @@ public class SwapStorefront extends Storefront {
      * @throws IllegalArgumentException if nameIn is invalid
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
-    public SwapStorefront(String nameIn, User ownerIn){
+    public SwapStorefront(String nameIn, Client ownerIn){
 
     }
 
@@ -31,7 +31,7 @@ public class SwapStorefront extends Storefront {
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      * @throws IllegalArgumentException if at least one of the SwapProduct items in SwapProductsIn is invalid
      */
-    public SwapStorefront(String nameIn, User ownerIn, List<SwapProduct> swapProductsIn){
+    public SwapStorefront(String nameIn, Client ownerIn, List<SwapProduct> swapProductsIn){
 
     }
 

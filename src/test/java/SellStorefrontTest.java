@@ -20,8 +20,8 @@ public class SellStorefrontTest {
         String invalidName = " invalid#name ";
         String validName = "Valid Name";
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, testUser1));
         assertThrows(IllegalArgumentException.class, ()-> new SellStorefront(invalidName, testUser2));
@@ -108,8 +108,8 @@ public class SellStorefrontTest {
 
         SellStorefront testSellStorefront1;
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         List<SellProduct> testProductsList1 = Arrays.asList(
                 new SellProduct("test1", "test product 1", 50, testUser1),
@@ -139,8 +139,8 @@ public class SellStorefrontTest {
     void findProductSellStorefrontTest(){
         SellStorefront testSellStorefront1;
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         List<SellProduct> testProductsList1 = Arrays.asList(
                 new SellProduct("test1", "test product 1", 50, testUser1),
@@ -171,8 +171,8 @@ public class SellStorefrontTest {
     void removeProductSellStorefrontTest(){
         SellStorefront testSellStorefront1;
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         List<SellProduct> testProductsList1 = Arrays.asList(
                 new SellProduct("test1", "test product 1", 50, testUser1),
@@ -205,8 +205,8 @@ public class SellStorefrontTest {
 
         SellStorefront testSellStorefront1, testSellStorefront2;
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         List<SellProduct> testProductsList1 = Arrays.asList(
                 new SellProduct("test1", "test product 1", 50, testUser1),

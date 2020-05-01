@@ -18,7 +18,7 @@ public class SellStorefront extends Storefront {
      * @throws IllegalArgumentException if nameIn is invalid
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      */
-    public SellStorefront(String nameIn, User ownerIn){
+    public SellStorefront(String nameIn, Client ownerIn){
 
     }
 
@@ -31,7 +31,7 @@ public class SellStorefront extends Storefront {
      * @throws IllegalArgumentException if the owner of the Storefront is invalid
      * @throws IllegalArgumentException if at least one of the SellProduct items in sellProductsIn is invalid
      */
-    public SellStorefront(String nameIn, User ownerIn, List<SellProduct> sellProductsIn){
+    public SellStorefront(String nameIn, Client ownerIn, List<SellProduct> sellProductsIn){
 
     }
 
@@ -71,7 +71,7 @@ public class SellStorefront extends Storefront {
      * @param consumerIn the User to sell the SellProduct to in the SellStorefront
      * @return the SellProduct sold to the User in the SellStorefront
      */
-    public SellProduct completeTransaction(SellProduct sellProductIn, User consumerIn){
+    public SellProduct completeTransaction(SellProduct sellProductIn, Client consumerIn){
         return null;
     }
 

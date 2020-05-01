@@ -21,8 +21,8 @@ public class SwapStorefrontTest {
         String invalidName = " invalid#name ";
         String validName = "Valid Name";
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         assertThrows(IllegalArgumentException.class, ()-> new SwapStorefront(invalidName, testUser1));
         assertThrows(IllegalArgumentException.class, ()-> new SwapStorefront(invalidName, testUser2));
@@ -73,8 +73,8 @@ public class SwapStorefrontTest {
     void addProductSwapStorefrontTest(){
         SwapStorefront testSwapStorefront1;
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         List<SwapProduct> testProductsList1 = Arrays.asList(
                 new SwapProduct("test1", "test product 1", 50, testUser1),
@@ -104,8 +104,8 @@ public class SwapStorefrontTest {
     void findProductSwapStorefrontTest(){
         SwapStorefront testSwapStorefront1;
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         List<SwapProduct> testProductsList1 = Arrays.asList(
                 new SwapProduct("test1", "test product 1", 50, testUser1),
@@ -136,8 +136,8 @@ public class SwapStorefrontTest {
     void removeProductSwapStorefrontTest(){
         SwapStorefront testSwapStorefront1;
 
-        User testUser1 = new User("accountname1", "password1");
-        User testUser2 = new User("accountname2", "password2");
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
 
         List<SwapProduct> testProductsList1 = Arrays.asList(
                 new SwapProduct("test1", "test product 1", 50, testUser1),
