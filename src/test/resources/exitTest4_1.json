@@ -3,8 +3,7 @@
     "accountName" : "test1",
     "password" : "pass1",
     "transactionHistory" : [ ],
-    "messages" : [ ],
-    "rating" : 0.0
+    "ratingAverage" : 0.0
   } ],
   "productList" : [ {
     "name" : "name 1",
@@ -15,8 +14,7 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "messages" : [ ],
-      "rating" : 0.0
+      "ratingAverage" : 0.0
     },
     "consumers" : [ ]
   } ],
