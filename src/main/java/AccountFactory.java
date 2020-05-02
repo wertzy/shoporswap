@@ -14,7 +14,13 @@ public class AccountFactory {
      * @throws IllegalArgumentException if typeIn is invalid (not "client" or "admin")
      */
     public Account getAccount(String typeIn){
-        return null;
+        if(typeIn.compareToIgnoreCase("admin") == 0){
+            return new Admin();
+        }
+        if(typeIn.compareToIgnoreCase("client") == 0){
+            return new Client();
+        }
+        throw new IllegalArgumentException("Invalid Account type");
     }
 
 }
