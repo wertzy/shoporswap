@@ -1,9 +1,9 @@
-public class ProductFactory {
+public class AbstractProductFactory {
 
     /**
      * Default constructor for ProductFactory
      */
-    public ProductFactory(){
+    public AbstractProductFactory(){
 
     }
 
@@ -14,7 +14,13 @@ public class ProductFactory {
      * @throws IllegalArgumentException if typeIn is invalid (if typeIn is neither "sell" nor "swap")
      */
     public AbstractProduct getProduct(String typeIn){
-        return null;
+        if(typeIn.compareToIgnoreCase("sell") == 0){
+            return new SellProduct();
+        }
+        if(typeIn.compareToIgnoreCase("swap") == 0){
+            return new SwapProduct();
+        }
+        throw new IllegalArgumentException("Product type is invalid");
     }
 
 }
