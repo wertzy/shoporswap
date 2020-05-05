@@ -479,7 +479,8 @@ public class ShopOrSwap implements BasicAPI{
         // implement method to pass corresponding tests after the tests have been written
         return this.tagList;
     }
-    public void genReport(User user,String comment){
+
+    public void genReport(User user,String comment) {
         //Report rep=new Report(user.getAccountName(),comment,user);
         //user.sendMessage("Report", rep.comment, user);
         //reportList.add(rep);
