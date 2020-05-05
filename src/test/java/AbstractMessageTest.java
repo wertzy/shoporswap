@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AbstractMessageTest {
@@ -37,7 +38,12 @@ public class AbstractMessageTest {
     @Test
     void isValidMessageSubjectTest(){
         //TODO implement automated tests
-        assertTrue(false);
+        assertFalse(AbstractMessage.isValidMessageSubject(""));
+        assertFalse(AbstractMessage.isValidMessageSubject("thisistencthisistencthisistencthisistencthisistenct"));
+//        assertFalse(AbstractMessage.isValidMessageSubject());
+//        assertFalse(AbstractMessage.isValidMessageSubject());
+
+//        assertTrue(AbstractMessage.isValidMessageSubject());
     }
 
     /**
@@ -45,8 +51,82 @@ public class AbstractMessageTest {
      */
     @Test
     void isValidMessageContentTest(){
-        //TODO implement automated tests
-        assertTrue(false);
+        assertFalse(AbstractMessage.isValidMessageContent(""));
+        assertFalse(AbstractMessage.isValidMessageContent(
+            "thisistencthisistencthisistencthisistencthisistenc" +
+            "thisistencthisistencthisistencthisistencthisistenc" +
+            "thisistencthisistencthisistencthisistencthisistenc" +
+            "thisistencthisistencthisistencthisistencthisistenc" +
+            "thisistencthisistencthisistencthisistencthisistenc" +
+            "thisistencthisistencthisistencthisistencthisistenct"
+        ));
+        assertFalse(AbstractMessage.isValidMessageContent(" content"));
+        assertFalse(AbstractMessage.isValidMessageContent("content "));
+        assertFalse(AbstractMessage.isValidMessageContent(" content "));
+        assertFalse(AbstractMessage.isValidMessageContent("-content"));
+        assertFalse(AbstractMessage.isValidMessageContent("content-"));
+        assertFalse(AbstractMessage.isValidMessageContent("-content-"));
+        assertFalse(AbstractMessage.isValidMessageContent("%content"));
+        assertFalse(AbstractMessage.isValidMessageContent("content%"));
+        assertFalse(AbstractMessage.isValidMessageContent("%content%"));
+        assertFalse(AbstractMessage.isValidMessageContent("#$content"));
+        assertFalse(AbstractMessage.isValidMessageContent("content#$"));
+        assertFalse(AbstractMessage.isValidMessageContent("#$content#$"));
+        assertFalse(AbstractMessage.isValidMessageContent(" ^ content"));
+        assertFalse(AbstractMessage.isValidMessageContent("content ^ "));
+        assertFalse(AbstractMessage.isValidMessageContent(" ^ content ^ "));
+
+        assertTrue(AbstractMessage.isValidMessageContent("t"));
+        assertTrue(AbstractMessage.isValidMessageContent("thisistenc"));
+        assertTrue(AbstractMessage.isValidMessageContent(
+                "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisisten"
+        ));
+        assertTrue(AbstractMessage.isValidMessageContent(
+                "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc" +
+                        "thisistencthisistencthisistencthisistencthisistenc"
+        ));
+        assertTrue(AbstractMessage.isValidMessageContent("t i"));
+        assertTrue(AbstractMessage.isValidMessageContent("this is content"));
+        assertTrue(AbstractMessage.isValidMessageContent(
+                "this iste this iste this iste this iste this iste this iste " +
+                        "this iste this iste this iste this iste this iste this iste " +
+                        "this iste this iste this iste this iste this iste this iste " +
+                        "this iste this iste this iste this iste this iste this iste " +
+                        "this iste this iste this iste this iste this iste this iste"
+        ));
+        assertTrue(AbstractMessage.isValidMessageContent("t-i"));
+        assertTrue(AbstractMessage.isValidMessageContent("this-is-content"));
+        assertTrue(AbstractMessage.isValidMessageContent(
+                "this-iste-this-iste-this-iste-this-iste-this-iste-this-iste-" +
+                        "this-iste-this-iste-this-iste-this-iste-this-iste-this-iste-" +
+                        "this-iste-this-iste-this-iste-this-iste-this-iste-this-iste-" +
+                        "this-iste-this-iste-this-iste-this-iste-this-iste-this-iste-" +
+                        "this-iste-this-iste-this-iste-this-iste-this-iste-this-iste"
+        ));
+        assertTrue(AbstractMessage.isValidMessageContent("t$i"));
+        assertTrue(AbstractMessage.isValidMessageContent("this$is$content"));
+        assertTrue(AbstractMessage.isValidMessageContent(
+                "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$" +
+                        "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$" +
+                        "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$" +
+                        "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$"
+        ));
+        assertTrue(AbstractMessage.isValidMessageContent("t%$^i"));
+        assertTrue(AbstractMessage.isValidMessageContent("this%$^is%$^content"));
+        assertTrue(AbstractMessage.isValidMessageContent(
+                "this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^" +
+                        "this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^" +
+                        "this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^"
+        ));
     }
 
 }
