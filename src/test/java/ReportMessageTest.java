@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReportMessageTest {
 
@@ -9,16 +10,46 @@ public class ReportMessageTest {
      */
     @Test
     void constructorsTests(){
-        //TODO implement automated tests
-        assertTrue(false);
+        ReportMessage testMessage1, testMessage2;
+
+        assertThrows(IllegalArgumentException.class, ()-> new ReportMessage(
+                new Client("", ""),
+                "valid content",
+                new Client("test1", "pass1")));
+        assertThrows(IllegalArgumentException.class, ()-> new ReportMessage(
+                new Client("test1", "pass1"),
+                "#invalid content$ ",
+                new Client("test1", "pass1")
+                ));
+        assertThrows(IllegalArgumentException.class, ()-> new ReportMessage(
+                new Client("test1", "pass1"),
+                "valid content",
+                new Client("test1", "pass1")
+                ));
+
+
+        testMessage1 = new ReportMessage();
+        assertNull(testMessage1.getSender());
+        assertEquals("DefaultReport", testMessage1.getSubject());
+        assertEquals("DefaultContent", testMessage1.getContent());
+
+        testMessage2 = new ReportMessage(new Client("test1", "pass1"), "content", new Client("test2", "pass2"));
+        assertEquals("test1", testMessage2.getSender().getAccountName());
+        assertEquals("pass1", testMessage2.getSender().getAccountPassword());
+        assertEquals("test2", testMessage2.getReportedAccount().getAccountName());
+        assertEquals("pass2", testMessage2.getReportedAccount().getAccountPassword());
+        assertEquals("Report: " + testMessage2.getReportedAccount().getAccountName(), testMessage2.getSubject());
+        assertEquals("content", testMessage2.getContent());
     }
 
     /**
      * Automated tests for the mutator methods of ReportMessage
      */
     void mutatorsTests(){
-        //TODO implement automated tests
-        assertTrue(false);
+        ReportMessage testMessage1 = new ReportMessage();
+        testMessage1.setReportedAccount(new Client("test1", "pass1"));
+        assertEquals("test1", testMessage1.getReportedAccount().getAccountName());
+        assertEquals("pass1", testMessage1.getReportedAccount().getAccountPassword());
     }
 
 }
