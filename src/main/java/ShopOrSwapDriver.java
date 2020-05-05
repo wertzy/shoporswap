@@ -475,7 +475,7 @@ public class ShopOrSwapDriver {
         System.out.print("Is this the product you want to buy? (Enter \"Y\" for \"Yes\") ");
         searchFeedback = reader.next();
         if(searchFeedback.compareToIgnoreCase("Y") == 0){
-            user.buy(results1.getName(), merchant);
+            user.buy(results1.getName(), merchant,results1.getPrice());
             user.sendMessage("Product Sold", "Your product has been sold: " + results1.getName(), merchant);
             merchant.sendMessage("Product Bought", "Your transaction for " + results1.getName() + " has successfully been processed", user);
             shopOrSwap.removeSellProduct(results1);

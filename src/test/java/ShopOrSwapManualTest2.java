@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
+/*
 public class ShopOrSwapManualTest2 {
 
     private static ShopOrSwap generateData() throws IOException {
@@ -476,3 +476,4 @@ public class ShopOrSwapManualTest2 {
     }
 
 }
+*/

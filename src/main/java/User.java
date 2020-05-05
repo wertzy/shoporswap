@@ -8,7 +8,6 @@ public class User {
     protected List<String> transactionHistory;
     protected ArrayList<Message> messages;
     protected static List<Product> productList = new ArrayList<Product>();
-    protected static ArrayList<String> pastTransactions;
     protected ArrayList<Integer> ratingList = new ArrayList<>();
     protected double wallet;
     protected double ratingAverage;
@@ -162,6 +161,10 @@ public class User {
         productList.add(tempNextProductList.get(0));
     }
 
+    public static void removeClothing(Product product){
+        productList.remove(product);
+    }
+
     public Product find(String name){
         for(Product product : productList){
             if(product.getName().compareToIgnoreCase(name) == 0){
@@ -172,16 +175,17 @@ public class User {
     }
 
 
-    public void buy(String productName, User merchant,int amount){
-        //Product merchantProduct=merchant.find(name);
+    public void buy(String productName, User merchant,double amount){
+        Product merchantProduct=merchant.find(productName);
+        merchant.removeClothing(merchantProduct);
         String transaction = merchant.accountName+":"+ productName;
         transactionHistory.add(transaction);
         walletSubtract(amount);
         merchant.walletAdd(amount);
     }
 
-    public void sell(String name, String description,User self){
-        Product product=new Product(name,description, self);
+    public void sell(String name, String description,User self,double amount){
+        Product product=new Product(name,description, amount,self);
         productList.add(product);
     }
 

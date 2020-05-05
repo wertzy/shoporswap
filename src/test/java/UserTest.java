@@ -79,9 +79,9 @@ class UserTest {
     @Test
     void sellTest(){
         User user1=new User("testuser","testuser2");
-        user1.sell("red tee","red tee from hm",user1);
-        user1.sell("blue tee","blue tee from hm",user1);
-        user1.sell("green tee","green tee from hm",user1);
+        user1.sell("red tee","red tee from hm",user1,50);
+        user1.sell("blue tee","blue tee from hm",user1,50);
+        user1.sell("green tee","green tee from hm",user1,50);
         assertEquals(3,user1.productList.size());
     }
 
@@ -91,11 +91,11 @@ class UserTest {
         User user1=new User("testuser","testuser2");
         user1.walletAdd(500);
         user.walletAdd(500);
-        user1.sell("green tee","green tee from hm",user1);
+        user1.sell("green tee","green tee from hm",user1,50);
         user.buy("green tee",user1,50);
         assertEquals(450,user.getWallet());
 
-        assertThrows(NoSuchElementException.class,()->user.buy("yellow tee",user1,50));
+        assertThrows(NoSuchElementException.class,()->user.buy("yellow tee",user1,500));
 
     }
 
