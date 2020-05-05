@@ -2,30 +2,42 @@
   "accountName" : "accountname",
   "password" : "password",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 }, {
   "accountName" : "test1",
   "password" : "test1",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 }, {
   "accountName" : "test2",
   "password" : "test2",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 }, {
   "accountName" : "test3",
   "password" : "test3",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 }, {
   "accountName" : "test4",
   "password" : "test4",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 }, {
   "accountName" : "test5",
   "password" : "test5",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 } ]

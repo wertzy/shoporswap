@@ -116,6 +116,22 @@ public class ShopOrSwap {
      */
     public void sendMessage(AbstractMessage messageIn){}
 
+    public AccountFactory getAccountFactory(){
+        return null;
+    }
+
+    public AbstractProductFactory getProductFactory(){
+        return null;
+    }
+
+    public AbstractMessageFactory getMessageFactory(){
+        return null;
+    }
+
+    public StorefrontFactory getStorefrontFactory(){
+        return null;
+    }
+
     public Map<String, Account> getAccountCollection(){
         return null;
     }
@@ -123,5 +139,13 @@ public class ShopOrSwap {
     public void setAccountCollection(Map<String, Account> accountCollectionIn){
 
     }
+
+    public void setAccountFactory(AccountFactory accountFactoryIn){}
+
+    public void setProductFactory(AbstractProductFactory abstractProductFactoryIn){}
+
+    public void setMessageFactory(AbstractMessageFactory abstractMessageFactoryIn){}
+
+    public void setStorefrontFactory(StorefrontFactory storefrontFactoryIn){}
 
 }

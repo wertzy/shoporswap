@@ -3,7 +3,9 @@
     "accountName" : "test1",
     "password" : "pass1",
     "transactionHistory" : [ ],
-    "ratingAverage" : 0.0
+    "ratingAverage" : 0.0,
+    "blocked" : false,
+    "products" : [ ]
   } ],
   "productList" : [ {
     "name" : "name 1",
@@ -14,7 +16,9 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "ratingAverage" : 0.0
+      "ratingAverage" : 0.0,
+      "blocked" : false,
+      "products" : [ ]
     },
     "consumers" : [ ]
   }, {
@@ -26,7 +30,9 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "ratingAverage" : 0.0
+      "ratingAverage" : 0.0,
+      "blocked" : false,
+      "products" : [ ]
     },
     "consumers" : [ ]
   }, {
@@ -38,7 +44,9 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "ratingAverage" : 0.0
+      "ratingAverage" : 0.0,
+      "blocked" : false,
+      "products" : [ ]
     },
     "consumers" : [ ]
   }, {
@@ -50,7 +58,9 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "ratingAverage" : 0.0
+      "ratingAverage" : 0.0,
+      "blocked" : false,
+      "products" : [ ]
     },
     "consumers" : [ ]
   }, {
@@ -62,7 +72,9 @@
       "accountName" : "test1",
       "password" : "pass1",
       "transactionHistory" : [ ],
-      "ratingAverage" : 0.0
+      "ratingAverage" : 0.0,
+      "blocked" : false,
+      "products" : [ ]
     },
     "consumers" : [ ]
   } ],

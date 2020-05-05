@@ -2,10 +2,14 @@
   "accountName" : "accountname",
   "password" : "password",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 }, {
   "accountName" : "test1",
   "password" : "test1",
   "transactionHistory" : [ ],
-  "ratingAverage" : 0.0
+  "ratingAverage" : 0.0,
+  "blocked" : false,
+  "products" : [ ]
 } ]
