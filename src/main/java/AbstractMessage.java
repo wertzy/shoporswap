@@ -18,6 +18,9 @@ public abstract class AbstractMessage {
      * @param sender the sender of the AbstractMessage
      * @param subject the subject of the AbstractMessage
      * @param content the content of the AbstractMessage
+     * @throws IllegalArgumentException if senderIn is invalid
+     * @throws IllegalArgumentException if subjectIn is invalid
+     * @throws IllegalArgumentException if contentIn is invalid
      */
     public AbstractMessage(Account sender, String subject, String content){
         //TODO complete implementation after automated test implementation
@@ -25,7 +28,7 @@ public abstract class AbstractMessage {
 
     /**
      * Accessor method for the sender property of the AbstractMessage object
-     * @return the recipient of the message
+     * @return the recipient of the AbstractMessage
      */
     public final Account getSender(){
         //TODO complete implementation after automated test implementation
@@ -34,7 +37,7 @@ public abstract class AbstractMessage {
 
     /**
      * Accessor method for the subject property of the AbstractMessage object
-     * @return the subject of the message
+     * @return the subject of the AbstractMessage
      */
     public final String getSubject(){
         //TODO complete implementation after automated test implementation
@@ -43,7 +46,7 @@ public abstract class AbstractMessage {
 
     /**
      * Accessor method for the content property of the AbstractMessage object
-     * @return
+     * @return the content of the AbstractMessage
      */
     public final String getContent(){
         //TODO complete implementation after automated test implementation
@@ -53,6 +56,7 @@ public abstract class AbstractMessage {
     /**
      * Mutator method for the sender property of the AbstractMessage
      * @param senderIn the desired sender of the AbstractMessage
+     * @throws IllegalArgumentException if senderIn is invalid
      */
     public void setSender(Account senderIn){
         //TODO complete implementation after automated test implementation
@@ -61,6 +65,7 @@ public abstract class AbstractMessage {
     /**
      * Mutator method for the subject property of the AbstractMessage
      * @param subjectIn the desired subject of the AbstractMessage
+     * @throws IllegalArgumentException if subjectIn is invalid
      */
     public void setSubject(String subjectIn){
         //TODO complete implementation after automated test implementation
@@ -69,6 +74,7 @@ public abstract class AbstractMessage {
     /**
      * Mutator method for the content property of the AbstractMessage
      * @param contentIn the desired content of the AbstractMessage
+     * @throws IllegalArgumentException if contentIn is invalid
      */
     public void setContent(String contentIn){
         //TODO complete implementation after automated test implementation
