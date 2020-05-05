@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public abstract class AbstractMessage {
 
@@ -10,7 +11,9 @@ public abstract class AbstractMessage {
      * Default constructor for an AbstractMessage object
      */
     public AbstractMessage(){
-        //TODO complete implementation after automated test implementation
+        this.sender = null;
+        this.setSubject("DefaultSubject");
+        this.setContent("DefaultContent");
     }
 
     /**
@@ -23,7 +26,9 @@ public abstract class AbstractMessage {
      * @throws IllegalArgumentException if contentIn is invalid
      */
     public AbstractMessage(Account sender, String subject, String content){
-        //TODO complete implementation after automated test implementation
+        this.setSender(sender);
+        this.setSubject(subject);
+        this.setContent(content);
     }
 
     /**
@@ -31,8 +36,7 @@ public abstract class AbstractMessage {
      * @return the recipient of the AbstractMessage
      */
     public final Account getSender(){
-        //TODO complete implementation after automated test implementation
-        return null;
+        return this.sender;
     }
 
     /**
@@ -40,8 +44,7 @@ public abstract class AbstractMessage {
      * @return the subject of the AbstractMessage
      */
     public final String getSubject(){
-        //TODO complete implementation after automated test implementation
-        return null;
+        return this.subject;
     }
 
     /**
@@ -49,8 +52,7 @@ public abstract class AbstractMessage {
      * @return the content of the AbstractMessage
      */
     public final String getContent(){
-        //TODO complete implementation after automated test implementation
-        return null;
+        return this.content;
     }
 
     /**
@@ -59,7 +61,10 @@ public abstract class AbstractMessage {
      * @throws IllegalArgumentException if senderIn is invalid
      */
     public void setSender(Account senderIn){
-        //TODO complete implementation after automated test implementation
+        if(!isValidMessageSender(senderIn)){
+            throw new IllegalArgumentException("Sender is invalid");
+        }
+        this.sender = senderIn;
     }
 
     /**
@@ -68,7 +73,10 @@ public abstract class AbstractMessage {
      * @throws IllegalArgumentException if subjectIn is invalid
      */
     public void setSubject(String subjectIn){
-        //TODO complete implementation after automated test implementation
+        if(!isValidMessageSubject(subjectIn)){
+            throw new IllegalArgumentException("Subject is invalid");
+        }
+        this.subject = subjectIn;
     }
 
     /**
@@ -77,7 +85,10 @@ public abstract class AbstractMessage {
      * @throws IllegalArgumentException if contentIn is invalid
      */
     public void setContent(String contentIn){
-        //TODO complete implementation after automated test implementation
+        if(!isValidMessageContent(contentIn)){
+            throw new IllegalArgumentException("Content is invalid");
+        }
+        this.content = contentIn;
     }
 
     /**
@@ -86,8 +97,10 @@ public abstract class AbstractMessage {
      * @return true if senderIn is valid, false otherwise
      */
     public static boolean isValidMessageSender(Account senderIn){
-        //TODO complete implementation after automated test implementation
-        return false;
+        if(senderIn.getIsFrozen() == true){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -96,8 +109,24 @@ public abstract class AbstractMessage {
      * @return true if subjectIn is valid, false otherwise
      */
     public static boolean isValidMessageSubject(String subjectIn){
-        //TODO complete implementation after automated test implementation
-        return false;
+        if(subjectIn.length() > 50){
+            return false;
+        }
+        if(subjectIn.isEmpty()){
+            return false;
+        }
+
+        String firstChar = subjectIn.substring(0,1);
+        if(Pattern.matches("\\W", firstChar)){
+            return false;
+        }
+        if(subjectIn.length() > 1) {
+            String lastChar = subjectIn.substring(subjectIn.length() - 1);
+            if (Pattern.matches("\\W", firstChar) || Pattern.matches("\\W", lastChar)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -106,8 +135,24 @@ public abstract class AbstractMessage {
      * @return true if contentIn is valid, false otherwise
      */
     public static boolean isValidMessageContent(String contentIn){
-        //TODO complete implementation after automated test implementation
-        return false;
+        if(contentIn.length() > 300){
+            return false;
+        }
+        if(contentIn.isEmpty()){
+            return false;
+        }
+
+        String firstChar = contentIn.substring(0,1);
+        if(Pattern.matches("\\W", firstChar)){
+            return false;
+        }
+        if(contentIn.length() > 1) {
+            String lastChar = contentIn.substring(contentIn.length() - 1);
+            if (Pattern.matches("\\W", firstChar) || Pattern.matches("\\W", lastChar)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

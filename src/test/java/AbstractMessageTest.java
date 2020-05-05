@@ -196,17 +196,17 @@ public class AbstractMessageTest {
         assertTrue(AbstractMessage.isValidMessageContent("t$i"));
         assertTrue(AbstractMessage.isValidMessageContent("this$is$content"));
         assertTrue(AbstractMessage.isValidMessageContent(
-                "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$" +
-                        "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$" +
-                        "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$" +
-                        "this$iste$this$iste$this$iste$this$iste$this$iste$this$iste$"
+                "is$iste$is$iste$is$iste$is$iste$is$iste$is$iste$" +
+                        "is$iste$is$iste$is$iste$is$iste$is$iste$is$iste$" +
+                        "is$iste$is$iste$is$iste$is$iste$is$iste$is$iste$" +
+                        "is$iste$is$iste$is$iste$is$iste$is$iste$is$iste"
         ));
         assertTrue(AbstractMessage.isValidMessageContent("t%$^i"));
         assertTrue(AbstractMessage.isValidMessageContent("this%$^is%$^content"));
         assertTrue(AbstractMessage.isValidMessageContent(
                 "this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^" +
                         "this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^" +
-                        "this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^"
+                        "this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste%$^this%$^iste"
         ));
     }
 

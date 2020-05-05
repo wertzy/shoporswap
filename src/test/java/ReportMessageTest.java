@@ -24,7 +24,7 @@ public class ReportMessageTest {
         assertThrows(IllegalArgumentException.class, ()-> new ReportMessage(
                 new Client("test1", "pass1"),
                 "valid content",
-                new Client("test1", "pass1")
+                new Client("", "")
                 ));
 
 

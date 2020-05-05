@@ -4,7 +4,7 @@ public class UserMessage extends AbstractMessage {
      * Default constructor for UserMessage object
      */
     public UserMessage(){
-        //TODO complete implementation after automated test implementation
+        super();
     }
 
     /**
@@ -17,7 +17,7 @@ public class UserMessage extends AbstractMessage {
      * @throws IllegalArgumentException if contentIn is invalid
      */
     public UserMessage(Client senderIn, String subjectIn, String contentIn){
-        //TODO complete implementation after automated test implementation
+        super(senderIn, subjectIn, contentIn);
     }
 
 }

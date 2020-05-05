@@ -6,7 +6,9 @@ public class ReportMessage extends AbstractMessage{
      * Default constructor for ReportMessage object
      */
     public ReportMessage(){
-
+        super();
+        this.setSubject("DefaultReport");
+        this.reportedAccount = null;
     }
 
     /**
@@ -18,7 +20,8 @@ public class ReportMessage extends AbstractMessage{
      * @throws IllegalArgumentException if contentIn is invalid
      */
     public ReportMessage(Account senderIn, String contentIn, Account reportedAccountIn){
-
+        super(senderIn, "Report: " + reportedAccountIn.getAccountName(), contentIn);
+        this.reportedAccount = reportedAccountIn;
     }
 
     /**
@@ -26,7 +29,7 @@ public class ReportMessage extends AbstractMessage{
      * @return the reported account of the ReportMessage
      */
     public Account getReportedAccount(){
-        return null;
+        return this.reportedAccount;
     }
 
     /**
@@ -34,7 +37,7 @@ public class ReportMessage extends AbstractMessage{
      * @param reportedAccountIn the desired reported account of the ReportMessage
      */
     public void setReportedAccount(Account reportedAccountIn){
-
+        this.reportedAccount = reportedAccountIn;
     }
 
 }
