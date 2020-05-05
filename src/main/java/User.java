@@ -10,7 +10,7 @@ public class User {
     protected static ArrayList<String> pastTransactions;
     protected ArrayList<Integer> ratingList = new ArrayList<>();
     protected double ratingAverage;
-    protected boolean blocked;
+    boolean blocked;
 
     /**
      * Default constructor of a User
@@ -155,10 +155,12 @@ public class User {
 
 
     public static void addClothing(String name, String description, User self){
-        Product newProduct=new Product(name,description,self);
-        List<Product> tempNextProductList = new ArrayList<Product>();
-        tempNextProductList.add(newProduct);
-        productList.add(tempNextProductList.get(0));
+        //if(!blocked) {
+            Product newProduct = new Product(name, description, self);
+            List<Product> tempNextProductList = new ArrayList<Product>();
+            tempNextProductList.add(newProduct);
+            productList.add(tempNextProductList.get(0));
+        //}
     }
 
     public Product find(String name){
@@ -189,7 +191,7 @@ public class User {
 
 
     public void rate(User merchant,int rating){
-        if(!blocked) {
+        if(!blocked){
             if (rating > 5 || rating < 1) {
                 throw new IllegalArgumentException("invalid rating");
             }
@@ -198,10 +200,12 @@ public class User {
         }
     }
 
-    public void setBlocked(boolean blockValue){
-        this.blocked=blockValue;
+    public void setBlockedTrue(){
+        this.blocked=true;
     }
-
+    public void setBlockedFalse(){
+        this.blocked=false;
+    }
 
 
     public void calcRatingAverage(){

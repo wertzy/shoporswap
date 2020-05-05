@@ -115,18 +115,32 @@ class UserTest {
 
     @Test
     void blockedTest(){
-        User user=new User("testN","testP");
+        User user1=new User("testN","testP");
+        user1.setBlockedTrue();
         User user2=new User("testN2","testP2");
-        user.setBlocked(true);
-        assertTrue(user.getBlocked());
+        assertTrue(user1.getBlocked());
         assertFalse(user2.getBlocked());
-        user.rate(user2, 5);
-        assertEquals(0, user2.getRating());
+        user1.setBlockedFalse();
+        assertFalse(user1.getBlocked());
+        user1.setBlockedTrue();
+        assertTrue(user1.getBlocked());
 
+        user1.rate(user2, 5);
+        assertEquals(0, user2.getRatingAverage());
+        user2.rate(user1, 5);
+        assertEquals(5, user1.getRatingAverage());
+
+        /*
         user2.addClothing("a", "b", user2);
-        user.buy("a", user2);
-        assertEquals(0, user.getProducts().size());
+        user1.buy("a", user2);
+        assertEquals(0, user1.getProducts().size());
         assertFalse(user2.getProducts().isEmpty());
+        */
+
+        user1.sendMessage("a", "b", user2);
+        assertEquals(0, user2.retrieveMessages().size());
+        user2.sendMessage("c", "d", user1);
+        assertEquals(1, user1.retrieveMessages().size());
     }
 
 
