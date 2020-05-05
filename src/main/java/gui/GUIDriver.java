@@ -13,7 +13,7 @@ public class GUIDriver extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/sceneBuilder.fxml"));
         primaryStage.setTitle("Shop or Swap");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
     }
 
