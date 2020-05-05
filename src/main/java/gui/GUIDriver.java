@@ -8,10 +8,11 @@ import javafx.stage.Stage;
 
 public class GUIDriver extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("gui/sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        Parent root = FXMLLoader.load(getClass().getResource("/sceneBuilder.fxml"));
+        primaryStage.setTitle("Shop or Swap");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }

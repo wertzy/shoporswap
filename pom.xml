@@ -42,6 +42,7 @@
         </plugins>
     </build>
 
+
     <dependencies>
         <!-- junit  - https://howtoprogram.xyz/2016/09/09/junit-5-maven-example/ -->
         <dependency>
@@ -86,6 +87,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>11</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
