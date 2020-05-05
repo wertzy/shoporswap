@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class UserMessageTest {
 
     /**
@@ -8,6 +10,7 @@ public class UserMessageTest {
     @Test
     void constructorsTests(){
         //TODO implement automated tests
+        assertTrue(false);
     }
 
 }
