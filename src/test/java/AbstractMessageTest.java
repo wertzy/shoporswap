@@ -37,13 +37,33 @@ public class AbstractMessageTest {
      */
     @Test
     void isValidMessageSubjectTest(){
-        //TODO implement automated tests
         assertFalse(AbstractMessage.isValidMessageSubject(""));
         assertFalse(AbstractMessage.isValidMessageSubject("thisistencthisistencthisistencthisistencthisistenct"));
-//        assertFalse(AbstractMessage.isValidMessageSubject());
-//        assertFalse(AbstractMessage.isValidMessageSubject());
-
-//        assertTrue(AbstractMessage.isValidMessageSubject());
+        assertFalse(AbstractMessage.isValidMessageSubject(" hisistencthisistencthisistencthisistencthisistenct"));
+        assertFalse(AbstractMessage.isValidMessageSubject("thisistencthisistencthisistencthisistencthisistenc "));
+        assertFalse(AbstractMessage.isValidMessageSubject(" hisistencthisistencthisistencthisistencthisistenc "));
+        assertFalse(AbstractMessage.isValidMessageSubject(" hisis enc hisis enc hisis enc hisis enc hisis enc "));
+        assertFalse(AbstractMessage.isValidMessageSubject("thisistencthisistencthisistencthisistencthisistenc-"));
+        assertFalse(AbstractMessage.isValidMessageSubject("-hisistencthisistencthisistencthisistencthisistenc-"));
+        assertFalse(AbstractMessage.isValidMessageSubject("-hisis-enc-hisis-enc-hisis-enc-hisis-enc-hisis-enc-"));
+        assertFalse(AbstractMessage.isValidMessageSubject("thisistencthisistencthisistencthisistencthisistenc%"));
+        assertFalse(AbstractMessage.isValidMessageSubject("%hisistencthisistencthisistencthisistencthisistenc%"));
+        assertFalse(AbstractMessage.isValidMessageSubject("%hisis%enc%hisis%enc%hisis%enc%hisis%enc%hisis%enc%"));
+        assertFalse(AbstractMessage.isValidMessageSubject("thisistencthisistencthisistencthisistencthisistenc *&$"));
+        assertFalse(AbstractMessage.isValidMessageSubject(" *&$hisistencthisistencthisistencthisistencthisistenc *&$"));
+        assertFalse(AbstractMessage.isValidMessageSubject(" *&$hisis *&$enc *&$hisis *&$enc *&$hisis *&$enc *&$hisis *&$enc *&$hisis *&$enc *&$"));
+        
+        assertTrue(AbstractMessage.isValidMessageContent("t"));
+        assertTrue(AbstractMessage.isValidMessageContent("thisistenc"));
+        assertTrue(AbstractMessage.isValidMessageContent("thisistencthisistencthisistencthisistencthisistenc"));
+        assertTrue(AbstractMessage.isValidMessageSubject("t i"));
+        assertTrue(AbstractMessage.isValidMessageSubject("this is content"));
+        assertTrue(AbstractMessage.isValidMessageSubject("t *&$i"));
+        assertTrue(AbstractMessage.isValidMessageSubject("this *&$is *&$content"));
+        assertTrue(AbstractMessage.isValidMessageSubject("t$i"));
+        assertTrue(AbstractMessage.isValidMessageSubject("this$is$content"));
+        assertTrue(AbstractMessage.isValidMessageSubject("t-i"));
+        assertTrue(AbstractMessage.isValidMessageSubject("this-is-content"));
     }
 
     /**
