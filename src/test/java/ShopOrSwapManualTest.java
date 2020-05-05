@@ -3,14 +3,14 @@ import java.util.*;
 public class ShopOrSwapManualTest {
 
     public static void main(String[] args) {
-        ShopOrSwap testShopOrSwap = new ShopOrSwap();
-        User testUser = testShopOrSwap.createAccount("test1", "test1");
-        testShopOrSwap.createSellProduct("test1", "testsell", "20", testUser);
-        testShopOrSwap.createSwapProduct("test2", "testswap", "20", testUser);
-        loginMenu(testShopOrSwap);
+        OldShopOrSwap testOldShopOrSwap = new OldShopOrSwap();
+        User testUser = testOldShopOrSwap.createAccount("test1", "test1");
+        testOldShopOrSwap.createSellProduct("test1", "testsell", "20", testUser);
+        testOldShopOrSwap.createSwapProduct("test2", "testswap", "20", testUser);
+        loginMenu(testOldShopOrSwap);
     }
 
-    private static void loginMenu(ShopOrSwap shopOrSwap){
+    private static void loginMenu(OldShopOrSwap oldShopOrSwap){
         Scanner input = new Scanner(System.in);
         System.out.println("--Login Menu--");
         System.out.println("Options:\n1. Sign In\n2. Create Account\n3. Quit");
@@ -22,60 +22,60 @@ public class ShopOrSwapManualTest {
             choice = -1;
             System.out.println("Invalid option selection");
             input = new Scanner(System.in);
-            loginMenu(shopOrSwap);
+            loginMenu(oldShopOrSwap);
         }
         if(choice == 1){
-            User currentUser = signInProcedure(shopOrSwap, input);
+            User currentUser = signInProcedure(oldShopOrSwap, input);
             if(currentUser != null){
                 System.out.println("Welcome " + currentUser.getAccountName());
-                userMenu(shopOrSwap, currentUser, input);
+                userMenu(oldShopOrSwap, currentUser, input);
             }else{
-                loginMenu(shopOrSwap);
+                loginMenu(oldShopOrSwap);
             }
         }else if(choice == 2){
-            User currentUser = createAccountProcedure(shopOrSwap, input);
+            User currentUser = createAccountProcedure(oldShopOrSwap, input);
             if(currentUser != null){
                 System.out.println("Welcome " + currentUser.getAccountName());
-                userMenu(shopOrSwap, currentUser, input);
+                userMenu(oldShopOrSwap, currentUser, input);
             }else{
-                loginMenu(shopOrSwap);
+                loginMenu(oldShopOrSwap);
             }
         }else if(choice == 3){
             exitProcedure();
         }else if(choice != -1){
             System.out.println("No corresponding option");
         }
-        loginMenu(shopOrSwap);
+        loginMenu(oldShopOrSwap);
     }
 
-    private static User signInProcedure(ShopOrSwap shopOrSwap, Scanner reader) {
+    private static User signInProcedure(OldShopOrSwap oldShopOrSwap, Scanner reader) {
         System.out.println("--Sign In Procedure--");
         System.out.print("Account name (case-sensitive): ");
         String accountName = reader.next();
         System.out.print("Account password (case-sensitive): ");
         String accountPassword = reader.next();
-        if(shopOrSwap.signIn(accountName, accountPassword) == null){
+        if(oldShopOrSwap.signIn(accountName, accountPassword) == null){
             System.out.println("No User found with those credentials");
             return null;
         }
-        return shopOrSwap.signIn(accountName, accountPassword);
+        return oldShopOrSwap.signIn(accountName, accountPassword);
     }
 
-    private static User createAccountProcedure(ShopOrSwap shopOrSwap, Scanner reader){
+    private static User createAccountProcedure(OldShopOrSwap oldShopOrSwap, Scanner reader){
         System.out.println("--Create Account Procedure--");
         System.out.print("Make an account name (alphanmueric): ");
         String accountName = reader.next();
         System.out.print("Make an account password (alphanumeric): ");
         String accountPassword = reader.next();
         try{
-            return shopOrSwap.createAccount(accountName, accountPassword);
+            return oldShopOrSwap.createAccount(accountName, accountPassword);
         }catch(Exception e){
             System.out.println("Cannot create account");
             return null;
         }
     }
 
-    private static void userMenu(ShopOrSwap shopOrSwap, User user, Scanner reader){
+    private static void userMenu(OldShopOrSwap oldShopOrSwap, User user, Scanner reader){
         System.out.println("--User Menu: " + user.getAccountName() + "--");
         System.out.println("Options:\n1. View My Products\n2. Post Sell Product\n3. View Selling Products\n4. Post Swap Product\n5. View Swapping Products\n6. Swap Products\n7. Sign Out");
         System.out.print("Choose the number of your selection: ");
@@ -86,37 +86,37 @@ public class ShopOrSwapManualTest {
             userChoice = -1;
             System.out.println("Invalid option selection");
             reader = new Scanner(System.in);
-            userMenu(shopOrSwap, user, reader);
+            userMenu(oldShopOrSwap, user, reader);
         }
         if(userChoice == 1){
-            viewMyProductsProcedure(shopOrSwap, user);
+            viewMyProductsProcedure(oldShopOrSwap, user);
         }else if(userChoice == 2){
-            postSellProcedure(shopOrSwap, user);
+            postSellProcedure(oldShopOrSwap, user);
         }else if(userChoice == 3){
-            viewSellProcedure(shopOrSwap);
+            viewSellProcedure(oldShopOrSwap);
         }else if(userChoice == 4){
-            postSwapProcedure(shopOrSwap, user);
+            postSwapProcedure(oldShopOrSwap, user);
         }else if(userChoice == 5) {
-            viewSwapProcedure(shopOrSwap);
+            viewSwapProcedure(oldShopOrSwap);
         }else if(userChoice == 6){
-            swapProcedure(shopOrSwap, user);
+            swapProcedure(oldShopOrSwap, user);
         }else if(userChoice == 7){
-            signOutProcedure(shopOrSwap, user);
+            signOutProcedure(oldShopOrSwap, user);
         }else if(userChoice != -1){
             System.out.println("No corresponding option");
         }
-        userMenu(shopOrSwap, user, reader);
+        userMenu(oldShopOrSwap, user, reader);
     }
 
-    private static void viewMyProductsProcedure(ShopOrSwap shopOrSwap, User user){
+    private static void viewMyProductsProcedure(OldShopOrSwap oldShopOrSwap, User user){
         System.out.println("--View My Products Procedure--");
-        List<Product> myProducts = shopOrSwap.findUserProducts(user);
+        List<Product> myProducts = oldShopOrSwap.findUserProducts(user);
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getPrice() + "\n\t" + product.getDescription() + "\n\t" + product.getTags());
         }
     }
 
-    private static void postSellProcedure(ShopOrSwap shopOrSwap, User user){
+    private static void postSellProcedure(OldShopOrSwap oldShopOrSwap, User user){
         System.out.println("--Post Product Sell Procedure--");
         String nameInput, descInput;
         double priceInput;
@@ -136,24 +136,24 @@ public class ShopOrSwapManualTest {
             return;
         }
         try{
-            shopOrSwap.createSellProduct(nameInput, descInput, "" + priceInput, user);
+            oldShopOrSwap.createSellProduct(nameInput, descInput, "" + priceInput, user);
         }catch(Exception e){
             System.out.println("Cannot make product as specified");
             return;
         }
-        viewMyProductsProcedure(shopOrSwap, user);
+        viewMyProductsProcedure(oldShopOrSwap, user);
         return;
     }
 
-    private static void viewSellProcedure(ShopOrSwap shopOrSwap){
+    private static void viewSellProcedure(OldShopOrSwap oldShopOrSwap){
         System.out.println("--View Sell Products Procedure--");
-        List<Product> myProducts = shopOrSwap.findSellProducts();
+        List<Product> myProducts = oldShopOrSwap.findSellProducts();
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getPrice() + "\n\t" + product.getDescription() + "\n\t" + product.getTags() + "\n\t" + product.getMerchant().getAccountName());
         }
     }
 
-    private static void postSwapProcedure(ShopOrSwap shopOrSwap, User user){
+    private static void postSwapProcedure(OldShopOrSwap oldShopOrSwap, User user){
         System.out.println("--Post Product Swap Procedure--");
         String nameInput, descInput;
         double priceInput;
@@ -173,39 +173,39 @@ public class ShopOrSwapManualTest {
             return;
         }
         try{
-            shopOrSwap.createSwapProduct(nameInput, descInput, "" + priceInput, user);
+            oldShopOrSwap.createSwapProduct(nameInput, descInput, "" + priceInput, user);
         }catch(Exception e){
             System.out.println("Cannot make product as specified");
             return;
         }
-        viewMyProductsProcedure(shopOrSwap, user);
+        viewMyProductsProcedure(oldShopOrSwap, user);
         return;
     }
 
-    private static void viewSwapProcedure(ShopOrSwap shopOrSwap){
+    private static void viewSwapProcedure(OldShopOrSwap oldShopOrSwap){
         System.out.println("--View Swap Products Procedure--");
-        List<Product> myProducts = shopOrSwap.findSwapProducts();
+        List<Product> myProducts = oldShopOrSwap.findSwapProducts();
         for(Product product : myProducts){
             System.out.println(product.getName() + "\n\t" + product.getDescription() + "\n\t" + product.getTags() + "\n\t" + product.getMerchant().getAccountName());
         }
     }
 
-    private static void swapProcedure(ShopOrSwap shopOrSwap, User user){
+    private static void swapProcedure(OldShopOrSwap oldShopOrSwap, User user){
         System.out.println("--Swap Products Procedure--");
-        if(shopOrSwap.findSwapProducts().size() < 2){
+        if(oldShopOrSwap.findSwapProducts().size() < 2){
             System.out.println("Cannot complete swap procedure (insufficient swap inventory)");
             return;
         }
-        if(shopOrSwap.findUserProducts(user).size() == 0){
+        if(oldShopOrSwap.findUserProducts(user).size() == 0){
             System.out.println("Cannot complete swap procedure (you have no swap inventory)");
             return;
         }
     }
 
-    private static void signOutProcedure(ShopOrSwap shopOrSwap, User user){
+    private static void signOutProcedure(OldShopOrSwap oldShopOrSwap, User user){
         System.out.println("--Sign Out Procedure--");
         System.out.println("" + user.getAccountName() + " is signing out");
-        loginMenu(shopOrSwap);
+        loginMenu(oldShopOrSwap);
     }
 
     private static void exitProcedure(){

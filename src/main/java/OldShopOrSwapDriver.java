@@ -1,13 +1,16 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class ShopOrSwapManualTest2 {
+public class OldShopOrSwapDriver {
+
+    private static final String DATA_FILE = "src/main/resources/systemData.json";
 
     private static OldShopOrSwap generateData() throws IOException {
         try {
-            String dataFile = "src/test/resources/ShopOrSwapManualTest2Input.json";
+            String dataFile = DATA_FILE;
             OldShopOrSwap dataOldShopOrSwap = new OldShopOrSwap();
             dataOldShopOrSwap.createAccount("user1", "pass1");
             dataOldShopOrSwap.createSellProduct("product 1", "description for product 1", "10", dataOldShopOrSwap.findAccount("user1"));
@@ -133,8 +136,19 @@ public class ShopOrSwapManualTest2 {
     }
 
     public static void main(String[] args) throws IOException {
-        OldShopOrSwap testOldShopOrSwap = generateData();
-        loginMenu(testOldShopOrSwap);
+        OldShopOrSwap system;
+        try {
+            try {
+                system = new OldShopOrSwap(DATA_FILE);
+            } catch (FileNotFoundException e) {
+                system = generateData();
+            }
+            loginMenu(system);
+        }catch (Exception e){
+            System.out.println("Could not start system");
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
     }
 
     private static void loginMenu(OldShopOrSwap oldShopOrSwap) throws IOException {
@@ -168,7 +182,7 @@ public class ShopOrSwapManualTest2 {
                 loginMenu(oldShopOrSwap);
             }
         }else if(choice == 3){
-            exitProcedure(oldShopOrSwap);
+            exitProcedure(oldShopOrSwap, DATA_FILE);
         }else if(choice != -1){
             System.out.println("No corresponding option");
         }
@@ -204,7 +218,9 @@ public class ShopOrSwapManualTest2 {
 
     private static void userMenu(OldShopOrSwap oldShopOrSwap, User user, Scanner reader) throws IOException {
         System.out.println("--User Menu: " + user.getAccountName() + "--");
-        System.out.println("Options:\n1. View My Products\n2. Post Sell Product\n3. View Selling Products\n4. Post Swap Product\n5. View Swapping Products\n6. Swap Products\n7. Buy Another User's Product\n8. Sign Out");
+        System.out.println("Options:\n1. View My Products\n2. Post Sell Product\n3. View Selling Products\n4. Post Swap Product\n" +
+                "5. View Swapping Products\n6. Swap Products\n7. Buy Another User's Product\n8. View My Account\n" +
+                "9. Sign Out");
         System.out.print("Choose the number of your selection: ");
         int userChoice;
         try {
@@ -229,7 +245,9 @@ public class ShopOrSwapManualTest2 {
             swapProcedure(oldShopOrSwap, user);
         }else if(userChoice == 7) {
             buyProcedure(oldShopOrSwap, user);
-        }else if(userChoice == 8){
+        }else if(userChoice == 8) {
+            viewAccountProcedure(oldShopOrSwap, user);
+        }else if(userChoice == 9){
             signOutProcedure(oldShopOrSwap, user);
         }else if(userChoice != -1){
             System.out.println("No corresponding option");
@@ -340,7 +358,12 @@ public class ShopOrSwapManualTest2 {
         System.out.println("Input: " + nameInput1);
 
         product1 = null;
-        results1 = oldShopOrSwap.searchForProduct(nameInput1);
+        try {
+            results1 = oldShopOrSwap.searchForProduct(nameInput1);
+        }catch (Exception e){
+            System.out.println("Cannot complete swap procedure (product does not exist in inventory)");
+            return;
+        }
         if(results1.size() > 1){
             for(Product p1 : results1){
                 System.out.println(p1.getName() + "\n\t" + p1.getDescription() + "\n\t" + p1.getMerchant().getAccountName() + "\n\t" + p1.getTags());
@@ -364,9 +387,6 @@ public class ShopOrSwapManualTest2 {
                 System.out.println("Cannot offer this product (you do not own this product)");
                 return;
             }
-        }else if(results1.size() == 0){
-            System.out.println("Cannot complete swap procedure (product does not exist in inventory)");
-            return;
         }
 
         reader = new Scanner(System.in);
@@ -375,7 +395,12 @@ public class ShopOrSwapManualTest2 {
         System.out.println("Input: " + nameInput2);
 
         product2 = null;
-        results2 = oldShopOrSwap.searchForProduct(nameInput2);
+        try {
+            results2 = oldShopOrSwap.searchForProduct(nameInput2);
+        }catch(Exception e){
+            System.out.println("Cannot complete swap procedure (product does not exist in inventory)");
+            return;
+        }
         if(results2.size() > 1){
             for(Product p2 : results2){
                 System.out.println(p2.getName() + "\n\t" + p2.getDescription() + "\n\t" + p2.getMerchant().getAccountName() + "\n\t" + p2.getTags());
@@ -399,10 +424,8 @@ public class ShopOrSwapManualTest2 {
                 System.out.println("Cannot want this product (you own this product)");
                 return;
             }
-        }else if(results2.size() == 0){
-            System.out.println("Cannot complete swap procedure (product does not exist in inventory)");
-            return;
         }
+
         try{
             oldShopOrSwap.swapProducts(product1, product2);
             System.out.println("Swap successful");
@@ -422,8 +445,6 @@ public class ShopOrSwapManualTest2 {
         Product results1;
         User merchant;
 
-
-
         System.out.print("What is the name of the user you would like to buy from ");
         nameInput1 = reader.nextLine();
         System.out.println("Input: " + nameInput1);
@@ -432,6 +453,11 @@ public class ShopOrSwapManualTest2 {
         }
         catch(Exception e){
             System.out.println("User not found");
+            return;
+        }
+
+        if(user.getAccountName().compareToIgnoreCase(merchant.getAccountName()) == 0){
+            System.out.println("User is yourself. You cannot buy from yourself.");
             return;
         }
 
@@ -450,11 +476,29 @@ public class ShopOrSwapManualTest2 {
         searchFeedback = reader.next();
         if(searchFeedback.compareToIgnoreCase("Y") == 0){
             user.buy(results1.getName(), merchant);
-            System.out.println("Your transaction for " + results1.getName() + "has successfully been processed");
+            user.sendMessage("Product Sold", "Your product has been sold: " + results1.getName(), merchant);
+            merchant.sendMessage("Product Bought", "Your transaction for " + results1.getName() + " has successfully been processed", user);
+            oldShopOrSwap.removeSellProduct(results1);
         }
-
     }
 
+    private static void viewAccountProcedure(OldShopOrSwap oldShopOrSwap, User user){
+        System.out.println("Name: " + user.getAccountName());
+        System.out.println("Password: " + user.getPassword());
+        System.out.println("Messages:");
+        if(!user.retrieveMessages().isEmpty()){
+            for(Message msg : user.retrieveMessages()){
+                System.out.println("" + (user.retrieveMessages().indexOf(msg) + 1) + ": Message from " + msg.getSender().getAccountName());
+                System.out.println("" + msg.getBody());
+            }
+        }
+        System.out.println("Purchase History:");
+        if(!user.getTransactionHistory().isEmpty()){
+            for(String tsaction : user.getTransactionHistory()){
+                System.out.println("" + tsaction);
+            }
+        }
+    }
 
     private static void signOutProcedure(OldShopOrSwap oldShopOrSwap, User user) throws IOException {
         System.out.println("--Sign Out Procedure--");
@@ -462,16 +506,36 @@ public class ShopOrSwapManualTest2 {
         loginMenu(oldShopOrSwap);
     }
 
-    private static void exitProcedure(OldShopOrSwap oldShopOrSwap) throws IOException {
+//    private static void reportProcedure(ShopOrSwap shopOrSwap, User user){
+//        Scanner input = new Scanner(System.in);
+//        System.out.print("Who do you wish to report? ");
+//        String username = input.nextLine();
+//
+//        if(shopOrSwap.findAccount(username).getAccountName().compareToIgnoreCase(user.getAccountName()) == 0){
+//            System.out.println("Cannot report yourself");
+//            return;
+//        }
+//
+//        System.out.println("Type the complaint: ");
+//        String comment = input.nextLine();
+//        try {
+//            shopOrSwap.genReport(shopOrSwap.findAccount(username), comment);
+//        }catch(Exception e){
+//            System.out.println("Could not report the specified user");
+//        }
+//        return;
+//    }
+
+    private static void exitProcedure(OldShopOrSwap oldShopOrSwap, String dataFile) throws IOException {
         System.out.println("Exporting data");
         try {
-            String dataFile = "src/test/resources/ShopOrSwapManualTest2Output.json";
             oldShopOrSwap.exit(dataFile);
             System.out.println("Export Success. Goodbye");
             System.exit(0);
         }catch (Exception e){
             System.out.println("Export Fail. Goodbye");
-            System.exit(0);
+            System.out.println(e.getMessage());
+            System.exit(1);
         }
     }
 
