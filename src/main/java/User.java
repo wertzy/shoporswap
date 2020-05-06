@@ -10,7 +10,7 @@ public class User {
     protected static List<Product> productList = new ArrayList<Product>();
     protected ArrayList<Integer> ratingList = new ArrayList<>();
     protected double wallet;
-    protected double ratingAverage;
+    protected double rating;
 
     /**
      * Default constructor of a User
@@ -18,7 +18,7 @@ public class User {
     public User() {
         this.accountName = "accountname";
         this.password = "password";
-        this.ratingAverage = 0.0;
+        this.rating= 0.0;
         this.transactionHistory = new ArrayList<>();
         this.messages = new ArrayList<>();
     }
@@ -41,7 +41,7 @@ public class User {
         }else {
             this.password = passwordIn;
         }
-        this.ratingAverage = 0.0;
+        this.rating = 0.0;
         this.transactionHistory = new ArrayList<>(); // suggested revision
         this.messages = new ArrayList<Message>();
         this.wallet=0;
@@ -69,7 +69,7 @@ public class User {
      * @return the rating of the User
      */
     public double getRating(){
-        return this.ratingAverage;
+        return this.rating;
     }
 
     /**
@@ -177,6 +177,9 @@ public class User {
 
     public void buy(String productName, User merchant,double amount){
         Product merchantProduct=merchant.find(productName);
+        if(wallet-merchantProduct.getPrice()<0){
+            throw new IllegalArgumentException("Insufficient funds to buy this product");
+        }
         merchant.removeClothing(merchantProduct);
         String transaction = merchant.accountName+":"+ productName;
         transactionHistory.add(transaction);
@@ -205,7 +208,7 @@ public class User {
             tempRatingAverage+=ratingList.get(i);
         }
         tempRatingAverage=tempRatingAverage/ratingList.size();
-        ratingAverage=tempRatingAverage;
+        rating=tempRatingAverage;
     }
 
     public void walletAdd(double amount){

@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-/*
+
 public class ShopOrSwapManualTest2 {
 
     private static ShopOrSwap generateData() throws IOException {
@@ -449,7 +449,7 @@ public class ShopOrSwapManualTest2 {
         System.out.print("Is this the product you want to buy? (Enter \"Y\" for \"Yes\") ");
         searchFeedback = reader.next();
         if(searchFeedback.compareToIgnoreCase("Y") == 0){
-            user.buy(results1.getName(), merchant);
+            user.buy(results1.getName(), merchant,results1.getPrice());
             System.out.println("Your transaction for " + results1.getName() + "has successfully been processed");
         }
 
@@ -476,4 +476,3 @@ public class ShopOrSwapManualTest2 {
     }
 
 }
-*/
