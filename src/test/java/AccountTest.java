@@ -63,14 +63,14 @@ public class AccountTest {
     @Test
     void isValidAccountPasswordTest(){
         //True Tests
-        assertTrue(User.isPasswordValid("desmond"));
-        assertTrue(User.isPasswordValid("deslee123"));
-        assertTrue(User.isPasswordValid("$$@richb0i$$"));
+        assertTrue(Account.isValidAccountPassword("desmond"));
+        assertTrue(Account.isValidAccountPassword("deslee123"));
+        assertTrue(Account.isValidAccountPassword("$$@richb0i$$"));
         //EC: Standard name should allow numbers and any character
 
         //False Tests
-        assertFalse(User.isPasswordValid(""));
-        assertFalse(User.isPasswordValid("des mond"));
+        assertFalse(Account.isValidAccountPassword(""));
+        assertFalse(Account.isValidAccountPassword("des mond"));
         //accounts cannot have spaces in them
     }
 

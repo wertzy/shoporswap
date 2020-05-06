@@ -4,11 +4,11 @@ import java.util.regex.Pattern;
 
 public class Tag {
     private String name;
-    private List<Product> products;
+    private List<AbstractProduct> products;
 
     public Tag(){
         this.name = "name";
-        this.products = new ArrayList<Product>();
+        this.products = new ArrayList<AbstractProduct>();
     }
 
     public Tag(String name){
@@ -16,7 +16,7 @@ public class Tag {
             throw new IllegalArgumentException("invalid tag");
         }
         this.name = name;
-        this.products = new ArrayList<Product>();
+        this.products = new ArrayList<AbstractProduct>();
 
     }
 
@@ -36,11 +36,11 @@ public class Tag {
         return Pattern.matches(descriptionStringPattern, tag); // checks if the tag matches the required expression
     }
 
-    public void addProduct(Product product){
+    public void addProduct(AbstractProduct product){
         this.products.add(product);
     }
 
-    public List<Product> getProducts() {
+    public List<AbstractProduct> getProducts() {
         // implement method to pass corresponding tests after the tests have been written
         return this.products;
     }
