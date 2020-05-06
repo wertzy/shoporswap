@@ -35,7 +35,7 @@ https://drive.google.com/file/d/1kMssfkygQx7w3o2UKGK7ikUPlx5agJaC/view?usp=shari
 
 * JSON Integration (Tests Use JSON): 
 
-https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/ShopOrSwapTest.java
+https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/OldShopOrSwapTest.java
 
 https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/JsonUtilTest.java
 
