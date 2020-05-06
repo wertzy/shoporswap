@@ -19,15 +19,15 @@ public class StorefrontTest {
 
         Storefront testStorefront1 = new SellStorefront("Name 1", testUser1);
         assertEquals("Name 1", testStorefront1.getStorefrontName());
-        assertEquals(testUser1, testStorefront1.getStorefrontOwner());
+        assertEquals(testUser1, testStorefront1.retrieveStorefrontOwner());
 
         Storefront testStorefront2 = new SellStorefront();
         testStorefront2.setStorefrontName("Name 1");
         assertEquals("Name 1", testStorefront2.getStorefrontName());
-        assertNull(testStorefront2.getStorefrontOwner());
+        assertNull(testStorefront2.retrieveStorefrontOwner());
 
-        testStorefront2.setStorefrontOwner(testUser2);
-        assertEquals(testUser2, testStorefront2.getStorefrontOwner());
+        testStorefront2.establishStorefrontOwner(testUser2);
+        assertEquals(testUser2, testStorefront2.retrieveStorefrontOwner());
 
     }
 

@@ -7,7 +7,6 @@ public class ShopOrSwap {
     private AccountFactory accountFactory;
     private StorefrontFactory storefrontFactory;
     private AbstractProductFactory productFactory;
-
     private Map<String, Account> accountCollection;
 
     /**

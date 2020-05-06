@@ -45,7 +45,7 @@ public class SellStorefront extends Storefront {
      * @throws IllegalArgumentException if the SellProduct to sell is not owned by the SellStorefront owner
      */
     public SellProduct addProduct(SellProduct sellProductIn){
-        if(this.getStorefrontOwner() != sellProductIn.getProductMerchant()){
+        if(this.retrieveStorefrontOwner() != sellProductIn.getProductMerchant()){
             throw new IllegalArgumentException("Merchant must be the same as the store owner");
         }
         this.sellProducts.add(sellProductIn);

@@ -31,7 +31,7 @@ public class SellStorefrontTest {
 
         testSellStorefront1 = new SellStorefront(validName, testUser1);
         assertEquals(validName, testSellStorefront1.getStorefrontName());
-        assertEquals(testUser1, testSellStorefront1.getStorefrontOwner());
+        assertEquals(testUser1, testSellStorefront1.retrieveStorefrontOwner());
         assertEquals(0, testSellStorefront1.getSellProducts().size());
         testSellStorefront2 = new SellStorefront(
                 validName,
@@ -42,7 +42,7 @@ public class SellStorefrontTest {
                 )
         );
         assertEquals(validName, testSellStorefront2.getStorefrontName());
-        assertEquals(testUser2, testSellStorefront2.getStorefrontOwner());
+        assertEquals(testUser2, testSellStorefront2.retrieveStorefrontOwner());
         assertEquals(2, testSellStorefront2.getSellProducts().size());
 
         testSellStorefront3 = new SellStorefront(
@@ -54,19 +54,19 @@ public class SellStorefrontTest {
                 )
         );
         assertEquals("Valid Name 2", testSellStorefront3.getStorefrontName());
-        assertEquals(testUser2, testSellStorefront3.getStorefrontOwner());
+        assertEquals(testUser2, testSellStorefront3.retrieveStorefrontOwner());
         assertEquals(2, testSellStorefront3.getSellProducts().size());
 
         testSellStorefront4 = new SellStorefront();
         assertEquals("DEFAULT NAME", testSellStorefront4.getStorefrontName());
-        assertEquals(null, testSellStorefront4.getStorefrontOwner());
+        assertEquals(null, testSellStorefront4.retrieveStorefrontOwner());
         assertEquals(0, testSellStorefront4.getSellProducts().size());
 
         Storefront testSellStorefront5, testSellStorefront6, testSellStorefront7, testSellStorefront8;
 
         testSellStorefront5 = new SellStorefront(validName, testUser1);
         assertEquals(validName, testSellStorefront5.getStorefrontName());
-        assertEquals(testUser1, testSellStorefront5.getStorefrontOwner());
+        assertEquals(testUser1, testSellStorefront5.retrieveStorefrontOwner());
         assertEquals(0, testSellStorefront5.getStorefrontProducts().size());
         testSellStorefront6 = new SellStorefront(
                 validName,
@@ -77,7 +77,7 @@ public class SellStorefrontTest {
                 )
         );
         assertEquals(validName, testSellStorefront6.getStorefrontName());
-        assertEquals(testUser2, testSellStorefront6.getStorefrontOwner());
+        assertEquals(testUser2, testSellStorefront6.retrieveStorefrontOwner());
         assertEquals(2, testSellStorefront6.getStorefrontProducts().size());
 
         testSellStorefront7 = new SellStorefront(
@@ -89,12 +89,12 @@ public class SellStorefrontTest {
                 )
         );
         assertEquals("Valid Name 2", testSellStorefront7.getStorefrontName());
-        assertEquals(testUser2, testSellStorefront7.getStorefrontOwner());
+        assertEquals(testUser2, testSellStorefront7.retrieveStorefrontOwner());
         assertEquals(2, testSellStorefront7.getStorefrontProducts().size());
 
         testSellStorefront8 = new SellStorefront();
         assertEquals("DEFAULT NAME", testSellStorefront8.getStorefrontName());
-        assertEquals(null, testSellStorefront8.getStorefrontOwner());
+        assertEquals(null, testSellStorefront8.retrieveStorefrontOwner());
         assertEquals(0, testSellStorefront8.getStorefrontProducts().size());
 
     }

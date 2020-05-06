@@ -61,19 +61,19 @@ public class AccountFactoryTest {
         assertEquals("DefaultClient", testClientAccount1.getAccountName());
         assertEquals("DefaultPassword", testClientAccount1.getAccountPassword());
         assertFalse(testClientAccount1.getIsFrozen());
-        assertEquals(0, ((Client) testClientAccount1).getMyProductList().size());
+        assertEquals(0, ((Client) testClientAccount1).getMyOwnedProductList().size());
 
         testClientAccount2 = testAccountFactory.getAccount("CLIENT");
         assertEquals("DefaultClient", testClientAccount2.getAccountName());
         assertEquals("DefaultPassword", testClientAccount2.getAccountPassword());
         assertFalse(testClientAccount2.getIsFrozen());
-        assertEquals(0, ((Client) testClientAccount2).getMyProductList().size());
+        assertEquals(0, ((Client) testClientAccount2).getMyOwnedProductList().size());
 
         testClientAccount3 = testAccountFactory.getAccount("ClIeNt");
         assertEquals("DefaultClient", testClientAccount3.getAccountName());
         assertEquals("DefaultPassword", testClientAccount3.getAccountPassword());
         assertFalse(testClientAccount3.getIsFrozen());
-        assertEquals(0, ((Client) testClientAccount3).getMyProductList().size());
+        assertEquals(0, ((Client) testClientAccount3).getMyOwnedProductList().size());
 
     }
 

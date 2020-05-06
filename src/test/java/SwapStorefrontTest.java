@@ -32,7 +32,7 @@ public class SwapStorefrontTest {
 
         testSwapStorefront1 = new SwapStorefront(validName, testUser1);
         assertEquals(validName, testSwapStorefront1.getStorefrontName());
-        assertEquals(testUser1, testSwapStorefront1.getStorefrontOwner());
+        assertEquals(testUser1, testSwapStorefront1.retrieveStorefrontOwner());
         assertEquals(0, testSwapStorefront1.getSwapProducts().size());
         testSwapStorefront2 = new SwapStorefront(
                 validName,
@@ -43,7 +43,7 @@ public class SwapStorefrontTest {
                 )
         );
         assertEquals(validName, testSwapStorefront2.getStorefrontName());
-        assertEquals(testUser2, testSwapStorefront2.getStorefrontOwner());
+        assertEquals(testUser2, testSwapStorefront2.retrieveStorefrontOwner());
         assertEquals(2, testSwapStorefront2.getSwapProducts().size());
 
         testSwapStorefront3 = new SwapStorefront(
@@ -55,12 +55,12 @@ public class SwapStorefrontTest {
                 )
         );
         assertEquals("Valid Name 2", testSwapStorefront3.getStorefrontName());
-        assertEquals(testUser2, testSwapStorefront3.getStorefrontOwner());
+        assertEquals(testUser2, testSwapStorefront3.retrieveStorefrontOwner());
         assertEquals(2, testSwapStorefront3.getSwapProducts().size());
 
         testSwapStorefront4 = new SwapStorefront();
         assertEquals("DEFAULT NAME", testSwapStorefront4.getStorefrontName());
-        assertEquals(null, testSwapStorefront4.getStorefrontOwner());
+        assertEquals(null, testSwapStorefront4.retrieveStorefrontOwner());
         assertEquals(0, testSwapStorefront4.getSwapProducts().size());
         
     }

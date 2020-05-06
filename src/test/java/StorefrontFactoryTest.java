@@ -40,28 +40,28 @@ public class StorefrontFactoryTest {
 
         testSellStorefront1 = testStorefrontFactory.getStorefront("sell");
         assertEquals("DEFAULT NAME", testSellStorefront1.getStorefrontName());
-        assertNull(testSellStorefront1.getStorefrontOwner());
+        assertNull(testSellStorefront1.retrieveStorefrontOwner());
         assertEquals(0, testSellStorefront1.getStorefrontProducts().size());
         testSellStorefront2 = testStorefrontFactory.getStorefront("SELL");
         assertEquals("DEFAULT NAME", testSellStorefront2.getStorefrontName());
-        assertNull(testSellStorefront2.getStorefrontOwner());
+        assertNull(testSellStorefront2.retrieveStorefrontOwner());
         assertEquals(0, testSellStorefront2.getStorefrontProducts().size());
         testSellStorefront3 = testStorefrontFactory.getStorefront("SeLl");
         assertEquals("DEFAULT NAME", testSellStorefront3.getStorefrontName());
-        assertNull(testSellStorefront3.getStorefrontOwner());
+        assertNull(testSellStorefront3.retrieveStorefrontOwner());
         assertEquals(0, testSellStorefront3.getStorefrontProducts().size());
 
         testSwapStorefront1 = testStorefrontFactory.getStorefront("Swap");
         assertEquals("DEFAULT NAME", testSwapStorefront1.getStorefrontName());
-        assertNull(testSwapStorefront1.getStorefrontOwner());
+        assertNull(testSwapStorefront1.retrieveStorefrontOwner());
         assertEquals(0, testSwapStorefront1.getStorefrontProducts().size());
         testSwapStorefront2 = testStorefrontFactory.getStorefront("SWAP");
         assertEquals("DEFAULT NAME", testSwapStorefront2.getStorefrontName());
-        assertNull(testSwapStorefront2.getStorefrontOwner());
+        assertNull(testSwapStorefront2.retrieveStorefrontOwner());
         assertEquals(0, testSwapStorefront2.getStorefrontProducts().size());
         testSwapStorefront3 = testStorefrontFactory.getStorefront("sWaP");
         assertEquals("DEFAULT NAME", testSwapStorefront3.getStorefrontName());
-        assertNull(testSwapStorefront3.getStorefrontOwner());
+        assertNull(testSwapStorefront3.retrieveStorefrontOwner());
         assertEquals(0, testSwapStorefront3.getStorefrontProducts().size());
 
     }

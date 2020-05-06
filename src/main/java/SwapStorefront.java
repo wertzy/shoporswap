@@ -45,7 +45,7 @@ public class SwapStorefront extends Storefront {
      * @throws IllegalArgumentException if the SwapProduct to swap is not owned by the SwapProduct owner
      */
     public SwapProduct addProduct(SwapProduct swapProductIn){
-        if(this.getStorefrontOwner() != swapProductIn.getProductMerchant()){
+        if(this.retrieveStorefrontOwner() != swapProductIn.getProductMerchant()){
             throw new IllegalArgumentException("Merchant must be the same as the store owner");
         }
         this.swapProducts.add(swapProductIn);
