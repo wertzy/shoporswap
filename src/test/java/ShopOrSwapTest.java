@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,6 +53,10 @@ public class ShopOrSwapTest {
         testAccountCollection.put("test1", new Client("test1", "pass1"));
         testShopOrSwap.setAccountCollection(testAccountCollection);
         assertEquals(1, testShopOrSwap.getAccountCollection().size());
+
+        testShopOrSwap.setSystemMessages(Arrays.asList(new UserMessage(), new ReportMessage()));
+        assertEquals(2, testShopOrSwap.getSystemMessages().size());
+
     }
 
     /**
@@ -417,6 +419,93 @@ public class ShopOrSwapTest {
      */
     @Test
     void sendMessageTest(){
-        assertTrue(false);
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addAccount(new Client("testClient1", "pass1"));
+        testShopOrSwap.addAccount(new Client("testClient2", "pass2"));
+        testShopOrSwap.addAccount(new Admin("testAdmin1", "pass3"));
+        testShopOrSwap.sendMessage("User", "testClient1", "testClient2", "subject1", "message1");
+        assertEquals(1, testShopOrSwap.getSystemMessages().size());
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.sendMessage("Report", "testClient1", "testClient2", "subject1", "message1"));
+        testShopOrSwap.sendMessage("Report", "testClient1","","subject2", "message2");
+        assertEquals(2, testShopOrSwap.getSystemMessages().size());
+    }
+
+    /**
+     * Automated tests for ShopOrSwap.findMessagesByRecipient and ShopOrSwap.findMessagesBySender methods
+     */
+    @Test
+    void findMessagesTests(){
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addAccount(new Client("testClient1", "pass1"));
+        testShopOrSwap.addAccount(new Client("testClient2", "pass2"));
+        testShopOrSwap.addAccount(new Admin("testAdmin1", "pass3"));
+
+        List<AbstractMessage> testMessageList1 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testAdmin1"));
+        List<AbstractMessage> testMessageList2 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testClient2"));
+        List<AbstractMessage> testMessageList3 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testClient1"));
+        List<AbstractMessage> testMessageList4 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testAdmin1"));
+        List<AbstractMessage> testMessageList5 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testClient2"));
+        List<AbstractMessage> testMessageList6 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testClient1"));
+        assertEquals(0, testMessageList1.size());
+        assertEquals(0, testMessageList2.size());
+        assertEquals(0, testMessageList3.size());
+        assertEquals(0, testMessageList4.size());
+        assertEquals(0, testMessageList5.size());
+        assertEquals(0, testMessageList6.size());
+
+        testShopOrSwap.sendMessage("User", "testClient1", "testClient2", "subject1", "message1");
+        assertEquals(1, testShopOrSwap.getSystemMessages().size());
+        testMessageList1 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testAdmin1"));
+        testMessageList2 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testClient2"));
+        testMessageList3 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testClient1"));
+        testMessageList4 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testAdmin1"));
+        testMessageList5 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testClient2"));
+        testMessageList6 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testClient1"));
+        assertEquals(0, testMessageList1.size());
+        assertEquals(1, testMessageList2.size());
+        assertEquals(0, testMessageList3.size());
+        assertEquals(0, testMessageList4.size());
+        assertEquals(0, testMessageList5.size());
+        assertEquals(1, testMessageList6.size());
+
+        testShopOrSwap.sendMessage("Report", "testClient1","","subject2", "message2");
+        assertEquals(2, testShopOrSwap.getSystemMessages().size());
+        testMessageList1 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testAdmin1"));
+        testMessageList2 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testClient2"));
+        testMessageList3 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testClient1"));
+        testMessageList4 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testAdmin1"));
+        testMessageList5 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testClient2"));
+        testMessageList6 = testShopOrSwap.findMessagesBySender(testShopOrSwap.findAccount("testClient1"));
+        assertEquals(1, testMessageList1.size());
+        assertEquals(1, testMessageList2.size());
+        assertEquals(0, testMessageList3.size());
+        assertEquals(0, testMessageList4.size());
+        assertEquals(0, testMessageList5.size());
+        assertEquals(2, testMessageList6.size());
+
+    }
+
+    @Test
+    void freezeAccountTest(){
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        Client testAccount1 = (Client) testShopOrSwap.addAccount(new Client("testClient1", "pass1"));
+        Admin testAccount2 = (Admin) testShopOrSwap.addAccount(new Admin("testAdmin1", "pass3"));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.freezeAccount(testAccount1, testAccount2));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.freezeAccount(testAccount2, testAccount2));
+        testShopOrSwap.freezeAccount(testAccount2, testAccount1);
+        assertTrue(testAccount1.getIsFrozen());
+    }
+
+    @Test
+    void unfreezeAccountTest(){
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        Client testAccount1 = (Client) testShopOrSwap.addAccount(new Client("testClient1", "pass1"));
+        Admin testAccount2 = (Admin) testShopOrSwap.addAccount(new Admin("testAdmin1", "pass3"));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.unfreezeAccount(testAccount1, testAccount2));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.unfreezeAccount(testAccount2, testAccount2));
+        testShopOrSwap.freezeAccount(testAccount2, testAccount1);
+        assertTrue(testAccount1.getIsFrozen());
+        testShopOrSwap.unfreezeAccount(testAccount2, testAccount1);
+        assertFalse(testAccount1.getIsFrozen());
     }
 }

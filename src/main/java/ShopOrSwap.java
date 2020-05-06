@@ -8,6 +8,7 @@ public class ShopOrSwap {
     private StorefrontFactory storefrontFactory;
     private AbstractProductFactory productFactory;
     private Map<String, Account> accountCollection;
+    private List<AbstractMessage> systemMessages;
 
     /**
      * Default constructor for the ShopOrSwap system
@@ -18,6 +19,7 @@ public class ShopOrSwap {
         this.setStorefrontFactory(new StorefrontFactory());
         this.setProductFactory(new AbstractProductFactory());
         this.setAccountCollection(new HashMap<String, Account>());
+        this.setSystemMessages(new ArrayList<AbstractMessage>());
     }
 
     /**
@@ -297,7 +299,101 @@ public class ShopOrSwap {
      * System process for message communications
      * @param messageIn
      */
-    public void sendMessage(AbstractMessage messageIn){}
+    public AbstractMessage addMessage(AbstractMessage messageIn){
+        this.getSystemMessages().add(messageIn);
+        return this.findMessage(messageIn);
+    }
+
+    public AbstractMessage findMessage(AbstractMessage messageIn){
+        for(AbstractMessage message : this.getSystemMessages()){
+            if(message.getSender() == messageIn.getSender() && message.getSubject().compareTo(message.getSubject()) == 0 && message.getContent().compareTo(messageIn.getContent()) == 0){
+                return message;
+            }
+        }
+        throw new NoSuchElementException("No message can be found matching the criteria");
+    }
+
+    public List<AbstractMessage> findMessagesByRecipient(Account recipientIn){
+        List<AbstractMessage> recipientMessages = new ArrayList<AbstractMessage>();
+        for(AbstractMessage message : this.getSystemMessages()){
+            if(message.getRecipient() == recipientIn){
+                recipientMessages.add(message);
+            }
+        }
+        return recipientMessages;
+    }
+
+    public List<AbstractMessage> findMessagesBySender(Account senderIn){
+        List<AbstractMessage> recipientMessages = new ArrayList<AbstractMessage>();
+        for(AbstractMessage message : this.getSystemMessages()){
+            if(message.getSender() == senderIn){
+                recipientMessages.add(message);
+            }
+        }
+        return recipientMessages;
+    }
+
+    /**
+     * System process for general messaging between clients
+     * @param typeIn
+     * @param receiverNameIn
+     * @param subjectIn
+     * @param contentIn
+     * @throws IllegalArgumentException if the type of message is invalid
+     * @throws NoSuchElementException if the sender or the recipient does not exist
+     * @throws IllegalArgumentException if the message subject or the message content is invalid
+     */
+    public void sendMessage(String typeIn, String senderNameIn, String receiverNameIn, String subjectIn, String contentIn){
+        AbstractMessage message = messageFactory.getMessage(typeIn);
+        if(typeIn.compareToIgnoreCase("User") == 0 && !receiverNameIn.isEmpty()){
+            message.setSender(this.findAccount(senderNameIn));
+            message.setRecipient(this.findAccount(receiverNameIn));
+            message.setSubject(subjectIn);
+            message.setContent(contentIn);
+            this.addMessage(message);
+        }else{
+            if(receiverNameIn.isEmpty()) {
+                for (Account account : this.getAccountCollection().values()) {
+                    if (account.getClass().getName().compareToIgnoreCase("Admin") == 0) {
+                        message.setSender(this.findAccount(senderNameIn));
+                        message.setRecipient(account);
+                        message.setSubject(subjectIn);
+                        message.setContent(contentIn);
+                        this.addMessage(message);
+                    }
+                }
+            }else{
+                throw new IllegalArgumentException("Report recipient must be empty");
+            }
+        }
+    }
+
+    /**
+     * System process for freezing accounts
+     * @param freezerIn
+     * @param toFreezeIn
+     * @throws IllegalArgumentException if freezerIn is not an Admin
+     * @throws IllegalArgumentException if freezerIn and toFreezeIn are the same Admin account
+     */
+    public void freezeAccount(Account freezerIn, Account toFreezeIn){
+        if(freezerIn.getClass().getName().compareToIgnoreCase("admin") != 0 || freezerIn == toFreezeIn){
+            throw new IllegalArgumentException("Clients cannot freeze accounts");
+        }
+        this.findAccount(toFreezeIn).setIsFrozen(true);
+    }
+
+    /**
+     * System process for unfreezing accounts
+     * @param unfreezerIn
+     * @param toUnFreezeIn
+     * @throws IllegalArgumentException if unfreezerIn is not an Admin
+     */
+    public void unfreezeAccount(Account unfreezerIn, Account toUnFreezeIn){
+        if(unfreezerIn.getClass().getName().compareToIgnoreCase("admin") != 0 || unfreezerIn == toUnFreezeIn){
+            throw new IllegalArgumentException("Clients cannot unfreeze accounts");
+        }
+        this.findAccount(toUnFreezeIn).setIsFrozen(false);
+    }
 
     public AccountFactory getAccountFactory(){
         return this.accountFactory;
@@ -339,4 +435,11 @@ public class ShopOrSwap {
         this.storefrontFactory = storefrontFactoryIn;
     }
 
+    public List<AbstractMessage> getSystemMessages() {
+        return systemMessages;
+    }
+
+    public void setSystemMessages(List<AbstractMessage> systemMessages) {
+        this.systemMessages = systemMessages;
+    }
 }

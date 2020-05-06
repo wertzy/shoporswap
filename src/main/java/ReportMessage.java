@@ -14,13 +14,14 @@ public class ReportMessage extends AbstractMessage{
     /**
      * Constructor for ReportMessage object
      * @param senderIn the sender of the ReportMessage
+     * @param recipientIn the recipient of the ReportMessage
      * @param contentIn the content of the ReportMessage
      * @param reportedAccountIn the reported account of the ReportMessage
      * @throws IllegalArgumentException if senderIn is invalid
      * @throws IllegalArgumentException if contentIn is invalid
      */
-    public ReportMessage(Account senderIn, String contentIn, Account reportedAccountIn){
-        super(senderIn, "Report: " + reportedAccountIn.getAccountName(), contentIn);
+    public ReportMessage(Account senderIn, Account recipientIn, String contentIn, Account reportedAccountIn){
+        super(senderIn, recipientIn, "Report: " + reportedAccountIn.getAccountName(), contentIn);
         this.reportedAccount = reportedAccountIn;
     }
 

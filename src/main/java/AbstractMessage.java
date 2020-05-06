@@ -3,15 +3,17 @@ import java.util.regex.Pattern;
 
 public abstract class AbstractMessage {
 
-    Account sender;
-    String subject;
-    String content;
+    private Account sender;
+    private Account recipient;
+    private String subject;
+    private String content;
 
     /**
      * Default constructor for an AbstractMessage object
      */
     public AbstractMessage(){
         this.sender = null;
+        this.recipient = null;
         this.setSubject("DefaultSubject");
         this.setContent("DefaultContent");
     }
@@ -25,8 +27,9 @@ public abstract class AbstractMessage {
      * @throws IllegalArgumentException if subjectIn is invalid
      * @throws IllegalArgumentException if contentIn is invalid
      */
-    public AbstractMessage(Account sender, String subject, String content){
+    public AbstractMessage(Account sender, Account recipient, String subject, String content){
         this.setSender(sender);
+        this.setRecipient(recipient);
         this.setSubject(subject);
         this.setContent(content);
     }
@@ -53,6 +56,14 @@ public abstract class AbstractMessage {
      */
     public final String getContent(){
         return this.content;
+    }
+
+    /**
+     * Accessor method for the recipient property of the AbstractMessage object
+     * @return the recipient of the AbstractMessage
+     */
+    public final Account getRecipient(){
+        return this.recipient;
     }
 
     /**
@@ -89,6 +100,14 @@ public abstract class AbstractMessage {
             throw new IllegalArgumentException("Content is invalid");
         }
         this.content = contentIn;
+    }
+
+    /**
+     * Mutator method for the recipient property of the AbstractMessage
+     * @param recipientIn the recipient of the AbstractMessage
+     */
+    public void setRecipient(Account recipientIn){
+        this.recipient = recipientIn;
     }
 
     /**
