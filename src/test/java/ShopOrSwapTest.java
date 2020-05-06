@@ -154,30 +154,6 @@ public class ShopOrSwapTest {
     }
 
     /**
-     * Automated tests for ShopOrSwap.addProduct method
-     */
-    @Test
-    void addProductTest(){
-        assertTrue(false);
-    }
-
-    /**
-     * Automated tests for ShopOrSwap.findProduct method
-     */
-    @Test
-    void findProductTest(){
-        assertTrue(false);
-    }
-
-    /**
-     * Automated tests for ShopOrSwap.removeProduct method
-     */
-    @Test
-    void removeProductTest(){
-        assertTrue(false);
-    }
-
-    /**
      * Automated tests for ShopOrSwap.addStorefront method
      */
     @Test
@@ -198,6 +174,30 @@ public class ShopOrSwapTest {
      */
     @Test
     void removeStorefrontTest(){
+        assertTrue(false);
+    }
+
+    /**
+     * Automated tests for ShopOrSwap.addToStorefront method
+     */
+    @Test
+    void addToStorefrontTest(){
+        assertTrue(false);
+    }
+
+    /**
+     * Automated tests for ShopOrSwap.findInStorefront method
+     */
+    @Test
+    void findInStorefrontTest(){
+        assertTrue(false);
+    }
+
+    /**
+     * Automated tests for ShopOrSwap.removeFromStorefront method
+     */
+    @Test
+    void removeFromStorefrontTest(){
         assertTrue(false);
     }
 

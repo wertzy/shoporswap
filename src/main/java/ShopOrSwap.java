@@ -42,33 +42,6 @@ public class ShopOrSwap {
     }
 
     /**
-     * Adds a product to the ShopOrSwap system
-     * @param productIn
-     * @return
-     */
-    public AbstractProduct addProduct(AbstractProduct productIn){
-        return null;
-    }
-
-    /**
-     * Finds a product to the ShopOrSwap system
-     * @param productIn
-     * @return
-     */
-    public AbstractProduct findProduct(AbstractProduct productIn){
-        return null;
-    }
-
-    /**
-     * Removes a product from the ShopOrSwap system
-     * @param productIn
-     * @return
-     */
-    public AbstractProduct removeProduct(AbstractProduct productIn){
-        return null;
-    }
-
-    /**
      * Adds a Storefront to the ShopOrSwap system
      * @param storefrontIn
      * @return
@@ -92,6 +65,39 @@ public class ShopOrSwap {
      * @return
      */
     public Storefront removeStorefront(Storefront storefrontIn){
+        return null;
+    }
+
+    /**
+     * Adds a product to a Storefront
+     * @param productIn
+     * @param storefrontIn
+     * @return
+     * @throws NoSuchElementException if storefrontIn does not exist (if owner Client of storefrontIn does not own the instance of storefrontIn)
+     */
+    public AbstractProduct addToStorefront(AbstractProduct productIn, Storefront storefrontIn){
+        return null;
+    }
+
+    /**
+     * Finds a product in a Storefront
+     * @param productIn
+     * @param storefrontIn
+     * @return
+     * @throws NoSuchElementException if productIn does not exist in storefrontIn (if owner Client of storefrontIn does not own the instance of productIn)
+     */
+    public AbstractProduct findInStorefront(AbstractProduct productIn, Storefront storefrontIn){
+        return null;
+    }
+
+    /**
+     * Removes a product from the Storefront
+     * @param productIn
+     * @param storefrontIn
+     * @return
+     * @throws NoSuchElementException if productIn does not exist in storefrontIn (if owner Client of storefrontIn does not own the instance of productIn)
+     */
+    public AbstractProduct removeFromStorefront(AbstractProduct productIn, Storefront storefrontIn){
         return null;
     }
 
