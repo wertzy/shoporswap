@@ -87,12 +87,43 @@ public class SwapStorefront extends Storefront {
      * Swaps two SwapProducts between Users in the SwapStorefront
      * @param swapProduct1 the first of two SwapProducts to swap in the SwapStorefront (initiator)
      * @param swapProduct2 the other of two SwapProducts to swap in the SwapStorefront (recipient)
-     * @return the other of two SwapProducts, now owned by the initiator
+     * @return swapProduct2, the other of two SwapProducts, now owned by the initiator
      * @throws IllegalArgumentException if swapProduct1 and swapProduct2 are the same SwapProduct
      * @throws IllegalArgumentException if swapProduct1 and swapProduct2 are owned by the same User
      */
     public SwapProduct completeTransaction(SwapProduct swapProduct1, SwapProduct swapProduct2){
-        return null;
+        Client client1 = swapProduct1.getProductMerchant();
+        Client client2 = swapProduct2.getProductMerchant();
+        if(client1 == client2){
+            throw new IllegalArgumentException("Swappers are the same");
+        }
+        if(swapProduct1 == swapProduct2){
+            throw new IllegalArgumentException("Products are the same");
+        }
+        SwapProduct productToTrade = null;
+        for(Storefront swapStorefront : client1.getMyStorefronts().values()){
+            try{
+                productToTrade = ((SwapStorefront) swapStorefront).removeProduct(swapProduct1);
+            }catch(Exception e){
+
+            }
+        }
+        if(productToTrade == null){
+            throw new NoSuchElementException("Product to trade does not exist");
+        }
+        SwapProduct productTraded = null;
+        for(Storefront swapStorefront : client2.getMyStorefronts().values()){
+            try{
+                productTraded = ((SwapStorefront) swapStorefront).removeProduct(swapProduct2);
+            }catch(Exception e){
+
+            }
+        }
+        if(productTraded == null){
+            throw new NoSuchElementException("Product to trade does not exist");
+        }
+        client2.addSwapProduct(productToTrade);
+        return client1.addSwapProduct(productTraded);
     }
 
     /**

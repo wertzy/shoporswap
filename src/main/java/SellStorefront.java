@@ -90,7 +90,9 @@ public class SellStorefront extends Storefront {
      * @return the SellProduct sold to the User in the SellStorefront
      */
     public SellProduct completeTransaction(SellProduct sellProductIn, Client consumerIn){
-        return null;
+        SellProduct product = this.removeProduct(sellProductIn);
+        consumerIn.addSellProduct(product);
+        return product;
     }
 
     /**
