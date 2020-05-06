@@ -1,7 +1,6 @@
 package shoporswap;
 
 import org.junit.jupiter.api.Test;
-import shoporswap.*;
 
 import java.util.*;
 
@@ -15,10 +14,10 @@ public class ShopOrSwapTest {
     @Test
     void constructorsTest(){
         ShopOrSwap testShopOrSwap = new ShopOrSwap();
-        assertNotNull(testShopOrSwap.getAccountFactory());
-        assertNotNull(testShopOrSwap.getProductFactory());
-        assertNotNull(testShopOrSwap.getMessageFactory());
-        assertNotNull(testShopOrSwap.getStorefrontFactory());
+        assertNotNull(testShopOrSwap.accessAccountFactory());
+        assertNotNull(testShopOrSwap.accessProductFactory());
+        assertNotNull(testShopOrSwap.accessMessageFactory());
+        assertNotNull(testShopOrSwap.accessStorefrontFactory());
         assertNotNull(testShopOrSwap.getAccountCollection());
         assertEquals(0, testShopOrSwap.getAccountCollection().size());
     }
@@ -29,31 +28,31 @@ public class ShopOrSwapTest {
     @Test
     void mutatorsTests(){
         ShopOrSwap testShopOrSwap = new ShopOrSwap();
-        assertNotNull(testShopOrSwap.getAccountFactory());
-        assertNotNull(testShopOrSwap.getProductFactory());
-        assertNotNull(testShopOrSwap.getMessageFactory());
-        assertNotNull(testShopOrSwap.getStorefrontFactory());
+        assertNotNull(testShopOrSwap.accessAccountFactory());
+        assertNotNull(testShopOrSwap.accessProductFactory());
+        assertNotNull(testShopOrSwap.accessMessageFactory());
+        assertNotNull(testShopOrSwap.accessStorefrontFactory());
         assertNotNull(testShopOrSwap.getAccountCollection());
 
         AccountFactory testAccountFactory = new AccountFactory();
-        testShopOrSwap.setAccountFactory(testAccountFactory);
-        assertEquals(testAccountFactory, testShopOrSwap.getAccountFactory());
+        testShopOrSwap.establishAccountFactory(testAccountFactory);
+        assertEquals(testAccountFactory, testShopOrSwap.accessAccountFactory());
 
         AbstractProductFactory testAbstractProductFactory = new AbstractProductFactory();
-        testShopOrSwap.setProductFactory(testAbstractProductFactory);
-        assertEquals(testAbstractProductFactory, testShopOrSwap.getProductFactory());
+        testShopOrSwap.establishProductFactory(testAbstractProductFactory);
+        assertEquals(testAbstractProductFactory, testShopOrSwap.accessProductFactory());
 
         AbstractMessageFactory testAbstractMessageFactory = new AbstractMessageFactory();
-        testShopOrSwap.setMessageFactory(testAbstractMessageFactory);
-        assertEquals(testAbstractMessageFactory, testShopOrSwap.getMessageFactory());
+        testShopOrSwap.establishMessageFactory(testAbstractMessageFactory);
+        assertEquals(testAbstractMessageFactory, testShopOrSwap.accessMessageFactory());
 
         StorefrontFactory testStorefrontFactory = new StorefrontFactory();
-        testShopOrSwap.setStorefrontFactory(testStorefrontFactory);
-        assertEquals(testStorefrontFactory, testShopOrSwap.getStorefrontFactory());
+        testShopOrSwap.establishStorefrontFactory(testStorefrontFactory);
+        assertEquals(testStorefrontFactory, testShopOrSwap.accessStorefrontFactory());
 
         Map<String, Account> testAccountCollection = new HashMap<String, Account>();
         testAccountCollection.put("test1", new Client("test1", "pass1"));
-        testShopOrSwap.setAccountCollection(testAccountCollection);
+        testShopOrSwap.establishAccountCollection(testAccountCollection);
         assertEquals(1, testShopOrSwap.getAccountCollection().size());
 
         testShopOrSwap.setSystemMessages(Arrays.asList(new UserMessage(), new ReportMessage()));

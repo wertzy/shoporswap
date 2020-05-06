@@ -15,11 +15,11 @@ public class ShopOrSwap {
      * Default constructor for the shoporswap.ShopOrSwap system
      */
     public ShopOrSwap(){
-        this.setMessageFactory(new AbstractMessageFactory());
-        this.setAccountFactory(new AccountFactory());
-        this.setStorefrontFactory(new StorefrontFactory());
-        this.setProductFactory(new AbstractProductFactory());
-        this.setAccountCollection(new HashMap<String, Account>());
+        this.establishMessageFactory(new AbstractMessageFactory());
+        this.establishAccountFactory(new AccountFactory());
+        this.establishStorefrontFactory(new StorefrontFactory());
+        this.establishProductFactory(new AbstractProductFactory());
+        this.establishAccountCollection(new HashMap<String, Account>());
         this.setSystemMessages(new ArrayList<AbstractMessage>());
     }
 
@@ -44,7 +44,7 @@ public class ShopOrSwap {
      * @return
      */
     public Account addAccount(String typeIn, String nameIn, String passwordIn){
-        Account account = this.getAccountFactory().getAccount(typeIn);
+        Account account = this.accessAccountFactory().getAccount(typeIn);
         account.setAccountName(nameIn);
         account.setAccountPassword(passwordIn);
         return this.addAccount(account);
@@ -155,14 +155,14 @@ public class ShopOrSwap {
         Storefront storefrontTemp = this.findStorefront(storefrontIn.getStorefrontName(), storefrontIn.retrieveStorefrontOwner());
         AbstractProduct product;
         if(storefrontIn.getClass().getName().contains((CharSequence) "Sell")){
-            product = this.getProductFactory().getProduct("sell");
+            product = this.accessProductFactory().getProduct("sell");
             product.setProductName(nameIn);
             product.setProductDescription(descriptionIn);
             product.setProductValue(valueIn);
             product.setProductMerchant(storefrontIn.retrieveStorefrontOwner());
             return this.addToStorefront(product, storefrontTemp);
         }else{
-            product = this.getProductFactory().getProduct("swap");
+            product = this.accessProductFactory().getProduct("swap");
             product.setProductName(nameIn);
             product.setProductDescription(descriptionIn);
             product.setProductValue(valueIn);
@@ -396,19 +396,19 @@ public class ShopOrSwap {
         this.findAccount(toUnFreezeIn).setIsFrozen(false);
     }
 
-    public AccountFactory getAccountFactory(){
+    public AccountFactory accessAccountFactory(){
         return this.accountFactory;
     }
 
-    public AbstractProductFactory getProductFactory(){
+    public AbstractProductFactory accessProductFactory(){
         return this.productFactory;
     }
 
-    public AbstractMessageFactory getMessageFactory(){
+    public AbstractMessageFactory accessMessageFactory(){
         return this.messageFactory;
     }
 
-    public StorefrontFactory getStorefrontFactory(){
+    public StorefrontFactory accessStorefrontFactory(){
         return this.storefrontFactory;
     }
 
@@ -416,23 +416,23 @@ public class ShopOrSwap {
         return this.accountCollection;
     }
 
-    public void setAccountCollection(Map<String, Account> accountCollectionIn){
+    public void establishAccountCollection(Map<String, Account> accountCollectionIn){
         this.accountCollection = accountCollectionIn;
     }
 
-    public void setAccountFactory(AccountFactory accountFactoryIn){
+    public void establishAccountFactory(AccountFactory accountFactoryIn){
         this.accountFactory = accountFactoryIn;
     }
 
-    public void setProductFactory(AbstractProductFactory abstractProductFactoryIn){
+    public void establishProductFactory(AbstractProductFactory abstractProductFactoryIn){
         this.productFactory = abstractProductFactoryIn;
     }
 
-    public void setMessageFactory(AbstractMessageFactory abstractMessageFactoryIn){
+    public void establishMessageFactory(AbstractMessageFactory abstractMessageFactoryIn){
         this.messageFactory = abstractMessageFactoryIn;
     }
 
-    public void setStorefrontFactory(StorefrontFactory storefrontFactoryIn){
+    public void establishStorefrontFactory(StorefrontFactory storefrontFactoryIn){
         this.storefrontFactory = storefrontFactoryIn;
     }
 
