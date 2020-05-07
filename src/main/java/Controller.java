@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
@@ -16,16 +17,40 @@ public class Controller {
     public TextField passwordTxtFld;
     public TextField usernameTxtFld1;
     public TextField passwordTxtFld1;
-    public Button createAccount;
+    public TextField searchTxtFld;
+    public Label productName;
+    public Label productOwner;
+    public Label storefrontName;
+    public Label productDescription;
+    public Label productTags;
+    public Label price;
+    public Label priceInt;
+    public Label productName1;
+    public Label productOwner1;
+    public Label storefrontName1;
+    public Label productDescription1;
+    public Label productTags1;
+    public Label price1;
+    public Label priceInt1;
+    public Label usernameNewLabel;
     public Label usernameLabel;
     public Label passwordLabel;
     public Label passwordLabel1;
     public Label errorLabel;
     public Label errorLabel1;
+    public Button viewMyProducts;
+    public Button viewSellProducts;
+    public Button viewSwapProducts;
+    public Button viewStorefronts;
+    public Button viewMyStorefronts;
+    public Button viewMessages;
+    public Button postProduct;
     public Button create;
     public Button exitButton;
     public Button logInButton;
-    public Label usernameNewLabel;
+    public Button createAccount;
+    public RadioButton rbSell;
+    public RadioButton rbSwap;
 
     private static final String DATA_FILE = "src/main/resources/systemData.json";
     public ShopOrSwap system;
@@ -89,6 +114,28 @@ public class Controller {
 //        }
 //    }
     }
+    public void viewMyProductsClicked(){
+
+    }
+    public void viewSellProductsClicked(){
+
+    }
+    public void viewSwapProductsClicked(){
+
+    }
+    public void viewMessagesClicked(){
+
+    }
+    public void postProductClicked(){
+
+    }
+    public void viewMyStorefrontClicked(){
+
+    }
+    public void viewStorefrontsClicked(){
+
+    }
+
 
     private static ShopOrSwap generateData() throws IOException {
         try {

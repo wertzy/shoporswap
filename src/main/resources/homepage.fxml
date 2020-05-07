@@ -1,11 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <Button layoutX="116.0" layoutY="86.0" mnemonicParsing="false" text="See products" />
+      <VBox layoutX="7.0" layoutY="-1.0" prefHeight="402.0" prefWidth="171.0">
+         <children>
+            <Button fx:id="viewSellProducts" mnemonicParsing="false" onMouseClicked="#viewSellProductsClicked" prefHeight="27.0" prefWidth="144.0" text="View Sell Products">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="viewSwapProducts" mnemonicParsing="false" onMouseClicked="#viewSwapProductsClicked" text="View Swap Products">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="viewMyStorefronts" mnemonicParsing="false" onMouseClicked="#viewMyStorefrontClicked" prefHeight="27.0" prefWidth="144.0" text="View My Storefronts">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="viewStorefronts" mnemonicParsing="false" onMouseClicked="#viewStorefrontsClicked" prefHeight="27.0" prefWidth="144.0" text="View Storefronts">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="viewMyProducts" mnemonicParsing="false" onMouseClicked="#viewMyProductsClicked" prefHeight="27.0" prefWidth="144.0" text="View My Products">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="viewMessages" layoutX="10.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#viewMessagesClicked" prefHeight="27.0" prefWidth="144.0" text="View Messages">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="postProduct" mnemonicParsing="false" onMouseClicked="#postProductClicked" prefHeight="27.0" prefWidth="144.0" text="Post Product">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <RadioButton fx:id="rbSell" mnemonicParsing="false" text="Sell Product" VBox.vgrow="ALWAYS">
+               <toggleGroup>
+                  <ToggleGroup fx:id="SellOrSwap" />
+               </toggleGroup>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="rbSwap" mnemonicParsing="false" text="Swap Product" toggleGroup="$SellOrSwap">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </RadioButton>
+            <Label text="My Funds:">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="0.00">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="41.0" prefWidth="189.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="84.0" text="Add Funds" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Log Out">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Pane layoutX="150.0" prefHeight="69.0" prefWidth="451.0">
+         <children>
+            <TextField fx:id="searchTxtFld" layoutX="23.0" layoutY="9.0" promptText=" Search for..." />
+            <RadioButton layoutX="25.0" layoutY="43.0" mnemonicParsing="false" selected="true" text="All">
+               <toggleGroup>
+                  <ToggleGroup fx:id="search" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="294.0" layoutY="40.0" mnemonicParsing="false" text="Product Name" toggleGroup="$search" />
+            <RadioButton layoutX="78.0" layoutY="41.0" mnemonicParsing="false" text="User" toggleGroup="$search" />
+            <RadioButton layoutX="141.0" layoutY="40.0" mnemonicParsing="false" text="Tags" toggleGroup="$search" />
+            <RadioButton layoutX="203.0" layoutY="41.0" mnemonicParsing="false" text="Storefront" toggleGroup="$search" />
+            <Label fx:id="searchErrorLabel" layoutX="219.0" layoutY="14.0" text="Error: No search results found" />
+         </children>
+      </Pane>
+      <ScrollPane layoutX="176.0" layoutY="69.0" prefHeight="333.0" prefWidth="426.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="424.0">
+               <children>
+                  <Label fx:id="productName" layoutX="178.0" layoutY="3.0" prefHeight="23.0" prefWidth="137.0" text="productName">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="productOwner" layoutX="314.0" layoutY="6.0" text="productOwner" />
+                  <Label fx:id="productDescription" layoutY="26.0" prefHeight="49.0" prefWidth="423.0" text="ProductDescription" wrapText="true" />
+                  <Label fx:id="productTags" layoutY="77.0" prefHeight="38.0" prefWidth="423.0" text="Product Tags" wrapText="true" />
+                  <Label fx:id="price" layoutY="117.0" text="Price:" />
+                  <Label fx:id="priceInt" layoutX="42.0" layoutY="117.0" text="0.00" />
+                  <Button fx:id="buyButton" layoutX="358.0" layoutY="112.0" mnemonicParsing="false" text="Buy" />
+                  <Button fx:id="messageOwnerButton" layoutX="211.0" layoutY="112.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Message Owner" AnchorPane.topAnchor="112.0" />
+                  <Label fx:id="storefrontName" layoutX="1.0" layoutY="6.0" prefHeight="17.0" prefWidth="167.0" text="Storefront Name" />
+                  <Label fx:id="productName1" layoutX="178.0" layoutY="151.0" prefHeight="23.0" prefWidth="137.0" text="productName">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="productOwner1" layoutX="314.0" layoutY="154.0" text="productOwner" />
+                  <Label fx:id="productDescription1" layoutY="174.0" prefHeight="49.0" prefWidth="423.0" text="ProductDescription" wrapText="true" />
+                  <Label fx:id="productTags1" layoutY="225.0" prefHeight="38.0" prefWidth="423.0" text="Product Tags" wrapText="true" />
+                  <Label fx:id="price1" layoutY="265.0" text="Price:" />
+                  <Label fx:id="priceInt1" layoutX="42.0" layoutY="265.0" text="0.00" />
+                  <Button fx:id="buyButton1" layoutX="358.0" layoutY="260.0" mnemonicParsing="false" text="Buy" />
+                  <Button fx:id="messageOwnerButton1" layoutX="211.0" layoutY="260.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Message Owner" />
+                  <Label fx:id="storefrontName1" layoutX="1.0" layoutY="154.0" prefHeight="17.0" prefWidth="167.0" text="Storefront Name" />
+                  <Button fx:id="nextPageButton" layoutX="328.0" layoutY="298.0" mnemonicParsing="false" text="Next Page" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
