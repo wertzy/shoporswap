@@ -1,0 +1,11 @@
+{
+  "messageType" : "shoporswap.UserMessage",
+  "senderName" : "test1",
+  "senderType" : "shoporswap.Client",
+  "recipientName" : "test2",
+  "recipientType" : "shoporswap.Admin",
+  "subject" : "subject3",
+  "content" : "content3",
+  "reportedAccountName" : null,
+  "reportedAccountType" : null
+}

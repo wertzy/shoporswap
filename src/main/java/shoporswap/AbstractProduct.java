@@ -183,7 +183,7 @@ public abstract class AbstractProduct {
      * @param nameIn the desired name
      * @return true if the desired name is valid, false otherwise
      */
-    public static final boolean isValidProductName(String nameIn){
+    public static boolean isValidProductName(String nameIn){
         if(nameIn.indexOf(" ") == 0){ // checks if the name begins with a space
             return false;
         }
@@ -199,7 +199,7 @@ public abstract class AbstractProduct {
      * @param descriptionIn the desired description
      * @return true if the desired description is valid, false otherwise
      */
-    public static final boolean isValidProductDescription(String descriptionIn){
+    public static boolean isValidProductDescription(String descriptionIn){
         if(descriptionIn.indexOf(" ") == 0 || descriptionIn.indexOf("-") == 0){ // checks if the description begins with a space or dash
             return false;
         }
@@ -215,7 +215,7 @@ public abstract class AbstractProduct {
      * @param valueIn the desired value
      * @return true if the desired price is valid, false otherwise
      */
-    public static final boolean isValidProductValue(double valueIn){
+    public static boolean isValidProductValue(double valueIn){
         if(valueIn < 0){ // checks if the price is negative
             return false;
         }

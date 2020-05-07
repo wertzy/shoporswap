@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SwapStorefront extends Storefront {
 
-    private List<AbstractProduct> swapProducts;
+    private List<SwapProduct> swapProducts;
 
     /**
      * Default constructor for shoporswap.SwapStorefront object
@@ -133,16 +133,16 @@ public class SwapStorefront extends Storefront {
      * @return the list of products listed for swapping by the shoporswap.SwapStorefront
      */
     public List<SwapProduct> getSwapProducts(){
-        List<SwapProduct> sellProductsOut = new ArrayList<SwapProduct>();
-        for(AbstractProduct product : this.swapProducts){
-            sellProductsOut.add((SwapProduct) product);
-        }
-        return sellProductsOut;
+        return this.swapProducts;
     }
 
     @Override
     public List<AbstractProduct> getStorefrontProducts() {
-        return this.swapProducts;
+        List<AbstractProduct> storefrontProductsOut = new ArrayList<AbstractProduct>();
+        for(SwapProduct product : this.getSwapProducts()){
+            storefrontProductsOut.add(product);
+        }
+        return storefrontProductsOut;
     }
 
     /**
@@ -150,10 +150,7 @@ public class SwapStorefront extends Storefront {
      * @param swapProductsIn the list of products for the shoporswap.SwapStorefront to swap
      */
     public void setSwapProducts(List<SwapProduct> swapProductsIn){
-        this.swapProducts = new ArrayList<AbstractProduct>();
-        for(SwapProduct product : swapProductsIn){
-            this.swapProducts.add(product);
-        }
+        this.swapProducts = swapProductsIn;
     }
 
 }

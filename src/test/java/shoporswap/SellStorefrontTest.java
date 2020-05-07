@@ -238,6 +238,31 @@ public class SellStorefrontTest {
      * - shoporswap.SellStorefront.setSellProducts
      */
     @Test
-    void mutatorsSellStorefrontTests(){}
+    void mutatorsSellStorefrontTests(){
+
+        String validName = "valid name";
+        Client testUser1 = new Client("accountname1", "password1");
+        Client testUser2 = new Client("accountname2", "password2");
+
+        SellStorefront testSellStorefront1, testSellStorefront2, testSellStorefront3, testSellStorefront4;
+
+        testSellStorefront1 = new SellStorefront();
+        testSellStorefront1.setStorefrontName(validName);
+        testSellStorefront1.setStorefrontOwner(testUser1);
+        assertEquals(validName, testSellStorefront1.getStorefrontName());
+        assertEquals(testUser1, testSellStorefront1.retrieveStorefrontOwner());
+        assertEquals(0, testSellStorefront1.getSellProducts().size());
+
+        testSellStorefront2 = new SellStorefront();
+        testSellStorefront2.setStorefrontName(validName);
+        testSellStorefront2.setStorefrontOwner(testUser2);
+        testSellStorefront2.setSellProducts(Arrays.asList(
+                new SellProduct("product1", "description1", 50, testUser1),
+                new SellProduct("product2", "description2", 50, testUser1)
+        ));
+        assertEquals(validName, testSellStorefront2.getStorefrontName());
+        assertEquals(testUser2, testSellStorefront2.retrieveStorefrontOwner());
+        assertEquals(2, testSellStorefront2.getSellProducts().size());
+    }
 
 }

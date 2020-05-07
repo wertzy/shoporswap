@@ -1,5 +1,7 @@
 package shoporswap;
 
+import io.AccountRecord;
+
 import java.util.*;
 
 public class ShopOrSwap {
@@ -25,8 +27,9 @@ public class ShopOrSwap {
 
     /**
      * Adds an shoporswap.Account to the shoporswap.ShopOrSwap system
-     * @param accountIn
-     * @return
+     * @param accountIn the account to add to the system
+     * @return the account added to the system
+     * @throws IllegalArgumentException if the account added is invalid
      */
     public Account addAccount(Account accountIn){
         if(this.getAccountCollection().containsKey(accountIn.getAccountName())){
@@ -38,10 +41,11 @@ public class ShopOrSwap {
 
     /**
      * Adds an shoporswap.Account to the shoporswap.ShopOrSwap system
-     * @param typeIn
-     * @param nameIn
-     * @param passwordIn
-     * @return
+     * @param typeIn the type of Account ("Client" or "Admin")
+     * @param nameIn the account name of the Account
+     * @param passwordIn the password of the Account
+     * @return the account added to the system
+     * @throws IllegalArgumentException if any of typeIn, nameIn, and passwordIn are invalid
      */
     public Account addAccount(String typeIn, String nameIn, String passwordIn){
         Account account = this.accessAccountFactory().getAccount(typeIn);
@@ -52,8 +56,8 @@ public class ShopOrSwap {
 
     /**
      * Finds an shoporswap.Account in the shoporswap.ShopOrSwap system
-     * @param accountIn
-     * @return
+     * @param accountIn the account to find in the system
+     * @return the account found in the system based on criteria
      * @throws NoSuchElementException if accountIn does not exist in the system
      */
     public Account findAccount(Account accountIn){
@@ -62,8 +66,8 @@ public class ShopOrSwap {
 
     /**
      * Finds an shoporswap.Account in the shoporswap.ShopOrSwap system
-     * @param nameIn
-     * @return
+     * @param nameIn the name of the Account to find in the system
+     * @return the account found in the system
      * @throws NoSuchElementException if accountIn does not exist in the system
      */
     public Account findAccount(String nameIn){
@@ -75,8 +79,9 @@ public class ShopOrSwap {
 
     /**
      * Removes an shoporswap.Account from the shoporswap.ShopOrSwap system
-     * @param accountIn
-     * @return
+     * @param accountIn the account to remove from the system
+     * @return the removed account
+     * @throws NoSuchElementException if the account to remove cannot be found in the system
      */
     public Account removeAccount(Account accountIn){
         Account account = this.findAccount(accountIn);
@@ -86,8 +91,9 @@ public class ShopOrSwap {
 
     /**
      * Removes an shoporswap.Account from the shoporswap.ShopOrSwap system
-     * @param nameIn
-     * @return
+     * @param nameIn the name of the account to remove
+     * @return the removed account
+     * @throws NoSuchElementException if the account to remove cannot be found in the system
      */
     public Account removeAccount(String nameIn){
         Account account = this.findAccount(nameIn);
@@ -99,7 +105,7 @@ public class ShopOrSwap {
      * Adds a shoporswap.Storefront to the shoporswap.ShopOrSwap system
      * @param nameIn the name of the shoporswap.Storefront to add
      * @param ownerIn the owner of the shoporswap.Storefront to add
-     * @return
+     * @return the Storefront added to the system
      * @throws IllegalArgumentException if nameIn is invalid for shoporswap.Storefront name
      * @throws NoSuchElementException if the ownerIn is not a member of the System
      * @throws IllegalArgumentException if a shoporswap.Storefront already exists for ownerIn with the name of nameIn
@@ -108,7 +114,7 @@ public class ShopOrSwap {
         Account owner = this.findAccount(ownerIn);
         Storefront storefront = this.storefrontFactory.getStorefront(typeIn);
         storefront.setStorefrontName(nameIn);
-        storefront.establishStorefrontOwner(ownerIn);
+        storefront.setStorefrontOwner(ownerIn);
         ownerIn.addStorefront(storefront);
         return storefront;
     }
@@ -117,7 +123,7 @@ public class ShopOrSwap {
      * Finds a shoporswap.Storefront in the shoporswap.ShopOrSwap system
      * @param nameIn the name of the shoporswap.Storefront
      * @param ownerIn the owner of the shoporswap.Storefront
-     * @return
+     * @return the Storefront found in the system
      * @throws NoSuchElementException if the shoporswap.Storefront cannot be found
      */
     public Storefront findStorefront(String nameIn, Client ownerIn){
@@ -132,7 +138,7 @@ public class ShopOrSwap {
      * Removes a shoporswap.Storefront from the shoporswap.ShopOrSwap system
      * @param nameIn the name of the shoporswap.Storefront to remove
      * @param ownerIn the owner of the shoporswap.Storefront to remove
-     * @return
+     * @return the Storefront removed from the system
      * @throws NoSuchElementException if the shoporswap.Storefront cannot be found
      */
     public Storefront removeStorefront(String nameIn, Client ownerIn){
@@ -143,11 +149,11 @@ public class ShopOrSwap {
 
     /**
      * Adds a product to a shoporswap.Storefront
-     * @param nameIn
-     * @param descriptionIn
-     * @param valueIn
-     * @param storefrontIn
-     * @return
+     * @param nameIn the name of the product to add
+     * @param descriptionIn the description of the product to add
+     * @param valueIn the value of the product to add
+     * @param storefrontIn the Storefront to add the product to
+     * @return the product added to the system
      * @throws IllegalArgumentException if nameIn, descriptionIn, or valueIn are invalid
      * @throws NoSuchElementException if storefrontIn does not exist (if owner shoporswap.Client of storefrontIn does not own the instance of storefrontIn)
      */
@@ -173,9 +179,9 @@ public class ShopOrSwap {
 
     /**
      * Adds a product object to a shoporswap.Storefront
-     * @param productIn
-     * @param storefrontIn
-     * @return
+     * @param productIn the product to add
+     * @param storefrontIn the storefront to add the product to
+     * @return the product added to the storefront
      * @throws NoSuchElementException if storefrontIn does not exist (if owner shoporswap.Client of storefrontIn does not own the instance of storefrontIn)
      */
     public AbstractProduct addToStorefront(AbstractProduct productIn, Storefront storefrontIn){
@@ -195,9 +201,9 @@ public class ShopOrSwap {
 
     /**
      * Finds a product in a shoporswap.Storefront
-     * @param productIn
-     * @param storefrontIn
-     * @return
+     * @param productIn the product to find in the system
+     * @param storefrontIn the storefront to find the product in
+     * @return the product found in the system
      * @throws NoSuchElementException if productIn does not exist in storefrontIn (if owner shoporswap.Client of storefrontIn does not own the instance of productIn)
      */
     public AbstractProduct findInStorefront(AbstractProduct productIn, Storefront storefrontIn){
@@ -211,9 +217,9 @@ public class ShopOrSwap {
 
     /**
      * Finds a product in a shoporswap.Storefront
-     * @param nameIn
-     * @param storefrontIn
-     * @return
+     * @param nameIn the name of the product to find
+     * @param storefrontIn the storefront to find the product in
+     * @return the product found in the system
      * @throws NoSuchElementException if productIn does not exist in storefrontIn (if owner shoporswap.Client of storefrontIn does not own the instance of productIn)
      */
     public AbstractProduct findInStorefront(String nameIn, Storefront storefrontIn){
@@ -237,9 +243,9 @@ public class ShopOrSwap {
 
     /**
      * Removes a product from the shoporswap.Storefront
-     * @param productIn
-     * @param storefrontIn
-     * @return
+     * @param productIn the product to remove
+     * @param storefrontIn the storefront to remove the product from
+     * @return the product removed from the system
      * @throws NoSuchElementException if productIn does not exist in storefrontIn (if owner shoporswap.Client of storefrontIn does not own the instance of productIn)
      */
     public AbstractProduct removeFromStorefront(AbstractProduct productIn, Storefront storefrontIn){
@@ -255,9 +261,9 @@ public class ShopOrSwap {
 
     /**
      * Removes a product from the shoporswap.Storefront
-     * @param nameIn
-     * @param storefrontIn
-     * @return
+     * @param nameIn the name of the product to remove
+     * @param storefrontIn the storefront to remove the product from
+     * @return the product removed from the system
      * @throws NoSuchElementException if productIn does not exist in storefrontIn (if owner shoporswap.Client of storefrontIn does not own the instance of productIn)
      */
     public AbstractProduct removeFromStorefront(String nameIn, Storefront storefrontIn){
@@ -267,8 +273,8 @@ public class ShopOrSwap {
 
     /**
      * System process for buying products
-     * @param productToBuy
-     * @param consumerIn
+     * @param productToBuy the product to buy
+     * @param consumerIn the consumer buying the product
      */
     public void buyProduct(Storefront storefrontIn, AbstractProduct productToBuy, Client consumerIn){
         if(storefrontIn.getClass().getName().contains((CharSequence) "Sell")){
@@ -281,8 +287,8 @@ public class ShopOrSwap {
 
     /**
      * System process for swapping products
-     * @param product1
-     * @param product2
+     * @param product1 one of the products to swap
+     * @param product2 the other product to swap
      */
     public void swapProducts(Storefront storefront1, AbstractProduct product1, Storefront storefront2, AbstractProduct product2){
         if(storefront1.getClass().getName().contains("Swap") && storefront2.getClass().getName().contains("Swap")){
@@ -298,7 +304,7 @@ public class ShopOrSwap {
 
     /**
      * System process for message communications
-     * @param messageIn
+     * @param messageIn the message to send in the system
      */
     public AbstractMessage addMessage(AbstractMessage messageIn){
         this.getSystemMessages().add(messageIn);
@@ -324,6 +330,11 @@ public class ShopOrSwap {
         return recipientMessages;
     }
 
+    /**
+     * Finds messages in the system by the account sending them
+     * @param senderIn the account sending the messages
+     * @return the messages sent by senderIn
+     */
     public List<AbstractMessage> findMessagesBySender(Account senderIn){
         List<AbstractMessage> recipientMessages = new ArrayList<AbstractMessage>();
         for(AbstractMessage message : this.getSystemMessages()){
@@ -336,43 +347,49 @@ public class ShopOrSwap {
 
     /**
      * System process for general messaging between clients
-     * @param typeIn
-     * @param receiverNameIn
-     * @param subjectIn
-     * @param contentIn
+     * @param typeIn the type of message ("User" or "Report")
+     * @param senderNameIn the sender of the message
+     * @param receiverNameIn the recipient of the message
+     * @param subjectIn the subject of the message
+     * @param contentIn the content of the message
      * @throws IllegalArgumentException if the type of message is invalid
      * @throws NoSuchElementException if the sender or the recipient does not exist
      * @throws IllegalArgumentException if the message subject or the message content is invalid
      */
     public void sendMessage(String typeIn, String senderNameIn, String receiverNameIn, String subjectIn, String contentIn){
-        AbstractMessage message = messageFactory.getMessage(typeIn);
+        AbstractMessage message;
         if(typeIn.compareToIgnoreCase("User") == 0 && !receiverNameIn.isEmpty()){
+            message = messageFactory.getMessage(typeIn);
             message.setSender(this.findAccount(senderNameIn));
             message.setRecipient(this.findAccount(receiverNameIn));
             message.setSubject(subjectIn);
             message.setContent(contentIn);
             this.addMessage(message);
         }else{
-            if(receiverNameIn.isEmpty()) {
+            if(!receiverNameIn.isEmpty()) {
                 for (Account account : this.getAccountCollection().values()) {
                     if (account.getClass().getName().compareToIgnoreCase("shoporswap.Admin") == 0) {
+                        message = messageFactory.getMessage(typeIn);
                         message.setSender(this.findAccount(senderNameIn));
-                        message.setRecipient(account);
-                        message.setSubject(subjectIn);
+                        message.setRecipient(this.findAccount(account));
+                        if(!subjectIn.isEmpty()) {
+                            message.setSubject(subjectIn);
+                        }
                         message.setContent(contentIn);
+                        ((ReportMessage) message).setReportedAccount(this.findAccount(receiverNameIn));
                         this.addMessage(message);
                     }
                 }
             }else{
-                throw new IllegalArgumentException("Report recipient must be empty");
+                throw new IllegalArgumentException("Report recipient must not be empty");
             }
         }
     }
 
     /**
      * System process for freezing accounts
-     * @param freezerIn
-     * @param toFreezeIn
+     * @param freezerIn the account doing the freezing
+     * @param toFreezeIn the account being frozen
      * @throws IllegalArgumentException if freezerIn is not an shoporswap.Admin
      * @throws IllegalArgumentException if freezerIn and toFreezeIn are the same shoporswap.Admin account
      */
@@ -385,8 +402,8 @@ public class ShopOrSwap {
 
     /**
      * System process for unfreezing accounts
-     * @param unfreezerIn
-     * @param toUnFreezeIn
+     * @param unfreezerIn the account doing the unfreezing
+     * @param toUnFreezeIn the account being unfrozen
      * @throws IllegalArgumentException if unfreezerIn is not an shoporswap.Admin
      */
     public void unfreezeAccount(Account unfreezerIn, Account toUnFreezeIn){
@@ -396,50 +413,111 @@ public class ShopOrSwap {
         this.findAccount(toUnFreezeIn).setIsFrozen(false);
     }
 
+    /**
+     * Collects the data from the Map of Account values by String keys and creates a list of these records which can be exported to JSON
+     * @return the List of AccountRecord objects created from the Map of Account values by String keys
+     */
+    public List<AccountRecord> exportAccounts(){
+        List<AccountRecord> accountRecordsOut = new ArrayList<AccountRecord>();
+        for(Account account : this.getAccountCollection().values()){
+            AccountRecord nextAccountRecord = new AccountRecord(account);
+            accountRecordsOut.add(nextAccountRecord);
+        }
+        return accountRecordsOut;
+    }
+
+    /**
+     * Indirect accessor method for the AccountFactory of the system
+     * @return the AccountFactory of the system
+     */
     public AccountFactory accessAccountFactory(){
         return this.accountFactory;
     }
 
+    /**
+     * Indirect accessor method for the ProductFactory of the system
+     * @return the ProductFactory of the system
+     */
     public AbstractProductFactory accessProductFactory(){
         return this.productFactory;
     }
 
+    /**
+     * Indirect accessor method for the MessageFactory of the system
+     * @return the MessageFactory of the system
+     */
     public AbstractMessageFactory accessMessageFactory(){
         return this.messageFactory;
     }
 
+    /**
+     * Indirect accessor method for the StorefrontFactory of the system
+     * @return the StorefrontFactory of the system
+     */
     public StorefrontFactory accessStorefrontFactory(){
         return this.storefrontFactory;
     }
 
+    /**
+     * Accessor method for the accounts in the system
+     * @return a Map of the accounts in the system
+     */
     public Map<String, Account> getAccountCollection(){
         return this.accountCollection;
     }
 
+    /**
+     * Indirect mutator method for the account Map for the system
+     * @param accountCollectionIn the desired account Map
+     */
     public void establishAccountCollection(Map<String, Account> accountCollectionIn){
         this.accountCollection = accountCollectionIn;
     }
 
+    /**
+     * Indirect mutator method for the AccountFactory for the system
+     * @param accountFactoryIn the desired AccountFactory
+     */
     public void establishAccountFactory(AccountFactory accountFactoryIn){
         this.accountFactory = accountFactoryIn;
     }
 
+    /**
+     * Indirect mutator method for the AbstractProductFactory for the system
+     * @param abstractProductFactoryIn the desired AbstractProductFactory
+     */
     public void establishProductFactory(AbstractProductFactory abstractProductFactoryIn){
         this.productFactory = abstractProductFactoryIn;
     }
 
+    /**
+     * Indirect mutator method for the AbstractMessageFactory for the system
+     * @param abstractMessageFactoryIn the desired AbstractMessageFactory
+     */
     public void establishMessageFactory(AbstractMessageFactory abstractMessageFactoryIn){
         this.messageFactory = abstractMessageFactoryIn;
     }
 
+    /**
+     * Indirect mutator method for the StorefrontFactory for the system
+     * @param storefrontFactoryIn the desired StorefrontFactory
+     */
     public void establishStorefrontFactory(StorefrontFactory storefrontFactoryIn){
         this.storefrontFactory = storefrontFactoryIn;
     }
 
+    /**
+     * Accessor method for the messages in the system
+     * @return the List of messages in the system
+     */
     public List<AbstractMessage> getSystemMessages() {
         return systemMessages;
     }
 
+    /**
+     * Mutator method for the messages in the system
+     * @param systemMessages the desired List of messages
+     */
     public void setSystemMessages(List<AbstractMessage> systemMessages) {
         this.systemMessages = systemMessages;
     }
