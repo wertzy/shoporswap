@@ -1,9 +1,6 @@
 package shoporswap;
 
 import org.junit.jupiter.api.Test;
-import shoporswap.Client;
-import shoporswap.SellStorefront;
-import shoporswap.Storefront;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,7 +28,7 @@ public class StorefrontTest {
         assertEquals("Name 1", testStorefront2.getStorefrontName());
         assertNull(testStorefront2.retrieveStorefrontOwner());
 
-        testStorefront2.establishStorefrontOwner(testUser2);
+        testStorefront2.setStorefrontOwner(testUser2);
         assertEquals(testUser2, testStorefront2.retrieveStorefrontOwner());
 
     }

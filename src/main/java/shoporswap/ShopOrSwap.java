@@ -108,7 +108,7 @@ public class ShopOrSwap {
         Account owner = this.findAccount(ownerIn);
         Storefront storefront = this.storefrontFactory.getStorefront(typeIn);
         storefront.setStorefrontName(nameIn);
-        storefront.establishStorefrontOwner(ownerIn);
+        storefront.setStorefrontOwner(ownerIn);
         ownerIn.addStorefront(storefront);
         return storefront;
     }

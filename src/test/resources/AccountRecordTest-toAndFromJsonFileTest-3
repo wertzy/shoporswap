@@ -1,0 +1,9 @@
+{
+  "accountName" : "test1",
+  "accountPassword" : "pass1",
+  "isFrozen" : false,
+  "myOwnedSellProducts" : null,
+  "myOwnedSwapProducts" : null,
+  "mySellStorefronts" : null,
+  "mySwapStorefronts" : null
+}

@@ -1,0 +1,41 @@
+[ {
+  "accountName" : "DefaultName",
+  "accountPassword" : "DefaultPassword",
+  "isFrozen" : false,
+  "myOwnedSellProducts" : [ ],
+  "myOwnedSwapProducts" : [ ],
+  "mySellStorefronts" : [ ],
+  "mySwapStorefronts" : [ ]
+}, {
+  "accountName" : "test1",
+  "accountPassword" : "pass1",
+  "isFrozen" : false,
+  "myOwnedSellProducts" : [ ],
+  "myOwnedSwapProducts" : [ ],
+  "mySellStorefronts" : [ ],
+  "mySwapStorefronts" : [ ]
+}, {
+  "accountName" : "DefaultClient",
+  "accountPassword" : "DefaultPassword",
+  "isFrozen" : false,
+  "myOwnedSellProducts" : [ ],
+  "myOwnedSwapProducts" : [ ],
+  "mySellStorefronts" : [ ],
+  "mySwapStorefronts" : [ ]
+}, {
+  "accountName" : "test1",
+  "accountPassword" : "pass1",
+  "isFrozen" : false,
+  "myOwnedSellProducts" : null,
+  "myOwnedSwapProducts" : null,
+  "mySellStorefronts" : null,
+  "mySwapStorefronts" : null
+}, {
+  "accountName" : "DefaultAdmin",
+  "accountPassword" : "DefaultPassword",
+  "isFrozen" : false,
+  "myOwnedSellProducts" : null,
+  "myOwnedSwapProducts" : null,
+  "mySellStorefronts" : null,
+  "mySwapStorefronts" : null
+} ]

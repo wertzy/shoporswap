@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SellStorefront extends Storefront {
 
-    private List<AbstractProduct> sellProducts;
+    private List<SellProduct> sellProducts;
 
     /**
      * Default constructor for a shoporswap.SellStorefront object
@@ -102,16 +102,16 @@ public class SellStorefront extends Storefront {
      * @return the list of products listed for sale by the shoporswap.SellStorefront
      */
     public List<SellProduct> getSellProducts(){
-        List<SellProduct> sellProductsOut = new ArrayList<SellProduct>();
-        for(AbstractProduct product : this.sellProducts){
-            sellProductsOut.add((SellProduct) product);
-        }
-        return sellProductsOut;
+        return this.sellProducts;
     }
 
     @Override
     public List<AbstractProduct> getStorefrontProducts() {
-        return this.sellProducts;
+        List<AbstractProduct> storefrontProductsOut = new ArrayList<AbstractProduct>();
+        for(SellProduct product : this.getSellProducts()){
+            storefrontProductsOut.add(product);
+        }
+        return storefrontProductsOut;
     }
 
     /**
@@ -119,7 +119,7 @@ public class SellStorefront extends Storefront {
      * @param sellProductsIn the list of products for the shoporswap.SellStorefront to sell
      */
     public void setSellProducts(List<SellProduct> sellProductsIn){
-        this.sellProducts = new ArrayList<AbstractProduct>();
+        this.sellProducts = new ArrayList<SellProduct>();
         for(SellProduct product : sellProductsIn){
             this.sellProducts.add(product);
         }

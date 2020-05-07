@@ -13,7 +13,7 @@ public abstract class Storefront {
      */
     public Storefront(){
         this.setStorefrontName("DEFAULT NAME");
-        this.establishStorefrontOwner(null);
+        this.setStorefrontOwner(null);
     }
 
     /**
@@ -25,7 +25,7 @@ public abstract class Storefront {
      */
     public Storefront(String nameIn, Client ownerIn){
         this.setStorefrontName(nameIn);
-        this.establishStorefrontOwner(ownerIn);
+        this.setStorefrontOwner(ownerIn);
     }
 
     /**
@@ -63,7 +63,7 @@ public abstract class Storefront {
      * Mutator method for the name of the shoporswap.Storefront (NOT a direct mutator)
      * @param ownerIn the owner to set
      */
-    public final void establishStorefrontOwner(Client ownerIn){
+    public final void setStorefrontOwner(Client ownerIn){
         this.storefrontOwner = ownerIn;
     }
 
