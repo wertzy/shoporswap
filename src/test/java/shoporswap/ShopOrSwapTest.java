@@ -1,6 +1,8 @@
 package shoporswap;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
+import util.JsonUtil;
 
 import java.util.*;
 
@@ -508,5 +510,21 @@ public class ShopOrSwapTest {
         assertTrue(testAccount1.getIsFrozen());
         testShopOrSwap.unfreezeAccount(testAccount2, testAccount1);
         assertFalse(testAccount1.getIsFrozen());
+    }
+
+    /**
+     * Automated test for ShopOrSwap.exportAccounts method
+     */
+    @Test
+    void exportAccountsTest() throws JsonProcessingException {
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        assertEquals(0, testShopOrSwap.exportAccounts().size());
+
+        Account testAccount1 = testShopOrSwap.addAccount(new Client("testClient1", "pass1"));
+        assertEquals(1, testShopOrSwap.exportAccounts().size());
+
+        Account testAccount2 = testShopOrSwap.addAccount(new Admin("testAdmin1", "pass3"));
+        assertEquals(2, testShopOrSwap.exportAccounts().size());
+
     }
 }

@@ -1,5 +1,7 @@
 package shoporswap;
 
+import io.AccountRecord;
+
 import java.util.*;
 
 public class ShopOrSwap {
@@ -394,6 +396,19 @@ public class ShopOrSwap {
             throw new IllegalArgumentException("Clients cannot unfreeze accounts");
         }
         this.findAccount(toUnFreezeIn).setIsFrozen(false);
+    }
+
+    /**
+     * Collects the data from the Map of Account values by String keys and creates a list of these records which can be exported to JSON
+     * @return the List of AccountRecord objects created from the Map of Account values by String keys
+     */
+    public List<AccountRecord> exportAccounts(){
+        List<AccountRecord> accountRecordsOut = new ArrayList<AccountRecord>();
+        for(Account account : this.getAccountCollection().values()){
+            AccountRecord nextAccountRecord = new AccountRecord(account);
+            accountRecordsOut.add(nextAccountRecord);
+        }
+        return accountRecordsOut;
     }
 
     public AccountFactory accessAccountFactory(){
