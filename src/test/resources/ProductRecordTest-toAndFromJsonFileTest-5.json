@@ -3,5 +3,6 @@
   "productName" : "test2",
   "productDescription" : "description2",
   "productValue" : 50.0,
+  "productMerchantName" : "test2",
   "productTags" : [ ]
 }

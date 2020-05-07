@@ -3,6 +3,7 @@
   "productName" : "test3",
   "productDescription" : "description3",
   "productValue" : 50.0,
+  "productMerchantName" : "test3",
   "productTags" : [ {
     "name" : "tag1"
   } ]

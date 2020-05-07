@@ -85,6 +85,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testString1, JsonUtil.toJsonString(testProductRecord1));
@@ -97,6 +98,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString2, JsonUtil.toJsonString(testProductRecord2));
@@ -109,6 +111,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString3, JsonUtil.toJsonString(testProductRecord3));
@@ -121,6 +124,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test1\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description1\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test1\"," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString4, JsonUtil.toJsonString(testProductRecord4));
@@ -133,6 +137,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test2\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description2\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test2\"," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString5, JsonUtil.toJsonString(testProductRecord5));
@@ -145,6 +150,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test3\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description3\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test3\"," + System.lineSeparator() +
                 "  \"productTags\" : [ {" + System.lineSeparator() +
                 "    \"name\" : \"tag1\"" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +
@@ -159,6 +165,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test4\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description4\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test4\"," + System.lineSeparator() +
                 "  \"productTags\" : [ {" + System.lineSeparator() +
                 "    \"name\" : \"tag1\"" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +
@@ -179,6 +186,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : null" + System.lineSeparator() +
                 "}";
         String testFileName1 = directoryPath + "ProductRecordTest-toAndFromJsonFileTest-1.json";
@@ -193,6 +201,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString2, JsonUtil.toJsonString(testProductRecord2));
@@ -208,6 +217,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString3, JsonUtil.toJsonString(testProductRecord3));
@@ -223,6 +233,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test1\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description1\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test1\"," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString4, JsonUtil.toJsonString(testProductRecord4));
@@ -238,6 +249,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test2\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description2\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test2\"," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testString5, JsonUtil.toJsonString(testProductRecord5));
@@ -253,6 +265,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test3\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description3\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test3\"," + System.lineSeparator() +
                 "  \"productTags\" : [ {" + System.lineSeparator() +
                 "    \"name\" : \"tag1\"" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +
@@ -270,6 +283,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test4\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description4\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test4\"," + System.lineSeparator() +
                 "  \"productTags\" : [ {" + System.lineSeparator() +
                 "    \"name\" : \"tag1\"" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +
@@ -292,6 +306,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : null" + System.lineSeparator() +
                 "}";
 
@@ -303,6 +318,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
 
@@ -314,6 +330,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"DEFAULT DESCRIPTION\"," + System.lineSeparator() +
                 "  \"productValue\" : 0.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : null," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
 
@@ -325,6 +342,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test1\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description1\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test1\"," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
 
@@ -336,6 +354,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test2\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description2\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test2\"," + System.lineSeparator() +
                 "  \"productTags\" : [ ]" + System.lineSeparator() +
                 "}";
 
@@ -347,6 +366,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test3\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description3\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test3\"," + System.lineSeparator() +
                 "  \"productTags\" : [ {" + System.lineSeparator() +
                 "    \"name\" : \"tag1\"" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +
@@ -360,6 +380,7 @@ public class ProductRecordTest {
                 "  \"productName\" : \"test4\"," + System.lineSeparator() +
                 "  \"productDescription\" : \"description4\"," + System.lineSeparator() +
                 "  \"productValue\" : 50.0," + System.lineSeparator() +
+                "  \"productMerchantName\" : \"test4\"," + System.lineSeparator() +
                 "  \"productTags\" : [ {" + System.lineSeparator() +
                 "    \"name\" : \"tag1\"" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +

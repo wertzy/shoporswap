@@ -52,10 +52,14 @@ public class AccountRecord {
             this.setMyProductRecords(null);
             this.setMyStorefrontRecords(null);
         }else{
-            this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
-            this.toProductLists(((Client) accountIn).getMyOwnedProductList());
+            this.establishMyOwnedSellProducts(new ArrayList<SellProduct>());
+            this.establishMyOwnedSwapProducts(new ArrayList<SwapProduct>());
+            this.establishMySellStorefronts(new ArrayList<SellStorefront>());
+            this.establishMySwapStorefronts(new ArrayList<SwapStorefront>());
             this.setMyProductRecords(new ArrayList<ProductRecord>());
             this.setMyStorefrontRecords(new ArrayList<StorefrontRecord>());
+            this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
+            this.toProductLists(((Client) accountIn).getMyOwnedProductList());
         }
     }
 

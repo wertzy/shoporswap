@@ -135,6 +135,27 @@ public class AccountRecordTest {
                 "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString5, JsonUtil.toJsonString(testAccountRecord5));
+
+        Account testClient3 = new Client("test3", "pass3");
+        Account testClient4 = new Client("test4", "pass4");
+        SellProduct testSellProduct1 = new SellProduct("test1", "description1", 50, (Client) testClient4);
+        ((Client) testClient3).addSellProduct(testSellProduct1);
+        AccountRecord testAccountRecord6 = new AccountRecord(testClient3);
+        String testJsonString6 = "{" + System.lineSeparator() +
+                "  \"accountName\" : \"test3\"," + System.lineSeparator() +
+                "  \"accountPassword\" : \"pass3\"," + System.lineSeparator() +
+                "  \"isFrozen\" : false," + System.lineSeparator() +
+                "  \"myProductRecords\" : [ {" + System.lineSeparator() +
+                "    \"productType\" : \"shoporswap.SellProduct\"," + System.lineSeparator() +
+                "    \"productName\" : \"test1\"," + System.lineSeparator() +
+                "    \"productDescription\" : \"description1\"," + System.lineSeparator() +
+                "    \"productValue\" : 50.0," + System.lineSeparator() +
+                "    \"productMerchantName\" : \"test4\"," + System.lineSeparator() +
+                "    \"productTags\" : [ ]" + System.lineSeparator() +
+                "  } ]," + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "}";
+        assertEquals(testJsonString6, JsonUtil.toJsonString(testAccountRecord6));
     }
 
     /**

@@ -12,6 +12,7 @@ public class ProductRecord {
     private String productName;
     private String productDescription;
     private double productValue;
+    private String productMerchantName;
     private List<Tag> productTags;
 
     public ProductRecord(){
@@ -20,6 +21,7 @@ public class ProductRecord {
         this.setProductDescription("DEFAULT DESCRIPTION");
         this.setProductValue(0.0);
         this.setProductTags(null);
+        this.setProductMerchantName(null);
     }
 
     public ProductRecord(AbstractProduct productIn){
@@ -28,6 +30,11 @@ public class ProductRecord {
         this.setProductDescription(productIn.getProductDescription());
         this.setProductValue(productIn.getProductValue());
         this.setProductTags(productIn.getProductTags());
+        try{
+            this.setProductMerchantName(productIn.getProductMerchant().getAccountName());
+        }catch(NullPointerException e){
+            this.setProductMerchantName(null);
+        }
     }
 
     public AbstractProduct toProduct(){
@@ -83,5 +90,13 @@ public class ProductRecord {
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+
+    public String getProductMerchantName() {
+        return this.productMerchantName;
+    }
+
+    public void setProductMerchantName(String productMerchantNameIn) {
+        this.productMerchantName = productMerchantNameIn;
     }
 }

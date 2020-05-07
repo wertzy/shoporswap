@@ -81,6 +81,7 @@ public class StorefrontRecordTest {
                 "    \"productName\" : \"test1\"," + System.lineSeparator() +
                 "    \"productDescription\" : \"description1\"," + System.lineSeparator() +
                 "    \"productValue\" : 50.0," + System.lineSeparator() +
+                "    \"productMerchantName\" : \"test1\"," + System.lineSeparator() +
                 "    \"productTags\" : [ ]" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +
                 "}";
@@ -106,6 +107,7 @@ public class StorefrontRecordTest {
                 "    \"productName\" : \"test1\"," + System.lineSeparator() +
                 "    \"productDescription\" : \"description1\"," + System.lineSeparator() +
                 "    \"productValue\" : 50.0," + System.lineSeparator() +
+                "    \"productMerchantName\" : \"test1\"," + System.lineSeparator() +
                 "    \"productTags\" : [ ]" + System.lineSeparator() +
                 "  } ]" + System.lineSeparator() +
                 "}";
