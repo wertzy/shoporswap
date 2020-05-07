@@ -1,7 +1,6 @@
 package shoporswap;
 
 import org.junit.jupiter.api.Test;
-import shoporswap.Tag;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +17,7 @@ public class TagTest {
 
         Tag testTag1 = new Tag("tag1");
         assertEquals("tag1", testTag1.getName());
-        assertEquals(0, testTag1.getProducts().size());
+        assertEquals(0, testTag1.accessProducts().size());
     }
 
 }

@@ -1,0 +1,9 @@
+{
+  "productType" : "shoporswap.SwapProduct",
+  "productName" : "test4",
+  "productDescription" : "description4",
+  "productValue" : 50.0,
+  "productTags" : [ {
+    "name" : "tag1"
+  } ]
+}

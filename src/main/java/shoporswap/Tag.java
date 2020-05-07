@@ -42,7 +42,7 @@ public class Tag {
         this.products.add(product);
     }
 
-    public List<AbstractProduct> getProducts() {
+    public List<AbstractProduct> accessProducts() {
         // implement method to pass corresponding tests after the tests have been written
         return this.products;
     }

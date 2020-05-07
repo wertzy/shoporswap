@@ -1,0 +1,47 @@
+[ {
+  "productType" : null,
+  "productName" : "DEFAULT NAME",
+  "productDescription" : "DEFAULT DESCRIPTION",
+  "productValue" : 0.0,
+  "productTags" : null
+}, {
+  "productType" : "shoporswap.SellProduct",
+  "productName" : "DEFAULT NAME",
+  "productDescription" : "DEFAULT DESCRIPTION",
+  "productValue" : 0.0,
+  "productTags" : [ ]
+}, {
+  "productType" : "shoporswap.SwapProduct",
+  "productName" : "DEFAULT NAME",
+  "productDescription" : "DEFAULT DESCRIPTION",
+  "productValue" : 0.0,
+  "productTags" : [ ]
+}, {
+  "productType" : "shoporswap.SellProduct",
+  "productName" : "test1",
+  "productDescription" : "description1",
+  "productValue" : 50.0,
+  "productTags" : [ ]
+}, {
+  "productType" : "shoporswap.SwapProduct",
+  "productName" : "test2",
+  "productDescription" : "description2",
+  "productValue" : 50.0,
+  "productTags" : [ ]
+}, {
+  "productType" : "shoporswap.SellProduct",
+  "productName" : "test3",
+  "productDescription" : "description3",
+  "productValue" : 50.0,
+  "productTags" : [ {
+    "name" : "tag1"
+  } ]
+}, {
+  "productType" : "shoporswap.SwapProduct",
+  "productName" : "test4",
+  "productDescription" : "description4",
+  "productValue" : 50.0,
+  "productTags" : [ {
+    "name" : "tag1"
+  } ]
+} ]

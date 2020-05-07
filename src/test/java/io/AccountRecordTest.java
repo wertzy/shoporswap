@@ -318,7 +318,7 @@ public class AccountRecordTest {
      * Automated tests for AccountRecord.toAccount method
      */
     @Test
-    void toAccountTest1(){
+    void toAccountTest(){
 
         AccountRecord testAccountRecord1, testAccountRecord2, testAccountRecord3, testAccountRecord4;
 
