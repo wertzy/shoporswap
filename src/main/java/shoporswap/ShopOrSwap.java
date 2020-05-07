@@ -12,6 +12,7 @@ public class ShopOrSwap {
     private AbstractProductFactory productFactory;
     private Map<String, Account> accountCollection;
     private List<AbstractMessage> systemMessages;
+    private Map<String, Tag> systemTags;
 
     /**
      * Default constructor for the shoporswap.ShopOrSwap system
@@ -23,6 +24,7 @@ public class ShopOrSwap {
         this.establishProductFactory(new AbstractProductFactory());
         this.establishAccountCollection(new HashMap<String, Account>());
         this.setSystemMessages(new ArrayList<AbstractMessage>());
+        this.setSystemTags(new HashMap<String, Tag>());
     }
 
     /**
@@ -426,6 +428,14 @@ public class ShopOrSwap {
         return accountRecordsOut;
     }
 
+    public void addTagToProduct(String tagLabelIn, AbstractProduct productIn){
+        if(!this.getSystemTags().containsKey(tagLabelIn)){
+            this.getSystemTags().put(tagLabelIn, new Tag(tagLabelIn));
+        }
+        productIn.addTag(this.getSystemTags().get(tagLabelIn));
+        this.getSystemTags().get(tagLabelIn).addProduct(productIn);
+    }
+
     /**
      * Indirect accessor method for the AccountFactory of the system
      * @return the AccountFactory of the system
@@ -520,5 +530,13 @@ public class ShopOrSwap {
      */
     public void setSystemMessages(List<AbstractMessage> systemMessages) {
         this.systemMessages = systemMessages;
+    }
+
+    public Map<String, Tag> getSystemTags() {
+        return this.systemTags;
+    }
+
+    public void setSystemTags(Map<String, Tag> systemTagsIn) {
+        this.systemTags = systemTagsIn;
     }
 }

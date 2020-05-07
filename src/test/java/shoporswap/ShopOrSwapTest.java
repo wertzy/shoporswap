@@ -22,6 +22,7 @@ public class ShopOrSwapTest {
         assertNotNull(testShopOrSwap.accessStorefrontFactory());
         assertNotNull(testShopOrSwap.getAccountCollection());
         assertEquals(0, testShopOrSwap.getAccountCollection().size());
+        assertEquals(0, testShopOrSwap.getSystemTags().size());
     }
 
     /**
@@ -525,6 +526,26 @@ public class ShopOrSwapTest {
 
         Account testAccount2 = testShopOrSwap.addAccount(new Admin("testAdmin1", "pass3"));
         assertEquals(2, testShopOrSwap.exportAccounts().size());
-
     }
+
+    @Test
+    void addTagToProductTest(){
+        Client testClient1 = new Client("test1", "pass1");
+
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addAccount(testClient1);
+
+        Storefront testStorefront1 = testShopOrSwap.addStorefront("sell", "test1", testClient1);
+
+        AbstractProduct testProduct1;
+
+        testProduct1 = testShopOrSwap.addToStorefront("test1", "description1", 50, testStorefront1);
+        testShopOrSwap.addTagToProduct("Tag1", testProduct1);
+        assertEquals(1, testProduct1.getProductTags().size());
+        assertEquals(1, testShopOrSwap.getSystemTags().size());
+        assertEquals("Tag1", testShopOrSwap.getSystemTags().get("Tag1").getName());
+        assertEquals(1, testShopOrSwap.getSystemTags().get("Tag1").accessProducts().size());
+    }
+
+
 }

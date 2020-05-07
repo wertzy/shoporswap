@@ -12,6 +12,7 @@ public class ShopOrSwapRecord {
     private List<AccountRecord> accountRecords;
     private List<MessageRecord> messageRecords;
 
+
     public ShopOrSwapRecord(){
         this.setAccountRecords(null);
         this.setMessageRecords(null);
@@ -54,6 +55,17 @@ public class ShopOrSwapRecord {
         }
         shopOrSwapOut.establishAccountCollection(accountMapIn);
         shopOrSwapOut.setSystemMessages(messageListIn);
+        for(Account account : shopOrSwapOut.getAccountCollection().values()){
+            if(account instanceof Client){
+                for(Storefront storefront : ((Client) account).getMyStorefronts().values()){
+                    for(AbstractProduct product : storefront.getStorefrontProducts()){
+                        for(Tag tag : product.getProductTags()){
+                            shopOrSwapOut.getSystemTags().put(tag.getName(), tag);
+                        }
+                    }
+                }
+            }
+        }
         return shopOrSwapOut;
     }
 
