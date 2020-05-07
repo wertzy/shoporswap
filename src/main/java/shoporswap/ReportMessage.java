@@ -22,7 +22,7 @@ public class ReportMessage extends AbstractMessage{
      * @throws IllegalArgumentException if senderIn is invalid
      * @throws IllegalArgumentException if contentIn is invalid
      */
-    public ReportMessage(Account senderIn, Account recipientIn, String contentIn, Account reportedAccountIn){
+    public ReportMessage(Account senderIn, Admin recipientIn, String contentIn, Account reportedAccountIn){
         super(senderIn, recipientIn, "Report: " + reportedAccountIn.getAccountName(), contentIn);
         this.reportedAccount = reportedAccountIn;
     }

@@ -17,6 +17,8 @@ public class AccountRecord {
     private List<ProductRecord> myProductRecords;
     private List<StorefrontRecord> myStorefrontRecords;
 
+    private Account accountIn;
+
     /**
      * Default constructor for an AccountRecord object
      */
@@ -30,6 +32,7 @@ public class AccountRecord {
         this.establishMySwapStorefronts(new ArrayList<SwapStorefront>());
         this.setMyProductRecords(null);
         this.setMyStorefrontRecords(null);
+        this.accountIn = null;
     }
 
     /**
@@ -61,6 +64,7 @@ public class AccountRecord {
             this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
             this.toProductLists(((Client) accountIn).getMyOwnedProductList());
         }
+        this.accountIn = accountIn;
     }
 
     /**
@@ -164,6 +168,7 @@ public class AccountRecord {
             ((Client) accountOut).setMyOwnedProductList(this.makeAbstractProductList());
             ((Client) accountOut).setMyStorefronts(this.makeStorefrontMap());
         }
+        accountOut.setIsFrozen(this.getIsFrozen());
         return accountOut;
     }
 
