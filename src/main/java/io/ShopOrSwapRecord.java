@@ -55,8 +55,10 @@ public class ShopOrSwapRecord {
         }
         shopOrSwapOut.establishAccountCollection(accountMapIn);
         shopOrSwapOut.setSystemMessages(messageListIn);
+        shopOrSwapOut.setSystemTags(new HashMap<String, Tag>());
         for(Account account : shopOrSwapOut.getAccountCollection().values()){
             if(account instanceof Client){
+                ((Client) account).setMyStorefronts(new HashMap<String, Storefront>());
                 for(Storefront storefront : ((Client) account).getMyStorefronts().values()){
                     for(AbstractProduct product : storefront.getStorefrontProducts()){
                         for(Tag tag : product.getProductTags()){

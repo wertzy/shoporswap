@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import shoporswap.*;
 import util.JsonUtil;
 
+import java.io.*;
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ShopOrSwapRecordTest {
@@ -256,6 +259,63 @@ public class ShopOrSwapRecordTest {
                 "}";
         assertEquals(testJsonString6, JsonUtil.toJsonString(testShopOrSwapRecord6));
 
+    }
+
+    @Test
+    void toAndFromJsonFileTest() throws IOException{
+        ShopOrSwapRecord testShopOrSwapRecord1, testShopOrSwapRecord2, testShopOrSwapRecord3, testShopOrSwapRecord4, testShopOrSwapRecord5;
+        String directoryPath = "src" + File.separator + "test" + File.separator + "resources" + File.separator;
+
+        ShopOrSwap testShopOrSwap1 = new ShopOrSwap();
+        testShopOrSwapRecord1 = new ShopOrSwapRecord(testShopOrSwap1);
+        String testFileName1 = directoryPath + "ShopOrSwapRecordTest-toAndFromJsonFileTest-1.json";
+        JsonUtil.toJsonFile(testFileName1, testShopOrSwapRecord1);
+        ShopOrSwapRecord testImportShopOrSwapRecord1 = JsonUtil.fromJsonFile(testFileName1, ShopOrSwapRecord.class);
+        assertEquals(testShopOrSwapRecord1.getAccountRecords().size(), testImportShopOrSwapRecord1.getAccountRecords().size());
+        assertEquals(testShopOrSwapRecord1.getMessageRecords().size(), testImportShopOrSwapRecord1.getMessageRecords().size());
+
+        ShopOrSwap testShopOrSwap2 = new ShopOrSwap();
+        testShopOrSwap2.addAccount("Client", "client1", "pass1");
+        testShopOrSwapRecord2 = new ShopOrSwapRecord(testShopOrSwap2);
+        String testFileName2 = directoryPath + "ShopOrSwapRecordTest-toAndFromJsonFileTest-2.json";
+        JsonUtil.toJsonFile(testFileName2, testShopOrSwapRecord2);
+        ShopOrSwapRecord testImportShopOrSwapRecord2 = JsonUtil.fromJsonFile(testFileName2, ShopOrSwapRecord.class);
+        assertEquals(testShopOrSwapRecord2.getAccountRecords().size(), testImportShopOrSwapRecord2.getAccountRecords().size());
+        assertEquals(testShopOrSwapRecord2.getMessageRecords().size(), testImportShopOrSwapRecord2.getMessageRecords().size());
+
+        ShopOrSwap testShopOrSwap3 = new ShopOrSwap();
+        testShopOrSwap3.addAccount("Client", "client1", "pass1");
+        testShopOrSwap3.addAccount("Client", "client2", "pass2");
+        testShopOrSwapRecord3 = new ShopOrSwapRecord(testShopOrSwap3);
+        String testFileName3 = directoryPath + "ShopOrSwapRecordTest-toAndFromJsonFileTest-3.json";
+        JsonUtil.toJsonFile(testFileName3, testShopOrSwapRecord3);
+        ShopOrSwapRecord testImportShopOrSwapRecord3 = JsonUtil.fromJsonFile(testFileName3, ShopOrSwapRecord.class);
+        assertEquals(testShopOrSwapRecord3.getAccountRecords().size(), testImportShopOrSwapRecord3.getAccountRecords().size());
+        assertEquals(testShopOrSwapRecord3.getMessageRecords().size(), testImportShopOrSwapRecord3.getMessageRecords().size());
+
+        ShopOrSwap testShopOrSwap4 = new ShopOrSwap();
+        testShopOrSwap4.addAccount("Client", "client1", "pass1");
+        testShopOrSwap4.addAccount("Admin", "admin1", "pass1");
+        testShopOrSwapRecord4 = new ShopOrSwapRecord(testShopOrSwap4);
+        String testFileName4 = directoryPath + "ShopOrSwapRecordTest-toAndFromJsonFileTest-4.json";
+        JsonUtil.toJsonFile(testFileName4, testShopOrSwapRecord4);
+        ShopOrSwapRecord testImportShopOrSwapRecord4 = JsonUtil.fromJsonFile(testFileName4, ShopOrSwapRecord.class);
+        assertEquals(testShopOrSwapRecord4.getAccountRecords().size(), testImportShopOrSwapRecord4.getAccountRecords().size());
+        assertEquals(testShopOrSwapRecord4.getMessageRecords().size(), testImportShopOrSwapRecord4.getMessageRecords().size());
+
+        ShopOrSwap testShopOrSwap5 = new ShopOrSwap();
+        testShopOrSwap5.addAccount("Client", "client1", "pass1");
+        testShopOrSwap5.addAccount("Admin", "admin1", "pass1");
+        testShopOrSwap5.addAccount("Client", "client2", "pass2");
+        testShopOrSwap5.addAccount("Admin", "admin2", "pass2");
+        testShopOrSwap5.sendMessage("User", "client1", "client2", "subject1", "content1");
+        testShopOrSwap5.sendMessage("Report", "client1", "client2", "subject1", "content1");
+        testShopOrSwapRecord5 = new ShopOrSwapRecord(testShopOrSwap5);
+        String testFileName5 = directoryPath + "ShopOrSwapRecordTest-toAndFromJsonFileTest-5.json";
+        JsonUtil.toJsonFile(testFileName5, testShopOrSwapRecord5);
+        ShopOrSwapRecord testImportShopOrSwapRecord5 = JsonUtil.fromJsonFile(testFileName5, ShopOrSwapRecord.class);
+        assertEquals(testShopOrSwapRecord5.getAccountRecords().size(), testImportShopOrSwapRecord5.getAccountRecords().size());
+        assertEquals(testShopOrSwapRecord5.getMessageRecords().size(), testImportShopOrSwapRecord5.getMessageRecords().size());
     }
 
 }

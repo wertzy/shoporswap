@@ -167,7 +167,7 @@ public class AccountRecord {
             accountOut = new Client(this.getAccountName(), this.getAccountPassword());
             ((Client) accountOut).setMyOwnedProductList(this.makeAbstractProductList());
             ((Client) accountOut).setMyStorefronts(new HashMap<String, Storefront>());
-            for(StorefrontRecord storefrontRecord : this.getMyStorefrontRecords()){
+            for (StorefrontRecord storefrontRecord : this.getMyStorefrontRecords()) {
                 ((Client) accountOut).addStorefront(storefrontRecord.toStorefront());
             }
         }
