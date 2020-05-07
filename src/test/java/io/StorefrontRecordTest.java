@@ -15,34 +15,39 @@ public class StorefrontRecordTest {
 
         testStorefrontRecord1 = new StorefrontRecord();
         assertEquals("DEFAULT NAME", testStorefrontRecord1.getStorefrontName());
-        assertNull(testStorefrontRecord1.getSellProductList());
-        assertNull(testStorefrontRecord1.getSwapProductList());
+        assertNull(testStorefrontRecord1.accessSellProductList());
+        assertNull(testStorefrontRecord1.accessSwapProductList());
+        assertNull(testStorefrontRecord1.getProductRecordList());
 
         Storefront testSellStorefront1 = new SellStorefront("sell storefront 1", new Client("test1", "pass1"));
         testStorefrontRecord2 = new StorefrontRecord(testSellStorefront1);
         assertEquals("sell storefront 1", testStorefrontRecord2.getStorefrontName());
-        assertEquals(0, testStorefrontRecord2.getSellProductList().size());
-        assertNull(testStorefrontRecord2.getSwapProductList());
+        assertEquals(0, testStorefrontRecord2.accessSellProductList().size());
+        assertNull(testStorefrontRecord2.accessSwapProductList());
+        assertEquals(0, testStorefrontRecord2.getProductRecordList().size());
 
         Storefront testSellStorefront2 = new SellStorefront("sell storefront 1", new Client("test1", "pass1"));
         ((SellStorefront) testSellStorefront2).addProduct(new SellProduct("test1", "description1", 50, testSellStorefront2.retrieveStorefrontOwner()));
         testStorefrontRecord3 = new StorefrontRecord(testSellStorefront2);
         assertEquals("sell storefront 1", testStorefrontRecord3.getStorefrontName());
-        assertEquals(1, testStorefrontRecord3.getSellProductList().size());
-        assertNull(testStorefrontRecord3.getSwapProductList());
+        assertEquals(1, testStorefrontRecord3.accessSellProductList().size());
+        assertNull(testStorefrontRecord3.accessSwapProductList());
+        assertEquals(1, testStorefrontRecord3.getProductRecordList().size());
 
         Storefront testSwapStorefront1 = new SwapStorefront("swap storefront 1", new Client("test1", "pass1"));
         testStorefrontRecord4 = new StorefrontRecord(testSwapStorefront1);
         assertEquals("swap storefront 1", testStorefrontRecord4.getStorefrontName());
-        assertNull(testStorefrontRecord4.getSellProductList());
-        assertEquals(0, testStorefrontRecord4.getSwapProductList().size());
+        assertNull(testStorefrontRecord4.accessSellProductList());
+        assertEquals(0, testStorefrontRecord4.accessSwapProductList().size());
+        assertEquals(0, testStorefrontRecord4.getProductRecordList().size());
 
         Storefront testSwapStorefront2 = new SwapStorefront("swap storefront 1", new Client("test1", "pass1"));
         ((SwapStorefront) testSwapStorefront2).addProduct(new SwapProduct("test1", "description1", 50, testSwapStorefront2.retrieveStorefrontOwner()));
         testStorefrontRecord5 = new StorefrontRecord(testSwapStorefront2);
         assertEquals("swap storefront 1", testStorefrontRecord5.getStorefrontName());
-        assertNull(testStorefrontRecord5.getSellProductList());
-        assertEquals(1, testStorefrontRecord5.getSwapProductList().size());
+        assertNull(testStorefrontRecord5.accessSellProductList());
+        assertEquals(1, testStorefrontRecord5.accessSwapProductList().size());
+        assertEquals(1, testStorefrontRecord5.getProductRecordList().size());
     }
 
     @Test
@@ -50,18 +55,18 @@ public class StorefrontRecordTest {
         StorefrontRecord testStorefrontRecord1, testStorefrontRecord2, testStorefrontRecord3, testStorefrontRecord4, testStorefrontRecord5;
         testStorefrontRecord1 = new StorefrontRecord();
         String testStorefrontJsonString1 = "{" + System.lineSeparator() +
+                "  \"storefrontType\" : null," + System.lineSeparator() +
                 "  \"storefrontName\" : \"DEFAULT NAME\"," + System.lineSeparator() +
-                "  \"sellProductList\" : null," + System.lineSeparator() +
-                "  \"swapProductList\" : null" + System.lineSeparator() +
+                "  \"productRecordList\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testStorefrontJsonString1, JsonUtil.toJsonString(testStorefrontRecord1));
 
         Storefront testSellStorefront1 = new SellStorefront("sell storefront 1", new Client("test1", "pass1"));
         testStorefrontRecord2 = new StorefrontRecord(testSellStorefront1);
         String testStorefrontJsonString2 = "{" + System.lineSeparator() +
+                "  \"storefrontType\" : \"shoporswap.SellStorefront\"," + System.lineSeparator() +
                 "  \"storefrontName\" : \"sell storefront 1\"," + System.lineSeparator() +
-                "  \"sellProductList\" : [ ]," + System.lineSeparator() +
-                "  \"swapProductList\" : null" + System.lineSeparator() +
+                "  \"productRecordList\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testStorefrontJsonString2, JsonUtil.toJsonString(testStorefrontRecord2));
 
@@ -69,18 +74,42 @@ public class StorefrontRecordTest {
         ((SellStorefront) testSellStorefront2).addProduct(new SellProduct("test1", "description1", 50, testSellStorefront2.retrieveStorefrontOwner()));
         testStorefrontRecord3 = new StorefrontRecord(testSellStorefront2);
         String testStorefrontJsonString3 = "{" + System.lineSeparator() +
+                "  \"storefrontType\" : \"shoporswap.SellStorefront\"," + System.lineSeparator() +
                 "  \"storefrontName\" : \"sell storefront 1\"," + System.lineSeparator() +
-                "  \"sellProductList\" : []," + System.lineSeparator() +
-                "  \"swapProductList\" : null" + System.lineSeparator() +
+                "  \"productRecordList\" : [ {" + System.lineSeparator() +
+                "    \"productType\" : \"shoporswap.SellProduct\"," + System.lineSeparator() +
+                "    \"productName\" : \"test1\"," + System.lineSeparator() +
+                "    \"productDescription\" : \"description1\"," + System.lineSeparator() +
+                "    \"productValue\" : 50.0," + System.lineSeparator() +
+                "    \"productTags\" : [ ]" + System.lineSeparator() +
+                "  } ]" + System.lineSeparator() +
                 "}";
         assertEquals(testStorefrontJsonString3, JsonUtil.toJsonString(testStorefrontRecord3));
 
         Storefront testSwapStorefront1 = new SwapStorefront("swap storefront 1", new Client("test1", "pass1"));
         testStorefrontRecord4 = new StorefrontRecord(testSwapStorefront1);
+        String testStorefrontJsonString4 = "{" + System.lineSeparator() +
+                "  \"storefrontType\" : \"shoporswap.SwapStorefront\"," + System.lineSeparator() +
+                "  \"storefrontName\" : \"swap storefront 1\"," + System.lineSeparator() +
+                "  \"productRecordList\" : [ ]" + System.lineSeparator() +
+                "}";
+        assertEquals(testStorefrontJsonString4, JsonUtil.toJsonString(testStorefrontRecord4));
 
         Storefront testSwapStorefront2 = new SwapStorefront("swap storefront 1", new Client("test1", "pass1"));
         ((SwapStorefront) testSwapStorefront2).addProduct(new SwapProduct("test1", "description1", 50, testSwapStorefront2.retrieveStorefrontOwner()));
         testStorefrontRecord5 = new StorefrontRecord(testSwapStorefront2);
+        String testStorefrontJsonString5 = "{" + System.lineSeparator() +
+                "  \"storefrontType\" : \"shoporswap.SwapStorefront\"," + System.lineSeparator() +
+                "  \"storefrontName\" : \"swap storefront 1\"," + System.lineSeparator() +
+                "  \"productRecordList\" : [ {" + System.lineSeparator() +
+                "    \"productType\" : \"shoporswap.SwapProduct\"," + System.lineSeparator() +
+                "    \"productName\" : \"test1\"," + System.lineSeparator() +
+                "    \"productDescription\" : \"description1\"," + System.lineSeparator() +
+                "    \"productValue\" : 50.0," + System.lineSeparator() +
+                "    \"productTags\" : [ ]" + System.lineSeparator() +
+                "  } ]" + System.lineSeparator() +
+                "}";
+        assertEquals(testStorefrontJsonString5, JsonUtil.toJsonString(testStorefrontRecord5));
     }
 
 }
