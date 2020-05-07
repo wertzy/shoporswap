@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Tag {
     private String name;
-    private List<AbstractProduct> products;
+    private final List<AbstractProduct> products;
 
     public Tag(){
         this.name = "name";

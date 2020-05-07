@@ -72,7 +72,7 @@ public abstract class Storefront {
      * @param nameIn the name to validate
      * @return true if valid, false otherwise
      */
-    public static final boolean isValidStorefrontName(String nameIn){
+    public static boolean isValidStorefrontName(String nameIn){
         if(nameIn.isEmpty()){
             return false;
         }

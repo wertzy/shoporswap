@@ -32,7 +32,7 @@ public class AccountRecord {
         this.establishMySwapStorefronts(new ArrayList<SwapStorefront>());
         this.setMyProductRecords(null);
         this.setMyStorefrontRecords(null);
-        this.accountIn = null;
+        this.establishAccountIn(null);
     }
 
     /**
@@ -64,7 +64,7 @@ public class AccountRecord {
             this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
             this.toProductLists(((Client) accountIn).getMyOwnedProductList());
         }
-        this.accountIn = accountIn;
+        this.establishAccountIn(accountIn);
     }
 
     /**
@@ -166,7 +166,10 @@ public class AccountRecord {
         }else{
             accountOut = new Client(this.getAccountName(), this.getAccountPassword());
             ((Client) accountOut).setMyOwnedProductList(this.makeAbstractProductList());
-            ((Client) accountOut).setMyStorefronts(this.makeStorefrontMap());
+            ((Client) accountOut).setMyStorefronts(new HashMap<String, Storefront>());
+            for(StorefrontRecord storefrontRecord : this.getMyStorefrontRecords()){
+                ((Client) accountOut).addStorefront(storefrontRecord.toStorefront());
+            }
         }
         accountOut.setIsFrozen(this.getIsFrozen());
         return accountOut;
@@ -309,5 +312,9 @@ public class AccountRecord {
 
     public void setMyStorefrontRecords(List<StorefrontRecord> myStorefrontRecords) {
         this.myStorefrontRecords = myStorefrontRecords;
+    }
+
+    public void establishAccountIn(Account accountIn){
+        this.accountIn = accountIn;
     }
 }

@@ -3,6 +3,7 @@ package io;
 import shoporswap.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,25 @@ public class ShopOrSwapRecord {
         return messageRecordsOut;
     }
 
+
+    public ShopOrSwap toShopOrSwap() {
+        ShopOrSwap shopOrSwapOut = new ShopOrSwap();
+        Map<String, Account> accountMapIn = new HashMap<String, Account>();
+        for(AccountRecord accountRecord : this.getAccountRecords()){
+            if(accountMapIn.containsKey(accountRecord.getAccountName())){
+                throw new IllegalArgumentException("Cannot add multiple records with the same account name into the system");
+            }
+            accountMapIn.put(accountRecord.getAccountName(), accountRecord.toAccount());
+        }
+        List<AbstractMessage> messageListIn = new ArrayList<AbstractMessage>();
+        for(MessageRecord message : this.getMessageRecords()){
+            messageListIn.add(message.toMessage());
+        }
+        shopOrSwapOut.establishAccountCollection(accountMapIn);
+        shopOrSwapOut.setSystemMessages(messageListIn);
+        return shopOrSwapOut;
+    }
+
     public List<AccountRecord> getAccountRecords() {
         return this.accountRecords;
     }
@@ -52,4 +72,5 @@ public class ShopOrSwapRecord {
     public void setMessageRecords(List<MessageRecord> messageRecordsIn) {
         this.messageRecords = messageRecordsIn;
     }
+
 }

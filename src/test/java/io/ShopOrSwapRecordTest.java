@@ -56,6 +56,55 @@ public class ShopOrSwapRecordTest {
     }
 
     @Test
+    void toShopOrSwapTest(){
+
+        ShopOrSwapRecord testShopOrSwapRecord1, testShopOrSwapRecord2, testShopOrSwapRecord3, testShopOrSwapRecord4, testShopOrSwapRecord5;
+
+        ShopOrSwap testShopOrSwap1 = new ShopOrSwap();
+        testShopOrSwapRecord1 = new ShopOrSwapRecord(testShopOrSwap1);
+        ShopOrSwap testExportShopOrSwap1 = testShopOrSwapRecord1.toShopOrSwap();
+        assertEquals(testShopOrSwap1.getAccountCollection().size(), testExportShopOrSwap1.getAccountCollection().size());
+        assertEquals(testShopOrSwap1.getSystemMessages().size(), testExportShopOrSwap1.getSystemMessages().size());
+
+        ShopOrSwap testShopOrSwap2 = new ShopOrSwap();
+        testShopOrSwap2.addAccount("Client", "client1", "pass1");
+        testShopOrSwapRecord2 = new ShopOrSwapRecord(testShopOrSwap2);
+        ShopOrSwap testExportShopOrSwap2 = testShopOrSwapRecord2.toShopOrSwap();
+        assertEquals(testShopOrSwap2.getAccountCollection().size(), testExportShopOrSwap2.getAccountCollection().size());
+        assertEquals(testShopOrSwap2.getSystemMessages().size(), testExportShopOrSwap2.getSystemMessages().size());
+
+        ShopOrSwap testShopOrSwap3 = new ShopOrSwap();
+        testShopOrSwap3.addAccount("Client", "client1", "pass1");
+        testShopOrSwap3.addAccount("Client", "client2", "pass2");
+        testShopOrSwapRecord3 = new ShopOrSwapRecord(testShopOrSwap3);
+        ShopOrSwap testExportShopOrSwap3 = testShopOrSwapRecord3.toShopOrSwap();
+        assertEquals(testShopOrSwap3.getAccountCollection().size(), testExportShopOrSwap3.getAccountCollection().size());
+        assertEquals(testShopOrSwap3.getSystemMessages().size(), testExportShopOrSwap3.getSystemMessages().size());
+
+        ShopOrSwap testShopOrSwap4 = new ShopOrSwap();
+        testShopOrSwap4.addAccount("Client", "client1", "pass1");
+        testShopOrSwap4.addAccount("Admin", "admin1", "pass1");
+        testShopOrSwapRecord4 = new ShopOrSwapRecord(testShopOrSwap4);
+        ShopOrSwap testExportShopOrSwap4 = testShopOrSwapRecord4.toShopOrSwap();
+        assertEquals(testShopOrSwap4.getAccountCollection().size(), testExportShopOrSwap4.getAccountCollection().size());
+        assertEquals(testShopOrSwap4.getSystemMessages().size(), testExportShopOrSwap4.getSystemMessages().size());
+
+        ShopOrSwap testShopOrSwap5 = new ShopOrSwap();
+        testShopOrSwap5.addAccount("Client", "client1", "pass1");
+        testShopOrSwap5.addAccount("Admin", "admin1", "pass1");
+        testShopOrSwap5.addAccount("Client", "client2", "pass2");
+        testShopOrSwap5.addAccount("Admin", "admin2", "pass2");
+        testShopOrSwap5.sendMessage("User", "client1", "client2", "subject1", "content1");
+        testShopOrSwap5.sendMessage("Report", "client1", "client2", "subject1", "content1");
+        testShopOrSwap5.addStorefront("Sell", "sell storefront 1", (Client) testShopOrSwap5.findAccount("client1"));
+        testShopOrSwapRecord5 = new ShopOrSwapRecord(testShopOrSwap5);
+        ShopOrSwap testExportShopOrSwap5 = testShopOrSwapRecord5.toShopOrSwap();
+        assertEquals(testShopOrSwap5.getAccountCollection().size(), testExportShopOrSwap5.getAccountCollection().size());
+        assertEquals(testShopOrSwap5.getSystemMessages().size(), testExportShopOrSwap5.getSystemMessages().size());
+
+    }
+
+    @Test
     void toJsonStringTest() throws JsonProcessingException {
         ShopOrSwapRecord testShopOrSwapRecord1, testShopOrSwapRecord2, testShopOrSwapRecord3, testShopOrSwapRecord4, testShopOrSwapRecord5, testShopOrSwapRecord6;
 

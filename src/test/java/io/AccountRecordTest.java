@@ -311,7 +311,7 @@ public class AccountRecordTest {
     @Test
     void toAccountTest(){
 
-        AccountRecord testAccountRecord1, testAccountRecord2, testAccountRecord3, testAccountRecord4;
+        AccountRecord testAccountRecord1, testAccountRecord2, testAccountRecord3, testAccountRecord4, testAccountRecord5;
 
         Account testClient1 = new Client("test1", "pass1");
         testAccountRecord1 = new AccountRecord(testClient1);
@@ -344,6 +344,16 @@ public class AccountRecordTest {
         assertEquals(testAdmin2.getAccountName(), testExportAccount4.getAccountName());
         assertEquals(testAdmin2.getAccountPassword(), testExportAccount4.getAccountPassword());
         assertEquals(testAdmin2.getIsFrozen(), testExportAccount4.getIsFrozen());
+
+        Account testClient3 = new Client();
+        ((Client) testClient3).addStorefront(new SellStorefront("sell storefront1", (Client) testClient3));
+        testAccountRecord5 = new AccountRecord(testClient3);
+        Account testExportAccount5 = testAccountRecord5.toAccount();
+        assertEquals(testClient3.getAccountName(), testExportAccount5.getAccountName());
+        assertEquals(testClient3.getAccountPassword(), testExportAccount5.getAccountPassword());
+        assertEquals(testClient3.getIsFrozen(), testExportAccount5.getIsFrozen());
+        assertEquals(((Client) testClient3).getMyStorefronts().size(), ((Client) testExportAccount5).getMyStorefronts().size());
+        assertEquals(((Client) testClient3).getMyOwnedProductList().size(), ((Client) testExportAccount5).getMyOwnedProductList().size());
     }
 
 }

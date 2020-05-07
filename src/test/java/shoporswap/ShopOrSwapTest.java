@@ -428,8 +428,8 @@ public class ShopOrSwapTest {
         testShopOrSwap.addAccount(new Admin("testAdmin1", "pass3"));
         testShopOrSwap.sendMessage("User", "testClient1", "testClient2", "subject1", "message1");
         assertEquals(1, testShopOrSwap.getSystemMessages().size());
-        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.sendMessage("Report", "testClient1", "testClient2", "subject1", "message1"));
-        testShopOrSwap.sendMessage("Report", "testClient1","","subject2", "message2");
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.sendMessage("Report", "testClient1", "", "subject1", "message1"));
+        testShopOrSwap.sendMessage("Report", "testClient1","testClient2","subject2", "message2");
         assertEquals(2, testShopOrSwap.getSystemMessages().size());
     }
 
@@ -471,7 +471,7 @@ public class ShopOrSwapTest {
         assertEquals(0, testMessageList5.size());
         assertEquals(1, testMessageList6.size());
 
-        testShopOrSwap.sendMessage("Report", "testClient1","","subject2", "message2");
+        testShopOrSwap.sendMessage("Report", "testClient1","testClient2","subject2", "message2");
         assertEquals(2, testShopOrSwap.getSystemMessages().size());
         testMessageList1 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testAdmin1"));
         testMessageList2 = testShopOrSwap.findMessagesByRecipient(testShopOrSwap.findAccount("testClient2"));

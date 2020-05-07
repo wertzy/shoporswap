@@ -50,6 +50,27 @@ public class StorefrontRecord {
         return productRecordsOut;
     }
 
+    public Storefront toStorefront(){
+        Storefront storefrontOut;
+        if(storefrontType.compareToIgnoreCase(SellStorefront.class.getName()) == 0){
+            storefrontOut = new SellStorefront();
+            for(ProductRecord productRecord : this.getProductRecordList()) {
+                if(productRecord.getProductType().compareToIgnoreCase(SellProduct.class.getName()) == 0){
+                    ((SellStorefront) storefrontOut).addProduct((SellProduct) productRecord.toProduct());
+                }
+            }
+        }else{
+            storefrontOut = new SwapStorefront();
+            for(ProductRecord productRecord : this.getProductRecordList()) {
+                if(productRecord.getProductType().compareToIgnoreCase(SwapProduct.class.getName()) == 0){
+                    ((SwapStorefront) storefrontOut).addProduct((SwapProduct) productRecord.toProduct());
+                }
+            }
+        }
+        storefrontOut.setStorefrontName(this.getStorefrontName());
+        return storefrontOut;
+    }
+
     public List<SellProduct> accessSellProductList() {
         return this.sellProductList;
     }

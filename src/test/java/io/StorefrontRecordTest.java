@@ -51,6 +51,37 @@ public class StorefrontRecordTest {
     }
 
     @Test
+    void toStorefrontTest(){
+        StorefrontRecord testStorefrontRecord1, testStorefrontRecord2, testStorefrontRecord3, testStorefrontRecord4;
+
+        Storefront testSellStorefront1 = new SellStorefront("sell storefront 1", new Client("test1", "pass1"));
+        testStorefrontRecord1 = new StorefrontRecord(testSellStorefront1);
+        Storefront testExportSellStorefront1 = testStorefrontRecord1.toStorefront();
+        assertEquals(testSellStorefront1.getStorefrontName(), testExportSellStorefront1.getStorefrontName());
+        assertEquals(testSellStorefront1.getStorefrontProducts().size(), testExportSellStorefront1.getStorefrontProducts().size());
+
+        Storefront testSellStorefront2 = new SellStorefront("sell storefront 1", new Client("test1", "pass1"));
+        ((SellStorefront) testSellStorefront2).addProduct(new SellProduct("test1", "description1", 50, testSellStorefront2.retrieveStorefrontOwner()));
+        testStorefrontRecord2 = new StorefrontRecord(testSellStorefront2);
+        Storefront testExportSellStorefront2 = testStorefrontRecord2.toStorefront();
+        assertEquals(testSellStorefront2.getStorefrontName(), testExportSellStorefront2.getStorefrontName());
+        assertEquals(testSellStorefront2.getStorefrontProducts().size(), testExportSellStorefront2.getStorefrontProducts().size());
+
+        Storefront testSwapStorefront1 = new SwapStorefront("swap storefront 1", new Client("test1", "pass1"));
+        testStorefrontRecord3 = new StorefrontRecord(testSwapStorefront1);
+        Storefront testExportSellStorefront3 = testStorefrontRecord3.toStorefront();
+        assertEquals(testSwapStorefront1.getStorefrontName(), testExportSellStorefront3.getStorefrontName());
+        assertEquals(testSwapStorefront1.getStorefrontProducts().size(), testExportSellStorefront3.getStorefrontProducts().size());
+
+        Storefront testSwapStorefront2 = new SwapStorefront("swap storefront 1", new Client("test1", "pass1"));
+        ((SwapStorefront) testSwapStorefront2).addProduct(new SwapProduct("test1", "description1", 50, testSwapStorefront2.retrieveStorefrontOwner()));
+        testStorefrontRecord4 = new StorefrontRecord(testSwapStorefront2);
+        Storefront testExportSellStorefront4 = testStorefrontRecord4.toStorefront();
+        assertEquals(testSwapStorefront2.getStorefrontName(), testExportSellStorefront4.getStorefrontName());
+        assertEquals(testSwapStorefront2.getStorefrontProducts().size(), testExportSellStorefront4.getStorefrontProducts().size());
+    }
+
+    @Test
     void toJsonStringTest() throws JsonProcessingException {
         StorefrontRecord testStorefrontRecord1, testStorefrontRecord2, testStorefrontRecord3, testStorefrontRecord4, testStorefrontRecord5;
         testStorefrontRecord1 = new StorefrontRecord();
