@@ -155,7 +155,7 @@ public class AccountRecordTest {
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
                 "}";
-        String testFileName1 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-1";
+        String testFileName1 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-1.json";
         JsonUtil.toJsonFile(testFileName1, testAccountRecord1);
         assertEquals(testJsonString1, JsonUtil.toJsonString(JsonUtil.fromJsonFile(testFileName1, AccountRecord.class)));
 
@@ -168,7 +168,7 @@ public class AccountRecordTest {
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
                 "}";
-        String testFileName2 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-2";
+        String testFileName2 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-2.json";
         JsonUtil.toJsonFile(testFileName2, testAccountRecord2);
         assertEquals(testJsonString2, JsonUtil.toJsonString(JsonUtil.fromJsonFile(testFileName2, AccountRecord.class)));
 
@@ -182,7 +182,7 @@ public class AccountRecordTest {
                 "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString4, JsonUtil.toJsonString(testAccountRecord4));
-        String testFileName4 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-4";
+        String testFileName4 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-4.json";
         JsonUtil.toJsonFile(testFileName4, testAccountRecord4);
         assertEquals(testJsonString4, JsonUtil.toJsonString(JsonUtil.fromJsonFile(testFileName4, AccountRecord.class)));
 
@@ -195,7 +195,7 @@ public class AccountRecordTest {
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
                 "}";
-        String testFileName3 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-3";
+        String testFileName3 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-3.json";
         JsonUtil.toJsonFile(testFileName3, testAccountRecord3);
         assertEquals(testJsonString3, JsonUtil.toJsonString(JsonUtil.fromJsonFile(testFileName3, AccountRecord.class)));
 
@@ -208,7 +208,7 @@ public class AccountRecordTest {
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
                 "}";
-        String testFileName5 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-5";
+        String testFileName5 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-5.json";
         JsonUtil.toJsonFile(testFileName5, testAccountRecord5);
         assertEquals(testJsonString5, JsonUtil.toJsonString(JsonUtil.fromJsonFile(testFileName5, AccountRecord.class)));
     }
@@ -272,7 +272,7 @@ public class AccountRecordTest {
                 "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
                 "}";
 
-        String testFileName1 = directoryPath + "AccountRecordTest-listFromJsonFileTest-1";
+        String testFileName1 = directoryPath + "AccountRecordTest-listFromJsonFileTest-1.json";
         JsonUtil.toJsonFile(testFileName1, Arrays.asList(testAccountRecord1, testAccountRecord2, testAccountRecord4, testAccountRecord3, testAccountRecord5));
 
         List<AccountRecord> testRecordList = JsonUtil.listFromJsonFile(testFileName1, AccountRecord.class);

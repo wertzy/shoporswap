@@ -365,7 +365,7 @@ public class ProductRecordTest {
                 "  } ]" + System.lineSeparator() +
                 "}";
 
-        String testFileName1 = directoryPath + "ProductRecordTest-listFromJsonFileTest-1";
+        String testFileName1 = directoryPath + "ProductRecordTest-listFromJsonFileTest-1.json";
         JsonUtil.toJsonFile(testFileName1, Arrays.asList(testProductRecord1, testProductRecord2, testProductRecord3, testProductRecord4, testProductRecord5, testProductRecord6, testProductRecord7));
 
         List<ProductRecord> testProductRecordList = JsonUtil.listFromJsonFile(testFileName1, ProductRecord.class);
