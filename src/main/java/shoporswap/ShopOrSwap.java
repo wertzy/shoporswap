@@ -347,26 +347,31 @@ public class ShopOrSwap {
      * @throws IllegalArgumentException if the message subject or the message content is invalid
      */
     public void sendMessage(String typeIn, String senderNameIn, String receiverNameIn, String subjectIn, String contentIn){
-        AbstractMessage message = messageFactory.getMessage(typeIn);
+        AbstractMessage message;
         if(typeIn.compareToIgnoreCase("User") == 0 && !receiverNameIn.isEmpty()){
+            message = messageFactory.getMessage(typeIn);
             message.setSender(this.findAccount(senderNameIn));
             message.setRecipient(this.findAccount(receiverNameIn));
             message.setSubject(subjectIn);
             message.setContent(contentIn);
             this.addMessage(message);
         }else{
-            if(receiverNameIn.isEmpty()) {
+            if(!receiverNameIn.isEmpty()) {
                 for (Account account : this.getAccountCollection().values()) {
                     if (account.getClass().getName().compareToIgnoreCase("shoporswap.Admin") == 0) {
+                        message = messageFactory.getMessage(typeIn);
                         message.setSender(this.findAccount(senderNameIn));
-                        message.setRecipient(account);
-                        message.setSubject(subjectIn);
+                        message.setRecipient(this.findAccount(account));
+                        if(!subjectIn.isEmpty()) {
+                            message.setSubject(subjectIn);
+                        }
                         message.setContent(contentIn);
+                        ((ReportMessage) message).setReportedAccount(this.findAccount(receiverNameIn));
                         this.addMessage(message);
                     }
                 }
             }else{
-                throw new IllegalArgumentException("Report recipient must be empty");
+                throw new IllegalArgumentException("Report recipient must not be empty");
             }
         }
     }
