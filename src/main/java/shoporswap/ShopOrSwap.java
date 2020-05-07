@@ -428,12 +428,75 @@ public class ShopOrSwap {
         return accountRecordsOut;
     }
 
+    /**
+     * Adds a tag into the system
+     * @param labelIn the label of the tag
+     * @return the new tag
+     * @throws IllegalArgumentException if a tag with the label already exists or if labelIn is invalid
+     */
+    public Tag addTag(String labelIn){
+        if(this.getSystemTags().containsKey(labelIn)){
+            throw new IllegalArgumentException("Tag already exists in system");
+        }
+        Tag tag = new Tag(labelIn);
+        this.getSystemTags().put(labelIn, tag);
+        return this.getSystemTags().get(labelIn);
+    }
+
+    /**
+     * Finds a tag in the system
+     * @param labelIn the label of the tag
+     * @return the tag found
+     * @throws NoSuchElementException if a tag with the label does not exist in the system
+     */
+    public Tag findTag(String labelIn){
+        if(!this.getSystemTags().containsKey(labelIn)){
+            throw new NoSuchElementException("Tag with desired label does not exist in the system");
+        }
+        return this.getSystemTags().get(labelIn);
+    }
+
+    /**
+     * Removes a tag from the system
+     * @param labelIn the label of the tag
+     * @return the tag found
+     * @throws NoSuchElementException if a tag with the label does not exist in the system
+     */
+    public Tag removeTag(String labelIn){
+        if(!this.getSystemTags().containsKey(labelIn)){
+            throw new NoSuchElementException("Tag with desired label does not exist in the system");
+        }
+        return this.getSystemTags().remove(labelIn);
+    }
+
+
     public void addTagToProduct(String tagLabelIn, AbstractProduct productIn){
         if(!this.getSystemTags().containsKey(tagLabelIn)){
             this.getSystemTags().put(tagLabelIn, new Tag(tagLabelIn));
         }
         productIn.addTag(this.getSystemTags().get(tagLabelIn));
         this.getSystemTags().get(tagLabelIn).addProduct(productIn);
+    }
+
+    /**
+     * Finds a list of products with the tag
+     * @param tagLabelIn the tag to find the labelled products of
+     * @return the list of products with the tag
+     * @throws NoSuchElementException if a tag with the label does not exist in the system
+     */
+    public List<AbstractProduct> findProductsByTag(String tagLabelIn){
+        return this.findTag(tagLabelIn).accessProducts();
+    }
+
+    /**
+     * Removes a tag from a product
+     * @param tagLabelIn the tag label to remove
+     * @param productIn the product to remove the tag from
+     * @throws NoSuchElementException if the product is not tagged with a tag with the label
+     */
+    public void removeTagFromProduct(String tagLabelIn, AbstractProduct productIn){
+        productIn.removeTag(this.findTag(tagLabelIn));
+        this.findTag(tagLabelIn).accessProducts().remove(productIn);
     }
 
     /**

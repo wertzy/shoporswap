@@ -529,6 +529,35 @@ public class ShopOrSwapTest {
     }
 
     @Test
+    void addTagTest(){
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addTag("tag1");
+        assertEquals(1, testShopOrSwap.getSystemTags().size());
+        assertTrue(testShopOrSwap.getSystemTags().containsKey("tag1"));
+        assertThrows(IllegalArgumentException.class, ()-> testShopOrSwap.addTag("tag1"));
+    }
+
+    @Test
+    void findTagTest(){
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.findTag("tag2"));
+        testShopOrSwap.addTag("tag1");
+        Tag testFoundTag = testShopOrSwap.findTag("tag1");
+        assertEquals("tag1", testFoundTag.getName());
+        assertEquals(1, testShopOrSwap.getSystemTags().size());
+    }
+
+    @Test
+    void removeTagTest(){
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addTag("tag1");
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.removeTag("tag2"));
+        Tag testRemovedTag = testShopOrSwap.removeTag("tag1");
+        assertEquals("tag1", testRemovedTag.getName());
+        assertEquals(0, testShopOrSwap.getSystemTags().size());
+    }
+
+    @Test
     void addTagToProductTest(){
         Client testClient1 = new Client("test1", "pass1");
 
@@ -545,6 +574,48 @@ public class ShopOrSwapTest {
         assertEquals(1, testShopOrSwap.getSystemTags().size());
         assertEquals("Tag1", testShopOrSwap.getSystemTags().get("Tag1").getName());
         assertEquals(1, testShopOrSwap.getSystemTags().get("Tag1").accessProducts().size());
+    }
+
+    @Test
+    void findProductsByTagTest(){
+        Client testClient1 = new Client("test1", "pass1");
+
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addAccount(testClient1);
+
+        Storefront testStorefront1 = testShopOrSwap.addStorefront("sell", "test1", testClient1);
+
+        AbstractProduct testProduct1;
+
+        testProduct1 = testShopOrSwap.addToStorefront("test1", "description1", 50, testStorefront1);
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.findProductsByTag("Tag1"));
+        testShopOrSwap.addTagToProduct("Tag1", testProduct1);
+        assertEquals(1, testShopOrSwap.findProductsByTag("Tag1").size());
+    }
+
+    @Test
+    void removeTagFromProductTest(){
+        Client testClient1 = new Client("test1", "pass1");
+
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addAccount(testClient1);
+
+        Storefront testStorefront1 = testShopOrSwap.addStorefront("sell", "test1", testClient1);
+
+        AbstractProduct testProduct1;
+
+        testProduct1 = testShopOrSwap.addToStorefront("test1", "description1", 50, testStorefront1);
+        assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.removeTagFromProduct("Tag1", testProduct1));
+        testShopOrSwap.addTagToProduct("Tag1", testProduct1);
+        assertEquals(1, testProduct1.getProductTags().size());
+        assertEquals(1, testShopOrSwap.getSystemTags().size());
+        assertEquals("Tag1", testShopOrSwap.getSystemTags().get("Tag1").getName());
+        assertEquals(1, testShopOrSwap.getSystemTags().get("Tag1").accessProducts().size());
+        testShopOrSwap.removeTagFromProduct("Tag1", testProduct1);
+        assertEquals(0, testProduct1.getProductTags().size());
+        assertEquals(1, testShopOrSwap.getSystemTags().size());
+        assertEquals("Tag1", testShopOrSwap.getSystemTags().get("Tag1").getName());
+        assertEquals(0, testShopOrSwap.getSystemTags().get("Tag1").accessProducts().size());
     }
 
 
