@@ -2,8 +2,6 @@
   "accountName" : "DefaultAdmin",
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
-  "myOwnedSellProducts" : null,
-  "myOwnedSwapProducts" : null,
-  "mySellStorefronts" : null,
-  "mySwapStorefronts" : null
+  "myProductRecords" : null,
+  "myStorefrontRecords" : null
 }

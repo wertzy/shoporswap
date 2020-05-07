@@ -2,8 +2,6 @@
   "accountName" : "DefaultClient",
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
-  "myOwnedSellProducts" : [ ],
-  "myOwnedSwapProducts" : [ ],
-  "mySellStorefronts" : [ ],
-  "mySwapStorefronts" : [ ]
+  "myProductRecords" : [ ],
+  "myStorefrontRecords" : [ ]
 }

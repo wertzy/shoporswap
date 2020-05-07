@@ -2,8 +2,6 @@
   "accountName" : "test1",
   "accountPassword" : "pass1",
   "isFrozen" : false,
-  "myOwnedSellProducts" : [ ],
-  "myOwnedSwapProducts" : [ ],
-  "mySellStorefronts" : [ ],
-  "mySwapStorefronts" : [ ]
+  "myProductRecords" : [ ],
+  "myStorefrontRecords" : [ ]
 }

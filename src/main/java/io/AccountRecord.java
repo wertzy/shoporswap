@@ -8,10 +8,14 @@ public class AccountRecord {
     private String accountName;
     private String accountPassword;
     private boolean isFrozen;
+
     private List<SellProduct> myOwnedSellProducts;
     private List<SwapProduct> myOwnedSwapProducts;
     private List<SellStorefront> mySellStorefronts;
     private List<SwapStorefront> mySwapStorefronts;
+
+    private List<ProductRecord> myProductRecords;
+    private List<StorefrontRecord> myStorefrontRecords;
 
     /**
      * Default constructor for an AccountRecord object
@@ -20,10 +24,12 @@ public class AccountRecord {
         this.setAccountName("DefaultName");
         this.setAccountPassword("DefaultPassword");
         this.setIsFrozen(false);
-        this.setMyOwnedSellProducts(new ArrayList<SellProduct>());
-        this.setMyOwnedSwapProducts(new ArrayList<SwapProduct>());
-        this.setMySellStorefronts(new ArrayList<SellStorefront>());
-        this.setMySwapStorefronts(new ArrayList<SwapStorefront>());
+        this.establishMyOwnedSellProducts(new ArrayList<SellProduct>());
+        this.establishMyOwnedSwapProducts(new ArrayList<SwapProduct>());
+        this.establishMySellStorefronts(new ArrayList<SellStorefront>());
+        this.establishMySwapStorefronts(new ArrayList<SwapStorefront>());
+        this.setMyProductRecords(null);
+        this.setMyStorefrontRecords(null);
     }
 
     /**
@@ -39,13 +45,17 @@ public class AccountRecord {
         this.setAccountPassword(accountIn.getAccountPassword());
         this.setIsFrozen(accountIn.getIsFrozen());
         if(accountIn instanceof Admin){
-            this.setMyOwnedSellProducts(null);
-            this.setMyOwnedSwapProducts(null);
-            this.setMySellStorefronts(null);
-            this.setMySwapStorefronts(null);
+            this.establishMyOwnedSellProducts(null);
+            this.establishMyOwnedSwapProducts(null);
+            this.establishMySellStorefronts(null);
+            this.establishMySwapStorefronts(null);
+            this.setMyProductRecords(null);
+            this.setMyStorefrontRecords(null);
         }else{
             this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
             this.toProductLists(((Client) accountIn).getMyOwnedProductList());
+            this.setMyProductRecords(new ArrayList<ProductRecord>());
+            this.setMyStorefrontRecords(new ArrayList<StorefrontRecord>());
         }
     }
 
@@ -54,8 +64,8 @@ public class AccountRecord {
      * @param storefrontMapIn the Map of Storefront values by String keys to convert
      */
     public void toStorefrontLists(Map<String, Storefront> storefrontMapIn){
-        this.setMySellStorefronts(this.toSellStorefrontList(storefrontMapIn));
-        this.setMySwapStorefronts(this.toSwapStorefrontList(storefrontMapIn));
+        this.establishMySellStorefronts(this.toSellStorefrontList(storefrontMapIn));
+        this.establishMySwapStorefronts(this.toSwapStorefrontList(storefrontMapIn));
     }
 
     /**
@@ -63,8 +73,8 @@ public class AccountRecord {
      * @param productListIn the List of AbstractProduct objects to convert
      */
     public void toProductLists(List<AbstractProduct> productListIn){
-        this.setMyOwnedSellProducts(this.toSellProductList(productListIn));
-        this.setMyOwnedSwapProducts(this.toSwapProductList(productListIn));
+        this.establishMyOwnedSellProducts(this.toSellProductList(productListIn));
+        this.establishMyOwnedSwapProducts(this.toSwapProductList(productListIn));
     }
 
     /**
@@ -77,6 +87,7 @@ public class AccountRecord {
         for(Storefront storefront : storefrontMapIn.values()){
             if(storefront instanceof SellStorefront){
                 sellStorefrontsOut.add((SellStorefront) storefront);
+                this.getMyStorefrontRecords().add(new StorefrontRecord(storefront));
             }
         }
         return sellStorefrontsOut;
@@ -92,6 +103,7 @@ public class AccountRecord {
         for(AbstractProduct product : productListIn){
             if(product instanceof SellProduct){
                 sellProductsOut.add((SellProduct) product);
+                this.getMyProductRecords().add(new ProductRecord(product));
             }
         }
         return sellProductsOut;
@@ -107,6 +119,7 @@ public class AccountRecord {
         for(Storefront storefront : storefrontMapIn.values()){
             if(storefront instanceof SwapStorefront){
                 swapStorefrontsOut.add((SwapStorefront) storefront);
+                this.getMyStorefrontRecords().add(new StorefrontRecord(storefront));
             }
         }
         return swapStorefrontsOut;
@@ -122,6 +135,7 @@ public class AccountRecord {
         for(AbstractProduct product : productListIn){
             if(product instanceof SwapProduct){
                 swapProductsOut.add((SwapProduct) product);
+                this.getMyProductRecords().add(new ProductRecord(product));
             }
         }
         return swapProductsOut;
@@ -133,10 +147,10 @@ public class AccountRecord {
      */
     public Account toAccount(){
         boolean hasNullClientProperties = (
-                this.getMyOwnedSellProducts() == null &&
-                this.getMyOwnedSwapProducts() == null &&
-                this.getMySellStorefronts() == null &&
-                this.getMySwapStorefronts() == null
+                this.accessMyOwnedSellProducts() == null &&
+                this.accessMyOwnedSwapProducts() == null &&
+                this.accessMySellStorefronts() == null &&
+                this.accessMySwapStorefronts() == null
         );
         Account accountOut;
         if(hasNullClientProperties){
@@ -151,20 +165,20 @@ public class AccountRecord {
 
     public List<AbstractProduct> makeAbstractProductList(){
         List<AbstractProduct> productsOut = new ArrayList<AbstractProduct>();
-        productsOut.addAll(this.getMyOwnedSellProducts());
-        productsOut.addAll(this.getMyOwnedSwapProducts());
+        productsOut.addAll(this.accessMyOwnedSellProducts());
+        productsOut.addAll(this.accessMyOwnedSwapProducts());
         return productsOut;
     }
 
     public Map<String, Storefront> makeStorefrontMap(){
         Map<String, Storefront> storefrontsOut = new HashMap<String, Storefront>();
-        for(SellStorefront sellStorefront : this.getMySellStorefronts()){
+        for(SellStorefront sellStorefront : this.accessMySellStorefronts()){
             if(storefrontsOut.containsKey(sellStorefront.getStorefrontName())){
                 throw new IllegalArgumentException("Selling Storefront already exists");
             }
             storefrontsOut.put(sellStorefront.getStorefrontName(), sellStorefront);
         }
-        for(SwapStorefront swapStorefront : this.getMySwapStorefronts()){
+        for(SwapStorefront swapStorefront : this.accessMySwapStorefronts()){
             if(storefrontsOut.containsKey(swapStorefront.getStorefrontName())){
                 throw new IllegalArgumentException("Swapping Storefront already exists");
             }
@@ -208,14 +222,14 @@ public class AccountRecord {
      * Accessor method for the property of the AccountRecord object
      * @return
      */
-    public List<SellProduct> getMyOwnedSellProducts() {
+    public List<SellProduct> accessMyOwnedSellProducts() {
         return this.myOwnedSellProducts;
     }
 
     /**
      * Mutator method for the property of the AccountRecord object
      */
-    public void setMyOwnedSellProducts(List<SellProduct> myOwnedSellProducts) {
+    public void establishMyOwnedSellProducts(List<SellProduct> myOwnedSellProducts) {
         this.myOwnedSellProducts = myOwnedSellProducts;
     }
 
@@ -223,14 +237,14 @@ public class AccountRecord {
      * Accessor method for the property of the AccountRecord object
      * @return
      */
-    public List<SwapProduct> getMyOwnedSwapProducts() {
+    public List<SwapProduct> accessMyOwnedSwapProducts() {
         return this.myOwnedSwapProducts;
     }
 
     /**
      * Mutator method for the property of the AccountRecord object
      */
-    public void setMyOwnedSwapProducts(List<SwapProduct> myOwnedSwapProducts) {
+    public void establishMyOwnedSwapProducts(List<SwapProduct> myOwnedSwapProducts) {
         this.myOwnedSwapProducts = myOwnedSwapProducts;
     }
 
@@ -238,14 +252,14 @@ public class AccountRecord {
      * Accessor method for the property of the AccountRecord object
      * @return
      */
-    public List<SellStorefront> getMySellStorefronts() {
+    public List<SellStorefront> accessMySellStorefronts() {
         return this.mySellStorefronts;
     }
 
     /**
      * Mutator method for the property of the AccountRecord object
      */
-    public void setMySellStorefronts(List<SellStorefront> mySellStorefronts) {
+    public void establishMySellStorefronts(List<SellStorefront> mySellStorefronts) {
         this.mySellStorefronts = mySellStorefronts;
     }
 
@@ -253,14 +267,14 @@ public class AccountRecord {
      * Accessor method for the property of the AccountRecord object
      * @return
      */
-    public List<SwapStorefront> getMySwapStorefronts() {
+    public List<SwapStorefront> accessMySwapStorefronts() {
         return this.mySwapStorefronts;
     }
 
     /**
      * Mutator method for the property of the AccountRecord object
      */
-    public void setMySwapStorefronts(List<SwapStorefront> mySwapStorefronts) {
+    public void establishMySwapStorefronts(List<SwapStorefront> mySwapStorefronts) {
         this.mySwapStorefronts = mySwapStorefronts;
     }
 
@@ -270,5 +284,21 @@ public class AccountRecord {
 
     public void setIsFrozen(boolean frozen) {
         this.isFrozen = frozen;
+    }
+
+    public List<ProductRecord> getMyProductRecords() {
+        return myProductRecords;
+    }
+
+    public void setMyProductRecords(List<ProductRecord> myProductRecords) {
+        this.myProductRecords = myProductRecords;
+    }
+
+    public List<StorefrontRecord> getMyStorefrontRecords() {
+        return myStorefrontRecords;
+    }
+
+    public void setMyStorefrontRecords(List<StorefrontRecord> myStorefrontRecords) {
+        this.myStorefrontRecords = myStorefrontRecords;
     }
 }

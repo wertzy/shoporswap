@@ -2,40 +2,30 @@
   "accountName" : "DefaultName",
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
-  "myOwnedSellProducts" : [ ],
-  "myOwnedSwapProducts" : [ ],
-  "mySellStorefronts" : [ ],
-  "mySwapStorefronts" : [ ]
+  "myProductRecords" : null,
+  "myStorefrontRecords" : null
 }, {
   "accountName" : "test1",
   "accountPassword" : "pass1",
   "isFrozen" : false,
-  "myOwnedSellProducts" : [ ],
-  "myOwnedSwapProducts" : [ ],
-  "mySellStorefronts" : [ ],
-  "mySwapStorefronts" : [ ]
+  "myProductRecords" : [ ],
+  "myStorefrontRecords" : [ ]
 }, {
   "accountName" : "DefaultClient",
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
-  "myOwnedSellProducts" : [ ],
-  "myOwnedSwapProducts" : [ ],
-  "mySellStorefronts" : [ ],
-  "mySwapStorefronts" : [ ]
+  "myProductRecords" : [ ],
+  "myStorefrontRecords" : [ ]
 }, {
   "accountName" : "test1",
   "accountPassword" : "pass1",
   "isFrozen" : false,
-  "myOwnedSellProducts" : null,
-  "myOwnedSwapProducts" : null,
-  "mySellStorefronts" : null,
-  "mySwapStorefronts" : null
+  "myProductRecords" : null,
+  "myStorefrontRecords" : null
 }, {
   "accountName" : "DefaultAdmin",
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
-  "myOwnedSellProducts" : null,
-  "myOwnedSwapProducts" : null,
-  "mySellStorefronts" : null,
-  "mySwapStorefronts" : null
+  "myProductRecords" : null,
+  "myStorefrontRecords" : null
 } ]
