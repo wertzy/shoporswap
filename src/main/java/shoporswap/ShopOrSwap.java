@@ -278,7 +278,13 @@ public class ShopOrSwap {
      * @param productToBuy the product to buy
      * @param consumerIn the consumer buying the product
      */
-    public void buyProduct(Storefront storefrontIn, AbstractProduct productToBuy, Client consumerIn){
+    public void buyProduct(Storefront storefrontIn, SellProduct productToBuy, Client consumerIn){
+        double consumerWallet=consumerIn.getWallet();
+        double productCost=productToBuy.getProductValue();
+        System.out.println(productCost);
+        if(consumerWallet-productCost<0){
+            throw new IllegalArgumentException("insufficient amount of money to buy product in wallet");
+        }
         if(storefrontIn.getClass().getName().contains((CharSequence) "Sell")){
             SellStorefront sellStorefront = (SellStorefront) storefrontIn;
             AbstractProduct product = sellStorefront.completeTransaction((SellProduct) productToBuy, consumerIn);
