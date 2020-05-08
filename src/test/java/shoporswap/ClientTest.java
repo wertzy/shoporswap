@@ -430,37 +430,5 @@ public class ClientTest {
         assertEquals(testSwapStorefront3, testClient1.removeStorefront(testSwapStorefront3));
         
     }
-    @Test
-    void ratingTest(){
-        Client user=new Client("desmond","desmond");
-        Client user1=new Client("testuser","testuser2");
-        Client user2=new Client("testuser","testuser");
-        user.rate(5);
-        user.rate(1);
-        user.calculateRating();
-        assertEquals(3,user.getRating());
-
-        assertThrows(IllegalArgumentException.class,()->user1.rate(6));
-        assertThrows(IllegalArgumentException.class,()->user.rate(0));
-
-
-    }
-
-    @Test
-    void walletTest(){
-        Client user=new Client("testuser","testuser");
-        user.addWallet(100);
-        assertEquals(100,user.getWallet());
-        user.subtractWallet(50);
-        assertEquals(50,user.getWallet());
-
-        assertThrows(IllegalArgumentException.class,()->user.addWallet(7.891));
-        assertThrows(IllegalArgumentException.class,()->user.addWallet(-1));
-
-        assertThrows(IllegalArgumentException.class,()->user.subtractWallet(7.891));
-        assertThrows(IllegalArgumentException.class,()->user.subtractWallet(51));
-        assertThrows(IllegalArgumentException.class,()->user.subtractWallet(-1));
-
-    }
 
 }
