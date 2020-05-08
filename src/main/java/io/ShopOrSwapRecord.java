@@ -59,12 +59,13 @@ public class ShopOrSwapRecord {
         shopOrSwapOut.setSystemTags(new HashMap<String, Tag>());
         for(Account account : shopOrSwapOut.getAccountCollection().values()){
             if(account instanceof Client){
-                ((Client) account).setMyStorefronts(new HashMap<String, Storefront>());
                 for(Storefront storefront : ((Client) account).getMyStorefronts().values()){
                     for(AbstractProduct product : storefront.getStorefrontProducts()){
                         for(Tag tag : product.getProductTags()){
                             shopOrSwapOut.getSystemTags().put(tag.getName(), tag);
+                            tag.addProduct(product);
                         }
+                        product.setProductMerchant((Client) account);
                     }
                 }
             }

@@ -109,6 +109,7 @@ public class Client extends Account{
         if(this.getMyStorefronts().containsKey(storefrontIn.getStorefrontName())){
             throw new IllegalArgumentException("shoporswap.Storefront invalid (you already have a shoporswap.Storefront with this name)");
         }
+        storefrontIn.setStorefrontOwner(this);
         this.getMyStorefronts().put(storefrontIn.getStorefrontName(), storefrontIn);
         return this.findStorefront(storefrontIn);
     }
