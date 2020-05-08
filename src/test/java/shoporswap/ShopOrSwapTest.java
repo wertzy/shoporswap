@@ -395,6 +395,7 @@ public class ShopOrSwapTest {
         assertTrue(((Client) testShopOrSwap.findAccount("test2")).getMyOwnedProductList().contains(testProduct1));
 
         assertEquals(450,testClient2.getWallet());
+        assertEquals(50,testClient1.getWallet());
     }
 
     /**
