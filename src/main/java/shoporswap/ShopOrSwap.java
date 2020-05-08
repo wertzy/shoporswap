@@ -278,9 +278,15 @@ public class ShopOrSwap {
      * @param productToBuy the product to buy
      * @param consumerIn the consumer buying the product
      */
-    public void buyProduct(Storefront storefrontIn, AbstractProduct productToBuy, Client consumerIn){
+    public void buyProduct(Storefront storefrontIn, SellProduct productToBuy, Client consumerIn){
+
         if(storefrontIn.getClass().getName().contains((CharSequence) "Sell")){
+            double consumerWallet=consumerIn.getWallet();
             SellStorefront sellStorefront = (SellStorefront) storefrontIn;
+            double productValue=sellStorefront.findProduct(productToBuy).getProductValue();
+            if(consumerWallet-productValue<0){
+                throw new IllegalArgumentException("insufficient amount of money to buy product in wallet");
+            }
             AbstractProduct product = sellStorefront.completeTransaction((SellProduct) productToBuy, consumerIn);
         }else{
             throw new IllegalArgumentException("shoporswap.Storefront must be a selling storefront");
@@ -602,4 +608,6 @@ public class ShopOrSwap {
     public void setSystemTags(Map<String, Tag> systemTagsIn) {
         this.systemTags = systemTagsIn;
     }
+
+
 }

@@ -1,11 +1,15 @@
 package shoporswap;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Client extends Account{
 
     private List<AbstractProduct> myOwnedProductList;
     private Map<String, Storefront> myStorefronts;
+    private double wallet=0, rating=0;
+    public List<Integer> numOfRatings=new ArrayList<Integer>();
+    public List<Client> pastMerchants=new ArrayList<Client>();
 
     /**
      * Default constructor for shoporswap.Client object
@@ -168,6 +172,22 @@ public class Client extends Account{
     }
 
     /**
+     * Accessor method for the myProductList property of the shoporswap.Client shoporswap.Account
+     * @return the list of products of the shoporswap.Client shoporswap.Account
+     */
+    public double getRating(){
+        return this.rating;
+    }
+
+    /**
+     * Accessor method for the wallet property
+     * @return the wallet amount in user
+     */
+    public double getWallet(){
+        return this.wallet;
+    }
+
+    /**
      * Mutator method for the myProductList property of the shoporswap.Client shoporswap.Account
      * @param productListIn the list of products of the shoporswap.Client shoporswap.Account
      * @throws IllegalArgumentException if at least one of the AbstractProducts is invalid
@@ -182,6 +202,81 @@ public class Client extends Account{
      */
     public void setMyStorefronts(Map<String, Storefront> myStorefrontsIn){
         this.myStorefronts = myStorefrontsIn;
+    }
+
+    /**
+     * Method to check if amount is valid or not
+     * @param amount
+     * @return true if amount is valid, false if amount is invalid
+     */
+
+    public boolean isValidAmount(double amount){
+        if(amount<=0) {
+            return false;
+        }
+        if(BigDecimal.valueOf(amount).scale()>2){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    /**
+     *adds amount of money into wallet
+     * @param amount
+     */
+    public void addWallet(double amount){
+        if(!isValidAmount(amount)){
+            throw new IllegalArgumentException("amount will lead to wallet to have a negative amount");
+        }
+        wallet+=amount;
+    }
+
+    /**
+     *subtracts amount of money into wallet
+     * @param amount
+     */
+    public void subtractWallet(double amount){
+        if(!isValidAmount(amount)){
+            throw new IllegalArgumentException("amount will lead to wallet to have a negative amount");
+        }
+        if(wallet-amount<0){
+            throw new IllegalArgumentException("amount will lead to wallet to have a negative amount");
+        }
+        wallet-=amount;
+    }
+
+    /**
+     * adds rating to list of ratings to be used to calculate an average later
+     * @param rating
+     */
+    public void rate(int rating){
+        if (rating>5||rating<=0){
+            throw new IllegalArgumentException("rating cannot be greater than 5");
+        }
+        numOfRatings.add(rating);
+        calculateRating();
+    }
+
+    /**
+     * calculates the average for ratings
+     */
+
+    public void calculateRating() {
+        int sum=0;
+        for (int i=0; i<numOfRatings.size();i++){
+            sum+=numOfRatings.get(i);
+        }
+        rating=sum/numOfRatings.size();
+    }
+
+    public void addMerchant(Client merchant){
+        pastMerchants.add(merchant);
+    }
+
+    public void removeMerchant(Client merchant){
+        pastMerchants.remove(merchant);
     }
 
 }
