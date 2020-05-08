@@ -269,6 +269,7 @@ public class Main {
         System.out.println("\tis blocked account: " + account.getIsFrozen());
         if(account.getClass().getName().contains("Client")) {
             System.out.println("\twallet amount: " + ((Client) account).getWallet());
+            System.out.println("\taccount rating: " + ((Client) account).getRating());
         }
         return;
     }
@@ -442,6 +443,8 @@ public class Main {
             accountToRate = shopOrSwap.findAccount(nameIn);
             if(accountToRate.getClass().getName().contains("Admin")){
                 throw new IllegalArgumentException("Admins are not valid users to rate");
+            }else if(accountToRate == account){
+                throw new IllegalArgumentException("Cannot rate your own account");
             }
             System.out.print("\nUser found: " + accountToRate.getAccountName());
         }catch(Exception e){
