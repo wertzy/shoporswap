@@ -59,24 +59,25 @@ public class Controller {
 
     private static final String DATA_FILE = "src/main/resources/systemData.json";
     public ShopOrSwap system;
-    public Client currentUser;
+    public Account currentUser;
 
     public Controller() throws IOException{
-        try {
-            System.out.println("Hi");
-            try {
-                system = JsonUtil.fromJsonFile(DATA_FILE, ShopOrSwapRecord.class).toShopOrSwap();
-                System.out.println("Howdy");
-            } catch (FileNotFoundException e) {
-                system = generateData();
-                System.out.println("catch");
-            }
-            System.out.println("Hello");
-        }catch (Exception e){
-            System.out.println("Could not start system");
-            System.out.println(e.getMessage());
-            System.exit(1);
-        }
+//        try {
+//            System.out.println("Hi");
+//            try {
+//                system = JsonUtil.fromJsonFile(DATA_FILE, ShopOrSwapRecord.class).toShopOrSwap();
+//                System.out.println("Howdy");
+//            } catch (FileNotFoundException e) {
+//                system = generateData();
+//                System.out.println("catch");
+//            }
+//            System.out.println("Hello");
+//        }catch (Exception e){
+//            System.out.println("Could not start system");
+//            System.out.println(e.getMessage());
+//            System.exit(1);
+//        }
+        system=hotFixDataGeneration();
     }
 
     public void newAccount(){
@@ -93,34 +94,34 @@ public class Controller {
         // do what you have to do
         stage.close();
     }
-//    public void logIn(ActionEvent event) throws IOException{
-//        if(system.signIn(usernameTxtFld.getText(), passwordTxtFld.getText()) == null){
-//            System.out.println("No User found with those credentials");
-//            errorLabel.setVisible(true);
-//        }
-//        else {
-//            errorLabel.setVisible(false);
-//            currentUser = system.signIn(usernameTxtFld.getText(), passwordLabel.getText());
-//            Parent productViewParent = FXMLLoader.load(getClass().getResource("/homepage.fxml"));
-//            Scene productViewScene = new Scene(productViewParent);
-//
-//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//
-//            window.setScene(productViewScene);
-//            window.show();
-//        }
+    public void logIn(ActionEvent event) throws IOException {
+        if (system.signIn(usernameTxtFld.getText(), passwordTxtFld.getText()) == null) {
+            System.out.println(passwordTxtFld.getText());
+            System.out.println("No User found with those credentials");
+            errorLabel.setVisible(true);
+        } else {
+            errorLabel.setVisible(false);
+            currentUser = system.findAccount(usernameTxtFld.getText());
+            Parent productViewParent = FXMLLoader.load(getClass().getResource("/homepage.fxml"));
+            Scene productViewScene = new Scene(productViewParent);
+
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(productViewScene);
+            window.show();
+        }
+    }
 
 
 //    }
     public void create(){
         System.out.println(passwordTxtFld1.getText());
 //        try{
-//            return shopOrSwap.createAccount(usernameTxtFld1.getText(),passwordTxtFld1.getText());
+//            return system.addAccount(usernameTxtFld1.getText(),passwordTxtFld1.getText());
 //        }catch(Exception e){
 //            System.out.println("Cannot create account");
 //            return null;
 //        }
-//    }
     }
     public void viewMyProductsClicked(){
 
@@ -150,28 +151,23 @@ public class Controller {
 
             String dataFile = DATA_FILE;
             ShopOrSwap dataShopOrSwap = new ShopOrSwap();
-            System.out.println("Howdy0");
             Account dataClient1 = dataShopOrSwap.addAccount("Client", "client1", "client1");
             Account dataClient2 = dataShopOrSwap.addAccount("Client", "client2", "client2");
             Account dataAdmin = dataShopOrSwap.addAccount("Admin", "admin1", "admin1");
-            System.out.println("Howdy1");
             Storefront dataSellStorefront = dataShopOrSwap.addStorefront("Sell", "sell storefront 1", (Client) dataClient1);
             Storefront dataSwapStorefront1 = dataShopOrSwap.addStorefront("Swap", "swap storefront 1", (Client) dataClient1);
             Storefront dataSwapStorefront2 = dataShopOrSwap.addStorefront("Swap", "swap storefront 2", (Client) dataClient1);
-            System.out.println("Howdy1.1");
             AbstractProduct dataSellProduct = dataShopOrSwap.addToStorefront("sell product 1", "description 1", 20, dataSellStorefront);
             AbstractProduct dataSwapProduct1 = dataShopOrSwap.addToStorefront("swap product 1", "description 1", 20, dataSwapStorefront1);
             AbstractProduct dataSwapProduct2 = dataShopOrSwap.addToStorefront("swap product 2", "description 2", 20, dataSwapStorefront2);
             dataShopOrSwap.addTagToProduct("tag1", dataSellProduct);
             dataShopOrSwap.addTagToProduct("tag2", dataSwapProduct1);
             dataShopOrSwap.addTagToProduct("tag2", dataSwapProduct2);
-            System.out.println("Howdy2");
 
 
             JsonUtil.toJsonFile(DATA_FILE, new ShopOrSwapRecord(dataShopOrSwap));
 
             ShopOrSwap importedShopOrSwap = JsonUtil.fromJsonFile(DATA_FILE, ShopOrSwapRecord.class).toShopOrSwap();
-            System.out.println("Howdy3");
             System.out.println("Imported ShopOrSwap data with User count " + importedShopOrSwap.getAccountCollection().size());
             return importedShopOrSwap;
         }catch(Exception e){
@@ -183,22 +179,18 @@ public class Controller {
     }
     private  static ShopOrSwap hotFixDataGeneration() throws IOException {
         ShopOrSwap dataShopOrSwap = new ShopOrSwap();
-        System.out.println("Howdy0");
         Account dataClient1 = dataShopOrSwap.addAccount("Client", "client1", "client1");
         Account dataClient2 = dataShopOrSwap.addAccount("Client", "client2", "client2");
-        //Account dataAdmin = dataShopOrSwap.addAccount("Admin", "admin1", "admin1");
-        System.out.println("Howdy1");
+        Account dataAdmin = dataShopOrSwap.addAccount("Admin", "admin1", "admin1");
         Storefront dataSellStorefront = dataShopOrSwap.addStorefront("Sell", "sell storefront 1", (Client) dataClient1);
         Storefront dataSwapStorefront1 = dataShopOrSwap.addStorefront("Swap", "swap storefront 1", (Client) dataClient1);
         Storefront dataSwapStorefront2 = dataShopOrSwap.addStorefront("Swap", "swap storefront 2", (Client) dataClient1);
-        System.out.println("Howdy1.1");
         AbstractProduct dataSellProduct = dataShopOrSwap.addToStorefront("sell product 1", "description 1", 20, dataSellStorefront);
         AbstractProduct dataSwapProduct1 = dataShopOrSwap.addToStorefront("swap product 1", "description 1", 20, dataSwapStorefront1);
         AbstractProduct dataSwapProduct2 = dataShopOrSwap.addToStorefront("swap product 2", "description 2", 20, dataSwapStorefront2);
         dataShopOrSwap.addTagToProduct("tag1", dataSellProduct);
         dataShopOrSwap.addTagToProduct("tag2", dataSwapProduct1);
         dataShopOrSwap.addTagToProduct("tag2", dataSwapProduct2);
-        System.out.println("Howdy2");
 
         return dataShopOrSwap;
     }

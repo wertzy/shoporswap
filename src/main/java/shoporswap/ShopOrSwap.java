@@ -80,6 +80,37 @@ public class ShopOrSwap {
     }
 
     /**
+     * signs a User into the program
+     * @param accountName the account name of the User to sign in
+     * @param password the password of the User to sign in
+     */
+    public Account signIn(String accountName, String password) {
+        // implement method to pass corresponding tests after the tests have been written
+        if(this.getAccountCollection().containsKey(accountName) && this.getAccountCollection().get(accountName).getAccountPassword().equals(password)){
+            System.out.println(this.getAccountCollection().get(accountName).getAccountPassword());
+            return this.getAccountCollection().get(accountName);
+        }
+        else {return null;}
+
+    }
+//
+//    /**
+//     * signs a User out of the program
+//     * @param accountName the account name of the User to sign out
+//     * @param password the password of the User to sign out
+//     */
+
+//    public User signOut(String accountName, String password) {
+//        // implement method to pass corresponding tests after the tests have been written
+//        for(User user : this.userList){
+//            if(user.getAccountName().compareTo(accountName) == 0 && user.getPassword().compareTo(password) == 0){
+//                return user;
+//            }
+//        }
+//        return null;
+//    }
+
+    /**
      * Removes an shoporswap.Account from the shoporswap.ShopOrSwap system
      * @param accountIn the account to remove from the system
      * @return the removed account
