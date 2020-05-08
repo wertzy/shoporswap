@@ -78,7 +78,7 @@
             <HBox prefHeight="41.0" prefWidth="189.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="84.0" text="Add Funds" />
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Log Out">
+                  <Button fx:id="logOut" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#logOutClicked" prefHeight="27.0" prefWidth="70.0" text="Log Out">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
