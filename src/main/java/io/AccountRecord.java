@@ -18,6 +18,7 @@ public class AccountRecord {
     private List<StorefrontRecord> myStorefrontRecords;
 
     private Account accountIn;
+    private String accountType;
 
     /**
      * Default constructor for an AccountRecord object
@@ -47,6 +48,7 @@ public class AccountRecord {
         this.setAccountName(accountIn.getAccountName());
         this.setAccountPassword(accountIn.getAccountPassword());
         this.setIsFrozen(accountIn.getIsFrozen());
+        this.establishAccountType(accountIn.getClass().getName());
         if(accountIn instanceof Admin){
             this.establishMyOwnedSellProducts(null);
             this.establishMyOwnedSwapProducts(null);
@@ -204,6 +206,14 @@ public class AccountRecord {
      */
     public String getAccountName() {
         return this.accountName;
+    }
+
+    public String accessAccountType(){
+        return this.accountType;
+    }
+
+    public void establishAccountType(String accountTypeIn){
+        this.accountType = accountTypeIn;
     }
 
     /**

@@ -35,7 +35,7 @@ public class Main {
     // First menu user interacts with
     private static void preliminaryMenu(ShopOrSwap shopOrSwap) throws IOException {
         Scanner input = new Scanner(System.in);
-        System.out.println("--Menu--");
+        System.out.println("\n--Menu--");
         System.out.println("\t1. Sign In");
         System.out.println("\t2. Create Account");
         System.out.println("\t-1. Exit");
@@ -61,7 +61,7 @@ public class Main {
     // sign in procedure for the user
     private static void signInProcedure(ShopOrSwap shopOrSwap){
         Scanner input = new Scanner(System.in);
-        System.out.println("--Sign In Procedure--");
+        System.out.println("\n--Sign In Procedure--");
         System.out.print("Account Name: ");
         String nameIn = input.nextLine();
         System.out.print("Account Password: ");
@@ -76,7 +76,7 @@ public class Main {
                 return;
             }
             System.out.println("Welcome back " + account.getAccountName());
-            if((new AccountRecord(account)).getAccountName().contains("Client")) {
+            if((new AccountRecord(account)).accessAccountType().contains("Client")) {
                 clientMenu(shopOrSwap, account);
             }else{
                 adminMenu(shopOrSwap, account);
@@ -90,7 +90,7 @@ public class Main {
     // create account procedure for the user
     private static void createAccountProcedure(ShopOrSwap shopOrSwap){
         Scanner input = new Scanner(System.in);
-        System.out.println("--Create Account Procedure--");
+        System.out.println("\n--Create Account Procedure--");
         System.out.print("Desired Account Name: ");
         String nameIn = input.nextLine();
         System.out.print("Desired Account Password: ");
@@ -107,7 +107,7 @@ public class Main {
     // account menu for a successfully signed-in client
     private static void clientMenu(ShopOrSwap shopOrSwap, Account account){
         Scanner input = new Scanner(System.in);
-        System.out.println("--Account Menu--");
+        System.out.println("\n--Account Menu--");
         System.out.println("\t1. View My Account Information");
         System.out.println("\t2. View My Messages");
         System.out.println("\t-1. Sign Out");
@@ -116,6 +116,9 @@ public class Main {
         switch(choice){
             case "1":
                 viewAccountInformation(account);
+                break;
+            case "2":
+                viewAccountMessages(shopOrSwap, account);
                 break;
             case "-1":
                 return;
@@ -129,9 +132,9 @@ public class Main {
     // account menu for a successfully signed-in admin
     private static void adminMenu(ShopOrSwap shopOrSwap, Account account){
         Scanner input = new Scanner(System.in);
-        System.out.println("--Account Menu--");
+        System.out.println("\n--Account Menu--");
         System.out.println("\t1. View My Account Information");
-        System.out.println("\t2. View My Messages");
+        System.out.println("\t2. View My Received Messages");
         System.out.println("\t3. Freeze Account");
         System.out.println("\t4. Unfreeze Account");
         System.out.println("\t-1. Sign Out");
@@ -142,6 +145,7 @@ public class Main {
                 viewAccountInformation(account);
                 break;
             case "2":
+                viewAccountMessages(shopOrSwap, account);
                 break;
             case "3":
                 freezeAccount(shopOrSwap, account);
@@ -161,13 +165,14 @@ public class Main {
     // procedure to freeze an account
     private static void freezeAccount(ShopOrSwap shopOrSwap, Account account){
         Scanner input = new Scanner(System.in);
-        System.out.println("--Freeze Account Procedure--");
+        System.out.println("\n--Freeze Account Procedure--");
         System.out.print("Account name of Account to freeze: ");
         String nameIn = input.nextLine();
         try{
             Account accountToFreeze = shopOrSwap.findAccount(nameIn);
             if(!accountToFreeze.getIsFrozen()){
                 shopOrSwap.freezeAccount(account, accountToFreeze);
+                System.out.println("Account " + accountToFreeze.getAccountName() + " frozen status: " + accountToFreeze.getIsFrozen());
             }else{
                 System.out.println("Account is already frozen");
             }
@@ -180,13 +185,14 @@ public class Main {
     // procedure to unfreeze an account
     private static void unfreezeAccount(ShopOrSwap shopOrSwap, Account account){
         Scanner input = new Scanner(System.in);
-        System.out.println("--Freeze Account Procedure--");
+        System.out.println("\n--Freeze Account Procedure--");
         System.out.print("Account name of Account to unfreeze: ");
         String nameIn = input.nextLine();
         try{
             Account accountToFreeze = shopOrSwap.findAccount(nameIn);
             if(accountToFreeze.getIsFrozen()){
                 shopOrSwap.unfreezeAccount(account, accountToFreeze);
+                System.out.println("Account " + accountToFreeze.getAccountName() + " frozen status: " + accountToFreeze.getIsFrozen());
             }else{
                 System.out.println("Account is not frozen already");
             }
@@ -198,6 +204,7 @@ public class Main {
 
     // view account information of a signed-in user
     private static void viewAccountInformation(Account account){
+        System.out.println("\n--View Account Procedure--");
         System.out.println("Account " + account.getAccountName() + ":");
         System.out.println("\taccount name: " + account.getAccountName());
         System.out.println("\taccount password: " + account.getAccountPassword());
@@ -205,8 +212,17 @@ public class Main {
         return;
     }
 
+    private static void viewAccountMessages(ShopOrSwap shopOrSwap, Account account){
+        System.out.println("\n--View Received Messages Procedure--");
+        for(AbstractMessage message : shopOrSwap.findMessagesByRecipient(account)){
+            System.out.println(new MessageRecord(message));
+        }
+        return;
+    }
+
     // exit procedure for the program
     private static void exitProcedure(ShopOrSwap shopOrSwap) throws IOException {
+        System.out.println("\n--Exit Procedure--");
         try {
             ShopOrSwapRecord recordOut = new ShopOrSwapRecord(shopOrSwap);
             JsonUtil.toJsonFile("src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json", recordOut);
