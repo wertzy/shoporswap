@@ -1,0 +1,31 @@
+[ {
+  "accountName" : "DefaultName",
+  "accountPassword" : "DefaultPassword",
+  "isFrozen" : false,
+  "myProductRecords" : null,
+  "myStorefrontRecords" : null
+}, {
+  "accountName" : "test1",
+  "accountPassword" : "pass1",
+  "isFrozen" : false,
+  "myProductRecords" : [ ],
+  "myStorefrontRecords" : [ ]
+}, {
+  "accountName" : "DefaultClient",
+  "accountPassword" : "DefaultPassword",
+  "isFrozen" : false,
+  "myProductRecords" : [ ],
+  "myStorefrontRecords" : [ ]
+}, {
+  "accountName" : "test1",
+  "accountPassword" : "pass1",
+  "isFrozen" : false,
+  "myProductRecords" : null,
+  "myStorefrontRecords" : null
+}, {
+  "accountName" : "DefaultAdmin",
+  "accountPassword" : "DefaultPassword",
+  "isFrozen" : false,
+  "myProductRecords" : null,
+  "myStorefrontRecords" : null
+} ]

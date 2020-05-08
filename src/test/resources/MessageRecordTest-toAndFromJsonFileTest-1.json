@@ -1,0 +1,11 @@
+{
+  "messageType" : null,
+  "senderName" : null,
+  "senderType" : null,
+  "recipientName" : null,
+  "recipientType" : null,
+  "subject" : null,
+  "content" : null,
+  "reportedAccountName" : null,
+  "reportedAccountType" : null
+}

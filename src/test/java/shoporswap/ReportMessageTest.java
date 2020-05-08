@@ -46,7 +46,7 @@ public class ReportMessageTest {
         assertEquals("DefaultReport", testMessage1.getSubject());
         assertEquals("DefaultContent", testMessage1.getContent());
 
-        testMessage2 = new ReportMessage(new Client("test1", "pass1"), new Client("test2", "pass2"), "content", new Client("test2", "pass2"));
+        testMessage2 = new ReportMessage(new Client("test1", "pass1"), new Admin("test2", "pass2"), "content", new Client("test2", "pass2"));
         assertEquals("test1", testMessage2.getSender().getAccountName());
         assertEquals("pass1", testMessage2.getSender().getAccountPassword());
         assertEquals("test2", testMessage2.getRecipient().getAccountName());

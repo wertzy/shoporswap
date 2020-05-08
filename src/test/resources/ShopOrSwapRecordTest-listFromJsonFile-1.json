@@ -1,0 +1,100 @@
+[ {
+  "accountRecords" : [ ],
+  "messageRecords" : [ ]
+}, {
+  "accountRecords" : [ {
+    "accountName" : "client1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ]
+  } ],
+  "messageRecords" : [ ]
+}, {
+  "accountRecords" : [ {
+    "accountName" : "client2",
+    "accountPassword" : "pass2",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ]
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ]
+  } ],
+  "messageRecords" : [ ]
+}, {
+  "accountRecords" : [ {
+    "accountName" : "admin1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ]
+  } ],
+  "messageRecords" : [ ]
+}, {
+  "accountRecords" : [ {
+    "accountName" : "admin1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null
+  }, {
+    "accountName" : "admin2",
+    "accountPassword" : "pass2",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null
+  }, {
+    "accountName" : "client2",
+    "accountPassword" : "pass2",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ]
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ]
+  } ],
+  "messageRecords" : [ {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client2",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "subject1",
+    "content" : "content1",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.ReportMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "admin1",
+    "recipientType" : "shoporswap.Admin",
+    "subject" : "subject1",
+    "content" : "content1",
+    "reportedAccountName" : "client2",
+    "reportedAccountType" : "shoporswap.Client"
+  }, {
+    "messageType" : "shoporswap.ReportMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "admin2",
+    "recipientType" : "shoporswap.Admin",
+    "subject" : "subject1",
+    "content" : "content1",
+    "reportedAccountName" : "client2",
+    "reportedAccountType" : "shoporswap.Client"
+  } ]
+} ]
