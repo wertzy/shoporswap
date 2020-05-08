@@ -254,7 +254,7 @@ public class Client extends Account{
      */
     public void rate(int rating){
         if (rating>5||rating<=0){
-            throw new IllegalArgumentException("rating cannot be greater than 5");
+            throw new IllegalArgumentException("rating cannot be greater than 5 and must be at least 1");
         }
         numOfRatings.add(rating);
         calculateRating();

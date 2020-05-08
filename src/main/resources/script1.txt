@@ -1,80 +1,253 @@
 1
 account1
-pass1
+account1
 1
 client1
 client1
 1
 2
--1
-1
-admin1
-admin1
-1
-2
-3
+5
 client1
-3
-client1
--1
-1
-client1
-client1
-1
-admin1
-admin1
-4
-client1
-4
-client1
--1
-1
-client1
-client1
-1
-2
--1
-2
-client1
-client1
-2
-client2
-client2
-1
-client2
-client2
-1
-2
+6
+
+6
+unknownTag
 3
 sell storefront 1
+client1
+3
+swap storefront 1
 client1
 3
 sell storefront 2
 client2
 3
-swap storefront 1
-client1
-3
 swap storefront 2
 client2
 4
-sell storefront 1
+sell storefront c1-1
 sell
 4
-sell storefront 1
+sell storefront c1-2
 sell
 4
-swap storefront 1
+sell storefront c1-2
+sell
+4
+swap storefront c1-1
 swap
 4
-swap storefront 1
+swap storefront c1-2
+swap
+4
+swap storefront c1-2
 swap
 5
 client1
+3
+sell storefront c1-1
+client1
+1
+sell product 1
+description1
+20
+
+3
+2
+sell product 1
+1
+sell product 1
+description1
+20
+
+-1
+-1
+2
+client2
+client2
+1
+client2
+client2
+1
+2
+3
+sell storefront c1-1
+client1
+2
+1
+product1
+1
+sell product 1
+-1
+7
+-100
+7
+-1
+7
+0
+7
+200
+3
+sell storefront c1-1
+client1
+2
+1
+sell product 1
+2
+-1
+1
+2
+8
+200
+8
+180
+-1
+1
+client1
+client1
+1
+2
+3
+sell storefront c1-1
+client1
+3
+-1
+-1
+1
+client2
+client2
+9
+client1
+did not ship my product
+-1
+1
+admin1
+admin1
+1
+2
+3
+client1
+3
+client1
+-1
+1
+client1
+client1
+1
+admin1
+admin1
+4
+client1
+4
+client1
+-1
+1
+client1
+client1
+1
+2
+-1
+1
+admin1
+admin1
+1
+2
+-1
+1
+client1
+client1
+3
+swap storefront c1-1
+client1
+3
+1
+swap product 1
+description1
+20
+
+3
+-1
+-1
+1
+client2
+client2
+5
+client2
+4
+swap storefront c2-1
+swap
 5
 client2
 3
-sell storefront 1
+swap storefront c2-1
 client2
 -1
+1
+client1
+client1
+3
+swap storefront c1-1
+client1
+2
+1
+swap product 1
+swap storefront c2-1
+swap product 2
 -1
+3
+swap storefront c2-1
+client2
+1
+swap product 2
+description2
+20
+
+3
+-1
+3
+swap storefront c1-1
+client1
+2
+1
+swap product 1
+swap storefront c2-1
+swap product 2
+-1
+3
+swap storefront c1-1
+client1
+2
+-1
+3
+swap storefront c2-1
+client2
+3
+-1
+2
+1
+-1
+1
+client1
+client1
+1
+2
+3
+swap storefront c1-1
+client1
+3
+-1
+3
+swap storefront c2-1
+client2
+2
+-1
+10
+admin1
+10
+client1
+3
+-1
+1
+client1
+client1
+

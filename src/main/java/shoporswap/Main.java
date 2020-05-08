@@ -25,7 +25,11 @@ public class Main {
     public static void main(String[] args) throws IOException {
         makeScriptReader();
         ShopOrSwap shopOrSwap = getShopOrSwapData();
-        preliminaryMenu(shopOrSwap);
+        try {
+            preliminaryMenu(shopOrSwap);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     // JSON data import
@@ -53,7 +57,7 @@ public class Main {
         System.out.println("\t2. Create Account");
         System.out.println("\t-1. Exit");
         System.out.print("Selection #: ");
-        String choice = input.nextLine();
+        String choice = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Selection #: " + choice);
         switch(choice){
             case "1":
@@ -66,7 +70,7 @@ public class Main {
                 exitProcedure(shopOrSwap);
                 break;
             default:
-                System.out.println("Invalid menu selection");
+                System.out.println("\nInvalid menu selection");
                 break;
         }
         preliminaryMenu(shopOrSwap);
@@ -77,10 +81,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Sign In Procedure--");
         System.out.print("\nAccount Name: ");
-        String nameIn = input.nextLine();
+        String nameIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Account Name: " + nameIn);
         System.out.print("\nAccount Password: ");
-        String passwordIn = input.nextLine();
+        String passwordIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Account Password: " + passwordIn);
         try{
             Account account = shopOrSwap.findAccount(nameIn);
@@ -108,14 +112,14 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Create Account Procedure--");
         System.out.print("Desired Account Name: ");
-        String nameIn = input.nextLine();
+        String nameIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Desired Account Name: " + nameIn);
         System.out.print("\nDesired Account Password: ");
-        String passwordIn = input.nextLine();
+        String passwordIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Desired Account Password: " + passwordIn);
         try{
             Account account = shopOrSwap.addAccount("Client", nameIn, passwordIn);
-            System.out.print("\nWelcome " + account.getAccountName());
+            System.out.print("\nWelcome " + account.getAccountName() + ". Please sign in using your new credentials to access your new account.");
         }catch (IllegalArgumentException e){
             System.out.print("\nError: " + e.getMessage());
         }
@@ -132,9 +136,13 @@ public class Main {
         System.out.println("\t4. Make A Storefront");
         System.out.println("\t5. View Storefronts Directory by Owner");
         System.out.println("\t6. View All Products By Tag");
+        System.out.println("\t7. Add funds to Wallet");
+        System.out.println("\t8. Withdraw funds from Wallet");
+        System.out.println("\t9. Report User");
+        System.out.println("\t10. Rate User");
         System.out.println("\t-1. Sign Out");
         System.out.print("Selection #: ");
-        String choice = input.nextLine();
+        String choice = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Selection #: " + choice);
         switch(choice){
             case "1":
@@ -155,10 +163,22 @@ public class Main {
             case "6":
                 viewAllProductsByTag(shopOrSwap);
                 break;
+            case "7":
+                addToWallet(account);
+                break;
+            case "8":
+                withdrawFromWallet(account);
+                break;
+            case "9":
+                reportUser(shopOrSwap, account);
+                break;
+            case "10":
+                rateUser(shopOrSwap, account);
+                break;
             case "-1":
                 return;
             default:
-                System.out.println("Invalid menu selection");
+                System.out.println("\nInvalid menu selection");
                 break;
         }
         clientMenu(shopOrSwap, account);
@@ -174,7 +194,7 @@ public class Main {
         System.out.println("\t4. Unfreeze Account");
         System.out.println("\t-1. Sign Out");
         System.out.print("Selection #: ");
-        String choice = input.nextLine();
+        String choice = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Selection #: " + choice);
         switch(choice){
             case "1":
@@ -192,7 +212,7 @@ public class Main {
             case "-1":
                 return;
             default:
-                System.out.println("Invalid menu selection");
+                System.out.println("\nInvalid menu selection");
                 break;
         }
         adminMenu(shopOrSwap, account);
@@ -203,7 +223,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Freeze Account Procedure--");
         System.out.print("Account name of Account to freeze: ");
-        String nameIn = input.nextLine();
+        String nameIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Account name of Account to freeze: " + nameIn);
         try{
             Account accountToFreeze = shopOrSwap.findAccount(nameIn);
@@ -224,7 +244,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Freeze Account Procedure--");
         System.out.print("Account name of Account to unfreeze: ");
-        String nameIn = input.nextLine();
+        String nameIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Account name of Account to unfreeze: " + nameIn);
         try{
             Account accountToFreeze = shopOrSwap.findAccount(nameIn);
@@ -247,6 +267,9 @@ public class Main {
         System.out.println("\taccount name: " + account.getAccountName());
         System.out.println("\taccount password: " + account.getAccountPassword());
         System.out.println("\tis blocked account: " + account.getIsFrozen());
+        if(account.getClass().getName().contains("Client")) {
+            System.out.println("\twallet amount: " + ((Client) account).getWallet());
+        }
         return;
     }
 
@@ -254,7 +277,9 @@ public class Main {
     private static void viewAccountMessages(ShopOrSwap shopOrSwap, Account account){
         System.out.println("\n--View Received Messages Procedure--");
         for(AbstractMessage message : shopOrSwap.findMessagesByRecipient(account)){
-            System.out.println(new MessageRecord(message));
+            System.out.println("Sender: " + message.getSender().getAccountName());
+            System.out.println("\tSubject: " + message.getSubject());
+            System.out.println("\tContent: " + message.getContent());
         }
         return;
     }
@@ -264,10 +289,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Go to Storefront Procedure--");
         System.out.print("Enter name of Storefront: ");
-        String nameIn = input.nextLine();
+        String nameIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter name of Storefront: " + nameIn);
         System.out.print("\nEnter account owner name of Storefront: ");
-        String ownerIn = input.nextLine();
+        String ownerIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter account owner name of Storefront: " + ownerIn);
         Storefront storefront;
         try{
@@ -288,10 +313,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Go to Storefront Procedure--");
         System.out.print("Enter name of Storefront: ");
-        String nameIn = input.nextLine();
+        String nameIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter name of Storefront: " + nameIn);
         System.out.print("\nEnter type of Storefront (\"sell\" or \"swap\"): ");
-        String typeIn = input.nextLine();
+        String typeIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter type of Storefront (\"sell\" or \"swap\"): " + typeIn);
         Storefront storefront;
         try{
@@ -308,12 +333,12 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--View Storefronts Directory by Owner Procedure--");
         System.out.print("\nEnter account owner name of Storefront: ");
-        String ownerIn = input.nextLine();
+        String ownerIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter account owner name of Storefront: " + ownerIn);
         try{
-            System.out.println("");
+            System.out.println("\nStorefronts:");
             for(Storefront storefront : ((Client) shopOrSwap.findAccount(ownerIn)).getMyStorefronts().values()){
-                System.out.println(storefront.getStorefrontName());
+                System.out.println("\t" + storefront.getStorefrontName());
             }
         }catch(NoSuchElementException e){
             System.out.print("\nError: " + e.getMessage());
@@ -326,7 +351,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Find Products by Tag Procedure--");
         System.out.print("\nEnter tag to search by: ");
-        String tagIn = input.nextLine();
+        String tagIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter tag to search by: " + tagIn);
         if(tagIn.isEmpty()){
             System.out.println("\nProducts Found for all tags:");
@@ -354,6 +379,86 @@ public class Main {
         }
     }
 
+    // add funds to wallet
+    private static void addToWallet(Account account){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n--Remove from Wallet: " + account.getAccountName() + "--");
+        System.out.print("\nEnter amount of money to add: ");
+        String amountString = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter amount of money to add: " + amountString);
+        try {
+            ((Client) account).addWallet(Double.parseDouble(amountString));
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+        }
+        System.out.print("\nWallet funds: " + ((Client) account).getWallet());
+        return;
+    }
+
+    // remove funds from wallet
+    private static void withdrawFromWallet(Account account){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n--Add to Wallet: " + account.getAccountName() + "--");
+        System.out.print("\nEnter amount of money to remove: ");
+        String amountString = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter amount of money to remove: " + amountString);
+        try {
+            ((Client) account).subtractWallet(Double.parseDouble(amountString));
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+        }
+        System.out.print("\nWallet funds: " + ((Client) account).getWallet());
+        return;
+    }
+
+    // report user
+    private static void reportUser(ShopOrSwap shopOrSwap, Account account){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n--Report Procedure--");
+        System.out.print("\nEnter account name of User to report: ");
+        String nameToReport = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter account name of User to report: " + nameToReport);
+        System.out.print("\nEnter reasoning for report: ");
+        String reportContent = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter reasoning for report: " + reportContent);
+        try {
+            Account accountToReport = shopOrSwap.findAccount(nameToReport);
+            shopOrSwap.sendMessage("Report", account.getAccountName(), nameToReport, "Report: " + nameToReport, reportContent);
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+        }
+        return;
+    }
+
+    // rate user
+    private static void rateUser(ShopOrSwap shopOrSwap, Account account){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n--Rate User Procedure--");
+        System.out.print("Enter the name of the user to rate: ");
+        String nameIn = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter the name of the user to rate: " + nameIn);
+        Account accountToRate;
+        try{
+            accountToRate = shopOrSwap.findAccount(nameIn);
+            if(accountToRate.getClass().getName().contains("Admin")){
+                throw new IllegalArgumentException("Admins are not valid users to rate");
+            }
+            System.out.print("\nUser found: " + accountToRate.getAccountName());
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+            return;
+        }
+        System.out.print("\nEnter the rating (integer between 1 and 5 (both inclusive)): ");
+        String ratingIn = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter the rating (integer between 1 and 5 (both inclusive)): " + ratingIn);
+        try {
+            ((Client) accountToRate).rate(Integer.parseInt(ratingIn));
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+        }
+        return;
+    }
+
     // view storefront as an owner menu
     private static void storefrontOwnerMenu(ShopOrSwap shopOrSwap, Account account, Storefront storefront){
         Scanner input = new Scanner(System.in);
@@ -363,47 +468,48 @@ public class Main {
         System.out.println("\t3. View Storefront Products");
         System.out.println("\t-1. Back");
         System.out.print("Selection #: ");
-        String choice = input.nextLine();
+        String choice = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Selection #: " + choice);
         switch(choice){
             case "1":
                 addProductToStorefront(shopOrSwap, account, storefront);
                 break;
             case "2":
+                removeProductFromStorefront(shopOrSwap, account, storefront);
                 break;
             case "3":
-                break;
-            case "4":
+                viewStorefrontProducts(storefront);
                 break;
             case "-1":
                 return;
             default:
-                System.out.println("Invalid menu selection");
+                System.out.println("\nInvalid menu selection");
                 break;
         }
         storefrontOwnerMenu(shopOrSwap, account, storefront);
     }
 
+    // add a product to a storefront as an owner
     private static void addProductToStorefront(ShopOrSwap shopOrSwap, Account account, Storefront storefront){
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Add Product to Storefront Procedure--");
         System.out.print("Enter product name: ");
-        String nameIn = input.nextLine();
+        String nameIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter product name (string): " + nameIn);
         System.out.print("\nEnter product description: ");
-        String descriptionIn = input.nextLine();
+        String descriptionIn = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter product description (string): " + descriptionIn);
         System.out.print("\nEnter product value (double): ");
         double valueIn;
         try{
-            valueIn = Double.parseDouble(input.nextLine());
+            valueIn = Double.parseDouble(SCRIPT_INPUT.nextLine());
             System.out.print("\n-> Enter product value (double): " + valueIn);
         }catch(InputMismatchException e1){
             System.out.println("Error: did not input numeric value. Halting process of adding product.");
             return;
         }
         System.out.print("\nEnter tags separated by \",\"(leave blank if no tags are to be added): ");
-        String tagsString = input.nextLine();
+        String tagsString = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Enter tags separated by \",\"(leave blank if no tags are to be added): " + tagsString);
         AbstractProduct nextProduct;
         if(storefront.getClass().getName().contains("Sell")){
@@ -422,6 +528,7 @@ public class Main {
                 }
             }catch(Exception e){
                 System.out.println("Error: " + e.getMessage());
+                return;
             }
         }else{
             try {
@@ -439,7 +546,38 @@ public class Main {
                 }
             }catch(Exception e){
                 System.out.println("Error: " + e.getMessage());
+                return;
             }
+        }
+        System.out.print("\nProduct " + nextProduct.getProductName() + " has been successfully added to the storefront " + storefront.getStorefrontName());
+        return;
+    }
+
+    // views all products in a storefront (both as an owner and as a customer)
+    private static void viewStorefrontProducts(Storefront storefront){
+        System.out.println("\n--Storefront Products: " + storefront.getStorefrontName() + "--");
+        for(AbstractProduct product : storefront.getStorefrontProducts()){
+            System.out.println("Name: " + product.getProductName());
+            System.out.println("\tDescription: " + product.getProductDescription());
+            System.out.println("\tValue: " + product.getProductValue());
+            System.out.println("\tMerchant: " + product.getProductMerchant().getAccountName());
+            System.out.println("\tTags: " + product.getProductTags());
+        }
+        return;
+    }
+
+    // remove a product from a storefront as an owner
+    private static void removeProductFromStorefront(ShopOrSwap shopOrSwap, Account account, Storefront storefront){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n--Remove Product from Storefront Procedure--");
+        System.out.print("Enter product name: ");
+        String nameIn = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter product name: " + nameIn);
+        try{
+            AbstractProduct removedProduct = shopOrSwap.removeFromStorefront(nameIn, storefront);
+            System.out.print("\nRemoved product: " + removedProduct.getProductName());
+        }catch (NoSuchElementException e){
+            System.out.print("\nError: " + e.getMessage());
         }
         return;
     }
@@ -447,31 +585,111 @@ public class Main {
     // view storefront as a customer menu
     private static void storefrontCustomerMenu(ShopOrSwap shopOrSwap, Account account, Storefront storefront){
         Scanner input = new Scanner(System.in);
-        System.out.println("\n--Storefront Menu: Customer--");
-        System.out.println("\n--Storefront Menu: Owner--");
-        System.out.println("\t1. Add Storefront Product");
-        System.out.println("\t2. Remove Storefront Product");
-        System.out.println("\t3. View Storefront Products");
+        System.out.println("\n--Storefront Menu: " + storefront.retrieveStorefrontOwner().getAccountName() + " (merchant rating: " + storefront.retrieveStorefrontOwner().getRating() + ")" + "--");
+        System.out.println("\t1. Complete Transaction");
+        System.out.println("\t2. View Storefront Products");
         System.out.println("\t-1. Back");
         System.out.print("Selection #: ");
-        String choice = input.nextLine();
+        String choice = SCRIPT_INPUT.nextLine();
         System.out.print("\n-> Selection #: " + choice);
         switch(choice){
             case "1":
+                if(storefront.getClass().getName().contains("Sell")){
+                    buyProcedure(shopOrSwap, account, storefront);
+                }else{
+                    swapProcedure(shopOrSwap, account, storefront);
+                }
                 break;
             case "2":
-                break;
-            case "3":
-                break;
-            case "4":
+                viewStorefrontProducts(storefront);
                 break;
             case "-1":
                 return;
             default:
-                System.out.println("Invalid menu selection");
+                System.out.println("\nInvalid menu selection");
                 break;
         }
         storefrontCustomerMenu(shopOrSwap, account, storefront);
+    }
+
+    // buy a product as a customer from the storefront
+    private static void buyProcedure(ShopOrSwap shopOrSwap, Account account, Storefront storefront){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n--Complete Transaction: Buy--");
+        viewStorefrontProducts(storefront);
+        System.out.print("\nEnter the name of the product to buy: ");
+        String nameIn = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter the name of the product to buy: " + nameIn);
+        try{
+            AbstractProduct buyProduct = shopOrSwap.findInStorefront(nameIn, storefront);
+            shopOrSwap.buyProduct(storefront, (SellProduct) buyProduct, (Client) account);
+            String subjectIn = "Transaction: " + buyProduct.getProductName();
+            String contentIn = account.getAccountName() + " has completed a transaction to buy " + buyProduct.getProductName() + " from " + buyProduct.getProductMerchant().getAccountName();
+            shopOrSwap.sendMessage("User", storefront.retrieveStorefrontOwner().getAccountName(), account.getAccountName(), subjectIn, contentIn);
+            shopOrSwap.sendMessage("User", account.getAccountName(), storefront.retrieveStorefrontOwner().getAccountName(), subjectIn, contentIn);
+            System.out.print("\nTransaction complete");
+        }catch(Exception e1){
+            System.out.print("\nError: " + e1.getMessage());
+            return;
+        }
+        return;
+    }
+
+    // swap a product as a customer from the storefront
+    private static void swapProcedure(ShopOrSwap shopOrSwap, Account account, Storefront storefront){
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n--Complete Transaction: Swap--");
+        viewStorefrontProducts(storefront);
+        System.out.print("\nEnter the name of the product you want: ");
+        String productWantName = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter the name of the product to you want: " + productWantName);
+        AbstractProduct productWant, productGive;
+        try{
+            productWant = shopOrSwap.findInStorefront(productWantName, storefront);
+            System.out.print("\nProduct found: " + productWant.getProductName());
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+            return;
+        }
+        System.out.print("\nEnter the name of the storefront of the product you give: ");
+        String storefrontGiveName = SCRIPT_INPUT.nextLine();
+        System.out.print("\n-> Enter the name of the storefront of the product you give: " + storefrontGiveName);
+        Storefront storefrontGive;
+        try{
+            storefrontGive = shopOrSwap.findStorefront(storefrontGiveName, (Client) account);
+            if(storefrontGive.getClass().getName().contains("Sell")){
+                throw new IllegalArgumentException("Storefront of the product you give must be a swapping storefront");
+            }else if(((SwapStorefront) storefrontGive).retrieveStorefrontOwner() != account){
+                throw new IllegalArgumentException("Storefront of the product you give must be owned by you");
+            }
+            System.out.print("\nStorefront found: " + storefrontGive.getStorefrontName());
+            viewStorefrontProducts(storefrontGive);
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+            return;
+        }
+        System.out.println("\nEnter the name of the product you give: ");
+        String productGiveName = SCRIPT_INPUT.nextLine();
+        System.out.println("\n-> Enter the name of the product you give: " + productGiveName);
+        try{
+            productGive = shopOrSwap.findInStorefront(productGiveName, storefrontGive);
+            System.out.print("\nProduct found: " + productGive.getProductName());
+        }catch(Exception e){
+            System.out.print("\nError: " + e.getMessage());
+            return;
+        }
+        try {
+            String subjectIn = "Transaction: " + productWant.getProductName() + " for " + productGive.getProductName();
+            String contentIn = account.getAccountName() + " has completed a transaction to get " + productWant.getProductName() + " from " + productWant.getProductMerchant().getAccountName() + " by giving " + productGive.getProductName();
+            shopOrSwap.sendMessage("User", storefront.retrieveStorefrontOwner().getAccountName(), account.getAccountName(), subjectIn, contentIn);
+            shopOrSwap.sendMessage("User", account.getAccountName(), storefront.retrieveStorefrontOwner().getAccountName(), subjectIn, contentIn);
+            shopOrSwap.swapProducts(storefront, productWant, storefrontGive, productGive);
+            System.out.print("\nTransaction complete");
+        }catch(Exception e){
+            System.out.print("\nError: " + e);
+            return;
+        }
+        return;
     }
 
     // exit procedure for the program
