@@ -92,7 +92,7 @@ public abstract class Account {
      * @param nameIn the desired account name
      * @return true if the desired account name is valid, false otherwise
      */
-    public static final boolean isValidAccountName(String nameIn){
+    public static boolean isValidAccountName(String nameIn){
         if(nameIn.isEmpty()){
             return false;
         }
@@ -108,7 +108,7 @@ public abstract class Account {
      * @param passwordIn the desired account password
      * @return true if the desired account password is valid, false otherwise
      */
-    public static final boolean isValidAccountPassword(String passwordIn){
+    public static boolean isValidAccountPassword(String passwordIn){
         if(passwordIn.isEmpty()){
             return false;
         }

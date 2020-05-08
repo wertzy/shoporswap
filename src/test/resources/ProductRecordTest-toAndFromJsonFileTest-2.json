@@ -1,0 +1,8 @@
+{
+  "productType" : "shoporswap.SellProduct",
+  "productName" : "DEFAULT NAME",
+  "productDescription" : "DEFAULT DESCRIPTION",
+  "productValue" : 0.0,
+  "productMerchantName" : null,
+  "productTags" : [ ]
+}

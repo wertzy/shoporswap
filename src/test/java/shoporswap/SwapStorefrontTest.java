@@ -165,19 +165,5 @@ public class SwapStorefrontTest {
         assertEquals(testAddedProduct1, testSwapStorefront1.removeProduct(testAddedProduct1));
         assertEquals(testAddedProduct2, testSwapStorefront1.removeProduct(testAddedProduct2));
     }
-
-    /**
-     * Automated tests for shoporswap.SwapStorefront.completeTransaction method
-     */
-    @Test
-    void completeTransactionSwapStorefrontTest(){}
-
-    /**
-     * Automated tests for mutator methods:
-     * - shoporswap.SwapStorefront.getSwapProducts
-     * - shoporswap.SwapStorefront.setSwapProducts
-     */
-    @Test
-    void mutatorsSwapStorefrontTests(){}
     
 }

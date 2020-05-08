@@ -1,0 +1,16 @@
+{
+  "accountRecords" : [ {
+    "accountName" : "admin1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "pass1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ]
+  } ],
+  "messageRecords" : [ ]
+}

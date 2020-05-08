@@ -1,0 +1,51 @@
+[ {
+  "messageType" : null,
+  "senderName" : null,
+  "senderType" : null,
+  "recipientName" : null,
+  "recipientType" : null,
+  "subject" : null,
+  "content" : null,
+  "reportedAccountName" : null,
+  "reportedAccountType" : null
+}, {
+  "messageType" : "shoporswap.UserMessage",
+  "senderName" : "test1",
+  "senderType" : "shoporswap.Client",
+  "recipientName" : "test2",
+  "recipientType" : "shoporswap.Client",
+  "subject" : "subject1",
+  "content" : "content1",
+  "reportedAccountName" : null,
+  "reportedAccountType" : null
+}, {
+  "messageType" : "shoporswap.UserMessage",
+  "senderName" : "test1",
+  "senderType" : "shoporswap.Client",
+  "recipientName" : "test1",
+  "recipientType" : "shoporswap.Admin",
+  "subject" : "subject2",
+  "content" : "content2",
+  "reportedAccountName" : null,
+  "reportedAccountType" : null
+}, {
+  "messageType" : "shoporswap.UserMessage",
+  "senderName" : "test1",
+  "senderType" : "shoporswap.Client",
+  "recipientName" : "test2",
+  "recipientType" : "shoporswap.Admin",
+  "subject" : "subject3",
+  "content" : "content3",
+  "reportedAccountName" : null,
+  "reportedAccountType" : null
+}, {
+  "messageType" : "shoporswap.ReportMessage",
+  "senderName" : "test2",
+  "senderType" : "shoporswap.Client",
+  "recipientName" : "test1",
+  "recipientType" : "shoporswap.Admin",
+  "subject" : "Report: test1",
+  "content" : "content1",
+  "reportedAccountName" : "test1",
+  "reportedAccountType" : "shoporswap.Client"
+} ]
