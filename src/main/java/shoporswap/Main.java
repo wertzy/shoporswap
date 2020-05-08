@@ -15,6 +15,7 @@ public class Main {
     
     private static Scanner SCRIPT_INPUT;
     private static boolean USE_SCRIPT;
+    private static String DATA_FILE_NAME;
 
     private static void makeScriptReader() {
         try {
@@ -39,23 +40,23 @@ public class Main {
         try {
             preliminaryMenu(shopOrSwap);
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("Error: " + e.getMessage());
+            System.exit(1);
         }
     }
 
     // JSON data import
     private static ShopOrSwap getShopOrSwapData(){
-        String dataFileName = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json";
+        DATA_FILE_NAME = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json";
         ShopOrSwap shopOrSwapOut;
         try{
-            ShopOrSwapRecord shopOrSwapRecord = JsonUtil.fromJsonFile(dataFileName, ShopOrSwapRecord.class);
+            ShopOrSwapRecord shopOrSwapRecord = JsonUtil.fromJsonFile(DATA_FILE_NAME, ShopOrSwapRecord.class);
             shopOrSwapOut = shopOrSwapRecord.toShopOrSwap();
             System.out.println("Data import success");
         } catch (IOException e) {
-            System.out.println("Data import failure (either error in program or the first launch of the program)");
+            System.out.println("Data Not Found");
             shopOrSwapOut = new ShopOrSwap();
             shopOrSwapOut.addAccount("Admin", "admin1", "admin1");
-            shopOrSwapOut.addAccount("Client", "client1", "client1");
         }
         return shopOrSwapOut;
     }
@@ -128,7 +129,7 @@ public class Main {
                 adminMenu(shopOrSwap, account);
             }
         }catch(NoSuchElementException e){
-            System.out.print("\nError: " + e.getMessage());
+            System.out.print("\n" + e.getMessage());
         }
         return;
     }
@@ -138,16 +139,26 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("\n--Create Account Procedure--");
         System.out.print("Desired Account Name: ");
-        String nameIn = input.nextLine();
+        String nameIn;
+        if(USE_SCRIPT){
+            nameIn = SCRIPT_INPUT.nextLine();
+        }else{
+            nameIn = input.nextLine();
+        }
         System.out.print("\n-> Desired Account Name: " + nameIn);
         System.out.print("\nDesired Account Password: ");
-        String passwordIn = input.nextLine();
+        String passwordIn;
+        if(USE_SCRIPT){
+            passwordIn = SCRIPT_INPUT.nextLine();
+        }else{
+            passwordIn = input.nextLine();
+        }
         System.out.print("\n-> Desired Account Password: " + passwordIn);
         try{
             Account account = shopOrSwap.addAccount("Client", nameIn, passwordIn);
             System.out.print("\nWelcome " + account.getAccountName() + ". Please sign in using your new credentials to access your new account.");
         }catch (IllegalArgumentException e){
-            System.out.print("\nError: " + e.getMessage());
+            System.out.print("\n" + e.getMessage());
         }
         return;
     }
@@ -223,6 +234,7 @@ public class Main {
         System.out.println("\t2. View My Received Messages");
         System.out.println("\t3. Freeze Account");
         System.out.println("\t4. Unfreeze Account");
+        System.out.println("\t5. Reset System");
         System.out.println("\t-1. Sign Out");
         System.out.print("Selection #: ");
         String choice = input.nextLine();
@@ -239,6 +251,9 @@ public class Main {
                 break;
             case "4":
                 unfreezeAccount(shopOrSwap, account);
+                break;
+            case "5":
+                resetSystem();
                 break;
             case "-1":
                 return;
@@ -265,7 +280,7 @@ public class Main {
                 System.out.print("\nAccount is already frozen");
             }
         }catch(NoSuchElementException e){
-            System.out.print("\nAccount does not exist");
+            System.out.print("\n" + e.getMessage());
         }
         return;
     }
@@ -286,7 +301,7 @@ public class Main {
                 System.out.print("\nAccount is not frozen already");
             }
         }catch(NoSuchElementException e){
-            System.out.print("\nAccount does not exist");
+            System.out.print("\n" + e.getMessage());
         }
         return;
     }
@@ -853,6 +868,12 @@ public class Main {
             System.out.println("Error: Data export failure\n");
             System.exit(1);
         }
+    }
+
+    private static void resetSystem(){
+        (new File(DATA_FILE_NAME)).deleteOnExit();
+        System.out.print("\nSystem Data Reset. Please restart program to see changes.");
+        System.exit(0);
     }
 
 }
