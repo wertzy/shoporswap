@@ -155,10 +155,8 @@ public class AccountRecord {
      */
     public Account toAccount(){
         boolean hasNullClientProperties = (
-                this.accessMyOwnedSellProducts() == null &&
-                this.accessMyOwnedSwapProducts() == null &&
-                this.accessMySellStorefronts() == null &&
-                this.accessMySwapStorefronts() == null
+                this.myProductRecords == null &&
+                this.myStorefrontRecords == null
         );
         Account accountOut;
         if(hasNullClientProperties){

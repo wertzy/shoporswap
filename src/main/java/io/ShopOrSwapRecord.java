@@ -47,7 +47,8 @@ public class ShopOrSwapRecord {
             if(accountMapIn.containsKey(accountRecord.getAccountName())){
                 throw new IllegalArgumentException("Cannot add multiple records with the same account name into the system");
             }
-            accountMapIn.put(accountRecord.getAccountName(), accountRecord.toAccount());
+            Account account = accountRecord.toAccount();
+            accountMapIn.put(account.getAccountName(), account);
         }
         List<AbstractMessage> messageListIn = new ArrayList<AbstractMessage>();
         for(MessageRecord message : this.getMessageRecords()){
