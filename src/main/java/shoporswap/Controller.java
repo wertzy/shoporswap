@@ -65,7 +65,6 @@ public class Controller {
         try {
             System.out.println("Hi");
             try {
-                //system = generateData();
                 system = JsonUtil.fromJsonFile(DATA_FILE, ShopOrSwapRecord.class).toShopOrSwap();
                 System.out.println("Howdy");
             } catch (FileNotFoundException e) {
@@ -154,7 +153,7 @@ public class Controller {
             System.out.println("Howdy0");
             Account dataClient1 = dataShopOrSwap.addAccount("Client", "client1", "client1");
             Account dataClient2 = dataShopOrSwap.addAccount("Client", "client2", "client2");
-            //Account dataAdmin = dataShopOrSwap.addAccount("Admin", "admin1", "admin1");
+            Account dataAdmin = dataShopOrSwap.addAccount("Admin", "admin1", "admin1");
             System.out.println("Howdy1");
             Storefront dataSellStorefront = dataShopOrSwap.addStorefront("Sell", "sell storefront 1", (Client) dataClient1);
             Storefront dataSwapStorefront1 = dataShopOrSwap.addStorefront("Swap", "swap storefront 1", (Client) dataClient1);
@@ -171,16 +170,37 @@ public class Controller {
 
             JsonUtil.toJsonFile(DATA_FILE, new ShopOrSwapRecord(dataShopOrSwap));
 
-            //ShopOrSwap importedShopOrSwap = JsonUtil.fromJsonFile(DATA_FILE, ShopOrSwapRecord.class).toShopOrSwap();
+            ShopOrSwap importedShopOrSwap = JsonUtil.fromJsonFile(DATA_FILE, ShopOrSwapRecord.class).toShopOrSwap();
             System.out.println("Howdy3");
-            //System.out.println("Imported ShopOrSwap data with User count " + importedShopOrSwap.getAccountCollection().size());
-            return dataShopOrSwap;
+            System.out.println("Imported ShopOrSwap data with User count " + importedShopOrSwap.getAccountCollection().size());
+            return importedShopOrSwap;
         }catch(Exception e){
             System.out.println("Cannot import data");
             System.out.println(e.getMessage());
             System.exit(1);
             return null;
         }
+    }
+    private  static ShopOrSwap hotFixDataGeneration() throws IOException {
+        ShopOrSwap dataShopOrSwap = new ShopOrSwap();
+        System.out.println("Howdy0");
+        Account dataClient1 = dataShopOrSwap.addAccount("Client", "client1", "client1");
+        Account dataClient2 = dataShopOrSwap.addAccount("Client", "client2", "client2");
+        //Account dataAdmin = dataShopOrSwap.addAccount("Admin", "admin1", "admin1");
+        System.out.println("Howdy1");
+        Storefront dataSellStorefront = dataShopOrSwap.addStorefront("Sell", "sell storefront 1", (Client) dataClient1);
+        Storefront dataSwapStorefront1 = dataShopOrSwap.addStorefront("Swap", "swap storefront 1", (Client) dataClient1);
+        Storefront dataSwapStorefront2 = dataShopOrSwap.addStorefront("Swap", "swap storefront 2", (Client) dataClient1);
+        System.out.println("Howdy1.1");
+        AbstractProduct dataSellProduct = dataShopOrSwap.addToStorefront("sell product 1", "description 1", 20, dataSellStorefront);
+        AbstractProduct dataSwapProduct1 = dataShopOrSwap.addToStorefront("swap product 1", "description 1", 20, dataSwapStorefront1);
+        AbstractProduct dataSwapProduct2 = dataShopOrSwap.addToStorefront("swap product 2", "description 2", 20, dataSwapStorefront2);
+        dataShopOrSwap.addTagToProduct("tag1", dataSellProduct);
+        dataShopOrSwap.addTagToProduct("tag2", dataSwapProduct1);
+        dataShopOrSwap.addTagToProduct("tag2", dataSwapProduct2);
+        System.out.println("Howdy2");
+
+        return dataShopOrSwap;
     }
 
 }
