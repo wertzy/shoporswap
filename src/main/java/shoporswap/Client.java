@@ -9,6 +9,7 @@ public class Client extends Account{
     private Map<String, Storefront> myStorefronts;
     private double wallet=0, rating=0;
     public List<Integer> numOfRatings=new ArrayList<Integer>();
+    public List<Client> pastMerchants=new ArrayList<Client>();
 
     /**
      * Default constructor for shoporswap.Client object
@@ -255,6 +256,7 @@ public class Client extends Account{
             throw new IllegalArgumentException("rating cannot be greater than 5");
         }
         numOfRatings.add(rating);
+        calculateRating();
     }
 
     /**
@@ -268,4 +270,13 @@ public class Client extends Account{
         }
         rating=sum/numOfRatings.size();
     }
+
+    public void addMerchant(Client merchant){
+        pastMerchants.add(merchant);
+    }
+
+    public void removeMerchant(Client merchant){
+        pastMerchants.remove(merchant);
+    }
+
 }

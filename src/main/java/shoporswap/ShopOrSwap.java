@@ -608,4 +608,6 @@ public class ShopOrSwap {
     public void setSystemTags(Map<String, Tag> systemTagsIn) {
         this.systemTags = systemTagsIn;
     }
+
+
 }

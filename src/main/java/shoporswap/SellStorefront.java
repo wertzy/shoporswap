@@ -97,6 +97,7 @@ public class SellStorefront extends Storefront {
         consumerIn.subtractWallet(sellProductIn.getProductValue());
         Client merchant=sellProductIn.getProductMerchant();
         merchant.addWallet(sellProductIn.getProductValue());
+        consumerIn.addMerchant(merchant);
         return product;
     }
 
