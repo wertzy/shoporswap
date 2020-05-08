@@ -384,11 +384,17 @@ public class ShopOrSwapTest {
         Storefront testStorefront1 = testShopOrSwap.addStorefront("sell", "test1", testClient1);
 
         SellProduct testProduct1 = (SellProduct) testShopOrSwap.addToStorefront("test1", "description1", 50, testStorefront1);
-        //assertEquals(-1,testProduct1.getProductValue());
+        assertEquals(50,testProduct1.getProductValue());
+        assertThrows(IllegalArgumentException.class,()->testShopOrSwap.buyProduct(testStorefront1, testProduct1, testClient2));
+
+        testClient2.addWallet(500);
         testShopOrSwap.buyProduct(testStorefront1, testProduct1, testClient2);
+
         assertThrows(NoSuchElementException.class, ()-> testShopOrSwap.findInStorefront("test1", testStorefront1));
         assertEquals(1, ((Client) testShopOrSwap.findAccount("test2")).getMyOwnedProductList().size());
         assertTrue(((Client) testShopOrSwap.findAccount("test2")).getMyOwnedProductList().contains(testProduct1));
+
+        assertEquals(450,testClient2.getWallet());
     }
 
     /**
