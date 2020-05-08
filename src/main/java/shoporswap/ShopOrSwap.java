@@ -336,7 +336,7 @@ public class ShopOrSwap {
     public List<AbstractMessage> findMessagesByRecipient(Account recipientIn){
         List<AbstractMessage> recipientMessages = new ArrayList<AbstractMessage>();
         for(AbstractMessage message : this.getSystemMessages()){
-            if(message.getRecipient() == recipientIn){
+            if(message.getRecipient().getAccountName().compareTo(recipientIn.getAccountName()) == 0){
                 recipientMessages.add(message);
             }
         }

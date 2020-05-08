@@ -3,5 +3,7 @@
   "accountPassword" : "pass1",
   "isFrozen" : false,
   "myProductRecords" : null,
-  "myStorefrontRecords" : null
+  "myStorefrontRecords" : null,
+  "rating" : null,
+  "wallet" : null
 }

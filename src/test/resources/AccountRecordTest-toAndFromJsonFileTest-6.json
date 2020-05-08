@@ -7,5 +7,7 @@
     "storefrontType" : "shoporswap.SellStorefront",
     "storefrontName" : "sell1",
     "productRecordList" : [ ]
-  } ]
+  } ],
+  "rating" : "0.0",
+  "wallet" : "0.0"
 }

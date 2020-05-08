@@ -19,6 +19,8 @@ public class AccountRecord {
 
     private Account accountIn;
     private String accountType;
+    private String rating;
+    private String wallet;
 
     /**
      * Default constructor for an AccountRecord object
@@ -65,6 +67,8 @@ public class AccountRecord {
             this.setMyStorefrontRecords(new ArrayList<StorefrontRecord>());
             this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
             this.toProductLists(((Client) accountIn).getMyOwnedProductList());
+            this.setRating("" + ((Client) accountIn).getRating());
+            this.setWallet("" + ((Client) accountIn).getWallet());
         }
         this.establishAccountIn(accountIn);
     }
@@ -170,6 +174,8 @@ public class AccountRecord {
             for (StorefrontRecord storefrontRecord : this.getMyStorefrontRecords()) {
                 ((Client) accountOut).addStorefront(storefrontRecord.toStorefront());
             }
+            ((Client) accountOut).setWallet(Double.parseDouble(this.getWallet()));
+            ((Client) accountOut).setRating(Double.parseDouble(this.getRating()));
         }
         accountOut.setIsFrozen(this.getIsFrozen());
         return accountOut;
@@ -324,5 +330,21 @@ public class AccountRecord {
 
     public void establishAccountIn(Account accountIn){
         this.accountIn = accountIn;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
     }
 }

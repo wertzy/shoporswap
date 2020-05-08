@@ -280,4 +280,12 @@ public class Client extends Account{
         pastMerchants.remove(merchant);
     }
 
+    public void setWallet(double walletIn){
+        this.wallet = walletIn;
+    }
+
+    public void setRating(double ratingIn){
+        this.rating = ratingIn;
+    }
+
 }

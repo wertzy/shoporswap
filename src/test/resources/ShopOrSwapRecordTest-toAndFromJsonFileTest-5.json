@@ -4,25 +4,33 @@
     "accountPassword" : "pass1",
     "isFrozen" : false,
     "myProductRecords" : null,
-    "myStorefrontRecords" : null
+    "myStorefrontRecords" : null,
+    "rating" : null,
+    "wallet" : null
   }, {
     "accountName" : "admin2",
     "accountPassword" : "pass2",
     "isFrozen" : false,
     "myProductRecords" : null,
-    "myStorefrontRecords" : null
+    "myStorefrontRecords" : null,
+    "rating" : null,
+    "wallet" : null
   }, {
     "accountName" : "client2",
     "accountPassword" : "pass2",
     "isFrozen" : false,
     "myProductRecords" : [ ],
-    "myStorefrontRecords" : [ ]
+    "myStorefrontRecords" : [ ],
+    "rating" : "0.0",
+    "wallet" : "0.0"
   }, {
     "accountName" : "client1",
     "accountPassword" : "pass1",
     "isFrozen" : false,
     "myProductRecords" : [ ],
-    "myStorefrontRecords" : [ ]
+    "myStorefrontRecords" : [ ],
+    "rating" : "0.0",
+    "wallet" : "0.0"
   } ],
   "messageRecords" : [ {
     "messageType" : "shoporswap.UserMessage",

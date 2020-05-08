@@ -88,7 +88,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString1, JsonUtil.toJsonString(testAccountRecord1));
 
@@ -99,7 +101,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString2, JsonUtil.toJsonString(testAccountRecord2));
 
@@ -110,7 +114,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString4, JsonUtil.toJsonString(testAccountRecord4));
 
@@ -121,7 +127,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString3, JsonUtil.toJsonString(testAccountRecord3));
 
@@ -132,7 +140,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString5, JsonUtil.toJsonString(testAccountRecord5));
 
@@ -153,7 +163,9 @@ public class AccountRecordTest {
                 "    \"productMerchantName\" : \"test4\"," + System.lineSeparator() +
                 "    \"productTags\" : [ ]" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString6, JsonUtil.toJsonString(testAccountRecord6));
 
@@ -169,7 +181,9 @@ public class AccountRecordTest {
                 "    \"storefrontType\" : \"shoporswap.SellStorefront\"," + System.lineSeparator() +
                 "    \"storefrontName\" : \"sell1\"," + System.lineSeparator() +
                 "    \"productRecordList\" : [ ]" + System.lineSeparator() +
-                "  } ]" + System.lineSeparator() +
+                "  } ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString7, JsonUtil.toJsonString(testAccountRecord7));
     }
@@ -190,7 +204,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         String testFileName1 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-1.json";
         JsonUtil.toJsonFile(testFileName1, testAccountRecord1);
@@ -203,7 +219,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         String testFileName2 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-2.json";
         JsonUtil.toJsonFile(testFileName2, testAccountRecord2);
@@ -216,7 +234,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString4, JsonUtil.toJsonString(testAccountRecord4));
         String testFileName4 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-4.json";
@@ -230,7 +250,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         String testFileName3 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-3.json";
         JsonUtil.toJsonFile(testFileName3, testAccountRecord3);
@@ -243,7 +265,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         String testFileName5 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-5.json";
         JsonUtil.toJsonFile(testFileName5, testAccountRecord5);
@@ -261,7 +285,9 @@ public class AccountRecordTest {
                 "    \"storefrontType\" : \"shoporswap.SellStorefront\"," + System.lineSeparator() +
                 "    \"storefrontName\" : \"sell1\"," + System.lineSeparator() +
                 "    \"productRecordList\" : [ ]" + System.lineSeparator() +
-                "  } ]" + System.lineSeparator() +
+                "  } ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         String testFileName6 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-6.json";
         JsonUtil.toJsonFile(testFileName6, testAccountRecord7);
@@ -284,7 +310,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
 
         Account testClient1 = new Client("test1", "pass1");
@@ -294,7 +322,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
 
         Account testClient2 = new Client();
@@ -304,7 +334,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
 
         Account testAdmin1 = new Admin("test1", "pass1");
@@ -314,7 +346,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
 
         Account testAdmin2 = new Admin();
@@ -324,7 +358,9 @@ public class AccountRecordTest {
                 "  \"accountPassword\" : \"DefaultPassword\"," + System.lineSeparator() +
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
-                "  \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
 
         String testFileName1 = directoryPath + "AccountRecordTest-listFromJsonFileTest-1.json";
