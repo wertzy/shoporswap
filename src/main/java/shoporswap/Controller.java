@@ -16,6 +16,8 @@ import util.JsonUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
     public TextField usernameTxtFld;
@@ -60,6 +62,7 @@ public class Controller {
     private static final String DATA_FILE = "src/main/resources/systemData.json";
     public ShopOrSwap system;
     public Account currentUser;
+    public Client currentClient;
 
     public Controller() throws IOException{
 //        try {
@@ -124,13 +127,104 @@ public class Controller {
 //        }
     }
     public void viewMyProductsClicked(){
+        List<AbstractProduct> productList=currentClient.getMyOwnedProductList();
+        AbstractProduct product=productList.get(0);
+        productName.setText(product.getProductName());
+        productDescription.setText(product.getProductDescription());
+        productOwner.setText(product.getProductMerchant().getAccountName());
+        List<Tag> tagList=product.getProductTags();
+        String tagOutput="";
+        for(int i=0;i<tagList.size();i++){
+            tagOutput+=tagList.get(i)+" ";
+        }
+        productTags.setText(tagOutput);
+        productName.setVisible(true);
+        productDescription.setVisible(true);
+        productOwner.setVisible(true);
+        productTags.setVisible(true);
+        if(productList.size()>=2){
+            product=productList.get(1);
+            productName1.setText(product.getProductName());
+            productDescription1.setText(product.getProductDescription());
+            productOwner1.setText(product.getProductMerchant().getAccountName());
+            List<Tag> tagList1=product.getProductTags();
+            String tagOutput1="";
+            for(int i=0;i<tagList1.size();i++){
+                tagOutput1+=tagList1.get(i)+" ";
+            }
+            productTags1.setText(tagOutput);
+            productName1.setVisible(true);
+            productDescription1.setVisible(true);
+            productOwner1.setVisible(true);
+            productTags1.setVisible(true);
+        }
 
     }
     public void viewSellProductsClicked(){
-
+        List<AbstractProduct> productList=currentClient.getMyStorefronts().get("sell").getStorefrontProducts();
+        AbstractProduct product=productList.get(0);
+        productName.setText(product.getProductName());
+        productDescription.setText(product.getProductDescription());
+        productOwner.setText(product.getProductMerchant().getAccountName());
+        List<Tag> tagList=product.getProductTags();
+        String tagOutput="";
+        for(int i=0;i<tagList.size();i++){
+            tagOutput+=tagList.get(i)+" ";
+        }
+        productName.setVisible(true);
+        productDescription.setVisible(true);
+        productOwner.setVisible(true);
+        productTags.setVisible(true);
+        productTags.setText(tagOutput);
+        if(productList.size()>=2){
+            product=productList.get(1);
+            productName1.setText(product.getProductName());
+            productDescription1.setText(product.getProductDescription());
+            productOwner1.setText(product.getProductMerchant().getAccountName());
+            List<Tag> tagList1=product.getProductTags();
+            String tagOutput1="";
+            for(int i=0;i<tagList1.size();i++){
+                tagOutput1+=tagList1.get(i)+" ";
+            }
+            productTags1.setText(tagOutput);
+            productName1.setVisible(true);
+            productDescription1.setVisible(true);
+            productOwner1.setVisible(true);
+            productTags1.setVisible(true);
+        }
     }
     public void viewSwapProductsClicked(){
-
+        List<AbstractProduct> productList=currentClient.getMyStorefronts().get("swap").getStorefrontProducts();
+        AbstractProduct product=productList.get(0);
+        productName.setText(product.getProductName());
+        productDescription.setText(product.getProductDescription());
+        productOwner.setText(product.getProductMerchant().getAccountName());
+        List<Tag> tagList=product.getProductTags();
+        String tagOutput="";
+        for(int i=0;i<tagList.size();i++){
+            tagOutput+=tagList.get(i)+" ";
+        }
+        productName.setVisible(true);
+        productDescription.setVisible(true);
+        productOwner.setVisible(true);
+        productTags.setVisible(true);
+        productTags.setText(tagOutput);
+        if(productList.size()>=2){
+            product=productList.get(1);
+            productName1.setText(product.getProductName());
+            productDescription1.setText(product.getProductDescription());
+            productOwner1.setText(product.getProductMerchant().getAccountName());
+            List<Tag> tagList1=product.getProductTags();
+            String tagOutput1="";
+            for(int i=0;i<tagList1.size();i++){
+                tagOutput1+=tagList1.get(i)+" ";
+            }
+            productTags1.setText(tagOutput);
+            productName1.setVisible(true);
+            productDescription1.setVisible(true);
+            productOwner1.setVisible(true);
+            productTags1.setVisible(true);
+        }
     }
     public void viewMessagesClicked(){
 
