@@ -438,7 +438,7 @@ public class ClientTest {
         user.rate(5);
         user.rate(1);
         user.calculateRating();
-        assertEquals(3,user.getRating());
+        assertEquals(3,user.calculateRating());
 
         assertThrows(IllegalArgumentException.class,()->user1.rate(6));
         assertThrows(IllegalArgumentException.class,()->user.rate(0));

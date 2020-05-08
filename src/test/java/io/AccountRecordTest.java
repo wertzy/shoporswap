@@ -89,7 +89,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString1, JsonUtil.toJsonString(testAccountRecord1));
@@ -102,7 +102,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString2, JsonUtil.toJsonString(testAccountRecord2));
@@ -115,7 +115,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString4, JsonUtil.toJsonString(testAccountRecord4));
@@ -128,7 +128,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString3, JsonUtil.toJsonString(testAccountRecord3));
@@ -141,7 +141,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString5, JsonUtil.toJsonString(testAccountRecord5));
@@ -164,7 +164,7 @@ public class AccountRecordTest {
                 "    \"productTags\" : [ ]" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString6, JsonUtil.toJsonString(testAccountRecord6));
@@ -182,7 +182,7 @@ public class AccountRecordTest {
                 "    \"storefrontName\" : \"sell1\"," + System.lineSeparator() +
                 "    \"productRecordList\" : [ ]" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString7, JsonUtil.toJsonString(testAccountRecord7));
@@ -205,7 +205,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         String testFileName1 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-1.json";
@@ -220,7 +220,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         String testFileName2 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-2.json";
@@ -235,7 +235,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         assertEquals(testJsonString4, JsonUtil.toJsonString(testAccountRecord4));
@@ -251,7 +251,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         String testFileName3 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-3.json";
@@ -266,7 +266,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
         String testFileName5 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-5.json";
@@ -286,7 +286,7 @@ public class AccountRecordTest {
                 "    \"storefrontName\" : \"sell1\"," + System.lineSeparator() +
                 "    \"productRecordList\" : [ ]" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
         String testFileName6 = directoryPath + "AccountRecordTest-toAndFromJsonFileTest-6.json";
@@ -311,7 +311,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
 
@@ -323,7 +323,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
 
@@ -335,7 +335,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "  \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "  \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "  \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "}";
 
@@ -347,7 +347,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
 
@@ -359,7 +359,7 @@ public class AccountRecordTest {
                 "  \"isFrozen\" : false," + System.lineSeparator() +
                 "  \"myProductRecords\" : null," + System.lineSeparator() +
                 "  \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "  \"rating\" : null," + System.lineSeparator() +
+                "  \"ratingsList\" : null," + System.lineSeparator() +
                 "  \"wallet\" : null" + System.lineSeparator() +
                 "}";
 

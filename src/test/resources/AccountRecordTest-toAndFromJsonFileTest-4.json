@@ -4,6 +4,6 @@
   "isFrozen" : false,
   "myProductRecords" : [ ],
   "myStorefrontRecords" : [ ],
-  "rating" : "0.0",
+  "ratingsList" : [ ],
   "wallet" : "0.0"
 }
