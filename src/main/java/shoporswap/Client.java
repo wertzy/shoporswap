@@ -251,7 +251,7 @@ public class Client extends Account{
      * @param rating
      */
     public void rate(int rating){
-        if (rating>5||rating<0){
+        if (rating>5||rating<=0){
             throw new IllegalArgumentException("rating cannot be greater than 5");
         }
         numOfRatings.add(rating);
