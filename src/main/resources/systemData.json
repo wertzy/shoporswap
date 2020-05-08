@@ -1,0 +1,119 @@
+{
+  "accountRecords" : [ {
+    "accountName" : "admin1",
+    "accountPassword" : "admin1",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null,
+    "rating" : null,
+    "wallet" : null
+  }, {
+    "accountName" : "client2",
+    "accountPassword" : "client2",
+    "isFrozen" : false,
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SellProduct",
+      "productName" : "sell product 1",
+      "productDescription" : "description1",
+      "productValue" : 20.0,
+      "productMerchantName" : "client1",
+      "productTags" : [ ]
+    }, {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "swap product 1",
+      "productDescription" : "description1",
+      "productValue" : 20.0,
+      "productMerchantName" : "client1",
+      "productTags" : [ ]
+    } ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront c2-1",
+      "productRecordList" : [ ]
+    } ],
+    "rating" : "5.0",
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "client1",
+    "isFrozen" : false,
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "swap product 2",
+      "productDescription" : "description2",
+      "productValue" : 20.0,
+      "productMerchantName" : "client2",
+      "productTags" : [ ]
+    } ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront c1-2",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront c1-1",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront c1-2",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront c1-1",
+      "productRecordList" : [ ]
+    } ],
+    "rating" : "4.0",
+    "wallet" : "20.0"
+  } ],
+  "messageRecords" : [ {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client2",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: sell product 1",
+    "content" : "client2 has completed a transaction to buy sell product 1 from client1",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client2",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: sell product 1",
+    "content" : "client2 has completed a transaction to buy sell product 1 from client1",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.ReportMessage",
+    "senderName" : "client2",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "admin1",
+    "recipientType" : "shoporswap.Admin",
+    "subject" : "Report: client1",
+    "content" : "did not ship my product",
+    "reportedAccountName" : "client1",
+    "reportedAccountType" : "shoporswap.Client"
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client2",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: swap product 1 for swap product 2",
+    "content" : "client2 has completed a transaction to get swap product 1 from client1 by giving swap product 2",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client2",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: swap product 1 for swap product 2",
+    "content" : "client2 has completed a transaction to get swap product 1 from client1 by giving swap product 2",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  } ]
+}
