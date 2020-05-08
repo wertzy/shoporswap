@@ -18,6 +18,9 @@ public class AccountRecord {
     private List<StorefrontRecord> myStorefrontRecords;
 
     private Account accountIn;
+    private String accountType;
+    private String rating;
+    private String wallet;
 
     /**
      * Default constructor for an AccountRecord object
@@ -47,6 +50,7 @@ public class AccountRecord {
         this.setAccountName(accountIn.getAccountName());
         this.setAccountPassword(accountIn.getAccountPassword());
         this.setIsFrozen(accountIn.getIsFrozen());
+        this.establishAccountType(accountIn.getClass().getName());
         if(accountIn instanceof Admin){
             this.establishMyOwnedSellProducts(null);
             this.establishMyOwnedSwapProducts(null);
@@ -63,6 +67,8 @@ public class AccountRecord {
             this.setMyStorefrontRecords(new ArrayList<StorefrontRecord>());
             this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
             this.toProductLists(((Client) accountIn).getMyOwnedProductList());
+            this.setRating("" + ((Client) accountIn).getRating());
+            this.setWallet("" + ((Client) accountIn).getWallet());
         }
         this.establishAccountIn(accountIn);
     }
@@ -155,10 +161,8 @@ public class AccountRecord {
      */
     public Account toAccount(){
         boolean hasNullClientProperties = (
-                this.accessMyOwnedSellProducts() == null &&
-                this.accessMyOwnedSwapProducts() == null &&
-                this.accessMySellStorefronts() == null &&
-                this.accessMySwapStorefronts() == null
+                this.myProductRecords == null &&
+                this.myStorefrontRecords == null
         );
         Account accountOut;
         if(hasNullClientProperties){
@@ -170,6 +174,8 @@ public class AccountRecord {
             for (StorefrontRecord storefrontRecord : this.getMyStorefrontRecords()) {
                 ((Client) accountOut).addStorefront(storefrontRecord.toStorefront());
             }
+            ((Client) accountOut).setWallet(Double.parseDouble(this.getWallet()));
+            ((Client) accountOut).setRating(Double.parseDouble(this.getRating()));
         }
         accountOut.setIsFrozen(this.getIsFrozen());
         return accountOut;
@@ -206,6 +212,14 @@ public class AccountRecord {
      */
     public String getAccountName() {
         return this.accountName;
+    }
+
+    public String accessAccountType(){
+        return this.accountType;
+    }
+
+    public void establishAccountType(String accountTypeIn){
+        this.accountType = accountTypeIn;
     }
 
     /**
@@ -316,5 +330,21 @@ public class AccountRecord {
 
     public void establishAccountIn(Account accountIn){
         this.accountIn = accountIn;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
     }
 }

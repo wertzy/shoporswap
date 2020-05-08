@@ -68,6 +68,7 @@ public class StorefrontRecord {
             }
         }
         storefrontOut.setStorefrontName(this.getStorefrontName());
+        storefrontOut.setStorefrontOwner(null);
         return storefrontOut;
     }
 

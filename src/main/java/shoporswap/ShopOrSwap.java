@@ -252,13 +252,18 @@ public class ShopOrSwap {
      */
     public AbstractProduct removeFromStorefront(AbstractProduct productIn, Storefront storefrontIn){
         AbstractProduct product = this.findInStorefront(productIn, storefrontIn);
+        AbstractProduct productToRemove;
         if(storefrontIn.getClass().getName().contains((CharSequence) "Sell")){
             SellStorefront sellStorefront = (SellStorefront) storefrontIn;
-            return sellStorefront.removeProduct((SellProduct) product);
+            productToRemove = sellStorefront.removeProduct((SellProduct) product);
         }else{
             SwapStorefront swapStorefront = (SwapStorefront) storefrontIn;
-            return swapStorefront.removeProduct((SwapProduct) product);
+            productToRemove = swapStorefront.removeProduct((SwapProduct) product);
         }
+        for(Tag tag : this.getSystemTags().values()){
+            tag.removeProduct(productToRemove);
+        }
+        return productToRemove;
     }
 
     /**
@@ -331,7 +336,7 @@ public class ShopOrSwap {
     public List<AbstractMessage> findMessagesByRecipient(Account recipientIn){
         List<AbstractMessage> recipientMessages = new ArrayList<AbstractMessage>();
         for(AbstractMessage message : this.getSystemMessages()){
-            if(message.getRecipient() == recipientIn){
+            if(message.getRecipient().getAccountName().compareTo(recipientIn.getAccountName()) == 0){
                 recipientMessages.add(message);
             }
         }

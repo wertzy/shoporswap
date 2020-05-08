@@ -109,6 +109,7 @@ public class Client extends Account{
         if(this.getMyStorefronts().containsKey(storefrontIn.getStorefrontName())){
             throw new IllegalArgumentException("shoporswap.Storefront invalid (you already have a shoporswap.Storefront with this name)");
         }
+        storefrontIn.setStorefrontOwner(this);
         this.getMyStorefronts().put(storefrontIn.getStorefrontName(), storefrontIn);
         return this.findStorefront(storefrontIn);
     }
@@ -253,7 +254,7 @@ public class Client extends Account{
      */
     public void rate(int rating){
         if (rating>5||rating<=0){
-            throw new IllegalArgumentException("rating cannot be greater than 5");
+            throw new IllegalArgumentException("rating cannot be greater than 5 and must be at least 1");
         }
         numOfRatings.add(rating);
         calculateRating();
@@ -277,6 +278,14 @@ public class Client extends Account{
 
     public void removeMerchant(Client merchant){
         pastMerchants.remove(merchant);
+    }
+
+    public void setWallet(double walletIn){
+        this.wallet = walletIn;
+    }
+
+    public void setRating(double ratingIn){
+        this.rating = ratingIn;
     }
 
 }
