@@ -228,6 +228,7 @@ public class SellStorefrontTest {
         testSellStorefront2.addProduct(testProductsList1.get(2));
         testSellStorefront2.addProduct(testProductsList1.get(3));
 
+        testUser2.addWallet(5000);
         testSellStorefront1.completeTransaction(testProductsList1.get(0), testUser2);
 
     }
