@@ -27,7 +27,6 @@ public class Tag {
      * @param tag the tag to validate
      * @return true if the tag is valid, false otherwise
      */
-
     public static boolean isValidTagName(String tag){
         if(tag.indexOf(" ") == 0){ // checks if the tag begins with a space
             return false;

@@ -1,3 +1,5 @@
+package shoporswap;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -54,7 +56,7 @@ public class Controller {
 
     private static final String DATA_FILE = "src/main/resources/systemData.json";
     public ShopOrSwap system;
-    public User currentUser;
+    public Client currentUser;
 
     public Controller() throws IOException{
         try {

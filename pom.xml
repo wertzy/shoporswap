@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <mainClass>GUIDriver</mainClass>
+                    <mainClass>shoporswap.GUIDriver</mainClass>
                 </configuration>
             </plugin>
         </plugins>
