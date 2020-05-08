@@ -25,7 +25,7 @@
          </font></Label>
       <Button fx:id="exitButton" layoutX="460.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#exitClicked" prefHeight="27.0" prefWidth="93.0" text="Exit" />
       <Button fx:id="logInButton" layoutX="248.0" layoutY="130.0" mnemonicParsing="false" onAction="#logIn" text="Log In" />
-      <Button fx:id="create" layoutX="247.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#create" text="Create" visible="false" />
+      <Button fx:id="create" layoutX="247.0" layoutY="314.0" mnemonicParsing="false" onAction="#create" text="Create" visible="false" />
       <Label layoutX="52.0" layoutY="187.0" />
       <Label fx:id="usernameNewLabel" layoutX="21.0" layoutY="182.0" prefHeight="27.0" prefWidth="105.0" text="Username" visible="false">
          <font>

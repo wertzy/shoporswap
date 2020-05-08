@@ -54,6 +54,7 @@ public class Controller {
     public Button exitButton;
     public Button logInButton;
     public Button createAccount;
+    public Button logOut;
     public RadioButton rbSell;
     public RadioButton rbSwap;
 
@@ -96,7 +97,6 @@ public class Controller {
     }
     public void logIn(ActionEvent event) throws IOException {
         if (system.signIn(usernameTxtFld.getText(), passwordTxtFld.getText()) == null) {
-            System.out.println(passwordTxtFld.getText());
             System.out.println("No User found with those credentials");
             errorLabel.setVisible(true);
         } else {
@@ -111,17 +111,36 @@ public class Controller {
             window.show();
         }
     }
+    public void logOutClicked(ActionEvent event)throws IOException{
+        Parent productViewParent = FXMLLoader.load(getClass().getResource("/logIn.fxml"));
+        Scene productViewScene = new Scene(productViewParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(productViewScene);
+        window.show();
+    }
 
 
-//    }
-    public void create(){
+    public void create(ActionEvent event){
         System.out.println(passwordTxtFld1.getText());
-//        try{
-//            return system.addAccount(usernameTxtFld1.getText(),passwordTxtFld1.getText());
-//        }catch(Exception e){
-//            System.out.println("Cannot create account");
-//            return null;
-//        }
+        try{
+            system.addAccount("Client",usernameTxtFld1.getText(),passwordTxtFld1.getText());
+
+            errorLabel1.setVisible(false);
+            currentUser = system.findAccount(usernameTxtFld1.getText());
+            Parent productViewParent = FXMLLoader.load(getClass().getResource("/homepage.fxml"));
+            Scene productViewScene = new Scene(productViewParent);
+
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(productViewScene);
+            window.show();
+        }catch(Exception e){
+            errorLabel1.setText("Cannot create account");
+            errorLabel1.setVisible(true);
+            System.out.println("Cannot create account");
+        }
     }
     public void viewMyProductsClicked(){
 
