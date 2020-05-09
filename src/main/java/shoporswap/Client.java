@@ -7,9 +7,8 @@ public class Client extends Account{
 
     private List<AbstractProduct> myOwnedProductList;
     private Map<String, Storefront> myStorefronts;
-    private double wallet=0, rating=0;
-    public List<Integer> numOfRatings=new ArrayList<Integer>();
-    public List<Client> pastMerchants=new ArrayList<Client>();
+    private double wallet;
+    public List<Integer> ratings;
 
     /**
      * Default constructor for shoporswap.Client object
@@ -18,6 +17,7 @@ public class Client extends Account{
         super("DefaultClient", "DefaultPassword");
         this.setMyOwnedProductList(new ArrayList<AbstractProduct>());
         this.setMyStorefronts(new HashMap<String, Storefront>());
+        this.setRatings(new ArrayList<Integer>());
     }
 
     /**
@@ -31,6 +31,7 @@ public class Client extends Account{
         super(nameIn, passwordIn);
         this.setMyOwnedProductList(new ArrayList<AbstractProduct>());
         this.setMyStorefronts(new HashMap<String, Storefront>());
+        this.setRatings(new ArrayList<Integer>());
     }
 
     /**
@@ -173,11 +174,20 @@ public class Client extends Account{
     }
 
     /**
-     * Accessor method for the myProductList property of the shoporswap.Client shoporswap.Account
-     * @return the list of products of the shoporswap.Client shoporswap.Account
+     * Accessor method for the user ratings
+     * @return the List of ratings of the user
      */
-    public double getRating(){
-        return this.rating;
+    public List<Integer> getRatings(){
+        return this.ratings;
+    }
+
+    public void setRatings(List<Integer> ratingsIn){
+        for(int rating : ratingsIn){
+            if(rating <= 0 || rating > 5){
+                throw new IllegalArgumentException("Rating must be between 1 and 5 (both inclusive)");
+            }
+        }
+        this.ratings = ratingsIn;
     }
 
     /**
@@ -256,7 +266,7 @@ public class Client extends Account{
         if (rating>5||rating<=0){
             throw new IllegalArgumentException("rating cannot be greater than 5 and must be at least 1");
         }
-        numOfRatings.add(rating);
+        ratings.add(rating);
         calculateRating();
     }
 
@@ -264,28 +274,19 @@ public class Client extends Account{
      * calculates the average for ratings
      */
 
-    public void calculateRating() {
-        int sum=0;
-        for (int i=0; i<numOfRatings.size();i++){
-            sum+=numOfRatings.get(i);
+    public double calculateRating() {
+        int sum = 0;
+        for(Integer rating : this.getRatings()){
+            sum += rating;
         }
-        rating=sum/numOfRatings.size();
-    }
-
-    public void addMerchant(Client merchant){
-        pastMerchants.add(merchant);
-    }
-
-    public void removeMerchant(Client merchant){
-        pastMerchants.remove(merchant);
+        if(this.getRatings().size() == 0){
+            return 0.0;
+        }
+        return sum / this.getRatings().size();
     }
 
     public void setWallet(double walletIn){
         this.wallet = walletIn;
-    }
-
-    public void setRating(double ratingIn){
-        this.rating = ratingIn;
     }
 
 }

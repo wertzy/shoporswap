@@ -139,7 +139,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "    \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ ]" + System.lineSeparator() +
@@ -158,7 +158,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "    \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client1\"," + System.lineSeparator() +
@@ -166,7 +166,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "    \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ ]" + System.lineSeparator() +
@@ -185,7 +185,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : null," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "    \"rating\" : null," + System.lineSeparator() +
+                "    \"ratingsList\" : null," + System.lineSeparator() +
                 "    \"wallet\" : null" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client1\"," + System.lineSeparator() +
@@ -193,7 +193,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "    \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ ]" + System.lineSeparator() +
@@ -216,7 +216,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : null," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "    \"rating\" : null," + System.lineSeparator() +
+                "    \"ratingsList\" : null," + System.lineSeparator() +
                 "    \"wallet\" : null" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"admin2\"," + System.lineSeparator() +
@@ -224,7 +224,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : null," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : null," + System.lineSeparator() +
-                "    \"rating\" : null," + System.lineSeparator() +
+                "    \"ratingsList\" : null," + System.lineSeparator() +
                 "    \"wallet\" : null" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client2\"," + System.lineSeparator() +
@@ -232,7 +232,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "    \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client1\"," + System.lineSeparator() +
@@ -240,7 +240,7 @@ public class ShopOrSwapRecordTest {
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
                 "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
-                "    \"rating\" : \"0.0\"," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
                 "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ {" + System.lineSeparator() +

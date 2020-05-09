@@ -4,6 +4,6 @@
   "isFrozen" : false,
   "myProductRecords" : null,
   "myStorefrontRecords" : null,
-  "rating" : null,
+  "ratingsList" : null,
   "wallet" : null
 }

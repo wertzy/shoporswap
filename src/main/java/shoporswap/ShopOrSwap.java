@@ -35,7 +35,7 @@ public class ShopOrSwap {
      */
     public Account addAccount(Account accountIn){
         if(this.getAccountCollection().containsKey(accountIn.getAccountName())){
-            throw new IllegalArgumentException("shoporswap.Account name already exists in system");
+            throw new IllegalArgumentException("Account name already exists in system");
         }
         this.getAccountCollection().put(accountIn.getAccountName(), accountIn);
         return this.getAccountCollection().get(accountIn.getAccountName());
@@ -76,7 +76,7 @@ public class ShopOrSwap {
         if(this.getAccountCollection().containsKey(nameIn)){
             return this.getAccountCollection().get(nameIn);
         }
-        throw new NoSuchElementException("shoporswap.Account name does not exist in system");
+        throw new NoSuchElementException("Account name does not exist in system");
     }
 
     /**
@@ -133,7 +133,7 @@ public class ShopOrSwap {
         if(owner.getMyStorefronts().containsKey(nameIn)){
             return owner.getMyStorefronts().get(nameIn);
         }
-        throw new NoSuchElementException("shoporswap.Storefront does not exist for owner");
+        throw new NoSuchElementException("Storefront does not exist for owner");
     }
 
     /**
@@ -189,7 +189,7 @@ public class ShopOrSwap {
     public AbstractProduct addToStorefront(AbstractProduct productIn, Storefront storefrontIn){
         Client owner = storefrontIn.retrieveStorefrontOwner();
         if(!this.getAccountCollection().containsKey(owner.getAccountName())){
-            throw new NoSuchElementException("shoporswap.Storefront owner does not exist");
+            throw new NoSuchElementException("Storefront owner does not exist");
         }
         Storefront storefront = owner.findStorefront(storefrontIn);
         if(storefront.getClass().getName().contains((CharSequence) "Sell")){
@@ -211,7 +211,7 @@ public class ShopOrSwap {
     public AbstractProduct findInStorefront(AbstractProduct productIn, Storefront storefrontIn){
         Account account = storefrontIn.retrieveStorefrontOwner();
         if(account == null){
-            throw new NoSuchElementException("There are no null accounts in shoporswap.Storefront");
+            throw new NoSuchElementException("There are no null accounts in Storefront");
         }
         Storefront storefront = this.findStorefront(storefrontIn.getStorefrontName(), storefrontIn.retrieveStorefrontOwner());
         return this.findInStorefront(productIn.getProductName(), storefrontIn);
@@ -294,7 +294,7 @@ public class ShopOrSwap {
             }
             AbstractProduct product = sellStorefront.completeTransaction((SellProduct) productToBuy, consumerIn);
         }else{
-            throw new IllegalArgumentException("shoporswap.Storefront must be a selling storefront");
+            throw new IllegalArgumentException("Storefront must be a selling storefront");
         }
     }
 

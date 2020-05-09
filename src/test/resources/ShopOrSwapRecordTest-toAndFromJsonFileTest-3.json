@@ -5,7 +5,7 @@
     "isFrozen" : false,
     "myProductRecords" : [ ],
     "myStorefrontRecords" : [ ],
-    "rating" : "0.0",
+    "ratingsList" : [ ],
     "wallet" : "0.0"
   }, {
     "accountName" : "client1",
@@ -13,7 +13,7 @@
     "isFrozen" : false,
     "myProductRecords" : [ ],
     "myStorefrontRecords" : [ ],
-    "rating" : "0.0",
+    "ratingsList" : [ ],
     "wallet" : "0.0"
   } ],
   "messageRecords" : [ ]
