@@ -1,0 +1,92 @@
+{
+  "accountRecords" : [ {
+    "accountName" : "client6",
+    "accountPassword" : "client6",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client5",
+    "accountPassword" : "client5",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client4",
+    "accountPassword" : "client4",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client3",
+    "accountPassword" : "client3",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client9",
+    "accountPassword" : "client9",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client8",
+    "accountPassword" : "client8",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client7",
+    "accountPassword" : "client7",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "admin1",
+    "accountPassword" : "admin1",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null,
+    "ratingsList" : null,
+    "wallet" : null
+  }, {
+    "accountName" : "client2",
+    "accountPassword" : "client2",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "client1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client10",
+    "accountPassword" : "client10",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  } ],
+  "messageRecords" : [ ]
+}
