@@ -1,11 +1,14 @@
 package shoporswap;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Client extends Account{
 
     private List<AbstractProduct> myOwnedProductList;
     private Map<String, Storefront> myStorefronts;
+    private double wallet;
+    public List<Integer> ratings;
 
     /**
      * Default constructor for shoporswap.Client object
@@ -14,6 +17,7 @@ public class Client extends Account{
         super("DefaultClient", "DefaultPassword");
         this.setMyOwnedProductList(new ArrayList<AbstractProduct>());
         this.setMyStorefronts(new HashMap<String, Storefront>());
+        this.setRatings(new ArrayList<Integer>());
     }
 
     /**
@@ -27,6 +31,7 @@ public class Client extends Account{
         super(nameIn, passwordIn);
         this.setMyOwnedProductList(new ArrayList<AbstractProduct>());
         this.setMyStorefronts(new HashMap<String, Storefront>());
+        this.setRatings(new ArrayList<Integer>());
     }
 
     /**
@@ -105,6 +110,7 @@ public class Client extends Account{
         if(this.getMyStorefronts().containsKey(storefrontIn.getStorefrontName())){
             throw new IllegalArgumentException("shoporswap.Storefront invalid (you already have a shoporswap.Storefront with this name)");
         }
+        storefrontIn.setStorefrontOwner(this);
         this.getMyStorefronts().put(storefrontIn.getStorefrontName(), storefrontIn);
         return this.findStorefront(storefrontIn);
     }
@@ -168,6 +174,31 @@ public class Client extends Account{
     }
 
     /**
+     * Accessor method for the user ratings
+     * @return the List of ratings of the user
+     */
+    public List<Integer> getRatings(){
+        return this.ratings;
+    }
+
+    public void setRatings(List<Integer> ratingsIn){
+        for(int rating : ratingsIn){
+            if(rating <= 0 || rating > 5){
+                throw new IllegalArgumentException("Rating must be between 1 and 5 (both inclusive)");
+            }
+        }
+        this.ratings = ratingsIn;
+    }
+
+    /**
+     * Accessor method for the wallet property
+     * @return the wallet amount in user
+     */
+    public double getWallet(){
+        return this.wallet;
+    }
+
+    /**
      * Mutator method for the myProductList property of the shoporswap.Client shoporswap.Account
      * @param productListIn the list of products of the shoporswap.Client shoporswap.Account
      * @throws IllegalArgumentException if at least one of the AbstractProducts is invalid
@@ -182,6 +213,80 @@ public class Client extends Account{
      */
     public void setMyStorefronts(Map<String, Storefront> myStorefrontsIn){
         this.myStorefronts = myStorefrontsIn;
+    }
+
+    /**
+     * Method to check if amount is valid or not
+     * @param amount
+     * @return true if amount is valid, false if amount is invalid
+     */
+
+    public boolean isValidAmount(double amount){
+        if(amount<=0) {
+            return false;
+        }
+        if(BigDecimal.valueOf(amount).scale()>2){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    /**
+     *adds amount of money into wallet
+     * @param amount
+     */
+    public void addWallet(double amount){
+        if(!isValidAmount(amount)){
+            throw new IllegalArgumentException("amount will lead to wallet to have a negative amount");
+        }
+        wallet+=amount;
+    }
+
+    /**
+     *subtracts amount of money into wallet
+     * @param amount
+     */
+    public void subtractWallet(double amount){
+        if(!isValidAmount(amount)){
+            throw new IllegalArgumentException("amount will lead to wallet to have a negative amount");
+        }
+        if(wallet-amount<0){
+            throw new IllegalArgumentException("amount will lead to wallet to have a negative amount");
+        }
+        wallet-=amount;
+    }
+
+    /**
+     * adds rating to list of ratings to be used to calculate an average later
+     * @param rating
+     */
+    public void rate(int rating){
+        if (rating>5||rating<=0){
+            throw new IllegalArgumentException("rating cannot be greater than 5 and must be at least 1");
+        }
+        ratings.add(rating);
+        calculateRating();
+    }
+
+    /**
+     * calculates the average for ratings
+     */
+
+    public double calculateRating() {
+        int sum = 0;
+        for(Integer rating : this.getRatings()){
+            sum += rating;
+        }
+        if(this.getRatings().size() == 0){
+            return 0.0;
+        }
+        return sum / this.getRatings().size();
+    }
+
+    public void setWallet(double walletIn){
+        this.wallet = walletIn;
     }
 
 }

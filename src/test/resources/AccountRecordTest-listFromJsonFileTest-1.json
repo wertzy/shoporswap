@@ -3,29 +3,39 @@
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
   "myProductRecords" : null,
-  "myStorefrontRecords" : null
+  "myStorefrontRecords" : null,
+  "ratingsList" : null,
+  "wallet" : null
 }, {
   "accountName" : "test1",
   "accountPassword" : "pass1",
   "isFrozen" : false,
   "myProductRecords" : [ ],
-  "myStorefrontRecords" : [ ]
+  "myStorefrontRecords" : [ ],
+  "ratingsList" : [ ],
+  "wallet" : "0.0"
 }, {
   "accountName" : "DefaultClient",
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
   "myProductRecords" : [ ],
-  "myStorefrontRecords" : [ ]
+  "myStorefrontRecords" : [ ],
+  "ratingsList" : [ ],
+  "wallet" : "0.0"
 }, {
   "accountName" : "test1",
   "accountPassword" : "pass1",
   "isFrozen" : false,
   "myProductRecords" : null,
-  "myStorefrontRecords" : null
+  "myStorefrontRecords" : null,
+  "ratingsList" : null,
+  "wallet" : null
 }, {
   "accountName" : "DefaultAdmin",
   "accountPassword" : "DefaultPassword",
   "isFrozen" : false,
   "myProductRecords" : null,
-  "myStorefrontRecords" : null
+  "myStorefrontRecords" : null,
+  "ratingsList" : null,
+  "wallet" : null
 } ]

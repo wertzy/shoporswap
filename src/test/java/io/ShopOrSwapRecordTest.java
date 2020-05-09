@@ -138,7 +138,9 @@ public class ShopOrSwapRecordTest {
                 "    \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
+                "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ ]" + System.lineSeparator() +
                 "}";
@@ -155,13 +157,17 @@ public class ShopOrSwapRecordTest {
                 "    \"accountPassword\" : \"pass2\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
+                "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client1\"," + System.lineSeparator() +
                 "    \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
+                "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ ]" + System.lineSeparator() +
                 "}";
@@ -178,13 +184,17 @@ public class ShopOrSwapRecordTest {
                 "    \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : null," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "    \"ratingsList\" : null," + System.lineSeparator() +
+                "    \"wallet\" : null" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client1\"," + System.lineSeparator() +
                 "    \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
+                "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ ]" + System.lineSeparator() +
                 "}";
@@ -205,25 +215,33 @@ public class ShopOrSwapRecordTest {
                 "    \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : null," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "    \"ratingsList\" : null," + System.lineSeparator() +
+                "    \"wallet\" : null" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"admin2\"," + System.lineSeparator() +
                 "    \"accountPassword\" : \"pass2\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : null," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : null" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : null," + System.lineSeparator() +
+                "    \"ratingsList\" : null," + System.lineSeparator() +
+                "    \"wallet\" : null" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client2\"," + System.lineSeparator() +
                 "    \"accountPassword\" : \"pass2\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
+                "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  }, {" + System.lineSeparator() +
                 "    \"accountName\" : \"client1\"," + System.lineSeparator() +
                 "    \"accountPassword\" : \"pass1\"," + System.lineSeparator() +
                 "    \"isFrozen\" : false," + System.lineSeparator() +
                 "    \"myProductRecords\" : [ ]," + System.lineSeparator() +
-                "    \"myStorefrontRecords\" : [ ]" + System.lineSeparator() +
+                "    \"myStorefrontRecords\" : [ ]," + System.lineSeparator() +
+                "    \"ratingsList\" : [ ]," + System.lineSeparator() +
+                "    \"wallet\" : \"0.0\"" + System.lineSeparator() +
                 "  } ]," + System.lineSeparator() +
                 "  \"messageRecords\" : [ {" + System.lineSeparator() +
                 "    \"messageType\" : \"shoporswap.UserMessage\"," + System.lineSeparator() +

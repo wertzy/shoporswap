@@ -42,6 +42,10 @@ public class Tag {
         this.products.add(product);
     }
 
+    public void removeProduct(AbstractProduct product){
+        this.products.remove(product);
+    }
+
     public List<AbstractProduct> accessProducts() {
         // implement method to pass corresponding tests after the tests have been written
         return this.products;

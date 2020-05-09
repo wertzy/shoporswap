@@ -17,7 +17,9 @@ public class AccountRecord {
     private List<ProductRecord> myProductRecords;
     private List<StorefrontRecord> myStorefrontRecords;
 
-    private Account accountIn;
+    private String accountType;
+    private List<String> ratingsList;
+    private String wallet;
 
     /**
      * Default constructor for an AccountRecord object
@@ -32,7 +34,7 @@ public class AccountRecord {
         this.establishMySwapStorefronts(new ArrayList<SwapStorefront>());
         this.setMyProductRecords(null);
         this.setMyStorefrontRecords(null);
-        this.establishAccountIn(null);
+        this.setRatingsList(null);
     }
 
     /**
@@ -47,6 +49,7 @@ public class AccountRecord {
         this.setAccountName(accountIn.getAccountName());
         this.setAccountPassword(accountIn.getAccountPassword());
         this.setIsFrozen(accountIn.getIsFrozen());
+        this.establishAccountType(accountIn.getClass().getName());
         if(accountIn instanceof Admin){
             this.establishMyOwnedSellProducts(null);
             this.establishMyOwnedSwapProducts(null);
@@ -54,6 +57,8 @@ public class AccountRecord {
             this.establishMySwapStorefronts(null);
             this.setMyProductRecords(null);
             this.setMyStorefrontRecords(null);
+            this.setWallet(null);
+            this.setRatingsList(null);
         }else{
             this.establishMyOwnedSellProducts(new ArrayList<SellProduct>());
             this.establishMyOwnedSwapProducts(new ArrayList<SwapProduct>());
@@ -63,8 +68,29 @@ public class AccountRecord {
             this.setMyStorefrontRecords(new ArrayList<StorefrontRecord>());
             this.toStorefrontLists(((Client) accountIn).getMyStorefronts());
             this.toProductLists(((Client) accountIn).getMyOwnedProductList());
+            this.setWallet("" + (((Client) accountIn).getWallet()));
+            this.setRatingsList(this.toStringList(((Client) accountIn).getRatings()));
         }
-        this.establishAccountIn(accountIn);
+    }
+
+    public List<String> toStringList(List<Integer> integerListIn){
+        List<String> stringListOut = new ArrayList<String>();
+        for(int integerIn : integerListIn){
+            stringListOut.add("" + integerIn);
+        }
+        return stringListOut;
+    }
+
+    public List<Integer> toIntegerList(List<String> stringListIn){
+        List<Integer> integerListOut = new ArrayList<Integer>();
+        for(String string : stringListIn){
+            try{
+                integerListOut.add(Integer.parseInt(string));
+            }catch(Exception e){
+                throw new IllegalArgumentException("Invalid integer representation");
+            }
+        }
+        return integerListOut;
     }
 
     /**
@@ -155,10 +181,8 @@ public class AccountRecord {
      */
     public Account toAccount(){
         boolean hasNullClientProperties = (
-                this.accessMyOwnedSellProducts() == null &&
-                this.accessMyOwnedSwapProducts() == null &&
-                this.accessMySellStorefronts() == null &&
-                this.accessMySwapStorefronts() == null
+                this.myProductRecords == null &&
+                this.myStorefrontRecords == null
         );
         Account accountOut;
         if(hasNullClientProperties){
@@ -170,6 +194,7 @@ public class AccountRecord {
             for (StorefrontRecord storefrontRecord : this.getMyStorefrontRecords()) {
                 ((Client) accountOut).addStorefront(storefrontRecord.toStorefront());
             }
+            ((Client) accountOut).setWallet(Double.parseDouble(this.getWallet()));
         }
         accountOut.setIsFrozen(this.getIsFrozen());
         return accountOut;
@@ -206,6 +231,14 @@ public class AccountRecord {
      */
     public String getAccountName() {
         return this.accountName;
+    }
+
+    public String accessAccountType(){
+        return this.accountType;
+    }
+
+    public void establishAccountType(String accountTypeIn){
+        this.accountType = accountTypeIn;
     }
 
     /**
@@ -314,7 +347,19 @@ public class AccountRecord {
         this.myStorefrontRecords = myStorefrontRecords;
     }
 
-    public void establishAccountIn(Account accountIn){
-        this.accountIn = accountIn;
+    public String getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
+    }
+
+    public List<String> getRatingsList() {
+        return ratingsList;
+    }
+
+    public void setRatingsList(List<String> ratingsList) {
+        this.ratingsList = ratingsList;
     }
 }

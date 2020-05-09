@@ -118,6 +118,14 @@ public abstract class AbstractProduct {
         return this.productTags;
     }
 
+    public final List<String> getProductTagLabels(){
+        List<String> tagLabelsList = new ArrayList<String>();
+        for(Tag tag : this.getProductTags()){
+            tagLabelsList.add(tag.getName());
+        }
+        return tagLabelsList;
+    }
+
     /**
      * Accessor method for the productMerchant property of the shoporswap.AbstractProduct
      * @return the merchant of the shoporswap.AbstractProduct

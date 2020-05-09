@@ -1,0 +1,13 @@
+{
+  "accountName" : "test5",
+  "accountPassword" : "pass5",
+  "isFrozen" : false,
+  "myProductRecords" : [ ],
+  "myStorefrontRecords" : [ {
+    "storefrontType" : "shoporswap.SellStorefront",
+    "storefrontName" : "sell1",
+    "productRecordList" : [ ]
+  } ],
+  "ratingsList" : [ ],
+  "wallet" : "0.0"
+}
