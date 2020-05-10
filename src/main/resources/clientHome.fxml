@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoporswap.Controller">
+   <children>
+      <Label fx:id="clientHomeTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="15.0" prefHeight="25.0" prefWidth="200.0" text="ShopOrSwap" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="486.0" layoutY="15.0" mnemonicParsing="false" onAction="#signOut" prefWidth="100.0" text="Sign Out" />
+      <VBox layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label fx:id="clientHomeAccountInfoHeader" alignment="CENTER" prefWidth="200.0" text="My Account Information">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="clientHomeAccountInfo" prefHeight="282.0" prefWidth="199.0" style="-fx-border-color: #000000;" text="Label" />
+         </children>
+      </VBox>
+      <VBox layoutX="200.0" layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label fx:id="clientHomeMyStorefrontsHeader" alignment="CENTER" prefWidth="200.0" text="My Storefronts">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <ListView fx:id="clientHomeMyStorefrontsListView" prefHeight="278.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+         </children>
+      </VBox>
+      <VBox layoutX="400.0" layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label fx:id="clientHomeMyMessagesHeader" alignment="CENTER" prefWidth="200.0" text="My Messages">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <ListView fx:id="clientHomeMyMessagesListView" prefHeight="278.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

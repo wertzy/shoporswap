@@ -7,6 +7,14 @@
     "myStorefrontRecords" : null,
     "ratingsList" : null,
     "wallet" : null
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "client1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
   } ],
   "messageRecords" : [ ]
 }

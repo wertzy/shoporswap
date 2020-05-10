@@ -15,7 +15,7 @@ public class GUIDriver extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("/signIn.fxml"));
-        primaryStage.setTitle("Shop or Swap");
+        primaryStage.setTitle("Shop or Swap: Sign In");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setResizable(false);
         primaryStage.show();
