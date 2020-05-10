@@ -204,6 +204,25 @@ public class ShopOrSwapTest {
         assertEquals(testSwapStorefront1, testShopOrSwap.findStorefront("test2", testClient1));
     }
 
+    @Test
+    void findStorefrontsTest(){
+        Client testClient1 = new Client("test1", "pass1");
+
+        ShopOrSwap testShopOrSwap = new ShopOrSwap();
+        testShopOrSwap.addAccount(testClient1);
+
+        assertEquals(0, testShopOrSwap.findStorefronts(testClient1).size());
+        assertEquals(0, testShopOrSwap.findStorefronts("test1").size());
+
+        Storefront testSellStorefront1 = testShopOrSwap.addStorefront("sell", "test1", testClient1);
+        assertEquals(1, testShopOrSwap.findStorefronts(testClient1).size());
+        assertEquals(1, testShopOrSwap.findStorefronts("test1").size());
+
+        Storefront testSwapStorefront1 = testShopOrSwap.addStorefront("swap", "test2", testClient1);
+        assertEquals(2, testShopOrSwap.findStorefronts(testClient1).size());
+        assertEquals(2, testShopOrSwap.findStorefronts("test1").size());
+    }
+
     /**
      * Automated tests for shoporswap.ShopOrSwap.removeStorefront method
      */

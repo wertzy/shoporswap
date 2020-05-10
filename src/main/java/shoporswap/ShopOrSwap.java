@@ -93,22 +93,6 @@ public class ShopOrSwap {
         else {return null;}
 
     }
-//
-//    /**
-//     * signs a User out of the program
-//     * @param accountName the account name of the User to sign out
-//     * @param password the password of the User to sign out
-//     */
-
-//    public User signOut(String accountName, String password) {
-//        // implement method to pass corresponding tests after the tests have been written
-//        for(User user : this.userList){
-//            if(user.getAccountName().compareTo(accountName) == 0 && user.getPassword().compareTo(password) == 0){
-//                return user;
-//            }
-//        }
-//        return null;
-//    }
 
     /**
      * Removes an shoporswap.Account from the shoporswap.ShopOrSwap system
@@ -165,6 +149,28 @@ public class ShopOrSwap {
             return owner.getMyStorefronts().get(nameIn);
         }
         throw new NoSuchElementException("Storefront does not exist for owner");
+    }
+
+    /**
+     * Finds the List of Storefronts a Client owns in the shoporswap.ShopOrSwap system by Client object
+     * @param ownerIn the Client owning the Storefront
+     * @return the List of Storefronts owned by the Client
+     */
+    public List<Storefront> findStorefronts(Client ownerIn){
+        List<Storefront> storefrontListOut = new ArrayList<Storefront>();
+        storefrontListOut.addAll(ownerIn.getMyStorefronts().values());
+        return storefrontListOut;
+    }
+
+    /**
+     * Finds the List of Storefronts a Client owns in the shoporswap.ShopOrSwap system by Client name
+     * @param ownerNameIn the name (String) of the Client owning the Storefront
+     * @return the List of Storefronts owned by the Client
+     * @throws NoSuchElementException if the Client does not exist in the system
+     */
+    public List<Storefront> findStorefronts(String ownerNameIn){
+        Client ownerClient = (Client) this.findAccount(ownerNameIn);
+        return this.findStorefronts(ownerClient);
     }
 
     /**
