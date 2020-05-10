@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
@@ -39,7 +40,14 @@ public class Controller {
     private Account currentUser;
 
     public Controller() throws IOException {
-        this.system = JsonUtil.fromJsonFile(dataFileName, ShopOrSwapRecord.class).toShopOrSwap();
+        try {
+            this.system = JsonUtil.fromJsonFile(dataFileName, ShopOrSwapRecord.class).toShopOrSwap();
+        }catch(Exception e){
+            this.system = new ShopOrSwap();
+            this.system.addAccount(new Admin("admin1", "admin1"));
+            JsonUtil.toJsonFile(this.dataFileName, new ShopOrSwapRecord(this.system));
+            this.system = JsonUtil.fromJsonFile(this.dataFileName, ShopOrSwapRecord.class).toShopOrSwap();
+        }
     }
 
     public void signIn(ActionEvent event) throws IOException{
@@ -69,11 +77,36 @@ public class Controller {
                 ObservableList<String> messageStrings = this.makeMessageObservableList(this.system.findMessagesByRecipient(this.currentUser));
                 this.clientHomeMyMessagesListView.getItems().addAll(messageStrings);
                 this.clientHomeMyMessagesHeader = (Label) clientHomepageScene.lookup("#clientHomeMyMessagesHeader");
-                this.clientHomeMyMessagesHeader.setText("My Messages: " + storefrontStrings.size());
+                this.clientHomeMyMessagesHeader.setText("My Messages: " + messageStrings.size());
 
                 clientHomepageWindow.show();
             }
         }
+    }
+
+    public void createAccount(ActionEvent event) throws IOException{
+        Account attemptedMakeAccount;
+        try{
+            attemptedMakeAccount = this.system.findAccount(this.signInAccountName.getText());
+            this.signInInvalidLabel.setText("Account name is already taken.");
+            this.signInInvalidLabel.setTextFill(Color.web("#FF0000"));
+            this.signInInvalidLabel.setVisible(true);
+        }catch(Exception e){
+            try {
+                attemptedMakeAccount = this.system.addAccount("Client", this.signInAccountName.getText(), this.signInPassword.getText());
+                this.signInInvalidLabel.setText("Account created successfully.");
+                this.signInInvalidLabel.setTextFill(Color.web("#00FF00"));
+                this.signInInvalidLabel.setVisible(true);
+                JsonUtil.toJsonFile(this.dataFileName, new ShopOrSwapRecord(this.system));
+                this.system = JsonUtil.fromJsonFile(this.dataFileName, ShopOrSwapRecord.class).toShopOrSwap();
+            }catch(Exception e2){
+                this.signInInvalidLabel.setText("Cannot create account with credentials.");
+                this.signInInvalidLabel.setTextFill(Color.web("#FF0000"));
+                this.signInInvalidLabel.setVisible(true);
+            }
+        }
+        this.signInAccountName.setText("");
+        this.signInPassword.setText("");
     }
 
     private ObservableList<String> makeStorefrontObservableList(List<Storefront> storefrontListIn){
@@ -81,9 +114,9 @@ public class Controller {
         String storefrontRecordString;
         for(Storefront storefront : storefrontListIn){
             if(storefront instanceof SellStorefront){
-                storefrontRecordString = "Sell Storefront: ";
+                storefrontRecordString = "Sell: ";
             }else{
-                storefrontRecordString = "Swap Storefront: ";
+                storefrontRecordString = "Swap: ";
             }
             storefrontRecordString = storefrontRecordString + storefront.getStorefrontName() + " (" + storefront.getStorefrontProducts().size() + " Products)";
             observationsOut.add(storefrontRecordString);

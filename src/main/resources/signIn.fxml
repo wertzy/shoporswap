@@ -17,10 +17,9 @@
       <TextField fx:id="signInAccountName" alignment="CENTER" layoutX="200.0" layoutY="100.0" prefWidth="200.0" promptText="Username" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="140.0" prefWidth="200.0" text="Password" />
       <PasswordField fx:id="signInPassword" alignment="CENTER" layoutX="200.0" layoutY="160.0" prefWidth="200.0" promptText="Password" />
-      <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="200.0" mnemonicParsing="false" onAction="#signIn" prefWidth="100.0" text="Sign In" />
-      <Hyperlink alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="327.0" prefWidth="200.0" text="Create Account" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="310.0" prefWidth="200.0" text="Don't have an account?" />
-      <Label fx:id="signInInvalidLabel" visible="false" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="231.0" prefWidth="200.0" text="Invalid Credentials" textAlignment="CENTER" textFill="RED" />
+      <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#signIn" prefWidth="75.0" text="Sign In" />
+      <Label fx:id="signInInvalidLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="231.0" prefWidth="200.0" text="Invalid Credentials" textAlignment="CENTER" textFill="RED" visible="false" />
       <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="486.0" layoutY="350.0" mnemonicParsing="false" onAction="#saveData" prefWidth="100.0" text="Exit" />
+      <Button fx:id="createAccountButton" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="25.0" prefWidth="100.0" text="Create Account" />
    </children>
 </AnchorPane>
