@@ -26,12 +26,19 @@
       </VBox>
       <VBox layoutX="200.0" layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">
          <children>
-            <Label fx:id="clientHomeStorefrontsHeader" alignment="CENTER" prefWidth="200.0" text="My Storefronts">
+            <Label fx:id="clientHomeStorefrontsHeader" alignment="CENTER" prefWidth="200.0" text="Storefronts">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="clientHomeStorefrontsListView" prefHeight="278.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+            <ListView fx:id="clientHomeStorefrontsListView" prefHeight="200.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+            <VBox prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: #000000;">
+               <children>
+                  <Label fx:id="clientHomeGoToStorefrontNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Storefront Name" />
+                  <Label fx:id="clientHomeGoToStorefrontOwnerLabel" alignment="CENTER" layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="200.0" text="Storefront Owner Name" />
+                  <Button fx:id="clientHomeGoToStorefrontButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="205.0" text="Go To Storefront" />
+               </children>
+            </VBox>
          </children>
       </VBox>
       <VBox layoutX="400.0" layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">

@@ -1,6 +1,8 @@
 package shoporswap;
 
 import io.ShopOrSwapRecord;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,14 +32,23 @@ public class Controller {
     // client home page items
     @FXML private Label clientHomeTitle;
     @FXML private Label clientHomeAccountInfo;
+
     @FXML private ListView clientHomeStorefrontsListView;
     @FXML private Label clientHomeStorefrontsHeader;
+
+    @FXML private Label clientHomeGoToStorefrontNameLabel;
+    @FXML private Label clientHomeGoToStorefrontOwnerLabel;
+    @FXML private Button clientHomeGoToStorefrontButton;
+
     @FXML private ListView clientHomeMessagesListView;
     @FXML private Label clientHomeMessagesHeader;
 
     private final String dataFileName = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json";
     private ShopOrSwap system;
     private Account currentUser;
+
+    private Storefront selectedStorefront;
+    private Account selectedUser;
 
     public Controller() throws IOException {
         try {
@@ -87,7 +98,26 @@ public class Controller {
                 this.clientHomeMessagesHeader = (Label) clientHomepageScene.lookup("#clientHomeMessagesHeader");
                 this.clientHomeMessagesHeader.setText("My Messages: " + messageStrings.size());
 
+
+                this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
+                    new ChangeListener<String>(){
+                        @Override
+                        public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
+                            Controller.this.clientHomeGoToStorefrontNameLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontNameLabel");
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
+                            String[] recordStringComponents = ((String) clientHomeStorefrontsListView.getSelectionModel().getSelectedItem()).split(":");
+                            String storefrontOwner = recordStringComponents[0].trim();
+                            String storefrontName = recordStringComponents[1].trim();
+                            Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
+                            Controller.this.selectedUser = Controller.this.system.findAccount(storefrontOwner);
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
+                            Controller.this.selectedStorefront = Controller.this.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                        }
+                    }
+                );
+
                 clientHomepageWindow.show();
+
             }
         }
     }
@@ -120,7 +150,7 @@ public class Controller {
     private ObservableList<String> makeStorefrontObservableList(List<Storefront> storefrontListIn){
         ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
         for(Storefront storefront : storefrontListIn){
-            observationsOut.add(storefront.getStorefrontName());
+            observationsOut.add(storefront.retrieveStorefrontOwner().getAccountName() + ": " + storefront.getStorefrontName());
         }
         return observationsOut.sorted();
     }
@@ -133,6 +163,10 @@ public class Controller {
             observationsOut.add(messageRecordString);
         }
         return observationsOut.sorted();
+    }
+
+    public void goToStorefront(ActionEvent event){
+
     }
 
     public void signOut(ActionEvent event) throws IOException{
