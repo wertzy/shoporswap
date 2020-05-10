@@ -39,4 +39,14 @@ public class Controller {
         }
     }
 
+    public void saveData(ActionEvent event) throws IOException{
+        try {
+            JsonUtil.toJsonFile(dataFileName, new ShopOrSwapRecord(this.system));
+            System.out.println("Data Export Success");
+            System.exit(0);
+        }catch(Exception e){
+            System.exit(1);
+        }
+    }
+
 }

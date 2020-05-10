@@ -13,13 +13,14 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="80.0" prefWidth="200.0" text="Account Name" />
-      <TextField fx:id="signInAccountName" alignment="CENTER" layoutX="200.0" layoutY="100.0" prefWidth="200.0" promptText="Account Name" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="80.0" prefWidth="200.0" text="Username" />
+      <TextField fx:id="signInAccountName" alignment="CENTER" layoutX="200.0" layoutY="100.0" prefWidth="200.0" promptText="Username" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="140.0" prefWidth="200.0" text="Password" />
       <PasswordField fx:id="signInPassword" alignment="CENTER" layoutX="200.0" layoutY="160.0" prefWidth="200.0" promptText="Password" />
       <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="200.0" mnemonicParsing="false" onAction="#signIn" prefWidth="100.0" text="Sign In" />
       <Hyperlink alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="327.0" prefWidth="200.0" text="Create Account" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="310.0" prefWidth="200.0" text="Don't have an account?" />
-      <Label fx:id="signInInvalidLabel" visible="false" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="231.0" prefWidth="200.0" text="Cannot process credentials" textAlignment="CENTER" textFill="RED" />
+      <Label fx:id="signInInvalidLabel" visible="false" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="231.0" prefWidth="200.0" text="Invalid Credentials" textAlignment="CENTER" textFill="RED" />
+      <Button fx:id="exitButton" alignment="CENTER" contentDisplay="CENTER" layoutX="486.0" layoutY="350.0" mnemonicParsing="false" onAction="#saveData" prefWidth="100.0" text="Exit" />
    </children>
 </AnchorPane>
