@@ -2,7 +2,6 @@ package shoporswap;
 
 import io.ShopOrSwapRecord;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,10 +30,10 @@ public class Controller {
     // client home page items
     @FXML private Label clientHomeTitle;
     @FXML private Label clientHomeAccountInfo;
-    @FXML private ListView clientHomeMyStorefrontsListView;
-    @FXML private Label clientHomeMyStorefrontsHeader;
-    @FXML private ListView clientHomeMyMessagesListView;
-    @FXML private Label clientHomeMyMessagesHeader;
+    @FXML private ListView clientHomeStorefrontsListView;
+    @FXML private Label clientHomeStorefrontsHeader;
+    @FXML private ListView clientHomeMessagesListView;
+    @FXML private Label clientHomeMessagesHeader;
 
     private final String dataFileName = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json";
     private ShopOrSwap system;
@@ -76,17 +75,17 @@ public class Controller {
                         "\n\tAccount rating: " + ((Client) this.currentUser).calculateRating()
                 );
 
-                this.clientHomeMyStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeMyStorefrontsListView");
-                ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(this.system.findStorefronts((Client) this.currentUser));
-                this.clientHomeMyStorefrontsListView.getItems().addAll(storefrontStrings);
-                this.clientHomeMyStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeMyStorefrontsHeader");
-                this.clientHomeMyStorefrontsHeader.setText("My Storefronts: " + storefrontStrings.size());
+                this.clientHomeStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeStorefrontsListView");
+                ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(this.system.findAllStorefronts());
+                this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
+                this.clientHomeStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeStorefrontsHeader");
+                this.clientHomeStorefrontsHeader.setText("All Storefronts: " + storefrontStrings.size());
 
-                this.clientHomeMyMessagesListView = (ListView) clientHomepageScene.lookup("#clientHomeMyMessagesListView");
+                this.clientHomeMessagesListView = (ListView) clientHomepageScene.lookup("#clientHomeMessagesListView");
                 ObservableList<String> messageStrings = this.makeMessageObservableList(this.system.findMessagesByRecipient(this.currentUser));
-                this.clientHomeMyMessagesListView.getItems().addAll(messageStrings);
-                this.clientHomeMyMessagesHeader = (Label) clientHomepageScene.lookup("#clientHomeMyMessagesHeader");
-                this.clientHomeMyMessagesHeader.setText("My Messages: " + messageStrings.size());
+                this.clientHomeMessagesListView.getItems().addAll(messageStrings);
+                this.clientHomeMessagesHeader = (Label) clientHomepageScene.lookup("#clientHomeMessagesHeader");
+                this.clientHomeMessagesHeader.setText("My Messages: " + messageStrings.size());
 
                 clientHomepageWindow.show();
             }
@@ -120,15 +119,8 @@ public class Controller {
 
     private ObservableList<String> makeStorefrontObservableList(List<Storefront> storefrontListIn){
         ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
-        String storefrontRecordString;
         for(Storefront storefront : storefrontListIn){
-            if(storefront instanceof SellStorefront){
-                storefrontRecordString = "Sell: ";
-            }else{
-                storefrontRecordString = "Swap: ";
-            }
-            storefrontRecordString = storefrontRecordString + storefront.getStorefrontName() + " (" + storefront.getStorefrontProducts().size() + " Products)";
-            observationsOut.add(storefrontRecordString);
+            observationsOut.add(storefront.getStorefrontName());
         }
         return observationsOut.sorted();
     }

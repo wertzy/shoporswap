@@ -162,6 +162,18 @@ public class ShopOrSwap {
         return storefrontListOut;
     }
 
+    public List<Storefront> findAllStorefronts(){
+        List<Storefront> storefrontListOut = new ArrayList<Storefront>();
+        for(Account owner : this.getAccountCollection().values()) {
+            if(owner instanceof Client) {
+                if(((Client) owner).getMyStorefronts().values().size() > 0) {
+                    storefrontListOut.addAll(((Client) owner).getMyStorefronts().values());
+                }
+            }
+        }
+        return storefrontListOut;
+    }
+
     /**
      * Finds the List of Storefronts a Client owns in the shoporswap.ShopOrSwap system by Client name
      * @param ownerNameIn the name (String) of the Client owning the Storefront
