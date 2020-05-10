@@ -14,9 +14,10 @@ public class GUIDriver extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/logIn.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/signIn.fxml"));
         primaryStage.setTitle("Shop or Swap");
-        primaryStage.setScene(new Scene(root, 700, 700));
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

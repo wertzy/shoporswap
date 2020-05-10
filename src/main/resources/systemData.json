@@ -4,58 +4,9 @@
     "accountPassword" : "admin1",
     "isFrozen" : false,
     "myProductRecords" : null,
-    "myStorefrontRecords" : null
-  }, {
-    "accountName" : "client2",
-    "accountPassword" : "client2",
-    "isFrozen" : false,
-    "myProductRecords" : [ ],
-    "myStorefrontRecords" : [ ]
-  }, {
-    "accountName" : "client1",
-    "accountPassword" : "client1",
-    "isFrozen" : false,
-    "myProductRecords" : [ ],
-    "myStorefrontRecords" : [ {
-      "storefrontType" : "shoporswap.SellStorefront",
-      "storefrontName" : "sell storefront 1",
-      "productRecordList" : [ {
-        "productType" : "shoporswap.SellProduct",
-        "productName" : "sell product 1",
-        "productDescription" : "description 1",
-        "productValue" : 20.0,
-        "productMerchantName" : "client1",
-        "productTags" : [ {
-          "name" : "tag1"
-        } ]
-      } ]
-    }, {
-      "storefrontType" : "shoporswap.SwapStorefront",
-      "storefrontName" : "swap storefront 2",
-      "productRecordList" : [ {
-        "productType" : "shoporswap.SwapProduct",
-        "productName" : "swap product 2",
-        "productDescription" : "description 2",
-        "productValue" : 20.0,
-        "productMerchantName" : "client1",
-        "productTags" : [ {
-          "name" : "tag2"
-        } ]
-      } ]
-    }, {
-      "storefrontType" : "shoporswap.SwapStorefront",
-      "storefrontName" : "swap storefront 1",
-      "productRecordList" : [ {
-        "productType" : "shoporswap.SwapProduct",
-        "productName" : "swap product 1",
-        "productDescription" : "description 1",
-        "productValue" : 20.0,
-        "productMerchantName" : "client1",
-        "productTags" : [ {
-          "name" : "tag2"
-        } ]
-      } ]
-    } ]
+    "myStorefrontRecords" : null,
+    "ratingsList" : null,
+    "wallet" : null
   } ],
   "messageRecords" : [ ]
 }
