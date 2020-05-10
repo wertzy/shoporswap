@@ -30,6 +30,7 @@ public class Controller {
 
     // client home page items
     @FXML private Label clientHomeTitle;
+    @FXML private Label clientHomeAccountInfo;
     @FXML private ListView clientHomeMyStorefrontsListView;
     @FXML private Label clientHomeMyStorefrontsHeader;
     @FXML private ListView clientHomeMyMessagesListView;
@@ -67,6 +68,14 @@ public class Controller {
                 this.clientHomeTitle = (Label) clientHomepageScene.lookup("#clientHomeTitle");
                 this.clientHomeTitle.setText("Home: " + this.currentUser.getAccountName());
 
+                this.clientHomeAccountInfo = (Label) clientHomepageScene.lookup("#clientHomeAccountInfo");
+                this.clientHomeAccountInfo.setText(
+                        "\tAccount name: " + this.currentUser.getAccountName() +
+                        "\n\tAccount password: " + this.currentUser.getAccountPassword() +
+                        "\n\tAccount funds: " + ((Client) this.currentUser).getWallet() +
+                        "\n\tAccount rating: " + ((Client) this.currentUser).calculateRating()
+                );
+
                 this.clientHomeMyStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeMyStorefrontsListView");
                 ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(this.system.findStorefronts((Client) this.currentUser));
                 this.clientHomeMyStorefrontsListView.getItems().addAll(storefrontStrings);
@@ -94,7 +103,7 @@ public class Controller {
         }catch(Exception e){
             try {
                 attemptedMakeAccount = this.system.addAccount("Client", this.signInAccountName.getText(), this.signInPassword.getText());
-                this.signInInvalidLabel.setText("Account created successfully.");
+                this.signInInvalidLabel.setText("Account created successfully. Please sign in using your new credentials.");
                 this.signInInvalidLabel.setTextFill(Color.web("#00FF00"));
                 this.signInInvalidLabel.setVisible(true);
                 JsonUtil.toJsonFile(this.dataFileName, new ShopOrSwapRecord(this.system));
@@ -121,7 +130,7 @@ public class Controller {
             storefrontRecordString = storefrontRecordString + storefront.getStorefrontName() + " (" + storefront.getStorefrontProducts().size() + " Products)";
             observationsOut.add(storefrontRecordString);
         }
-        return observationsOut;
+        return observationsOut.sorted();
     }
 
     private ObservableList<String> makeMessageObservableList(List<AbstractMessage> messageListIn){
@@ -131,7 +140,7 @@ public class Controller {
             messageRecordString = "From: " + message.getSender() + "\n\tSubject: " + message.getSubject() + "\n\tContent: " + message.getContent();
             observationsOut.add(messageRecordString);
         }
-        return observationsOut;
+        return observationsOut.sorted();
     }
 
     public void signOut(ActionEvent event) throws IOException{

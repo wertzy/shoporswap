@@ -1,0 +1,108 @@
+{
+  "accountRecords" : [ {
+    "accountName" : "admin1",
+    "accountPassword" : "admin1",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null,
+    "ratingsList" : null,
+    "wallet" : null
+  }, {
+    "accountName" : "client2",
+    "accountPassword" : "client2",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
+    "accountName" : "client1",
+    "accountPassword" : "client1",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-8",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-9",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-6",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-7",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-10",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-4",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-5",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-2",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-3",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "sell storefront 1-1",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-9",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-7",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-8",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-10",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-1",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-2",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-5",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-6",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-3",
+      "productRecordList" : [ ]
+    }, {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap storefront 1-4",
+      "productRecordList" : [ ]
+    } ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  } ],
+  "messageRecords" : [ ]
+}
