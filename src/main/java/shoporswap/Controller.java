@@ -64,6 +64,29 @@ public class Controller {
     private Storefront selectedStorefront;
     private Account selectedUser;
 
+    private static Controller instance;
+
+
+    private Controller(Account currentUser) {
+        this.currentUser=currentUser;
+    }
+
+    public static Controller getInstance(Account currentUser) {
+        if(instance == null) {
+            instance = new Controller(currentUser);
+        }
+        return instance;
+    }
+
+    public Account getCurrentUser() {
+        return currentUser;
+    }
+
+    public void cleanInstance() {
+        currentUser = null;
+    }
+
+
     public Controller() throws IOException {
         try {
             this.system = JsonUtil.fromJsonFile(dataFileName, ShopOrSwapRecord.class).toShopOrSwap();
@@ -75,11 +98,13 @@ public class Controller {
         }
     }
 
+
     public void signIn(ActionEvent event) throws IOException {
         Account attemptedSignInAccount = this.system.signIn(this.signInAccountName.getText(), this.signInPassword.getText());
         if (attemptedSignInAccount == null) {
             this.signInInvalidLabel.setVisible(true);
         } else {
+            Controller.getInstance(attemptedSignInAccount);
             this.currentUser = attemptedSignInAccount;
             if (this.currentUser.getClass().getName().contains("Client")) {
                 Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
@@ -185,9 +210,8 @@ public class Controller {
         if(rbSell.isSelected() || rbSwap.isSelected()) {
             Storefront storefront;
             try {
-                storefront = system.addStorefront(typeIn, nameIn, (Client) system.findAccount(currentUser));
+                storefront = system.addStorefront(typeIn, nameIn, (Client) system.findAccount(instance.getCurrentUser()));
                 System.out.print("\nStorefront " + storefront.getStorefrontName() + " has been successfully created for products to " + typeIn);
-                System.out.println("We did it");
             } catch (IllegalArgumentException e) {
                 errorLabel.setText("\nError: " + e.getMessage());
                 errorLabel.setVisible(true);
@@ -247,17 +271,18 @@ public class Controller {
         homepageWindow.setResizable(false);
         homepageWindow.show();
 
-        //this.current User gives an error, not sure why.
+        this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
+        this.welcomeLabel.setText("WELCOME: " + instance.getCurrentUser().getAccountName());
 
-//        this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
-//        this.welcomeLabel.setText("WELCOME: " + this.currentUser.getAccountName());
-//
-//        this.accountRatingLabel.setText("Account rating: " + ((Client) this.currentUser).calculateRating());
-//
-//        this.myFundsLabel.setText("Account funds: " + ((Client) this.currentUser).getWallet());
+        this.accountRatingLabel = (Label) homepageScene.lookup("#accountRatingLabel");
+        this.accountRatingLabel.setText("Account rating: " + ((Client) instance.getCurrentUser()).calculateRating());
+
+        this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
+        this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
     }
 
     public void signOut(ActionEvent event) throws IOException{
+        instance.cleanInstance();
         Parent signInPage = FXMLLoader.load(getClass().getResource("/signIn.fxml"));
         Scene signInPageScene = new Scene(signInPage, 600, 400);
         Stage signInPageStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
