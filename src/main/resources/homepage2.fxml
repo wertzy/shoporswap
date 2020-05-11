@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoporswap.Controller2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoporswap.Controller">
    <children>
-      <Button fx:id="viewMyStorefronts" layoutX="228.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#viewMyStorefrontClicked" prefHeight="27.0" prefWidth="144.0" text="View My Storefronts" />
-      <Button fx:id="viewMyProducts" layoutX="38.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#viewMyProductsClicked" prefHeight="27.0" prefWidth="144.0" text="View My Products" />
-      <Button fx:id="postProduct" layoutX="417.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#postProductClicked" prefHeight="27.0" prefWidth="144.0" text="Post Product" />
-      <Button fx:id="viewMessages" layoutX="38.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#viewMessagesClicked" prefHeight="27.0" prefWidth="144.0" text="View Messages" />
+      <Button fx:id="viewMyStorefronts" layoutX="38.0" layoutY="123.0" mnemonicParsing="false" onAction="#viewMyStorefrontsClicked" prefHeight="27.0" prefWidth="144.0" text="View My Storefronts" />
+      <Button fx:id="viewMyProducts" layoutX="39.0" layoutY="209.0" mnemonicParsing="false" onAction="#viewMyProductsClicked" prefHeight="27.0" prefWidth="144.0" text="View My Products" />
+      <Button fx:id="postProduct" layoutX="419.0" layoutY="209.0" mnemonicParsing="false" onAction="#postProductClicked" prefHeight="27.0" prefWidth="144.0" text="Post Product" />
+      <Button fx:id="viewMessages" layoutX="232.0" layoutY="209.0" mnemonicParsing="false" onAction="#viewMessagesClicked" prefHeight="27.0" prefWidth="144.0" text="View Messages" />
       <Button fx:id="addFundsButton" layoutX="31.0" layoutY="350.0" mnemonicParsing="false" onAction="#addFundsClicked" prefHeight="27.0" prefWidth="84.0" text="Add Funds" />
-      <Button fx:id="SignOutButton1" layoutX="516.0" layoutY="350.0" mnemonicParsing="false" onAction="#signOut" prefHeight="27.0" prefWidth="70.0" text="Log Out" />
-      <Button fx:id="viewStorefronts" layoutX="228.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#viewStorefrontsClicked" prefHeight="27.0" prefWidth="144.0" text="View Storefronts" />
-      <RadioButton fx:id="rbSell" layoutX="423.0" layoutY="182.0" mnemonicParsing="false" text="Sell Product">
-         <toggleGroup>
-            <ToggleGroup fx:id="SellOrSwap" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="rbSwap" layoutX="423.0" layoutY="215.0" mnemonicParsing="false" text="Swap Product" toggleGroup="$SellOrSwap" />
+      <Button fx:id="SignOutButton1" layoutX="502.0" layoutY="350.0" mnemonicParsing="false" onAction="#signOut" prefHeight="27.0" prefWidth="84.0" text="Sign Out" />
+      <Button fx:id="viewStorefronts" layoutX="230.0" layoutY="123.0" mnemonicParsing="false" onAction="#viewStorefrontsClicked" prefHeight="27.0" prefWidth="144.0" text="View Storefronts" />
       <Label fx:id="myFundsLabel" layoutX="31.0" layoutY="313.0" text="My Funds:" />
-      <Label fx:id="errorLabel" alignment="TOP_LEFT" layoutX="194.0" layoutY="261.0" prefHeight="139.0" prefWidth="224.0" text="Error:" textFill="RED" />
+      <Label fx:id="errorLabel" alignment="TOP_LEFT" layoutX="194.0" layoutY="261.0" prefHeight="139.0" prefWidth="220.0" text="Error:" textFill="RED" visible="false" wrapText="true" />
       <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="4.0" layoutY="37.0" prefHeight="38.0" prefWidth="592.0" text="WELCOME:" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
@@ -35,5 +32,29 @@
          </font>
       </Label>
       <Label fx:id="accountRatingLabel" alignment="CENTER" layoutX="120.0" layoutY="81.0" prefHeight="17.0" prefWidth="363.0" text="Account Rating:" textAlignment="CENTER" />
+      <Button fx:id="createStorefront" layoutX="418.0" layoutY="123.0" mnemonicParsing="false" onAction="#createStorefront" prefHeight="27.0" prefWidth="144.0" text="Create Storefront" />
+      <VBox layoutX="418.0" layoutY="252.0" prefHeight="74.0" prefWidth="144.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="147.0" text="TYPE" textAlignment="CENTER" />
+            <RadioButton fx:id="rbSell" mnemonicParsing="false" text="Sell">
+               <toggleGroup>
+                  <ToggleGroup fx:id="SellOrSwap" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rbSwap" mnemonicParsing="false" text="Swap" toggleGroup="$SellOrSwap">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </RadioButton>
+         </children>
+      </VBox>
+      <TextField fx:id="createStorefrontTxtFld" layoutX="418.0" layoutY="166.0" prefHeight="27.0" prefWidth="142.0" promptText="Enter storefront name">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

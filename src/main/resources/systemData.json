@@ -1,5 +1,13 @@
 {
   "accountRecords" : [ {
+    "accountName" : "a",
+    "accountPassword" : "a",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "0.0"
+  }, {
     "accountName" : "admin1",
     "accountPassword" : "admin1",
     "isFrozen" : false,
