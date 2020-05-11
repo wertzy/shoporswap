@@ -41,7 +41,12 @@ public class Controller {
     @FXML private RadioButton rbSwap;
 
     // post product items
+    @FXML private TextField productNametxtFld;
     @FXML private TextField productPriceTxtFld;
+    @FXML private TextArea productDescriptionTxtArea;
+    @FXML private TextField productTagsTxtFld;
+    @FXML private Label errorLabel1;
+    @FXML private Label successLabel1;
 
     // client home page items
     @FXML private Label clientHomeTitle;
@@ -166,13 +171,6 @@ public class Controller {
         this.clientHomeStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeStorefrontsHeader");
         this.clientHomeStorefrontsHeader.setText("All Storefronts: " + storefrontStrings.size());
 
-//                this.clientHomeMessagesListView = (ListView) clientHomepageScene.lookup("#clientHomeMessagesListView");
-//                ObservableList<String> messageStrings = this.makeMessageObservableList(this.system.findMessagesByRecipient(this.currentUser));
-//                this.clientHomeMessagesListView.getItems().addAll(messageStrings);
-//                this.clientHomeMessagesHeader = (Label) clientHomepageScene.lookup("#clientHomeMessagesHeader");
-//                this.clientHomeMessagesHeader.setText("My Messages: " + messageStrings.size());
-
-
         this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<String>(){
                     @Override
@@ -218,7 +216,23 @@ public class Controller {
             }
         }
     }
-    public void postProductToStorefront(ActionEvent event){}
+    public void postProductToStorefront(ActionEvent event){
+        System.out.println(instance.selectedStorefront.getClass());
+        System.out.println(instance.productNametxtFld.getText());
+        System.out.println(instance.productDescriptionTxtArea.getText());
+        System.out.println(instance.productPriceTxtFld.getText());
+        AbstractProduct productAdded = instance.system.addToStorefront(
+            instance.productNametxtFld.getText(),
+            instance.productDescriptionTxtArea.getText(),
+            Double.parseDouble(instance.productPriceTxtFld.getText()),
+            instance.selectedStorefront
+        );
+        instance.successLabel1.setText("Product " + productAdded.getProductName() + " has been successfully added to " + instance.selectedStorefront.getStorefrontName());
+        instance.successLabel1.setVisible(true);
+
+        this.system = instance.system;
+
+    }
 
     public void viewMyStorefrontsClicked(ActionEvent event){}
 
@@ -234,6 +248,40 @@ public class Controller {
         Stage postProductWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         postProductWindow.setScene(postProductScene);
         postProductWindow.setResizable(false);
+
+        this.clientHomeStorefrontsListView = (ListView) postProductScene.lookup("#clientHomeStorefrontsListView");
+        ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(this.system.findAllStorefronts());
+        this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
+
+        this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<String>(){
+                    @Override
+                    public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
+                        Controller.this.clientHomeGoToStorefrontNameLabel = (Label) postProductScene.lookup("#clientHomeGoToStorefrontNameLabel");
+                        Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) postProductScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
+                        String[] recordStringComponents = ((String) clientHomeStorefrontsListView.getSelectionModel().getSelectedItem()).split(":");
+                        String storefrontOwner = recordStringComponents[0].trim();
+                        String storefrontName = recordStringComponents[1].trim();
+                        Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
+                        Controller.this.selectedUser = Controller.this.system.findAccount(storefrontOwner);
+                        Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
+                        Controller.this.selectedStorefront = Controller.this.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                        instance.selectedStorefront = Controller.this.selectedStorefront;
+                    }
+                }
+        );
+
+        instance.productNametxtFld = (TextField) postProductScene.lookup("#productNametxtFld");
+        instance.productPriceTxtFld = (TextField) postProductScene.lookup("#productPriceTxtFld");
+        instance.productDescriptionTxtArea = (TextArea) postProductScene.lookup("#productDescriptionTxtArea");
+        instance.productTagsTxtFld = (TextField) postProductScene.lookup("#productTagsTxtFld");
+        instance.clientHomeGoToStorefrontButton = (Button) postProductScene.lookup("#clientHomeGoToStorefrontButton");
+        instance.rbSell = (RadioButton) postProductScene.lookup("#rbSell");
+        instance.rbSwap = (RadioButton) postProductScene.lookup("#rbSwap");
+        instance.errorLabel1 = (Label) postProductScene.lookup("#errorLabel1");
+        instance.successLabel1 = (Label) postProductScene.lookup("#successLabel");
+        instance.system = this.system;
+
         postProductWindow.show();
     }
 
@@ -294,7 +342,7 @@ public class Controller {
 
     public void saveData(ActionEvent event) throws IOException{
         try {
-            JsonUtil.toJsonFile(dataFileName, new ShopOrSwapRecord(this.system));
+            JsonUtil.toJsonFile(dataFileName, new ShopOrSwapRecord(instance.system));
             System.out.println("Data Export Success");
             System.exit(0);
         }catch(Exception e){

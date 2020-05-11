@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="storefrontHeader" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="600.0" text="Storefront Home" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="500.0" layoutY="8.0" mnemonicParsing="false" prefWidth="100.0" text="Back" />
+      <VBox layoutY="40.0" prefHeight="360.0" prefWidth="200.0" />
+      <VBox layoutX="200.0" layoutY="40.0" prefHeight="360.0" prefWidth="200.0" />
+      <VBox layoutX="400.0" layoutY="40.0" prefHeight="360.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>

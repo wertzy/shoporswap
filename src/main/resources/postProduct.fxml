@@ -39,8 +39,8 @@
       <Label layoutX="224.0" layoutY="258.0" text="Enter Tags Seperated by a &quot;,&quot; " />
       <Label layoutX="224.0" layoutY="325.0" text="Enter Price (double) " />
       <Label layoutX="226.0" layoutY="114.0" text="Enter a text description with no symbols." />
-      <Label fx:id="errorLabel1" alignment="TOP_LEFT" layoutX="457.0" layoutY="258.0" prefHeight="63.0" prefWidth="136.0" text="Error:" textFill="RED" wrapText="true" />
-      <Label fx:id="successLabel" alignment="TOP_LEFT" layoutX="457.0" layoutY="325.0" prefHeight="63.0" prefWidth="136.0" text="Success!" textFill="#01d713" wrapText="true" />
+      <Label fx:id="errorLabel1" visible="false" alignment="TOP_LEFT" layoutX="457.0" layoutY="258.0" prefHeight="63.0" prefWidth="136.0" text="Error:" textFill="RED" wrapText="true" />
+      <Label fx:id="successLabel" visible="false" alignment="TOP_LEFT" layoutX="457.0" layoutY="325.0" prefHeight="63.0" prefWidth="136.0" text="Success!" textFill="#01d713" wrapText="true" />
       <VBox layoutX="431.0" layoutY="15.0" prefHeight="74.0" prefWidth="144.0" style="-fx-border-color: #000000;">
          <children>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="147.0" text="TYPE" textAlignment="CENTER" />
