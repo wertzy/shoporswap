@@ -58,11 +58,10 @@ https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/JsonUtil
 
 * Sprint UML Diagram:
 
-![](https://github.com/wertzy/shoporswap/blob/Product/class-diagram-updated-sprint3.png)
+![](https://github.com/wertzy/shoporswap/blob/master/class-diagram-updated-sprint3.png)
 
 * Sprint State Diagram:
 
-![](https://github.com/wertzy/shoporswap/blob/Product/state-diagram-spring3.png)
+![](https://github.com/wertzy/shoporswap/blob/master/state-diagram-spring3.png)
 
 * Sprint Retrospective Agenda: https://docs.google.com/document/d/1JwrPWHEJhD3hnPlHoQYExUrano2YokQMMiSHjwMqbIE/edit?usp=sharing
-
