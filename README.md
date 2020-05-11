@@ -46,13 +46,13 @@ https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/JsonUtil
 ## Sprint #3:
 
 * Goal: 
-- storefronts: sell or swap 
-- tagging system implemented into system fully
-- user, tag, product, storefront searches
-- smooth menus
-- descriptive instruction for menu
-- display price
-- "smooth" (user-friendly) UI
+  - storefronts: sell or swap 
+  - tagging system implemented into system fully
+  - user, tag, product, storefront searches
+  - smooth menus
+  - descriptive instruction for menu
+  - display price
+  - "smooth" (user-friendly) UI
 
 * Stretch Goal: Implement GUI with ability to upload pictures
 
