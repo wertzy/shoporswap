@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,7 +21,9 @@ import util.JsonUtil;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class Controller {
 
@@ -63,7 +66,7 @@ public class Controller {
     private Storefront selectedStorefront;
     private Account selectedUser;
 
-    public Controller() throws IOException {
+    public Controller() throws IOException{
         try {
             this.system = JsonUtil.fromJsonFile(dataFileName, ShopOrSwapRecord.class).toShopOrSwap();
         }catch(Exception e){
@@ -82,22 +85,22 @@ public class Controller {
             this.currentUser = attemptedSignInAccount;
             if (this.currentUser.getClass().getName().contains("Client")) {
                 Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
-            Scene homepageScene = new Scene(homepage, 600, 400);
-            Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            homepageWindow.setTitle("Home: " + this.currentUser.getAccountName());
-            homepageWindow.setScene(homepageScene);
-            homepageWindow.setResizable(false);
-            homepageWindow.show();
+                Scene homepageScene = new Scene(homepage, 600, 400);
+                Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                homepageWindow.setTitle("Home: " + this.currentUser.getAccountName());
+                homepageWindow.setScene(homepageScene);
+                homepageWindow.setResizable(false);
+                homepageWindow.show();
 
-            this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
-            this.welcomeLabel.setText("WELCOME: " + this.currentUser.getAccountName());
+                this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
+                this.welcomeLabel.setText("WELCOME: " + this.currentUser.getAccountName());
 
-            this.accountRatingLabel = (Label) homepageScene.lookup("#accountRatingLabel");
-            this.accountRatingLabel.setText("Account rating: " + ((Client) this.currentUser).calculateRating());
+                this.accountRatingLabel = (Label) homepageScene.lookup("#accountRatingLabel");
+                this.accountRatingLabel.setText("Account rating: " + ((Client) this.currentUser).calculateRating());
 
-            this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
-            this.myFundsLabel.setText("Account funds: " + ((Client) this.currentUser).getWallet());
-        }
+                this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
+                this.myFundsLabel.setText("Account funds: " + ((Client) this.currentUser).getWallet());
+            }
 
         }
 
@@ -128,6 +131,7 @@ public class Controller {
         this.signInPassword.setText("");
     }
     public void viewStorefrontsClicked(ActionEvent event)throws IOException{
+        this.currentUser = this.system.findAccount(this.welcomeLabel.getText().split(": ")[1]);
         Parent clientHomepage = FXMLLoader.load(getClass().getResource("/clientHome2.fxml"));
         Scene clientHomepageScene = new Scene(clientHomepage, 600, 400);
         Stage clientHomepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -182,9 +186,10 @@ public class Controller {
             errorLabel.setVisible(true);
         }
         if(rbSell.isSelected() || rbSwap.isSelected()) {
+            this.currentUser = this.system.findAccount(this.welcomeLabel.getText().split(": ")[1]);
             Storefront storefront;
             try {
-                storefront = system.addStorefront(typeIn, nameIn, (Client) system.findAccount(currentUser));
+                storefront = system.addStorefront(typeIn, nameIn, (Client) system.findAccount(this.currentUser.getAccountName()));
                 System.out.print("\nStorefront " + storefront.getStorefrontName() + " has been successfully created for products to " + typeIn);
                 System.out.println("We did it");
             } catch (IllegalArgumentException e) {
@@ -270,5 +275,4 @@ public class Controller {
             System.exit(1);
         }
     }
-
 }
