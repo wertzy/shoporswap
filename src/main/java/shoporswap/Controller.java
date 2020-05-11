@@ -40,7 +40,8 @@ public class Controller {
     @FXML private RadioButton rbSell;
     @FXML private RadioButton rbSwap;
 
-
+    // post product items
+    @FXML private TextField productPriceTxtFld;
 
     // client home page items
     @FXML private Label clientHomeTitle;
@@ -193,6 +194,7 @@ public class Controller {
             }
         }
     }
+    public void postProductToStorefront(ActionEvent event){}
 
     public void viewMyStorefrontsClicked(ActionEvent event){}
 
@@ -202,7 +204,14 @@ public class Controller {
 
     public void viewMyProductsClicked(ActionEvent event){}
 
-    public void postProductClicked(ActionEvent event){}
+    public void postProductClicked(ActionEvent event)throws IOException{
+        Parent postProductPage = FXMLLoader.load(getClass().getResource("/postProduct.fxml"));
+        Scene postProductScene = new Scene(postProductPage, 600, 400);
+        Stage postProductWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        postProductWindow.setScene(postProductScene);
+        postProductWindow.setResizable(false);
+        postProductWindow.show();
+    }
 
 
     private ObservableList<String> makeStorefrontObservableList(List<Storefront> storefrontListIn){
@@ -246,10 +255,7 @@ public class Controller {
 //        this.accountRatingLabel.setText("Account rating: " + ((Client) this.currentUser).calculateRating());
 //
 //        this.myFundsLabel.setText("Account funds: " + ((Client) this.currentUser).getWallet());
-
-
     }
-
 
     public void signOut(ActionEvent event) throws IOException{
         Parent signInPage = FXMLLoader.load(getClass().getResource("/signIn.fxml"));
