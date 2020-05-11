@@ -45,5 +45,24 @@ https://github.com/wertzy/shoporswap/blob/JsonIntegration/src/test/java/JsonUtil
 
 ## Sprint #3:
 
+* Goal: 
+- storefronts: sell or swap 
+- tagging system implemented into system fully
+- user, tag, product, storefront searches
+- smooth menus
+- descriptive instruction for menu
+- display price
+- "smooth" (user-friendly) UI
+
+* Stretch Goal: Implement GUI with ability to upload pictures
+
+* Sprint UML Diagram:
+
+![](https://github.com/wertzy/shoporswap/blob/Product/class-diagram-updated-sprint3.png)
+
+* Sprint State Diagram:
+
+![](https://github.com/wertzy/shoporswap/blob/Product/state-diagram-spring3.png)
+
 * Sprint Retrospective Agenda: https://docs.google.com/document/d/1JwrPWHEJhD3hnPlHoQYExUrano2YokQMMiSHjwMqbIE/edit?usp=sharing
 
