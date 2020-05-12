@@ -11,15 +11,37 @@
     "accountName" : "client2",
     "accountPassword" : "client2",
     "isFrozen" : false,
-    "myProductRecords" : [ ],
-    "myStorefrontRecords" : [ ],
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "swap 1",
+      "productDescription" : "1",
+      "productValue" : 1.0,
+      "productMerchantName" : "client1",
+      "productTags" : [ {
+        "name" : "1"
+      } ]
+    } ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "swap 2",
+      "productRecordList" : [ ]
+    } ],
     "ratingsList" : [ ],
     "wallet" : "0.0"
   }, {
     "accountName" : "client1",
     "accountPassword" : "client1",
     "isFrozen" : false,
-    "myProductRecords" : [ ],
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "swap 1",
+      "productDescription" : "1",
+      "productValue" : 1.0,
+      "productMerchantName" : "client2",
+      "productTags" : [ {
+        "name" : "1"
+      } ]
+    } ],
     "myStorefrontRecords" : [ {
       "storefrontType" : "shoporswap.SellStorefront",
       "storefrontName" : "sell 1",
@@ -32,5 +54,25 @@
     "ratingsList" : [ ],
     "wallet" : "0.0"
   } ],
-  "messageRecords" : [ ]
+  "messageRecords" : [ {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client2",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: swap 1 for swap 1",
+    "content" : "client1 has completed a transaction to get swap 1 from client2 by giving swap 1",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client2",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: swap 1 for swap 1",
+    "content" : "client1 has completed a transaction to get swap 1 from client2 by giving swap 1",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  } ]
 }

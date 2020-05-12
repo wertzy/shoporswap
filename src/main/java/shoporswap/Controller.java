@@ -457,9 +457,9 @@ public class Controller {
             try {
                 storefront = instance.system.addStorefront(typeIn, nameIn, (Client) instance.system.findAccount(instance.getCurrentUser()));
                 //System.out.println(instance.system.findAllStorefronts());
-                this.system= instance.system;
+                this.system = instance.system;
                 System.out.print("\nStorefront " + storefront.getStorefrontName() + " has been successfully created for products to " + typeIn);
-                errorLabel.setText("Storefront \"" + storefront.getStorefrontName() + "\"\nhas been successfully created for\nproducts to \" + typeIn");
+                errorLabel.setText("Storefront \"" + storefront.getStorefrontName() + "\"\nhas been successfully created for\nproducts to " + typeIn);
                 errorLabel.setTextFill(Color.web("#008000"));
                 errorLabel.setVisible(true);
             } catch (IllegalArgumentException e) {
@@ -496,7 +496,11 @@ public class Controller {
             instance.successLabel1.setVisible(true);
             this.system = instance.system;
 
-        }catch(Exception e){
+        }catch(IllegalArgumentException e){
+            instance.successLabel1.setText("Error: Check that a storefront has been selected and all fields have valid input.");
+            instance.successLabel1.setTextFill(Color.web("#FF0000"));
+            instance.successLabel1.setVisible(true);
+        }catch(NullPointerException e2){
             instance.successLabel1.setText("Error: Check that a storefront has been selected and all fields have valid input.");
             instance.successLabel1.setTextFill(Color.web("#FF0000"));
             instance.successLabel1.setVisible(true);
