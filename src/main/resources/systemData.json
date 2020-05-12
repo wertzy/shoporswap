@@ -1,0 +1,63 @@
+{
+  "accountRecords" : [ {
+    "accountName" : "IoanDascalu",
+    "accountPassword" : "IoanDascalu",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "pink",
+      "productRecordList" : [ ]
+    } ],
+    "ratingsList" : [ ],
+    "wallet" : "22.22"
+  }, {
+    "accountName" : "admin1",
+    "accountPassword" : "admin1",
+    "isFrozen" : false,
+    "myProductRecords" : null,
+    "myStorefrontRecords" : null,
+    "ratingsList" : null,
+    "wallet" : null
+  }, {
+    "accountName" : "Jeff",
+    "accountPassword" : "Jeff",
+    "isFrozen" : false,
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SellProduct",
+      "productName" : "pinkHat",
+      "productDescription" : "pink hat is pink",
+      "productValue" : 22.22,
+      "productMerchantName" : "IoanDascalu",
+      "productTags" : [ {
+        "name" : "pink"
+      }, {
+        "name" : "hat"
+      } ]
+    } ],
+    "myStorefrontRecords" : [ ],
+    "ratingsList" : [ ],
+    "wallet" : "77.78"
+  } ],
+  "messageRecords" : [ {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "IoanDascalu",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "Jeff",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: pinkHat",
+    "content" : "Jeff has completed a transaction to buy pinkHat from IoanDascalu",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "Jeff",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "IoanDascalu",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: pinkHat",
+    "content" : "Jeff has completed a transaction to buy pinkHat from IoanDascalu",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  } ]
+}
