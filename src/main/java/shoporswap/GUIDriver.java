@@ -12,6 +12,12 @@ import java.io.IOException;
 
 public class GUIDriver extends Application {
 
+    //KNOWN BUGS:
+
+    //IF YOU change the selectedStorefront and then try to buy a product, it will give you an error. Same if you change selectedUser
+
+    //If you go to a storefront, select a product, then go to a different store front, the listener will no longer have a selected product to listen to and the program will complain.
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
