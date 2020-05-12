@@ -56,9 +56,12 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="clientHomeMessagesListView" prefHeight="278.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+            <Label fx:id="productInfoLabel" alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="231.0" prefWidth="198.0" text="Product Info" visible="false" wrapText="true" />
+            <Button fx:id="acquireProduct" mnemonicParsing="false" onAction="#acquireProductClicked" prefHeight="27.0" prefWidth="205.0" text="Purchase Product" />
+            <Label fx:id="errorLabel2" text="Error:" textFill="RED" visible="false" />
          </children>
       </VBox>
       <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Back" />
+      <Label fx:id="myFundsLabel2" layoutX="268.0" layoutY="49.0" text="My Funds:" />
    </children>
 </AnchorPane>
