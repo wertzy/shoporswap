@@ -21,6 +21,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Controller {
 
@@ -37,6 +38,7 @@ public class Controller {
     @FXML private Label errorLabel;
     @FXML private Label myFundsLabel;
     @FXML private TextField createStorefrontTxtFld;
+    @FXML private TextField addFundsTxtFld;
     @FXML private RadioButton rbSell;
     @FXML private RadioButton rbSwap;
 
@@ -59,17 +61,39 @@ public class Controller {
     @FXML private Label clientHomeGoToStorefrontOwnerLabel;
     @FXML private Button clientHomeGoToStorefrontButton;
 
-    @FXML private ListView clientHomeMessagesListView;
-    @FXML private Label clientHomeMessagesHeader;
+    @FXML private ListView clientHomeProductsListView;
+    @FXML private Label clientHomeProductsHeader;
+    @FXML private Label clientHomeGoToProductOwnerLabel;
+    @FXML private Label clientHomeGoToProductNameLabel;
+
+    @FXML private Label productInfoLabel;
+    @FXML private Label errorLabel2;
+    @FXML private Button acquireProduct;
+
+    @FXML private Label myFundsLabel2;
+
+    // swap product home items
+    @FXML private Label instructionLabel;
+    @FXML private Button swapConfirm;
+
+    //my client home page items
+    @FXML private Button deleteProduct;
 
     private final String dataFileName = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json";
     private ShopOrSwap system;
     private Account currentUser;
 
     private Storefront selectedStorefront;
+    private AbstractProduct selectedProduct;
     private Account selectedUser;
 
+    private Storefront storefrontWant;
+    private Storefront storefrontGive;
+    private AbstractProduct productWant;
+    private AbstractProduct giveProduct;
+
     private static Controller instance;
+
 
     private Controller(Account currentUser) {
         this.currentUser=currentUser;
@@ -80,10 +104,6 @@ public class Controller {
             instance = new Controller(currentUser);
         }
         return instance;
-    }
-
-    public void setInstanceSystem(ShopOrSwap system){
-        instance.system = system;
     }
 
     public Account getCurrentUser() {
@@ -112,26 +132,33 @@ public class Controller {
         if (attemptedSignInAccount == null) {
             this.signInInvalidLabel.setVisible(true);
         } else {
-            Controller.getInstance(attemptedSignInAccount);
-            instance.setInstanceSystem(this.system);
+            if(instance==null) {
+                Controller.getInstance(attemptedSignInAccount);
+                instance.system = this.system;
+                System.out.println("Instance null" +instance.getCurrentUser().getAccountName());
+            }
+            else{
+                instance.currentUser=attemptedSignInAccount;
+                System.out.println("Instance not null" +instance.getCurrentUser().getAccountName());
+            }
             this.currentUser = attemptedSignInAccount;
             if (this.currentUser.getClass().getName().contains("Client")) {
                 Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
             Scene homepageScene = new Scene(homepage, 600, 400);
             Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            homepageWindow.setTitle("Home: " + this.currentUser.getAccountName());
+            homepageWindow.setTitle("Home: " + instance.getCurrentUser().getAccountName());
             homepageWindow.setScene(homepageScene);
             homepageWindow.setResizable(false);
             homepageWindow.show();
 
             this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
-            this.welcomeLabel.setText("WELCOME: " + this.currentUser.getAccountName());
+            this.welcomeLabel.setText("WELCOME: " + instance.getCurrentUser().getAccountName());
 
             this.accountRatingLabel = (Label) homepageScene.lookup("#accountRatingLabel");
-            this.accountRatingLabel.setText("Account rating: " + ((Client) this.currentUser).calculateRating());
+            this.accountRatingLabel.setText("Account rating: " + ((Client) instance.getCurrentUser()).calculateRating());
 
             this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
-            this.myFundsLabel.setText("Account funds: " + ((Client) this.currentUser).getWallet());
+            this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
         }
 
         }
@@ -169,36 +196,234 @@ public class Controller {
         clientHomepageWindow.setScene(clientHomepageScene);
         clientHomepageWindow.setResizable(false);
 
+        this.myFundsLabel2 = (Label) clientHomepageScene.lookup("#myFundsLabel2");
+        this.myFundsLabel2.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+
         this.clientHomeStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeStorefrontsListView");
-        ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(this.system.findAllStorefronts());
+        ObservableList<String> storefrontStrings = this.makeOtherStorefrontObservableList(instance.system.findAllStorefronts());
         this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
         this.clientHomeStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeStorefrontsHeader");
         this.clientHomeStorefrontsHeader.setText("All Storefronts: " + storefrontStrings.size());
+
 
         this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<String>(){
                     @Override
                     public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
-                        Controller.this.system = instance.system;
                         Controller.this.clientHomeGoToStorefrontNameLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontNameLabel");
                         Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
                         String[] recordStringComponents = ((String) clientHomeStorefrontsListView.getSelectionModel().getSelectedItem()).split(":");
                         String storefrontOwner = recordStringComponents[0].trim();
                         String storefrontName = recordStringComponents[1].trim();
                         Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
-                        Controller.this.selectedUser = Controller.this.system.findAccount(storefrontOwner);
+                        Controller.this.selectedUser = Controller.instance.system.findAccount(storefrontOwner);
                         Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
-                        Controller.this.selectedStorefront = Controller.this.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
-                    }
+                        Controller.this.selectedStorefront = Controller.instance.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                        instance.selectedStorefront= Controller.this.selectedStorefront;
+                        if(instance.selectedStorefront.getClass().getTypeName().contains("Sell")){
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Sell");
+                        }
+                        else{
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Swap");
+                        }
+                        }
                 }
         );
 
         clientHomepageWindow.show();
 
     }
+    public void goToStorefront(ActionEvent event){
+        //this.clientHomeProductsListView.getItems().removeAll();
+        this.clientHomeProductsListView.getItems().clear();
+
+        ObservableList<String> productStrings = this.makeProductsObservableList(instance.selectedStorefront.getStorefrontProducts());
+        this.clientHomeProductsListView.getItems().addAll(productStrings);
+        this.clientHomeProductsHeader.setText("Products in storefront: " + productStrings.size());
+
+
+        this.clientHomeProductsListView.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<String>(){
+                    @Override
+                    public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
+                        //Controller.this.clientHomeGoToStorefrontNameLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontNameLabel");
+                        //Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
+                        String[] recordStringComponents = ((String) clientHomeProductsListView.getSelectionModel().getSelectedItem()).split(":");
+                        String productOwner = recordStringComponents[0].trim();
+                        String productName = recordStringComponents[1].trim();
+                        int productNumber= (clientHomeProductsListView.getSelectionModel().getSelectedIndex());
+                        AbstractProduct product=instance.selectedStorefront.getStorefrontProducts().get(productNumber);
+                        Controller.this.clientHomeGoToProductNameLabel.setText(productName);
+                        Controller.this.clientHomeGoToProductOwnerLabel.setText(productOwner);
+                        Controller.this.selectedUser = Controller.instance.system.findAccount(productOwner);
+                        //Controller.this.selectedProduct = Controller.instance.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser).getStorefrontProducts().indexOf();
+                        Controller.this.selectedProduct= product;
+                        instance.selectedProduct=Controller.this.selectedProduct;
+                    }
+                }
+        );
+
+    }
+
+    public void goToProduct(ActionEvent event){
+        productInfoLabel.setVisible(true);
+        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTags() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
+        acquireProduct.setVisible(true);
+        if(instance.selectedStorefront.getClass().getTypeName().contains("Sell")){
+            acquireProduct.setText("Purchase Product");
+        }
+        else{
+            acquireProduct.setText("Swap Product for...");
+        }
+    }
+    public void goToProduct2(ActionEvent event){
+        productInfoLabel.setVisible(true);
+        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTags() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
+        swapConfirm.setVisible(true);
+
+    }
+    public void goToProduct3(ActionEvent event){
+        productInfoLabel.setVisible(true);
+        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTags() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
+        deleteProduct.setVisible(true);
+    }
+
+
+    public void swapConfirmClicked(ActionEvent event) throws IOException{
+
+        try {
+            instance.storefrontGive =instance.selectedStorefront;
+            instance.giveProduct = instance.system.findInStorefront(instance.selectedProduct.getProductName(), instance.selectedStorefront);
+            errorLabel2.setText("Success! Message sent");
+            errorLabel2.setTextFill(Color.web("#008000", 0.8));
+            errorLabel2.setVisible(true);
+        } catch (Exception e1) {
+            System.out.print("\nError: " + e1.getMessage());
+            errorLabel2.setText("Error: " + e1.getMessage());
+            errorLabel2.setTextFill(Color.web("#FF0000", 0.8));
+            errorLabel2.setVisible(true);
+        }
+        try {
+            String subjectIn = "Transaction: " + instance.productWant.getProductName() + " for " + instance.giveProduct.getProductName();
+            String contentIn = instance.getCurrentUser().getAccountName() + " has completed a transaction to get " + instance.productWant.getProductName() + " from " + instance.productWant.getProductMerchant().getAccountName() + " by giving " + instance.giveProduct.getProductName();
+            instance.system.sendMessage("User", instance.storefrontWant.retrieveStorefrontOwner().getAccountName(), instance.getCurrentUser().getAccountName(), subjectIn, contentIn);
+            instance.system.sendMessage("User", instance.getCurrentUser().getAccountName(), instance.storefrontWant.retrieveStorefrontOwner().getAccountName(), subjectIn, contentIn);
+            instance.system.swapProducts(instance.storefrontWant, instance.productWant, instance.storefrontGive, instance.giveProduct);
+            System.out.print("\nTransaction complete");
+
+            Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
+            Scene homepageScene = new Scene(homepage, 600, 400);
+            Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homepageWindow.setScene(homepageScene);
+            homepageWindow.setResizable(false);
+            homepageWindow.show();
+
+            this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
+            this.welcomeLabel.setText("WELCOME: " + instance.getCurrentUser().getAccountName());
+
+            this.accountRatingLabel = (Label) homepageScene.lookup("#accountRatingLabel");
+            this.accountRatingLabel.setText("Account rating: " + ((Client) instance.getCurrentUser()).calculateRating());
+
+            this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
+            this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+
+            this.errorLabel = (Label) homepageScene.lookup("#errorLabel");
+            this.errorLabel.setText("Success!");
+            this.errorLabel.setVisible(true);
+
+        }catch(Exception e){
+            System.out.print("\nError: " + e);
+        }
+    }
+    public void acquireProductClicked(ActionEvent event) throws IOException{
+        errorLabel2.setVisible(false);
+        if(instance.selectedStorefront.getClass().getName().contains("Sell")) {
+            try {
+                AbstractProduct buyProduct = instance.system.findInStorefront(instance.selectedProduct.getProductName(), instance.selectedStorefront);
+                instance.system.buyProduct(instance.selectedStorefront, (SellProduct) buyProduct, (Client) instance.getCurrentUser());
+                String subjectIn = "Transaction: " + buyProduct.getProductName();
+                String contentIn = instance.getCurrentUser().getAccountName() + " has completed a transaction to buy " + buyProduct.getProductName() + " from " + buyProduct.getProductMerchant().getAccountName();
+                instance.system.sendMessage("User", instance.selectedStorefront.retrieveStorefrontOwner().getAccountName(), instance.currentUser.getAccountName(), subjectIn, contentIn);
+                instance.system.sendMessage("User", instance.getCurrentUser().getAccountName(), instance.selectedStorefront.retrieveStorefrontOwner().getAccountName(), subjectIn, contentIn);
+                System.out.print("\nTransaction complete");
+                errorLabel2.setText("Success!");
+                errorLabel2.setTextFill(Color.web("#008000", 0.8));
+                errorLabel2.setVisible(true);
+            } catch (Exception e1) {
+                System.out.print("\nError: " + e1.getMessage());
+                errorLabel2.setText("Error: " + e1.getMessage());
+                errorLabel2.setTextFill(Color.web("#FF0000", 0.8));
+                errorLabel2.setVisible(true);
+
+            }
+        }
+        else{
+            boolean validProduct=false;
+            try {
+                instance.storefrontWant= instance.selectedStorefront;
+                instance.productWant = instance.system.findInStorefront(instance.selectedProduct.getProductName(), instance.selectedStorefront);
+                errorLabel2.setText("Success!");
+                errorLabel2.setTextFill(Color.web("#008000", 0.8));
+                errorLabel2.setVisible(true);
+                validProduct=true;
+            } catch (Exception e1) {
+                System.out.print("\nError: " + e1.getMessage());
+                errorLabel2.setText("Error: " + e1.getMessage());
+                errorLabel2.setTextFill(Color.web("#FF0000", 0.8));
+                errorLabel2.setVisible(true);
+            }
+            if(validProduct){
+                Parent clientHomepage = FXMLLoader.load(getClass().getResource("/swapProductHome.fxml"));
+                Scene clientHomepageScene = new Scene(clientHomepage, 600, 400);
+                Stage clientHomepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                clientHomepageWindow.setScene(clientHomepageScene);
+                clientHomepageWindow.setResizable(false);
+
+                this.clientHomeStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeStorefrontsListView");
+                ObservableList<String> storefrontStrings = this.makeSwapStorefrontObservableList(instance.system.findStorefronts((Client) instance.currentUser));
+                this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
+                this.clientHomeStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeStorefrontsHeader");
+                this.clientHomeStorefrontsHeader.setText("My Swap Storefronts: " + storefrontStrings.size());
+
+
+                this.instructionLabel = (Label) clientHomepageScene.lookup("#instructionLabel");
+                this.instructionLabel.setText("SELECT THE PRODUCT YOU WISH TO SWAP FOR " + instance.productWant.getProductName());
+
+
+                this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
+                        new ChangeListener<String>(){
+                            @Override
+                            public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
+                                Controller.this.clientHomeGoToStorefrontNameLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontNameLabel");
+                                Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
+                                String[] recordStringComponents = ((String) clientHomeStorefrontsListView.getSelectionModel().getSelectedItem()).split(":");
+                                String storefrontOwner = recordStringComponents[0].trim();
+                                String storefrontName = recordStringComponents[1].trim();
+                                Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
+                                Controller.this.selectedUser = Controller.instance.system.findAccount(storefrontOwner);
+                                Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
+                                Controller.this.selectedStorefront = Controller.instance.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                                instance.selectedStorefront= Controller.this.selectedStorefront;
+                                if(instance.selectedStorefront.getClass().getTypeName().contains("Sell")){
+                                    Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Sell");
+                                }
+                                else{
+                                    Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Swap");
+                                }
+                            }
+                        }
+                );
+            }
+
+
+
+
+        }
+
+    }
     public void createStorefront(ActionEvent event){
         errorLabel.setVisible(false);
-        String nameIn = createStorefrontTxtFld.getText();
+        String nameIn = this.createStorefrontTxtFld.getText();
         String typeIn ="";
         if(rbSell.isSelected()){
             typeIn ="Sell";
@@ -210,10 +435,14 @@ public class Controller {
             errorLabel.setText("Error: Please select a type for the new storefront");
             errorLabel.setVisible(true);
         }
+        System.out.println(nameIn);
+        System.out.println(typeIn);
         if(rbSell.isSelected() || rbSwap.isSelected()) {
             Storefront storefront;
             try {
-                storefront = system.addStorefront(typeIn, nameIn, (Client) system.findAccount(instance.getCurrentUser()));
+                storefront = instance.system.addStorefront(typeIn, nameIn, (Client) instance.system.findAccount(instance.getCurrentUser()));
+                //System.out.println(instance.system.findAllStorefronts());
+                this.system= instance.system;
                 System.out.print("\nStorefront " + storefront.getStorefrontName() + " has been successfully created for products to " + typeIn);
             } catch (IllegalArgumentException e) {
                 errorLabel.setText("\nError: " + e.getMessage());
@@ -239,13 +468,85 @@ public class Controller {
 
     }
 
-    public void viewMyStorefrontsClicked(ActionEvent event){}
+    public void viewMyStorefrontsClicked(ActionEvent event)throws IOException{
+        Parent clientHomepage = FXMLLoader.load(getClass().getResource("/myClientHome.fxml"));
+        Scene clientHomepageScene = new Scene(clientHomepage, 600, 400);
+        Stage clientHomepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        clientHomepageWindow.setScene(clientHomepageScene);
+        clientHomepageWindow.setResizable(false);
 
-    public void addFundsClicked(ActionEvent event){}
+        this.clientHomeStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeStorefrontsListView");
+        ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(instance.system.findStorefronts((Client) instance.getCurrentUser()));
+        this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
+        this.clientHomeStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeStorefrontsHeader");
+        this.clientHomeStorefrontsHeader.setText("All Storefronts: " + storefrontStrings.size());
+
+        this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<String>(){
+                    @Override
+                    public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
+                        Controller.this.clientHomeGoToStorefrontNameLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontNameLabel");
+                        Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
+                        String[] recordStringComponents = ((String) clientHomeStorefrontsListView.getSelectionModel().getSelectedItem()).split(":");
+                        String storefrontOwner = recordStringComponents[0].trim();
+                        String storefrontName = recordStringComponents[1].trim();
+                        Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
+                        Controller.this.selectedUser = Controller.instance.system.findAccount(storefrontOwner);
+                        Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
+                        Controller.this.selectedStorefront = Controller.instance.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                        instance.selectedStorefront= Controller.this.selectedStorefront;
+                        if(instance.selectedStorefront.getClass().getTypeName().contains("Sell")){
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Sell");
+                        }
+                        else{
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Swap");
+                        }
+                    }
+                }
+        );
+
+        clientHomepageWindow.show();
+    }
+    public void deleteProductClicked(ActionEvent event) {
+        try {
+            instance.system.removeFromStorefront(instance.selectedProduct.getProductName(), instance.selectedStorefront);
+            errorLabel2.setText("Success! Product Deleted");
+            errorLabel2.setTextFill(Color.web("#008000", 0.8));
+            errorLabel2.setVisible(true);
+        } catch (NoSuchElementException e) {
+            errorLabel2.setText("Error: " + e.getMessage());
+            errorLabel2.setTextFill(Color.web("#FF0000", 0.8));
+            errorLabel2.setVisible(true);
+        }
+        return;
+
+    }
+
+    public void addFundsClicked(ActionEvent event){
+        errorLabel.setVisible(false);
+        try {
+            ((Client) instance.getCurrentUser()).addWallet(Double.parseDouble(this.addFundsTxtFld.getText()));
+        }catch(Exception e){
+            errorLabel.setText("\nError: " + e.getMessage());
+            errorLabel.setVisible(true);
+        }
+        this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+    }
+    public void withdrawFundsClicked(ActionEvent event){
+        errorLabel.setVisible(false);
+        try {
+            ((Client) instance.getCurrentUser()).subtractWallet(Double.parseDouble(this.addFundsTxtFld.getText()));
+        }catch(Exception e){
+            errorLabel.setText("\nError: " + e.getMessage());
+            errorLabel.setVisible(true);
+        }
+        this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+    }
+
 
     public void viewMessagesClicked(ActionEvent event){}
 
-    public void viewMyProductsClicked(ActionEvent event){}
+    public void reportUserClicked(ActionEvent event){}
 
     public void postProductClicked(ActionEvent event)throws IOException{
         Parent postProductPage = FXMLLoader.load(getClass().getResource("/postProduct.fxml"));
@@ -255,8 +556,8 @@ public class Controller {
         postProductWindow.setResizable(false);
 
         this.clientHomeStorefrontsListView = (ListView) postProductScene.lookup("#clientHomeStorefrontsListView");
-        ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(this.system.findAllStorefronts());
-        this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
+        ObservableList<String> myStorefrontStrings = this.makeStorefrontObservableList(instance.system.findStorefronts((Client) instance.currentUser));
+        this.clientHomeStorefrontsListView.getItems().addAll(myStorefrontStrings);
 
         this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<String>(){
@@ -268,10 +569,16 @@ public class Controller {
                         String storefrontOwner = recordStringComponents[0].trim();
                         String storefrontName = recordStringComponents[1].trim();
                         Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
-                        Controller.this.selectedUser = Controller.this.system.findAccount(storefrontOwner);
+                        Controller.this.selectedUser = Controller.instance.system.findAccount(storefrontOwner);
                         Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
-                        Controller.this.selectedStorefront = Controller.this.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                        Controller.this.selectedStorefront = Controller.instance.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
                         instance.selectedStorefront = Controller.this.selectedStorefront;
+                        if(instance.selectedStorefront.getClass().getTypeName().contains("Sell")){
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Sell");
+                        }
+                        else{
+                            Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Swap");
+                        }
                     }
                 }
         );
@@ -285,7 +592,7 @@ public class Controller {
         instance.rbSwap = (RadioButton) postProductScene.lookup("#rbSwap");
         instance.errorLabel1 = (Label) postProductScene.lookup("#errorLabel1");
         instance.successLabel1 = (Label) postProductScene.lookup("#successLabel");
-        instance.system = this.system;
+        this.system=instance.system;
 
         postProductWindow.show();
     }
@@ -298,6 +605,32 @@ public class Controller {
         }
         return observationsOut.sorted();
     }
+    private ObservableList<String> makeOtherStorefrontObservableList(List<Storefront> storefrontListIn){
+        ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
+        for(Storefront storefront : storefrontListIn) {
+            if (instance.getCurrentUser() != storefront.retrieveStorefrontOwner()) {
+                observationsOut.add(storefront.retrieveStorefrontOwner().getAccountName() + ": " + storefront.getStorefrontName());
+            }
+        }
+        return observationsOut.sorted();
+    }
+    private ObservableList<String> makeSwapStorefrontObservableList(List<Storefront> storefrontListIn){
+        ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
+        for(Storefront storefront : storefrontListIn) {
+            if (storefront.getClass().getTypeName().contains("Swap")) {
+                observationsOut.add(storefront.retrieveStorefrontOwner().getAccountName() + ": " + storefront.getStorefrontName());
+            }
+        }
+        return observationsOut.sorted();
+    }
+
+    private ObservableList<String> makeProductsObservableList(List<AbstractProduct> abstractProductListIn){
+        ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
+        for(AbstractProduct product : abstractProductListIn){
+            observationsOut.add(product.getProductMerchant().getAccountName() + ": " + product.getProductName()); }
+        //return observationsOut.sorted();
+        return observationsOut;
+    }
 
     private ObservableList<String> makeMessageObservableList(List<AbstractMessage> messageListIn){
         ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
@@ -309,14 +642,7 @@ public class Controller {
         return observationsOut.sorted();
     }
 
-    public void goToStorefront(ActionEvent event){
-
-    }
-    public void goToProduct(ActionEvent event){
-
-    }
     public void back(ActionEvent event)throws IOException{
-
         Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
         Scene homepageScene = new Scene(homepage, 600, 400);
         Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -332,7 +658,9 @@ public class Controller {
 
         this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
         this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+
     }
+
 
     public void signOut(ActionEvent event) throws IOException{
         instance.cleanInstance();

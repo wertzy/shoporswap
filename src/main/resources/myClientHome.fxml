@@ -44,7 +44,7 @@
                <children>
                   <Label fx:id="clientHomeGoToProductNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Product Name" />
                   <Label fx:id="clientHomeGoToProductOwnerLabel" alignment="CENTER" layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="200.0" text="Product Owner Name" />
-                  <Button fx:id="clientHomeGoToProductfrontButton" mnemonicParsing="false" onAction="#goToProduct" prefHeight="25.0" prefWidth="205.0" text="Go To Product" />
+                  <Button fx:id="clientHomeGoToProductfrontButton" mnemonicParsing="false" onAction="#goToProduct3" prefHeight="25.0" prefWidth="205.0" text="Go To Product" />
                </children>
             </VBox>
          </children>
@@ -57,7 +57,7 @@
                </font>
             </Label>
             <Label fx:id="productInfoLabel" alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="231.0" prefWidth="198.0" text="Product Info" visible="false" wrapText="true" />
-            <Button fx:id="acquireProduct" mnemonicParsing="false" onAction="#acquireProductClicked" prefHeight="27.0" prefWidth="205.0" text="Purchase Product" visible="false" />
+            <Button fx:id="deleteProduct" mnemonicParsing="false" onAction="#deleteProductClicked" prefHeight="27.0" prefWidth="205.0" text="Delete Product" visible="false" />
             <Label fx:id="errorLabel2" text="Error:" textFill="RED" visible="false" />
          </children>
       </VBox>
