@@ -112,6 +112,8 @@ public class Controller {
 
     public void cleanInstance() {
         currentUser = null;
+        selectedStorefront = null;
+        selectedProduct = null;
     }
 
 
@@ -175,8 +177,8 @@ public class Controller {
         }catch(Exception e){
             try {
                 attemptedMakeAccount = this.system.addAccount("Client", this.signInAccountName.getText(), this.signInPassword.getText());
-                this.signInInvalidLabel.setText("Account created successfully. Please sign in using your new credentials.");
-                this.signInInvalidLabel.setTextFill(Color.web("#00FF00"));
+                this.signInInvalidLabel.setText("Account created successfully.\nPlease sign in using your new credentials.");
+                this.signInInvalidLabel.setTextFill(Color.web("#008000"));
                 this.signInInvalidLabel.setVisible(true);
                 JsonUtil.toJsonFile(this.dataFileName, new ShopOrSwapRecord(this.system));
                 this.system = JsonUtil.fromJsonFile(this.dataFileName, ShopOrSwapRecord.class).toShopOrSwap();
@@ -218,28 +220,32 @@ public class Controller {
                         Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
                         Controller.this.selectedUser = Controller.instance.system.findAccount(storefrontOwner);
                         Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
-                        Controller.this.selectedStorefront = Controller.instance.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
-                        instance.selectedStorefront= Controller.this.selectedStorefront;
+                        instance.selectedStorefront = Controller.instance.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                        Controller.this.selectedStorefront= instance.selectedStorefront;
                         if(instance.selectedStorefront.getClass().getTypeName().contains("Sell")){
                             Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Sell");
                         }
                         else{
                             Controller.this.clientHomeGoToStorefrontOwnerLabel.setText("Type: Swap");
                         }
-                        }
+                    }
                 }
         );
 
         clientHomepageWindow.show();
 
     }
-    public void goToStorefront(ActionEvent event){
+    public void goToStorefront(ActionEvent event) {
         //this.clientHomeProductsListView.getItems().removeAll();
         this.clientHomeProductsListView.getItems().clear();
 
-        ObservableList<String> productStrings = this.makeProductsObservableList(instance.selectedStorefront.getStorefrontProducts());
-        this.clientHomeProductsListView.getItems().addAll(productStrings);
-        this.clientHomeProductsHeader.setText("Products in storefront: " + productStrings.size());
+        try {
+            ObservableList<String> productStrings = this.makeProductsObservableList(instance.selectedStorefront.getStorefrontProducts());
+            this.clientHomeProductsListView.getItems().addAll(productStrings);
+            this.clientHomeProductsHeader.setText("Products in storefront: " + productStrings.size());
+        } catch (Exception e) {
+            this.clientHomeProductsHeader.setText("Select a Storefront First.");
+        }
 
 
         this.clientHomeProductsListView.getSelectionModel().selectedItemProperty().addListener(
@@ -267,25 +273,32 @@ public class Controller {
 
     public void goToProduct(ActionEvent event){
         productInfoLabel.setVisible(true);
-        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTags() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
-        acquireProduct.setVisible(true);
-        if(instance.selectedStorefront.getClass().getTypeName().contains("Sell")){
-            acquireProduct.setText("Purchase Product");
-        }
-        else{
-            acquireProduct.setText("Swap Product for...");
+        try {
+            productInfoLabel.setText("Name:\n" + instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" + instance.selectedProduct.getProductDescription() + "\n\nProduct tags:\n" + instance.selectedProduct.getProductTagStrings() + "\n\nPrice:" + instance.selectedProduct.getProductValue());
+            acquireProduct.setVisible(true);
+            if (instance.selectedStorefront.getClass().getTypeName().contains("Sell")) {
+                acquireProduct.setText("Purchase Product");
+            } else {
+                acquireProduct.setText("Swap Product for...");
+            }
+        }catch (Exception e){
+            productInfoLabel.setText("No Product Selected");
         }
     }
     public void goToProduct2(ActionEvent event){
         productInfoLabel.setVisible(true);
-        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTags() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
+        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTagStrings() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
         swapConfirm.setVisible(true);
 
     }
     public void goToProduct3(ActionEvent event){
-        productInfoLabel.setVisible(true);
-        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTags() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
-        deleteProduct.setVisible(true);
+        try {
+            productInfoLabel.setVisible(true);
+            productInfoLabel.setText("Name:\n" + instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" + instance.selectedProduct.getProductDescription() + "\n\nProduct tags:\n" + instance.selectedProduct.getProductTagStrings() + "\n\nPrice:" + instance.selectedProduct.getProductValue());
+            deleteProduct.setVisible(true);
+        }catch(Exception e){
+            productInfoLabel.setText("No Product Selected.");
+        }
     }
 
 
@@ -415,13 +428,15 @@ public class Controller {
                 );
             }
 
-
-
-
         }
+
+        this.system = instance.system;
+        instance.selectedStorefront = null;
+        instance.selectedProduct = null;
 
     }
     public void createStorefront(ActionEvent event){
+        errorLabel.setTextFill(Color.web("#FF0000"));
         errorLabel.setVisible(false);
         String nameIn = this.createStorefrontTxtFld.getText();
         String typeIn ="";
@@ -444,25 +459,48 @@ public class Controller {
                 //System.out.println(instance.system.findAllStorefronts());
                 this.system= instance.system;
                 System.out.print("\nStorefront " + storefront.getStorefrontName() + " has been successfully created for products to " + typeIn);
+                errorLabel.setText("Storefront \"" + storefront.getStorefrontName() + "\"\nhas been successfully created for\nproducts to \" + typeIn");
+                errorLabel.setTextFill(Color.web("#008000"));
+                errorLabel.setVisible(true);
             } catch (IllegalArgumentException e) {
                 errorLabel.setText("\nError: " + e.getMessage());
                 errorLabel.setVisible(true);
             }
         }
+        this.system = instance.system;
     }
     public void postProductToStorefront(ActionEvent event){
-        System.out.println(instance.selectedStorefront.getClass());
+        try {
+            System.out.println(instance.selectedStorefront.getClass());
+        }catch(Exception e){
+            instance.successLabel1.setText("Error: Select a Storefront first.");
+            instance.successLabel1.setTextFill(Color.web("#FF0000"));
+            instance.successLabel1.setVisible(true);
+        }
         System.out.println(instance.productNametxtFld.getText());
         System.out.println(instance.productDescriptionTxtArea.getText());
         System.out.println(instance.productPriceTxtFld.getText());
-        AbstractProduct productAdded = instance.system.addToStorefront(
-            instance.productNametxtFld.getText(),
-            instance.productDescriptionTxtArea.getText(),
-            Double.parseDouble(instance.productPriceTxtFld.getText()),
-            instance.selectedStorefront
-        );
-        instance.successLabel1.setText("Product " + productAdded.getProductName() + " has been successfully added to " + instance.selectedStorefront.getStorefrontName());
-        instance.successLabel1.setVisible(true);
+        try {
+            AbstractProduct productAdded = instance.system.addToStorefront(
+                    instance.productNametxtFld.getText(),
+                    instance.productDescriptionTxtArea.getText(),
+                    Double.parseDouble(instance.productPriceTxtFld.getText()),
+                    instance.selectedStorefront
+            );
+            String[] tagsString = instance.productTagsTxtFld.getText().split(",");
+            for(String tagString : tagsString){
+                instance.system.addTagToProduct(tagString.trim(), productAdded);
+            }
+            instance.successLabel1.setText("Product " + productAdded.getProductName() + " has been successfully added to " + instance.selectedStorefront.getStorefrontName());
+            errorLabel.setTextFill(Color.web("#008000"));
+            instance.successLabel1.setVisible(true);
+            this.system = instance.system;
+
+        }catch(Exception e){
+            instance.successLabel1.setText("Error: Check that a storefront has been selected and all fields have valid input.");
+            instance.successLabel1.setTextFill(Color.web("#FF0000"));
+            instance.successLabel1.setVisible(true);
+        }
 
         this.system = instance.system;
 
@@ -476,7 +514,7 @@ public class Controller {
         clientHomepageWindow.setResizable(false);
 
         this.clientHomeStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeStorefrontsListView");
-        ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(instance.system.findStorefronts((Client) instance.getCurrentUser()));
+        ObservableList<String> storefrontStrings = instance.makeStorefrontObservableList(instance.system.findStorefronts((Client) instance.getCurrentUser()));
         this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
         this.clientHomeStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeStorefrontsHeader");
         this.clientHomeStorefrontsHeader.setText("All Storefronts: " + storefrontStrings.size());
@@ -518,6 +556,9 @@ public class Controller {
             errorLabel2.setTextFill(Color.web("#FF0000", 0.8));
             errorLabel2.setVisible(true);
         }
+        this.system = instance.system;
+        instance.selectedStorefront = null;
+        instance.selectedProduct = null;
         return;
 
     }
@@ -658,6 +699,9 @@ public class Controller {
 
         this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
         this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+
+        instance.selectedProduct = null;
+        instance.selectedStorefront = null;
 
     }
 

@@ -118,6 +118,14 @@ public abstract class AbstractProduct {
         return this.productTags;
     }
 
+    public final List<String> getProductTagStrings(){
+        List<String> tagStringList = new ArrayList<>();
+        for(Tag tag : this.productTags){
+            tagStringList.add(tag.getName());
+        }
+        return tagStringList;
+    }
+
     public final List<String> getProductTagLabels(){
         List<String> tagLabelsList = new ArrayList<String>();
         for(Tag tag : this.getProductTags()){
