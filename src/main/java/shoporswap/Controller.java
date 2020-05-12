@@ -59,8 +59,10 @@ public class Controller {
     @FXML private Label clientHomeGoToStorefrontOwnerLabel;
     @FXML private Button clientHomeGoToStorefrontButton;
 
-    @FXML private ListView clientHomeMessagesListView;
-    @FXML private Label clientHomeMessagesHeader;
+    @FXML private ListView clientHomeProductsListView;
+    @FXML private Label clientHomeProductsHeader;
+    @FXML private Label clientHomeGoToProductOwnerLabel;
+    @FXML private Label clientHomeGoToProductNameLabel;
 
     private final String dataFileName = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json";
     private ShopOrSwap system;
@@ -184,11 +186,40 @@ public class Controller {
                         Controller.this.selectedUser = Controller.this.system.findAccount(storefrontOwner);
                         Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
                         Controller.this.selectedStorefront = Controller.this.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+                        instance.selectedStorefront= Controller.this.selectedStorefront;
                     }
                 }
         );
 
         clientHomepageWindow.show();
+
+    }
+    public void goToStorefront(ActionEvent event){
+        //this.clientHomeProductsListView.getItems().removeAll();
+        this.clientHomeProductsListView.getItems().clear();
+
+        ObservableList<String> productStrings = this.makeProductsObservableList(instance.selectedStorefront.getStorefrontProducts());
+        System.out.println(productStrings);
+        this.clientHomeProductsListView.getItems().addAll(productStrings);
+        this.clientHomeProductsHeader.setText("Products in storefront: " + productStrings.size());
+//
+//        this.clientHomeStorefrontsListView.getSelectionModel().selectedItemProperty().addListener(
+//                new ChangeListener<String>(){
+//                    @Override
+//                    public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
+//                        Controller.this.clientHomeGoToStorefrontNameLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontNameLabel");
+//                        Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
+//                        String[] recordStringComponents = ((String) clientHomeStorefrontsListView.getSelectionModel().getSelectedItem()).split(":");
+//                        String storefrontOwner = recordStringComponents[0].trim();
+//                        String storefrontName = recordStringComponents[1].trim();
+//                        Controller.this.clientHomeGoToStorefrontNameLabel.setText(storefrontName);
+//                        Controller.this.selectedUser = Controller.this.system.findAccount(storefrontOwner);
+//                        Controller.this.clientHomeGoToStorefrontOwnerLabel.setText(storefrontOwner);
+//                        Controller.this.selectedStorefront = Controller.this.system.findStorefront(storefrontName, (Client) Controller.this.selectedUser);
+//                    }
+//                }
+//        );
+
 
     }
     public void createStorefront(ActionEvent event){
@@ -294,6 +325,13 @@ public class Controller {
         return observationsOut.sorted();
     }
 
+    private ObservableList<String> makeProductsObservableList(List<AbstractProduct> abstractProductListIn){
+        ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
+        for(AbstractProduct product : abstractProductListIn){
+            observationsOut.add(product.getProductMerchant().getAccountName() + ": " + product.getProductName()); }
+        return observationsOut.sorted();
+    }
+
     private ObservableList<String> makeMessageObservableList(List<AbstractMessage> messageListIn){
         ObservableList<String> observationsOut = FXCollections.<String>observableArrayList();
         String messageRecordString;
@@ -304,9 +342,6 @@ public class Controller {
         return observationsOut.sorted();
     }
 
-    public void goToStorefront(ActionEvent event){
-
-    }
     public void goToProduct(ActionEvent event){
 
     }

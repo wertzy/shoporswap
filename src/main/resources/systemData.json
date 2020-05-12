@@ -4,7 +4,18 @@
     "accountPassword" : "a",
     "isFrozen" : false,
     "myProductRecords" : [ ],
-    "myStorefrontRecords" : [ ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "Ioan",
+      "productRecordList" : [ {
+        "productType" : "shoporswap.SellProduct",
+        "productName" : "test2",
+        "productDescription" : "test",
+        "productValue" : 10.0,
+        "productMerchantName" : "a",
+        "productTags" : [ ]
+      } ]
+    } ],
     "ratingsList" : [ ],
     "wallet" : "0.0"
   }, {
@@ -47,7 +58,14 @@
     }, {
       "storefrontType" : "shoporswap.SellStorefront",
       "storefrontName" : "sell storefront 1-10",
-      "productRecordList" : [ ]
+      "productRecordList" : [ {
+        "productType" : "shoporswap.SellProduct",
+        "productName" : "shirt",
+        "productDescription" : "can this be added to other clients",
+        "productValue" : 10.0,
+        "productMerchantName" : "client1",
+        "productTags" : [ ]
+      } ]
     }, {
       "storefrontType" : "shoporswap.SellStorefront",
       "storefrontName" : "sell storefront 1-4",
@@ -67,7 +85,28 @@
     }, {
       "storefrontType" : "shoporswap.SellStorefront",
       "storefrontName" : "sell storefront 1-1",
-      "productRecordList" : [ ]
+      "productRecordList" : [ {
+        "productType" : "shoporswap.SellProduct",
+        "productName" : "shirt",
+        "productDescription" : "can this be added to other clients",
+        "productValue" : 10.0,
+        "productMerchantName" : "client1",
+        "productTags" : [ ]
+      }, {
+        "productType" : "shoporswap.SellProduct",
+        "productName" : "test",
+        "productDescription" : "test",
+        "productValue" : 10.0,
+        "productMerchantName" : "client1",
+        "productTags" : [ ]
+      }, {
+        "productType" : "shoporswap.SellProduct",
+        "productName" : "test",
+        "productDescription" : "test",
+        "productValue" : 10.0,
+        "productMerchantName" : "client1",
+        "productTags" : [ ]
+      } ]
     }, {
       "storefrontType" : "shoporswap.SwapStorefront",
       "storefrontName" : "swap storefront 1-9",

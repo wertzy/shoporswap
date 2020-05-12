@@ -39,7 +39,7 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="clientHomeStorefrontsListView1" prefHeight="200.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+            <ListView fx:id="clientHomeProductsListView" prefHeight="200.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
             <VBox prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: #000000;">
                <children>
                   <Label fx:id="clientHomeGoToProductNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Product Name" />
