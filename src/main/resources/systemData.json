@@ -69,17 +69,6 @@
         } ]
       }, {
         "productType" : "shoporswap.SellProduct",
-        "productName" : "black slippers",
-        "productDescription" : "ruth chavez black slippers for sale",
-        "productValue" : 15.0,
-        "productMerchantName" : "ruthchavez",
-        "productTags" : [ {
-          "name" : "black"
-        }, {
-          "name" : "slippers"
-        } ]
-      }, {
-        "productType" : "shoporswap.SellProduct",
         "productName" : "green slippers",
         "productDescription" : "ruth chavez green slippers for sale",
         "productValue" : 10.0,
@@ -250,7 +239,7 @@
       "productRecordList" : [ ]
     } ],
     "ratingsList" : [ ],
-    "wallet" : "0.0"
+    "wallet" : "15.0"
   }, {
     "accountName" : "susancruz",
     "accountPassword" : "susancruz",
@@ -267,6 +256,40 @@
     "myStorefrontRecords" : [ ],
     "ratingsList" : [ ],
     "wallet" : "0.0"
+  }, {
+    "accountName" : "IoanDascalu",
+    "accountPassword" : "IoanDascalu",
+    "isFrozen" : false,
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SellProduct",
+      "productName" : "black slippers",
+      "productDescription" : "ruth chavez black slippers for sale",
+      "productValue" : 15.0,
+      "productMerchantName" : "ruthchavez",
+      "productTags" : [ {
+        "name" : "black"
+      }, {
+        "name" : "slippers"
+      } ]
+    }, {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "pink shorts",
+      "productDescription" : "desiree wilkerson pink shorts for swap",
+      "productValue" : 20.0,
+      "productMerchantName" : "desireewilkerson",
+      "productTags" : [ {
+        "name" : "pink"
+      }, {
+        "name" : "shorts"
+      } ]
+    } ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "pink",
+      "productRecordList" : [ ]
+    } ],
+    "ratingsList" : [ ],
+    "wallet" : "985.0"
   }, {
     "accountName" : "tanyascott",
     "accountPassword" : "tanyascott",
@@ -287,7 +310,18 @@
     "accountName" : "desireewilkerson",
     "accountPassword" : "desireewilkerson",
     "isFrozen" : false,
-    "myProductRecords" : [ ],
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "pinkHat",
+      "productDescription" : "This my favorite pink hat",
+      "productValue" : 22.0,
+      "productMerchantName" : "IoanDascalu",
+      "productTags" : [ {
+        "name" : "pink"
+      }, {
+        "name" : "hat"
+      } ]
+    } ],
     "myStorefrontRecords" : [ {
       "storefrontType" : "shoporswap.SellStorefront",
       "storefrontName" : "desiree sell shorts",
@@ -451,17 +485,6 @@
         } ]
       }, {
         "productType" : "shoporswap.SwapProduct",
-        "productName" : "pink shorts",
-        "productDescription" : "desiree wilkerson pink shorts for swap",
-        "productValue" : 20.0,
-        "productMerchantName" : "desireewilkerson",
-        "productTags" : [ {
-          "name" : "pink"
-        }, {
-          "name" : "shorts"
-        } ]
-      }, {
-        "productType" : "shoporswap.SwapProduct",
         "productName" : "black shorts",
         "productDescription" : "desiree wilkerson black shorts for swap",
         "productValue" : 20.0,
@@ -544,5 +567,45 @@
     "ratingsList" : [ ],
     "wallet" : "0.0"
   } ],
-  "messageRecords" : [ ]
+  "messageRecords" : [ {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "ruthchavez",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "IoanDascalu",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: black slippers",
+    "content" : "IoanDascalu has completed a transaction to buy black slippers from ruthchavez",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "IoanDascalu",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "ruthchavez",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: black slippers",
+    "content" : "IoanDascalu has completed a transaction to buy black slippers from ruthchavez",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "desireewilkerson",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "IoanDascalu",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: pink shorts for pinkHat",
+    "content" : "IoanDascalu has completed a transaction to get pink shorts from desireewilkerson by giving pinkHat",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "IoanDascalu",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "desireewilkerson",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: pink shorts for pinkHat",
+    "content" : "IoanDascalu has completed a transaction to get pink shorts from desireewilkerson by giving pinkHat",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  } ]
 }
