@@ -71,7 +71,6 @@ public class Controller {
 
     private static Controller instance;
 
-
     private Controller(Account currentUser) {
         this.currentUser=currentUser;
     }
@@ -81,6 +80,10 @@ public class Controller {
             instance = new Controller(currentUser);
         }
         return instance;
+    }
+
+    public void setInstanceSystem(ShopOrSwap system){
+        instance.system = system;
     }
 
     public Account getCurrentUser() {
@@ -110,6 +113,7 @@ public class Controller {
             this.signInInvalidLabel.setVisible(true);
         } else {
             Controller.getInstance(attemptedSignInAccount);
+            instance.setInstanceSystem(this.system);
             this.currentUser = attemptedSignInAccount;
             if (this.currentUser.getClass().getName().contains("Client")) {
                 Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
@@ -175,6 +179,7 @@ public class Controller {
                 new ChangeListener<String>(){
                     @Override
                     public void changed(ObservableValue<? extends String> observableValue, String old_val, String new_val) {
+                        Controller.this.system = instance.system;
                         Controller.this.clientHomeGoToStorefrontNameLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontNameLabel");
                         Controller.this.clientHomeGoToStorefrontOwnerLabel = (Label) clientHomepageScene.lookup("#clientHomeGoToStorefrontOwnerLabel");
                         String[] recordStringComponents = ((String) clientHomeStorefrontsListView.getSelectionModel().getSelectedItem()).split(":");
