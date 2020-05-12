@@ -268,6 +268,40 @@
     "ratingsList" : [ ],
     "wallet" : "0.0"
   }, {
+    "accountName" : "IoanDascalu",
+    "accountPassword" : "IoanDascalu",
+    "isFrozen" : false,
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SellProduct",
+      "productName" : "blue shorts",
+      "productDescription" : "desiree wilkerson blue shorts for sale",
+      "productValue" : 20.0,
+      "productMerchantName" : "desireewilkerson",
+      "productTags" : [ {
+        "name" : "blue"
+      }, {
+        "name" : "shorts"
+      } ]
+    }, {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "pink shorts",
+      "productDescription" : "desiree wilkerson pink shorts for swap",
+      "productValue" : 20.0,
+      "productMerchantName" : "desireewilkerson",
+      "productTags" : [ {
+        "name" : "pink"
+      }, {
+        "name" : "shorts"
+      } ]
+    } ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SwapStorefront",
+      "storefrontName" : "pink",
+      "productRecordList" : [ ]
+    } ],
+    "ratingsList" : [ ],
+    "wallet" : "80.0"
+  }, {
     "accountName" : "tanyascott",
     "accountPassword" : "tanyascott",
     "isFrozen" : false,
@@ -287,22 +321,22 @@
     "accountName" : "desireewilkerson",
     "accountPassword" : "desireewilkerson",
     "isFrozen" : false,
-    "myProductRecords" : [ ],
+    "myProductRecords" : [ {
+      "productType" : "shoporswap.SwapProduct",
+      "productName" : "pinkHat",
+      "productDescription" : "This my favorite pink hat",
+      "productValue" : 22.0,
+      "productMerchantName" : "IoanDascalu",
+      "productTags" : [ {
+        "name" : "pink"
+      }, {
+        "name" : "hat"
+      } ]
+    } ],
     "myStorefrontRecords" : [ {
       "storefrontType" : "shoporswap.SellStorefront",
       "storefrontName" : "desiree sell shorts",
       "productRecordList" : [ {
-        "productType" : "shoporswap.SellProduct",
-        "productName" : "blue shorts",
-        "productDescription" : "desiree wilkerson blue shorts for sale",
-        "productValue" : 20.0,
-        "productMerchantName" : "desireewilkerson",
-        "productTags" : [ {
-          "name" : "blue"
-        }, {
-          "name" : "shorts"
-        } ]
-      }, {
         "productType" : "shoporswap.SellProduct",
         "productName" : "blue shorts",
         "productDescription" : "desiree wilkerson blue shorts for sale",
@@ -451,17 +485,6 @@
         } ]
       }, {
         "productType" : "shoporswap.SwapProduct",
-        "productName" : "pink shorts",
-        "productDescription" : "desiree wilkerson pink shorts for swap",
-        "productValue" : 20.0,
-        "productMerchantName" : "desireewilkerson",
-        "productTags" : [ {
-          "name" : "pink"
-        }, {
-          "name" : "shorts"
-        } ]
-      }, {
-        "productType" : "shoporswap.SwapProduct",
         "productName" : "black shorts",
         "productDescription" : "desiree wilkerson black shorts for swap",
         "productValue" : 20.0,
@@ -518,7 +541,7 @@
       } ]
     } ],
     "ratingsList" : [ ],
-    "wallet" : "0.0"
+    "wallet" : "20.0"
   }, {
     "accountName" : "myronfrench",
     "accountPassword" : "myronfrench",
@@ -544,5 +567,45 @@
     "ratingsList" : [ ],
     "wallet" : "0.0"
   } ],
-  "messageRecords" : [ ]
+  "messageRecords" : [ {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "desireewilkerson",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "IoanDascalu",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: blue shorts",
+    "content" : "IoanDascalu has completed a transaction to buy blue shorts from desireewilkerson",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "IoanDascalu",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "desireewilkerson",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: blue shorts",
+    "content" : "IoanDascalu has completed a transaction to buy blue shorts from desireewilkerson",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "desireewilkerson",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "IoanDascalu",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: pink shorts for pinkHat",
+    "content" : "IoanDascalu has completed a transaction to get pink shorts from desireewilkerson by giving pinkHat",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "IoanDascalu",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "desireewilkerson",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: pink shorts for pinkHat",
+    "content" : "IoanDascalu has completed a transaction to get pink shorts from desireewilkerson by giving pinkHat",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  } ]
 }
