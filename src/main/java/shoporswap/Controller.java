@@ -283,6 +283,8 @@ public class Controller {
             }
         }catch (Exception e){
             productInfoLabel.setText("No Product Selected");
+            acquireProduct.setVisible(false);
+            deleteProduct.setVisible(false);
         }
     }
     public void goToProduct2(ActionEvent event){
@@ -298,6 +300,7 @@ public class Controller {
             deleteProduct.setVisible(true);
         }catch(Exception e){
             productInfoLabel.setText("No Product Selected.");
+            deleteProduct.setVisible(false);
         }
     }
 
@@ -470,6 +473,7 @@ public class Controller {
         this.system = instance.system;
     }
     public void postProductToStorefront(ActionEvent event){
+        instance.successLabel1.setVisible(false);
         try {
             System.out.println(instance.selectedStorefront.getClass());
         }catch(Exception e){
@@ -550,11 +554,13 @@ public class Controller {
         clientHomepageWindow.show();
     }
     public void deleteProductClicked(ActionEvent event) {
+        errorLabel2.setVisible(false);
         try {
             instance.system.removeFromStorefront(instance.selectedProduct.getProductName(), instance.selectedStorefront);
             errorLabel2.setText("Success! Product Deleted");
             errorLabel2.setTextFill(Color.web("#008000", 0.8));
             errorLabel2.setVisible(true);
+            deleteProduct.setVisible(false);
         } catch (NoSuchElementException e) {
             errorLabel2.setText("Error: " + e.getMessage());
             errorLabel2.setTextFill(Color.web("#FF0000", 0.8));
@@ -636,7 +642,9 @@ public class Controller {
         instance.rbSell = (RadioButton) postProductScene.lookup("#rbSell");
         instance.rbSwap = (RadioButton) postProductScene.lookup("#rbSwap");
         instance.errorLabel1 = (Label) postProductScene.lookup("#errorLabel1");
+        instance.errorLabel1.setVisible(false);
         instance.successLabel1 = (Label) postProductScene.lookup("#successLabel");
+        instance.successLabel1.setVisible(false);
         this.system=instance.system;
 
         postProductWindow.show();
