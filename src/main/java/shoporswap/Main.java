@@ -146,9 +146,29 @@ public class Main {
         return;
     }
 
+    private static void sendMessage(ShopOrSwap shopOrSwap, Account account){
+        String receiverName = getInput("Enter account name of Account to send message to");
+        Account receiver;
+        try{
+            receiver = shopOrSwap.findAccount(receiverName);
+        }catch(NoSuchElementException e){
+            System.out.print("\nCannot find account with account name; cannot send message.");
+            return;
+        }
+        String subject = getInput("Enter message subject");
+        String content = getInput("Enter message content");
+        try{
+            int messageCount = shopOrSwap.getSystemMessages().size();
+            shopOrSwap.sendMessage("User", account.getAccountName(), receiverName, subject, content);
+            assert shopOrSwap.getSystemMessages().size() == messageCount + 1;
+        }catch(Exception e){
+            System.out.println("Error: message not sent");
+        }
+        return;
+    }
+
     // account menu for a successfully signed-in client
     private static void clientMenu(ShopOrSwap shopOrSwap, Account account){
-        Scanner input = new Scanner(System.in);
         System.out.println("\n--Account Menu--");
         System.out.println("\t1. View My Account Information");
         System.out.println("\t2. View My Messages");
@@ -160,6 +180,7 @@ public class Main {
         System.out.println("\t8. Withdraw funds from Wallet");
         System.out.println("\t9. Report User");
         System.out.println("\t10. Rate User");
+        System.out.println("\t11. Send Message to User");
         System.out.println("\t-1. Sign Out");
         String choice = getInput("Selection #");
         switch(choice){
@@ -192,6 +213,9 @@ public class Main {
                 break;
             case "10":
                 rateUser(shopOrSwap, account);
+                break;
+            case "11":
+                sendMessage(shopOrSwap, account);
                 break;
             case "-1":
                 return;
