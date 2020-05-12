@@ -21,6 +21,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Controller {
 
@@ -75,6 +76,9 @@ public class Controller {
     @FXML private Label instructionLabel;
     @FXML private Button swapConfirm;
 
+    //my client home page items
+    @FXML private Button deleteProduct;
+
     private final String dataFileName = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "systemData.json";
     private ShopOrSwap system;
     private Account currentUser;
@@ -128,26 +132,33 @@ public class Controller {
         if (attemptedSignInAccount == null) {
             this.signInInvalidLabel.setVisible(true);
         } else {
-            Controller.getInstance(attemptedSignInAccount);
-            instance.system=this.system;
+            if(instance==null) {
+                Controller.getInstance(attemptedSignInAccount);
+                instance.system = this.system;
+                System.out.println("Instance null" +instance.getCurrentUser().getAccountName());
+            }
+            else{
+                instance.currentUser=attemptedSignInAccount;
+                System.out.println("Instance not null" +instance.getCurrentUser().getAccountName());
+            }
             this.currentUser = attemptedSignInAccount;
             if (this.currentUser.getClass().getName().contains("Client")) {
                 Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
             Scene homepageScene = new Scene(homepage, 600, 400);
             Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            homepageWindow.setTitle("Home: " + this.currentUser.getAccountName());
+            homepageWindow.setTitle("Home: " + instance.getCurrentUser().getAccountName());
             homepageWindow.setScene(homepageScene);
             homepageWindow.setResizable(false);
             homepageWindow.show();
 
             this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
-            this.welcomeLabel.setText("WELCOME: " + this.currentUser.getAccountName());
+            this.welcomeLabel.setText("WELCOME: " + instance.getCurrentUser().getAccountName());
 
             this.accountRatingLabel = (Label) homepageScene.lookup("#accountRatingLabel");
-            this.accountRatingLabel.setText("Account rating: " + ((Client) this.currentUser).calculateRating());
+            this.accountRatingLabel.setText("Account rating: " + ((Client) instance.getCurrentUser()).calculateRating());
 
             this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
-            this.myFundsLabel.setText("Account funds: " + ((Client) this.currentUser).getWallet());
+            this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
         }
 
         }
@@ -271,8 +282,14 @@ public class Controller {
         swapConfirm.setVisible(true);
 
     }
+    public void goToProduct3(ActionEvent event){
+        productInfoLabel.setVisible(true);
+        productInfoLabel.setText("Name:\n" +instance.selectedProduct.getProductName() + "\n\nProduct Description:\n" +instance.selectedProduct.getProductDescription() +"\n\nProduct tags:\n" +instance.selectedProduct.getProductTags() +"\n\nPrice:" +instance.selectedProduct.getProductValue());
+        deleteProduct.setVisible(true);
+    }
 
-    public void swapConfirmClicked(ActionEvent event){
+
+    public void swapConfirmClicked(ActionEvent event) throws IOException{
 
         try {
             instance.storefrontGive =instance.selectedStorefront;
@@ -293,9 +310,29 @@ public class Controller {
             instance.system.sendMessage("User", instance.getCurrentUser().getAccountName(), instance.storefrontWant.retrieveStorefrontOwner().getAccountName(), subjectIn, contentIn);
             instance.system.swapProducts(instance.storefrontWant, instance.productWant, instance.storefrontGive, instance.giveProduct);
             System.out.print("\nTransaction complete");
+
+            Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
+            Scene homepageScene = new Scene(homepage, 600, 400);
+            Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            homepageWindow.setScene(homepageScene);
+            homepageWindow.setResizable(false);
+            homepageWindow.show();
+
+            this.welcomeLabel = (Label) homepageScene.lookup("#welcomeLabel");
+            this.welcomeLabel.setText("WELCOME: " + instance.getCurrentUser().getAccountName());
+
+            this.accountRatingLabel = (Label) homepageScene.lookup("#accountRatingLabel");
+            this.accountRatingLabel.setText("Account rating: " + ((Client) instance.getCurrentUser()).calculateRating());
+
+            this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
+            this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+
+            this.errorLabel = (Label) homepageScene.lookup("#errorLabel");
+            this.errorLabel.setText("Success!");
+            this.errorLabel.setVisible(true);
+
         }catch(Exception e){
             System.out.print("\nError: " + e);
-            return;
         }
     }
     public void acquireProductClicked(ActionEvent event) throws IOException{
@@ -432,14 +469,14 @@ public class Controller {
     }
 
     public void viewMyStorefrontsClicked(ActionEvent event)throws IOException{
-        Parent clientHomepage = FXMLLoader.load(getClass().getResource("/clientHome2.fxml"));
+        Parent clientHomepage = FXMLLoader.load(getClass().getResource("/myClientHome.fxml"));
         Scene clientHomepageScene = new Scene(clientHomepage, 600, 400);
         Stage clientHomepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
         clientHomepageWindow.setScene(clientHomepageScene);
         clientHomepageWindow.setResizable(false);
 
         this.clientHomeStorefrontsListView = (ListView) clientHomepageScene.lookup("#clientHomeStorefrontsListView");
-        ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(instance.system.findStorefronts((Client) instance.currentUser));
+        ObservableList<String> storefrontStrings = this.makeStorefrontObservableList(instance.system.findStorefronts((Client) instance.getCurrentUser()));
         this.clientHomeStorefrontsListView.getItems().addAll(storefrontStrings);
         this.clientHomeStorefrontsHeader = (Label) clientHomepageScene.lookup("#clientHomeStorefrontsHeader");
         this.clientHomeStorefrontsHeader.setText("All Storefronts: " + storefrontStrings.size());
@@ -469,6 +506,20 @@ public class Controller {
         );
 
         clientHomepageWindow.show();
+    }
+    public void deleteProductClicked(ActionEvent event) {
+        try {
+            instance.system.removeFromStorefront(instance.selectedProduct.getProductName(), instance.selectedStorefront);
+            errorLabel2.setText("Success! Product Deleted");
+            errorLabel2.setTextFill(Color.web("#008000", 0.8));
+            errorLabel2.setVisible(true);
+        } catch (NoSuchElementException e) {
+            errorLabel2.setText("Error: " + e.getMessage());
+            errorLabel2.setTextFill(Color.web("#FF0000", 0.8));
+            errorLabel2.setVisible(true);
+        }
+        return;
+
     }
 
     public void addFundsClicked(ActionEvent event){
@@ -592,7 +643,6 @@ public class Controller {
     }
 
     public void back(ActionEvent event)throws IOException{
-
         Parent homepage = FXMLLoader.load(getClass().getResource("/homepage2.fxml"));
         Scene homepageScene = new Scene(homepage, 600, 400);
         Stage homepageWindow = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -608,7 +658,9 @@ public class Controller {
 
         this.myFundsLabel = (Label) homepageScene.lookup("#myFundsLabel");
         this.myFundsLabel.setText("Account funds: " + ((Client) instance.getCurrentUser()).getWallet());
+
     }
+
 
     public void signOut(ActionEvent event) throws IOException{
         instance.cleanInstance();

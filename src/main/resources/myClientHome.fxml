@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoporswap.Controller">
+   <children>
+      <Label fx:id="clientHomeTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="15.0" prefHeight="25.0" prefWidth="200.0" text="ShopOrSwap" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="486.0" layoutY="15.0" mnemonicParsing="false" onAction="#signOut" prefWidth="100.0" text="Sign Out" />
+      <VBox layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label fx:id="clientHomeStorefrontsHeader" alignment="CENTER" prefWidth="200.0" text="Storefronts">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <ListView fx:id="clientHomeStorefrontsListView" prefHeight="200.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+            <VBox prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: #000000;">
+               <children>
+                  <Label fx:id="clientHomeGoToStorefrontNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Storefront Name" />
+                  <Label fx:id="clientHomeGoToStorefrontOwnerLabel" alignment="CENTER" layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="200.0" text="Storefront Owner Name" />
+                  <Button fx:id="clientHomeGoToStorefrontButton" mnemonicParsing="false" onAction="#goToStorefront" prefHeight="25.0" prefWidth="205.0" text="Go To Storefront" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="200.0" layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label fx:id="clientHomeProductsHeader" alignment="CENTER" prefWidth="200.0" text="Products">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <ListView fx:id="clientHomeProductsListView" prefHeight="200.0" prefWidth="198.0" style="-fx-border-color: #000000;" />
+            <VBox prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: #000000;">
+               <children>
+                  <Label fx:id="clientHomeGoToProductNameLabel" alignment="CENTER" prefHeight="20.0" prefWidth="200.0" text="Product Name" />
+                  <Label fx:id="clientHomeGoToProductOwnerLabel" alignment="CENTER" layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="200.0" text="Product Owner Name" />
+                  <Button fx:id="clientHomeGoToProductfrontButton" mnemonicParsing="false" onAction="#goToProduct3" prefHeight="25.0" prefWidth="205.0" text="Go To Product" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="400.0" layoutY="100.0" prefHeight="300.0" prefWidth="200.0" style="-fx-border-color: #000000;">
+         <children>
+            <Label fx:id="clientHomeProductInfoHeader" alignment="CENTER" prefWidth="200.0" text="Product Information">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="productInfoLabel" alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="231.0" prefWidth="198.0" text="Product Info" visible="false" wrapText="true" />
+            <Button fx:id="deleteProduct" mnemonicParsing="false" onAction="#deleteProductClicked" prefHeight="27.0" prefWidth="205.0" text="Delete Product" visible="false" />
+            <Label fx:id="errorLabel2" text="Error:" textFill="RED" visible="false" />
+         </children>
+      </VBox>
+      <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#back" prefWidth="100.0" text="Back" />
+      <Label fx:id="myFundsLabel2" alignment="CENTER" layoutY="49.0" prefHeight="17.0" prefWidth="600.0" text="My Funds:" />
+   </children>
+</AnchorPane>

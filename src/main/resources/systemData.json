@@ -9,37 +9,9 @@
       "storefrontName" : "Ioan",
       "productRecordList" : [ {
         "productType" : "shoporswap.SellProduct",
-        "productName" : "test4",
-        "productDescription" : "test4",
-        "productValue" : 10.0,
-        "productMerchantName" : "a",
-        "productTags" : [ ]
-      }, {
-        "productType" : "shoporswap.SellProduct",
         "productName" : "COOLPRODUCT",
         "productDescription" : "THIS IS CRAZY EXPENSIVE",
         "productValue" : 100000.0,
-        "productMerchantName" : "a",
-        "productTags" : [ ]
-      }, {
-        "productType" : "shoporswap.SellProduct",
-        "productName" : "2",
-        "productDescription" : "2",
-        "productValue" : 2.0,
-        "productMerchantName" : "a",
-        "productTags" : [ ]
-      }, {
-        "productType" : "shoporswap.SellProduct",
-        "productName" : "3",
-        "productDescription" : "3",
-        "productValue" : 3.0,
-        "productMerchantName" : "a",
-        "productTags" : [ ]
-      }, {
-        "productType" : "shoporswap.SellProduct",
-        "productName" : "0",
-        "productDescription" : "0",
-        "productValue" : 0.0,
         "productMerchantName" : "a",
         "productTags" : [ ]
       } ]
@@ -62,14 +34,54 @@
     }, {
       "storefrontType" : "shoporswap.SellStorefront",
       "storefrontName" : "Black",
-      "productRecordList" : [ ]
+      "productRecordList" : [ {
+        "productType" : "shoporswap.SellProduct",
+        "productName" : "black hat",
+        "productDescription" : "this hat is black",
+        "productValue" : 100.0,
+        "productMerchantName" : "a",
+        "productTags" : [ ]
+      } ]
     }, {
       "storefrontType" : "shoporswap.SwapStorefront",
       "storefrontName" : "Orange",
-      "productRecordList" : [ ]
+      "productRecordList" : [ {
+        "productType" : "shoporswap.SwapProduct",
+        "productName" : "OrangePants",
+        "productDescription" : "Its pants that are orange",
+        "productValue" : 100.0,
+        "productMerchantName" : "a",
+        "productTags" : [ ]
+      }, {
+        "productType" : "shoporswap.SwapProduct",
+        "productName" : "orange hat",
+        "productDescription" : "this hat is orange",
+        "productValue" : 10.0,
+        "productMerchantName" : "a",
+        "productTags" : [ ]
+      } ]
     } ],
     "ratingsList" : [ ],
-    "wallet" : "13190.0"
+    "wallet" : "10.0"
+  }, {
+    "accountName" : "Soverne",
+    "accountPassword" : "BossMan",
+    "isFrozen" : false,
+    "myProductRecords" : [ ],
+    "myStorefrontRecords" : [ {
+      "storefrontType" : "shoporswap.SellStorefront",
+      "storefrontName" : "Pants",
+      "productRecordList" : [ {
+        "productType" : "shoporswap.SellProduct",
+        "productName" : "greenHat",
+        "productDescription" : "hat is green",
+        "productValue" : 100.0,
+        "productMerchantName" : "Soverne",
+        "productTags" : [ ]
+      } ]
+    } ],
+    "ratingsList" : [ ],
+    "wallet" : "100.0"
   }, {
     "accountName" : "admin1",
     "accountPassword" : "admin1",
@@ -334,6 +346,166 @@
     "recipientType" : "shoporswap.Client",
     "subject" : "Transaction: Blue for orange",
     "content" : "a has completed a transaction to get Blue from client1 by giving orange",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: 3",
+    "content" : "client1 has completed a transaction to buy 3 from a",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: 3",
+    "content" : "client1 has completed a transaction to buy 3 from a",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: 2",
+    "content" : "client1 has completed a transaction to buy 2 from a",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: 2",
+    "content" : "client1 has completed a transaction to buy 2 from a",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: test4",
+    "content" : "client1 has completed a transaction to buy test4 from a",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: test4",
+    "content" : "client1 has completed a transaction to buy test4 from a",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: OrangeShirt for testSwap",
+    "content" : "client1 has completed a transaction to get OrangeShirt from a by giving testSwap",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: OrangeShirt for testSwap",
+    "content" : "client1 has completed a transaction to get OrangeShirt from a by giving testSwap",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: OrangeShirt for testSwap",
+    "content" : "client1 has completed a transaction to get OrangeShirt from a by giving testSwap",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: OrangeShirt for testSwap",
+    "content" : "client1 has completed a transaction to get OrangeShirt from a by giving testSwap",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: OrangeShirt for testSwap",
+    "content" : "client1 has completed a transaction to get OrangeShirt from a by giving testSwap",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: OrangeShirt for testSwap",
+    "content" : "client1 has completed a transaction to get OrangeShirt from a by giving testSwap",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "client1",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: BlueHat for orangeHat",
+    "content" : "a has completed a transaction to get BlueHat from client1 by giving orangeHat",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "client1",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: BlueHat for orangeHat",
+    "content" : "a has completed a transaction to get BlueHat from client1 by giving orangeHat",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "Soverne",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "a",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: greenHat",
+    "content" : "a has completed a transaction to buy greenHat from Soverne",
+    "reportedAccountName" : null,
+    "reportedAccountType" : null
+  }, {
+    "messageType" : "shoporswap.UserMessage",
+    "senderName" : "a",
+    "senderType" : "shoporswap.Client",
+    "recipientName" : "Soverne",
+    "recipientType" : "shoporswap.Client",
+    "subject" : "Transaction: greenHat",
+    "content" : "a has completed a transaction to buy greenHat from Soverne",
     "reportedAccountName" : null,
     "reportedAccountType" : null
   } ]

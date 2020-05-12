@@ -18,6 +18,9 @@ public class GUIDriver extends Application {
 
     //If you go to a storefront, select a product, then go to a different store front, the listener will no longer have a selected product to listen to and the program will complain.
 
+    //Signing in twice in one session causes minor issues, for instance the view store fronts shows all storefronts and wallet isn't updated.
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
